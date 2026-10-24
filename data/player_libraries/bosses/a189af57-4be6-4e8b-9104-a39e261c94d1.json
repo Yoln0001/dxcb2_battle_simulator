@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "bosses": [
+    {
+      "id": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+      "name": "圣者的幻影",
+      "race": "人形",
+      "hasSkills": true,
+      "partyWipe": {
+        "enabled": true,
+        "time": 180,
+        "strategy": "all"
+      },
+      "skillGroup": {
+        "name": "技能组",
+        "skills": [
+          {
+            "id": "boss_skill_0",
+            "name": "圣吟（LV.3)",
+            "damageType": "magic",
+            "targeting": "all",
+            "cooldown": 4.4,
+            "baseValue": 0,
+            "hitRate": 93,
+            "criticalRate": 90,
+            "coefficients": {
+              "magic": 0.63
+            },
+            "targetSelection": "lowestHp",
+            "ignoreTaunt": false,
+            "healingRecipient": "self",
+            "raceBonus": {
+              "race": "none",
+              "multiplier": 0
+            },
+            "effect": {
+              "kind": "debuff",
+              "baseValue": 100000,
+              "duration": 1000,
+              "type": "weakness",
+              "applicationRate": 1782,
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "maxStacks": 1
+            }
+          },
+          {
+            "id": "boss_skill_1",
+            "name": "灵魂风暴（LV.3)",
+            "damageType": "magic",
+            "targeting": "all",
+            "cooldown": 4.4,
+            "baseValue": 0,
+            "hitRate": 93,
+            "criticalRate": 90,
+            "coefficients": {
+              "magic": 0.63
+            },
+            "targetSelection": "lowestHp",
+            "ignoreTaunt": false,
+            "healingRecipient": "self",
+            "raceBonus": {
+              "race": "none",
+              "multiplier": 0
+            },
+            "effect": {
+              "kind": "debuff",
+              "baseValue": 50000,
+              "duration": 10000,
+              "type": "fear",
+              "applicationRate": 1782,
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "maxStacks": 1
+            }
+          },
+          {
+            "id": "boss_skill_2",
+            "name": "生命萃取（LV.3)",
+            "damageType": "magic",
+            "targeting": "single",
+            "cooldown": 2.1,
+            "baseValue": 0,
+            "hitRate": 95,
+            "criticalRate": 90,
+            "coefficients": {
+              "magic": 0.42
+            },
+            "targetSelection": "lowestHp",
+            "ignoreTaunt": true,
+            "healingRecipient": "self",
+            "raceBonus": {
+              "race": "none",
+              "multiplier": 0
+            },
+            "effect": {
+              "kind": "debuff",
+              "baseValue": 12000,
+              "duration": 8,
+              "type": "lifeLoss",
+              "applicationRate": 1782,
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "maxStacks": 1
+            }
+          }
+        ],
+        "entry": "boss_legacy_node_0",
+        "subgroups": [
+          {
+            "type": "random",
+            "id": "boss_legacy_group",
+            "nextGroup": "",
+            "skills": [
+              {
+                "id": "boss_legacy_node_0",
+                "skillIds": [
+                  "boss_skill_0",
+                  "boss_skill_1",
+                  "boss_skill_2"
+                ],
+                "skillJumps": {
+                  "boss_skill_0": "boss_node_1791343811670_6",
+                  "boss_skill_1": "boss_node_1791343809881_4",
+                  "boss_skill_2": "boss_node_1791343809211_2"
+                },
+                "skillTargets": {
+                  "boss_skill_0": "lowestHp",
+                  "boss_skill_1": "lowestHp",
+                  "boss_skill_2": "random"
+                },
+                "next": "",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          },
+          {
+            "type": "random",
+            "id": "boss_subgroup_1791343809210_1",
+            "nextGroup": "",
+            "skills": [
+              {
+                "id": "boss_node_1791343809211_2",
+                "skillIds": [
+                  "boss_skill_0",
+                  "boss_skill_1"
+                ],
+                "skillJumps": {
+                  "boss_skill_0": "boss_node_1791343811670_6",
+                  "boss_skill_1": "boss_node_1791343809881_4"
+                },
+                "skillTargets": {
+                  "boss_skill_0": "lowestHp",
+                  "boss_skill_1": "lowestHp"
+                },
+                "next": "",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          },
+          {
+            "type": "random",
+            "id": "boss_subgroup_1791343809881_3",
+            "nextGroup": "",
+            "skills": [
+              {
+                "id": "boss_node_1791343809881_4",
+                "skillIds": [
+                  "boss_skill_0",
+                  "boss_skill_2"
+                ],
+                "skillJumps": {
+                  "boss_skill_0": "boss_node_1791343811670_6",
+                  "boss_skill_2": "boss_node_1791343809211_2"
+                },
+                "skillTargets": {
+                  "boss_skill_0": "lowestHp",
+                  "boss_skill_2": "random"
+                },
+                "next": "",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          },
+          {
+            "type": "random",
+            "id": "boss_subgroup_1791343811670_5",
+            "nextGroup": "",
+            "skills": [
+              {
+                "id": "boss_node_1791343811670_6",
+                "skillIds": [
+                  "boss_skill_1",
+                  "boss_skill_2"
+                ],
+                "skillJumps": {
+                  "boss_skill_1": "boss_node_1791343809881_4",
+                  "boss_skill_2": "boss_node_1791343809211_2"
+                },
+                "skillTargets": {
+                  "boss_skill_1": "lowestHp",
+                  "boss_skill_2": "random"
+                },
+                "next": "",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          }
+        ]
+      },
+      "attributes": {
+        "weaponPower": 0,
+        "strength": 24500,
+        "magic": 182000,
+        "technique": 168000,
+        "speed": 161000,
+        "constitution": 11900000,
+        "hitPoint": 119000000,
+        "armor": 2240,
+        "resistance": 2240,
+        "criticalRate": 0,
+        "hitRate": 0,
+        "ignoreArmor": 0,
+        "ignoreResistance": 100,
+        "abnormalBonus": 0,
+        "physicalDamage": 0,
+        "finalPhysicalDamage": 0,
+        "magicDamage": 0,
+        "finalMagicDamage": 0,
+        "dotDamage": 0,
+        "finalDotDamage": 0,
+        "healingBonus": 0,
+        "finalHealingBonus": 0,
+        "unload": 0,
+        "criticalMultiplier": 0,
+        "physicalSingleLifesteal": 0,
+        "magicSingleLifesteal": 0,
+        "physicalAreaLifesteal": 0,
+        "magicAreaLifesteal": 0,
+        "dodgeRate": 0
+      },
+      "targetRules": {
+        "physicalReduction": 0,
+        "magicReduction": 0,
+        "dotReduction": 0,
+        "allyLifestealReduction": 99.99,
+        "allyHealingReduction": 0,
+        "allyRegenerationReduction": 0,
+        "immuneBleeding": true,
+        "immunePlague": true,
+        "immuneBurn": true,
+        "immuneSpeedReduction": true,
+        "immuneStun": true,
+        "immuneWeakness": true,
+        "immuneFear": true,
+        "immuneLifeLoss": true,
+        "immunePhysicalVulnerability": true,
+        "immuneMagicVulnerability": true,
+        "immuneNegativeEffects": true
+      }
+    }
+  ]
+}

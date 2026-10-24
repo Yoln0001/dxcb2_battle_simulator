@@ -1,0 +1,59 @@
+.group-dialog{width:min(1500px,96vw);max-height:94vh}.group-dialog .field span{flex-shrink:0;min-width:64px;font-size:12px}.group-dialog select{width:100%;min-width:0;border:0;background:white;color:#284553;font:inherit;font-size:12px;padding:7px}.group-library-bar{display:flex;align-items:center;gap:10px;margin:14px 0}.group-library-bar>select{border:1px solid var(--line);border-radius:4px;max-width:400px}.group-top{display:grid;grid-template-columns:1fr 1fr 2fr;gap:12px;margin:14px 0}.group-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;background:#f8fafb;padding:12px}.group-column{background:white;border:1px solid var(--line);border-radius:4px;padding:12px}.group-column h3{font-size:14px;margin:0 0 14px;min-height:36px}.group-column .field{margin:7px 0;height:38px}.group-next{width:100%;margin-top:12px;font-size:12px}.group-help{font-size:12px!important;line-height:1.9}.group-status{color:#318577!important;min-height:20px}.group-actions{display:flex;justify-content:flex-end;gap:10px}@media(max-width:1000px){.group-columns{grid-template-columns:repeat(2,minmax(0,1fr))}.group-top{grid-template-columns:1fr 1fr}.group-top>.field:last-child{grid-column:1/-1}}@media(max-width:600px){.group-columns,.group-top{grid-template-columns:1fr}.group-library-bar{flex-wrap:wrap}}
+
+.group-columns{grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr))}
+.group-subheading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.group-subheading h3{margin:0;min-height:0}.group-subheading button,.group-skill-row button{font-size:12px}
+.group-skill-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr) auto;gap:8px;align-items:center;margin:8px 0}.group-skill-row .field{margin:0}.group-column>button{margin-top:12px;font-size:12px}
+@media(max-width:650px){.group-skill-row{grid-template-columns:1fr}.group-skill-row>button{justify-self:end}}
+
+.group-dialog select.default-value{color:#9aa8b1}.group-dialog select option{color:#284553}.group-dialog select option[value=""]{color:#9aa8b1}.group-jump-footer{margin-top:16px!important}
+
+.group-library-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0;max-width:720px}@media(max-width:600px){.group-library-filters{grid-template-columns:1fr}}
+
+.group-edit-area[hidden]{display:none}.group-edit-area .group-top{grid-template-columns:1fr}.group-library-filters{max-width:none}.group-library-bar>select{max-width:none;flex:1}.group-library-bar>button{margin-left:auto;white-space:nowrap}
+
+.group-proc-condition{display:grid;gap:8px;min-width:0}.group-proc-condition .field>span{width:auto;min-width:100px;white-space:normal}
+
+.group-health-branch{padding:10px;background:#f5faf9;border:1px solid var(--line);border-radius:5px;margin-bottom:12px}.group-branch-settings{display:grid;gap:8px;margin-top:8px}.group-branch-settings[hidden]{display:none}.group-branch-settings p{margin:0;line-height:1.6}
+
+.group-skill-row.conditional{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;border:1px solid var(--line);border-radius:5px}.group-release-condition{display:grid;gap:8px;min-width:0}.group-release-condition[hidden],.group-release-condition .field[hidden]{display:none}@media(max-width:650px){.group-skill-row.conditional{grid-template-columns:1fr}}
+
+.group-decision{grid-column:1 / -1;display:grid;gap:12px}.group-decision h4{margin:0;font-size:14px}.group-decision-case{display:grid;grid-template-columns:60px 2fr 1fr 2fr;gap:10px;align-items:center;padding:12px;background:#f7fafb;border:1px solid #dce6ec;border-radius:4px}.group-decision-case>.field{min-width:0}.group-decision-case strong{font-size:13px}.group-decision-case>button{grid-column:4}.group-decision-case:last-child{grid-template-columns:60px 1fr}@media(max-width:800px){.group-decision-case{grid-template-columns:60px 1fr}.group-decision-case>.field,.group-decision-case>button{grid-column:2}}
+
+.group-skill-row>.field[hidden]{display:none}
+
+/* Split skill selection onto its own row so thresholds retain usable input width. */
+.group-decision-case{grid-template-columns:40px minmax(0,1fr) 150px}
+.group-decision-case>.field:nth-of-type(3){grid-column:2 / -1}
+.group-decision-case>button{grid-column:2 / -1;justify-self:end}
+.group-decision-case:last-child{grid-template-columns:40px minmax(0,1fr)}
+.group-dialog .group-health-threshold>span{min-width:36px;width:36px;padding:7px}
+.group-threshold-input{display:flex;align-items:center;flex:1;min-width:0;height:100%}
+.group-threshold-input input{flex:1;width:0;min-width:55px;padding:7px;font-size:13px;border:0;background:transparent}
+.group-dialog .group-threshold-input>span{min-width:0;flex:0 0 auto;width:auto;padding:0 8px;background:transparent;border:0}
+@media(max-width:650px){.group-decision-case{grid-template-columns:40px minmax(0,1fr)}.group-decision-case>.field,.group-decision-case>.field:nth-of-type(3){grid-column:2}.group-decision-case>.group-health-threshold{width:150px}}
+
+/* Scroll the editor while keeping its action bar at the bottom of the dialog. */
+.group-dialog[open]{display:flex;flex-direction:column;height:94vh;overflow:hidden;box-sizing:border-box}
+.group-dialog>.dialog-head{flex:0 0 auto}
+.group-dialog>form{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+.group-form-scroll{flex:1;min-height:0;overflow:auto;padding-right:8px}
+.group-dialog .group-actions{flex:0 0 auto;padding:12px 0 0;border-top:1px solid var(--line);background:white;flex-wrap:wrap}
+.group-dialog .group-actions[hidden]{display:none}
+.group-dialog .group-status{flex:0 0 auto;margin:8px 0;min-height:18px}
+.group-target-selection[hidden]{display:none}
+.group-dialog .group-target-selection select:disabled{background:#edf0f2;color:#98a4ad}
+.group-decision-case>.group-target-selection{grid-column:2 / -1}
+
+/* Scenario controls and state conditions keep labels and skill names on separate rows. */
+.group-scene-settings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.group-scene-settings>.field{min-width:0}
+.group-scene-settings>.field>span{min-width:100px;white-space:nowrap}
+.group-dialog .group-scene-settings>.field[hidden],.group-dialog .group-decision-case>.field[hidden]{display:none}
+.group-decision-case>.field{grid-column:2 / -1}
+.group-decision-case>.group-health-threshold{grid-column:3;grid-row:1}
+.group-decision-case>.group-status-hint{grid-column:2 / -1;font-size:12px;line-height:1.6;margin:0;color:#78909c}
+.group-decision-case>.field>span{min-width:110px;white-space:normal;line-height:1.4}
+.group-dialog .group-health-threshold>span{min-width:36px}
+@media(max-width:850px){.group-scene-settings{grid-template-columns:1fr}.group-decision-case>.group-health-threshold{grid-column:2;grid-row:auto}}
+
+.group-decision-case:has(>.group-health-threshold:not([hidden]))>.field:first-of-type{grid-column:2;grid-row:1}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "contracts": [
+    {
+      "id": "contracts_a680b810-2f43-4b39-a5ab-bf4e65679b99",
+      "name": "38.7",
+      "category": "magic",
+      "archetype": "饮命者（魔力）",
+      "baseBonus": 38.7,
+      "multiplier": 5.44,
+      "negativeEffect": "群体献祭"
+    },
+    {
+      "id": "contracts_8c3f7b2c-8d5b-4268-9e8f-62026f3e0abc",
+      "name": "37.2旧日",
+      "category": "magic",
+      "archetype": "旧日支配者（魔力）",
+      "baseBonus": 37.2,
+      "multiplier": 5.6,
+      "negativeEffect": "群体献祭"
+    },
+    {
+      "id": "contracts_b1d11d5d-366b-4de5-b6a3-b3d367632c77",
+      "name": "39.3",
+      "category": "magic",
+      "archetype": "至高妖精",
+      "baseBonus": 39.3,
+      "multiplier": 3.68,
+      "negativeEffect": "痴愚"
+    },
+    {
+      "id": "contracts_4d59b922-c379-4f56-8aac-0a898d883f24",
+      "name": "37.8饮命",
+      "category": "magic",
+      "archetype": "饮命者（魔力）",
+      "baseBonus": 37.8,
+      "multiplier": 5.44,
+      "negativeEffect": "群体盲目"
+    },
+    {
+      "id": "contract_36104cac-b4a0-41a0-807a-d54a9176f669",
+      "name": "38.7速旧日",
+      "category": "speed",
+      "archetype": "旧日支配者（速度）",
+      "baseBonus": 38.7,
+      "multiplier": 5.6,
+      "negativeEffect": "群体献祭"
+    }
+  ]
+}

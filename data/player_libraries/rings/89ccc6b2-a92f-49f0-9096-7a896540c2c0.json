@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "rings": [
+    {
+      "id": "ring_a3adb0f5-44b2-46f6-ab39-5e6e7a2b4def",
+      "name": "魔焰之环",
+      "kind": "fire",
+      "level": 1,
+      "mainAttribute": "magic",
+      "secondaryAttribute": "technique",
+      "mainValue": 800,
+      "secondaryValue": 450,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 20
+    },
+    {
+      "id": "ring_a94a7375-11e8-40bb-9c67-a38498829bfa",
+      "name": "暴焰之环",
+      "kind": "fire",
+      "level": 1,
+      "mainAttribute": "strength",
+      "secondaryAttribute": "technique",
+      "mainValue": 800,
+      "secondaryValue": 450,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 20
+    },
+    {
+      "id": "ring_132a162d-0b0e-421f-8d1c-3eba1e8c021b",
+      "name": "冥火之环",
+      "kind": "fire",
+      "level": 1,
+      "mainAttribute": "speed",
+      "secondaryAttribute": "technique",
+      "mainValue": 800,
+      "secondaryValue": 450,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 20
+    },
+    {
+      "id": "ring_9e55057f-3d45-4d26-9792-cd8d8ed82a20",
+      "name": "21.2速火",
+      "kind": "fire",
+      "level": 50,
+      "mainAttribute": "speed",
+      "secondaryAttribute": "technique",
+      "mainValue": 750,
+      "secondaryValue": 500,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 21.2
+    },
+    {
+      "id": "ring_5d038fd4-ff48-4eca-844b-1a47b92f7d8f",
+      "name": "21.2魔火",
+      "kind": "fire",
+      "level": 50,
+      "mainAttribute": "magic",
+      "secondaryAttribute": "technique",
+      "mainValue": 750,
+      "secondaryValue": 500,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 21.2
+    },
+    {
+      "id": "ring_6d4fdee8-177b-4744-a21f-ad930cd381aa",
+      "name": "魔法之环",
+      "kind": "fire",
+      "level": 1,
+      "mainAttribute": "magic",
+      "secondaryAttribute": "constitution",
+      "mainValue": 800,
+      "secondaryValue": 450,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 20
+    },
+    {
+      "id": "ring_2cbc141f-21d9-49b7-ab39-8f6a95b1e494",
+      "name": "23.6魔火",
+      "kind": "fire",
+      "level": 50,
+      "mainAttribute": "magic",
+      "secondaryAttribute": "technique",
+      "mainValue": 750,
+      "secondaryValue": 500,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 23.6
+    },
+    {
+      "id": "ring_55d7cccb-fabd-4545-8c6c-9072924655a1",
+      "name": "23.6速火",
+      "kind": "fire",
+      "level": 50,
+      "mainAttribute": "speed",
+      "secondaryAttribute": "technique",
+      "mainValue": 750,
+      "secondaryValue": 500,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 23.6
+    }
+  ]
+}

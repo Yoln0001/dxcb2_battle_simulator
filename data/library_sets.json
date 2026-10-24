@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "libraries": [
+    {
+      "id": "3677e269-946e-4a2b-a943-062a4857621d",
+      "kind": "trophies",
+      "name": "我的战利品库"
+    },
+    {
+      "id": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+      "kind": "bosses",
+      "name": "图52"
+    },
+    {
+      "id": "d799adc4-28a8-455d-8c38-88f2b22ee01a",
+      "kind": "contracts",
+      "name": "灵体魂碑契约"
+    },
+    {
+      "id": "d6f6a822-6b6f-485c-adec-57e02cd4677d",
+      "kind": "bosses",
+      "name": "图41"
+    },
+    {
+      "id": "e103bf0f-75c0-4c2f-bc9f-04de0690fc2d",
+      "kind": "bosses",
+      "name": "图34"
+    },
+    {
+      "id": "9b1dea75-4811-4fca-9cc1-91da6797b213",
+      "kind": "stones",
+      "name": "保底魔石"
+    },
+    {
+      "id": "ebe41a8c-4f9c-46e3-be51-024bc4398811",
+      "kind": "people",
+      "name": "保底人物"
+    },
+    {
+      "id": "89ccc6b2-a92f-49f0-9096-7a896540c2c0",
+      "kind": "rings",
+      "name": "保底环"
+    },
+    {
+      "id": "d40564fa-c8f1-4c80-a4bd-dbd960eade9a",
+      "kind": "imprints",
+      "name": "无辉印"
+    },
+    {
+      "id": "66b13d22-8347-4caf-ace1-31ba078fe989",
+      "kind": "holies",
+      "name": "570-图34"
+    },
+    {
+      "id": "d4a82084-81d4-4c55-9285-3d6235eec6e7",
+      "kind": "contracts",
+      "name": "我的契约"
+    },
+    {
+      "id": "983402ef-a8d3-4eb3-8f11-02eedf6593ab",
+      "kind": "contracts",
+      "name": "保底库"
+    },
+    {
+      "id": "461c1770-d534-4802-bfa7-c19636187297",
+      "kind": "imprints",
+      "name": "没有圣者秘典"
+    },
+    {
+      "id": "a871ab08-ab4e-4ee5-9dd6-fc9f2943731c",
+      "kind": "equipment",
+      "name": "85-50"
+    },
+    {
+      "id": "e9b22154-4d55-448c-ba28-5cf4831b71e2",
+      "kind": "equipment",
+      "name": "85-50-70"
+    }
+  ],
+  "displayNames": {
+    "equipment": {
+      "__default__": "我的装备库"
+    },
+    "stones": {
+      "__default__": "我的魔石库"
+    },
+    "people": {
+      "__default__": "我的人物库"
+    },
+    "contracts": {
+      "__default__": "我的契约库"
+    },
+    "bosses": {
+      "__default__": "魂碑"
+    }
+  }
+}

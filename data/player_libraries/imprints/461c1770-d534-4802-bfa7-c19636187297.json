@@ -1,0 +1,597 @@
+{
+  "schemaVersion": 2,
+  "imprints": [
+    {
+      "id": "imprints_1b5d6590-261e-46a7-8851-8aaf7460e343",
+      "name": "战士辉印",
+      "kind": "战士",
+      "scope": "base",
+      "job": "战士",
+      "attributes": {
+        "finalPhysicalDamage": 3,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 6,
+        "finalHealingBonus": 5,
+        "hitRate": 3,
+        "criticalRate": 5,
+        "abnormalBonus": 20
+      }
+    },
+    {
+      "id": "imprints_0044bb7e-9abd-4165-9053-058e08762355",
+      "name": "法师辉印",
+      "kind": "法师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 5,
+        "finalDotDamage": 2,
+        "finalHealingBonus": 15,
+        "hitRate": 3,
+        "criticalRate": 5,
+        "abnormalBonus": 20
+      },
+      "scope": "base",
+      "job": "法师"
+    },
+    {
+      "id": "imprints_f8d14ed0-cd45-4652-971d-5fcde989b3b4",
+      "name": "潜行者辉印",
+      "kind": "潜行者",
+      "scope": "base",
+      "job": "潜行者",
+      "attributes": {
+        "finalPhysicalDamage": 4,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 6,
+        "finalHealingBonus": 5,
+        "hitRate": 3,
+        "criticalRate": 5,
+        "abnormalBonus": 25
+      }
+    },
+    {
+      "id": "imprints_91f239cf-efa6-4d6f-8915-ceecfe799a32",
+      "name": "火枪手辉印",
+      "kind": "火枪手",
+      "scope": "base",
+      "job": "火枪手",
+      "attributes": {
+        "finalPhysicalDamage": 4,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 3,
+        "finalHealingBonus": 5,
+        "hitRate": 3,
+        "criticalRate": 5,
+        "abnormalBonus": 20
+      }
+    },
+    {
+      "id": "imprints_dccf7d42-383b-4524-be88-495b7754711d",
+      "name": "圣职辉印",
+      "kind": "圣职",
+      "scope": "base",
+      "job": "圣职",
+      "attributes": {
+        "finalPhysicalDamage": 1,
+        "finalMagicDamage": 4,
+        "finalDotDamage": 2,
+        "finalHealingBonus": 20,
+        "hitRate": 3,
+        "criticalRate": 0,
+        "abnormalBonus": 20
+      }
+    },
+    {
+      "id": "imprints_5a185845-1648-46d0-89b4-ec306d4d93fa",
+      "name": "野蛮人辉印",
+      "kind": "野蛮人",
+      "scope": "base",
+      "job": "野蛮人",
+      "attributes": {
+        "finalPhysicalDamage": 7,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 2,
+        "finalHealingBonus": 5,
+        "hitRate": 5,
+        "criticalRate": 5,
+        "abnormalBonus": 20
+      }
+    },
+    {
+      "id": "imprints_a1c247f3-f3c4-4907-89e2-a80d1c5b846f",
+      "name": "教宗额外辉印",
+      "kind": "圣职",
+      "scope": "extra",
+      "job": "教宗",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_61f14f83-92c2-49f2-a00e-d1832f519373",
+      "name": "圣光贤者额外辉印",
+      "kind": "圣职",
+      "scope": "extra",
+      "job": "圣光贤者",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_c995f1ec-6e90-4c90-a717-172611f0d04a",
+      "name": "神官骑士额外辉印",
+      "kind": "圣职",
+      "scope": "extra",
+      "job": "神官骑士",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_94f0d05f-d4ff-44c3-b319-e790c737eeff",
+      "name": "圣殿骑士额外辉印",
+      "kind": "圣职",
+      "scope": "extra",
+      "job": "圣殿骑士",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_8d0c3fcb-425c-4dcb-a528-c5ba87f4588f",
+      "name": "圣龙将军额外辉印",
+      "kind": "战士",
+      "scope": "extra",
+      "job": "圣龙将军",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_1e326908-d03f-4abf-be03-a425c9e23315",
+      "name": "黑骑士额外辉印",
+      "kind": "战士",
+      "scope": "extra",
+      "job": "黑骑士",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_adc4eae8-1f2f-423c-83b4-38f405e860a0",
+      "name": "剑豪额外辉印",
+      "kind": "战士",
+      "scope": "extra",
+      "job": "剑豪",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_fdecf707-2d52-441d-882a-c2a201d4ee01",
+      "name": "剑宗额外辉印",
+      "kind": "战士",
+      "scope": "extra",
+      "job": "剑宗",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_ecf5ff8f-5610-4b97-a880-f2ff6a70448f",
+      "name": "剑魔额外辉印",
+      "kind": "战士",
+      "scope": "extra",
+      "job": "剑魔",
+      "attributes": {
+        "finalPhysicalDamage": 3,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_67647db2-2b53-4034-a4e1-dededcefe173",
+      "name": "传奇法师额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "传奇法师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_bd05c459-0e40-4924-9316-177c8d73be76",
+      "name": "岩浆法师额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "岩浆法师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_2ebd0566-c1e7-4ea1-961a-ccea1fc37cbb",
+      "name": "寒霜法师额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "寒霜法师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 3,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_10614e0c-ee98-41ce-9fe1-16d9cffd7102",
+      "name": "血法师额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "血法师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 3,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_4156a10b-e92a-4a2c-b171-d019240b463a",
+      "name": "幻境先知额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "幻境先知",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_5c1cb75f-2985-4918-93e9-9b87e75071de",
+      "name": "虚空法师额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "虚空法师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_a644809e-245c-4a68-a400-84bce89d2eed",
+      "name": "大巫医额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "大巫医",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_707eb5e9-ced4-41bc-8337-c043bb8b0526",
+      "name": "灵魂贤者额外辉印",
+      "kind": "法师",
+      "scope": "extra",
+      "job": "灵魂贤者",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_020d83cf-2817-4fd0-abe8-f66fa939dce1",
+      "name": "夜莺额外辉印",
+      "kind": "潜行者",
+      "scope": "extra",
+      "job": "夜莺",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_1976d84d-0113-45e1-924a-7dad15016163",
+      "name": "夜魇额外辉印",
+      "kind": "潜行者",
+      "scope": "extra",
+      "job": "夜魇",
+      "attributes": {
+        "finalPhysicalDamage": 3,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_cd3785ed-76ee-404c-992e-9ef068b8a218",
+      "name": "诡术大师额外辉印",
+      "kind": "潜行者",
+      "scope": "extra",
+      "job": "诡术大师",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_d554675b-2a71-45ec-87f9-3459b3ef539c",
+      "name": "幻术刺客额外辉印",
+      "kind": "潜行者",
+      "scope": "extra",
+      "job": "幻术刺客",
+      "attributes": {
+        "finalPhysicalDamage": 5,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_544dc63a-cab3-4414-bb31-46857eac6d69",
+      "name": "圣枪侠额外辉印",
+      "kind": "火枪手",
+      "scope": "extra",
+      "job": "圣枪侠",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_209d9fdf-a3d0-4897-bbc8-c0f4776be611",
+      "name": "烈枪侠额外辉印",
+      "kind": "火枪手",
+      "scope": "extra",
+      "job": "烈枪侠",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_7a082053-7357-4683-89f2-ff885a49b9e6",
+      "name": "传奇猎人额外辉印",
+      "kind": "火枪手",
+      "scope": "extra",
+      "job": "传奇猎人",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_5a57a99a-b3b5-4312-83b6-5ecd4ed09cc8",
+      "name": "巨龙猎人额外辉印",
+      "kind": "火枪手",
+      "scope": "extra",
+      "job": "巨龙猎人",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_02048118-0390-40a4-a0ef-64963946a95b",
+      "name": "狂战神额外辉印",
+      "kind": "野蛮人",
+      "scope": "extra",
+      "job": "狂战神",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_4b304c32-8466-4851-8a1c-e71198bb74c9",
+      "name": "蛮荒之王额外辉印",
+      "kind": "野蛮人",
+      "scope": "extra",
+      "job": "蛮荒之王",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_fe02adce-99a8-4aa3-b9e1-1145dcd60a1e",
+      "name": "毁灭者额外辉印",
+      "kind": "野蛮人",
+      "scope": "extra",
+      "job": "毁灭者",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 3,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_ec24cf4b-5cf9-442e-b051-c94aa8db79b2",
+      "name": "火刑官额外辉印",
+      "kind": "野蛮人",
+      "scope": "extra",
+      "job": "火刑官",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_1435f948-2003-4ac0-985a-4b18b637c22e",
+      "name": "枪手额外辉印",
+      "kind": "火枪手",
+      "scope": "extra",
+      "job": "枪手",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    },
+    {
+      "id": "imprints_6c07de44-07db-480a-aa2d-83a01f776c9d",
+      "name": "狂战额外辉印",
+      "kind": "野蛮人",
+      "scope": "extra",
+      "job": "狂战",
+      "attributes": {
+        "finalPhysicalDamage": 0,
+        "finalMagicDamage": 0,
+        "finalDotDamage": 0,
+        "finalHealingBonus": 0,
+        "hitRate": 0,
+        "criticalRate": 0,
+        "abnormalBonus": 0
+      }
+    }
+  ]
+}

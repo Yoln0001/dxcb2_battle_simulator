@@ -1,0 +1,4 @@
+numpy>=1.24
+numba>=0.61
+fastapi==0.142.2
+uvicorn==0.54.0

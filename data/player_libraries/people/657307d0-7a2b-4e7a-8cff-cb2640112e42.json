@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "people": [
+    {
+      "id": "people_100d96c6-272e-48c3-a170-79595b1adf8e",
+      "name": "1123-854",
+      "job": "寒霜法师",
+      "attributes": {
+        "strength": 95,
+        "magic": 1123,
+        "technique": 854,
+        "speed": 512,
+        "constitution": 636,
+        "armor": 26,
+        "resistance": 73
+      }
+    },
+    {
+      "id": "people_805df994-251d-4a71-b873-18f4e86b44b5",
+      "name": "1251-809",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 133,
+        "magic": 1251,
+        "technique": 809,
+        "speed": 534,
+        "constitution": 596,
+        "armor": 24,
+        "resistance": 75
+      }
+    },
+    {
+      "id": "people_8f1ca149-40c8-4039-be8e-a269502c4d9d",
+      "name": "1251-840",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 113,
+        "magic": 1251,
+        "technique": 840,
+        "speed": 478,
+        "constitution": 558,
+        "armor": 24,
+        "resistance": 75
+      }
+    },
+    {
+      "id": "people_62f8b4a1-f096-4f00-a720-8a61066d6b14",
+      "name": "1127-829",
+      "job": "寒霜法师",
+      "attributes": {
+        "strength": 103,
+        "magic": 1127,
+        "technique": 829,
+        "speed": 576,
+        "constitution": 635,
+        "armor": 26,
+        "resistance": 73
+      }
+    }
+  ]
+}

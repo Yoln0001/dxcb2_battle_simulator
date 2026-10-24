@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {
+      "schemaVersion": 1,
+      "id": "skill_e923741e-9b4e-4e9d-ae1e-e7c0f7b880d0",
+      "name": "冰锥术Lv.9",
+      "job": "寒霜法师",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.5,
+      "lifesteal": 0,
+      "hitRate": 41.0,
+      "criticalRate": 20.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 4.6,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "spirit",
+        "multiplier": 0.5
+      },
+      "effect": {
+        "kind": "debuff",
+        "baseValue": 0,
+        "duration": 6,
+        "type": "stun",
+        "applicationRate": 65,
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0,
+          "speed": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_fe614b7d-5db7-4cf2-97c3-aa05a6bbcfb5",
+      "name": "冰锥术Lv.8",
+      "job": "寒霜法师",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.5,
+      "lifesteal": 0,
+      "hitRate": 35.0,
+      "criticalRate": 20.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 3.3,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "spirit",
+        "multiplier": 0.85
+      },
+      "effect": {
+        "kind": "debuff",
+        "baseValue": 0,
+        "duration": 6,
+        "type": "stun",
+        "applicationRate": 65,
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0,
+          "speed": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_9185e325-2575-4a8a-b577-459a220f3b94",
+      "name": "炎爆术Lv.7",
+      "job": "岩浆法师",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.8,
+      "lifesteal": 0,
+      "hitRate": 40.0,
+      "criticalRate": 17.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 3.3,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "spirit",
+        "multiplier": 0.35
+      },
+      "effect": {
+        "kind": "debuff",
+        "baseValue": 1,
+        "duration": 6,
+        "type": "burn",
+        "applicationRate": 70,
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0.25,
+          "speed": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+      "name": "炎爆术Lv.8",
+      "job": "岩浆法师",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.8,
+      "lifesteal": 0,
+      "hitRate": 45.0,
+      "criticalRate": 37.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 4.4,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "spirit",
+        "multiplier": 0.35
+      },
+      "effect": {
+        "kind": "debuff",
+        "baseValue": 1,
+        "duration": 6,
+        "type": "burn",
+        "applicationRate": 70,
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0.25,
+          "speed": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+      "name": "凝神静气Lv.7",
+      "job": "岩浆法师",
+      "damageType": "none",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "allAllies",
+      "cooldown": 3.0,
+      "lifesteal": 0,
+      "hitRate": 0.0,
+      "criticalRate": 0.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 0.6,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": {
+        "kind": "buff",
+        "baseValue": 5,
+        "duration": 15,
+        "type": "technique",
+        "triggerRate": 100,
+        "recipient": "allAllies",
+        "skillType": "support",
+        "conversions": [
+          {
+            "target": "strength",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          },
+          {
+            "target": "magic",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          },
+          {
+            "target": "technique",
+            "enabled": true,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0.25,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          },
+          {
+            "target": "speed",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_020cb153-4c6e-49bf-a345-906b6d9e479b",
+      "name": "幻影连击 Lv.7",
+      "job": "夜魇",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": -1.2,
+      "lifesteal": 0,
+      "hitRate": 45.0,
+      "criticalRate": 40.0,
+      "coefficients": {
+        "strength": 0.95,
+        "magic": 0.0,
+        "technique": 0.0,
+        "speed": 0.05,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+      "name": "摄魂术 lv.8",
+      "job": "灵魂贤者",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.4,
+      "lifesteal": 30.0,
+      "hitRate": 45.0,
+      "criticalRate": 20.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 4.3,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "human",
+        "multiplier": 0.35
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+      "name": "魂体重塑 Lv.8",
+      "job": "灵魂贤者",
+      "damageType": "none",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 3.0,
+      "lifesteal": 0.0,
+      "hitRate": 0.0,
+      "criticalRate": 0.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 1.0,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": {
+        "kind": "buff",
+        "baseValue": 1,
+        "duration": 10,
+        "type": "regeneration",
+        "triggerRate": 100,
+        "recipient": "healingTargets",
+        "skillType": "support",
+        "conversions": [
+          {
+            "target": "strength",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          },
+          {
+            "target": "magic",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          },
+          {
+            "target": "technique",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          },
+          {
+            "target": "speed",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0
+            }
+          }
+        ],
+        "coefficients": {
+          "strength": 0,
+          "magic": 0.8,
+          "technique": 0,
+          "speed": 0,
+          "constitution": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_b29fe096-a70a-4c3c-a11d-c73e7490d3b0",
+      "name": "幻影连击 Lv.8★",
+      "job": "夜魇",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": -1.2,
+      "lifesteal": 0.0,
+      "hitRate": 50.0,
+      "criticalRate": 50.0,
+      "coefficients": {
+        "strength": 1.05,
+        "magic": 0.0,
+        "technique": 0.0,
+        "speed": 0.75,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_964e0fe8-db41-4316-93db-376ca489c44e",
+      "name": "鹰落斩Lv.7",
+      "job": "剑豪",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.4,
+      "lifesteal": 0.0,
+      "hitRate": 50.0,
+      "criticalRate": 3.0,
+      "coefficients": {
+        "strength": 4.5,
+        "magic": 0.0,
+        "technique": 1.2,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_f9fb05ce-5104-400f-a40d-fb18b64b7b09",
+      "name": "收割Lv.8",
+      "job": "毁灭者",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.0,
+      "lifesteal": 70.0,
+      "hitRate": 50.0,
+      "criticalRate": 30.0,
+      "coefficients": {
+        "strength": 8.0,
+        "magic": 0.0,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_28b370b7-7feb-4450-9854-6c9277124c4b",
+      "name": "幻影连击 Lv.8",
+      "job": "夜魇",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": -1.2,
+      "lifesteal": 0.0,
+      "hitRate": 50.0,
+      "criticalRate": 50.0,
+      "coefficients": {
+        "strength": 1.0,
+        "magic": 0.0,
+        "technique": 0.0,
+        "speed": 0.5,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_f4be2189-a3e4-43ef-a407-b1f9bd9ca52a",
+      "name": "蛛网术Lv.7",
+      "job": "血法师",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.3,
+      "lifesteal": 0.0,
+      "hitRate": 50.0,
+      "criticalRate": 5.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 2.4,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "none",
+        "multiplier": 0
+      },
+      "effect": {
+        "kind": "debuff",
+        "baseValue": 5,
+        "duration": 10,
+        "type": "slow",
+        "applicationRate": 70,
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0.25,
+          "speed": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_177e8201-fedf-4795-9c32-d6f288b829af",
+      "name": "神圣净化Lv.7",
+      "job": "圣光贤者",
+      "damageType": "magic",
+      "ignoreTaunt": false,
+      "targeting": "all",
+      "healingRecipient": "self",
+      "cooldown": 1.5,
+      "lifesteal": 0.0,
+      "hitRate": 38.0,
+      "criticalRate": 15.0,
+      "coefficients": {
+        "strength": 0.0,
+        "magic": 1.3,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "other",
+        "multiplier": 1.6
+      },
+      "effect": null
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_6e37a155-228e-4006-b421-2b3dea3c0c01",
+      "name": "火怒斩Lv.8",
+      "job": "火刑官",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 1.3,
+      "lifesteal": 0.0,
+      "hitRate": 40.0,
+      "criticalRate": 27.0,
+      "coefficients": {
+        "strength": 5.35,
+        "magic": 0.0,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "other",
+        "multiplier": 2
+      },
+      "effect": {
+        "kind": "debuff",
+        "baseValue": 1,
+        "duration": 8,
+        "type": "burn",
+        "applicationRate": 95,
+        "coefficients": {
+          "strength": 0.3,
+          "magic": 0,
+          "technique": 0,
+          "speed": 0
+        }
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "skill_bc6dcc30-c9b3-4abf-aab2-444760fe3c21",
+      "name": "乾坤一击Lv.8★",
+      "job": "狂战神",
+      "damageType": "physical",
+      "ignoreTaunt": false,
+      "targeting": "single",
+      "healingRecipient": "self",
+      "cooldown": 2.0,
+      "lifesteal": 0.0,
+      "hitRate": 30.0,
+      "criticalRate": 40.0,
+      "coefficients": {
+        "strength": 11.5,
+        "magic": 0.0,
+        "technique": 0.0,
+        "speed": 0.0,
+        "constitution": 0.0,
+        "hitPoint": 0.0,
+        "weaponPower": 1.0
+      },
+      "raceBonus": {
+        "race": "human",
+        "multiplier": 0.2
+      },
+      "effect": null
+    }
+  ]
+}

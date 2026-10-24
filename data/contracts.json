@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 3,
+  "contracts": [
+    {
+      "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+      "name": "38.7旧日",
+      "category": "speed",
+      "archetype": "旧日支配者（速度）",
+      "baseBonus": 38.7,
+      "multiplier": 5.6,
+      "negativeEffect": "群体献祭"
+    },
+    {
+      "id": "contract_46a0eb8a-ae12-49e1-9ea6-dbaeb72a93d0",
+      "name": "39.3妖精",
+      "category": "magic",
+      "archetype": "至高妖精",
+      "baseBonus": 39.3,
+      "multiplier": 3.68,
+      "negativeEffect": "痴愚"
+    },
+    {
+      "id": "contract_a58a5c42-cc49-4437-ac53-1cbd53047489",
+      "name": "39.2力流血饮命",
+      "category": "strength",
+      "archetype": "饮命者",
+      "baseBonus": 39.2,
+      "multiplier": 11.04,
+      "negativeEffect": "群体献祭"
+    },
+    {
+      "id": "contract_b3a10859-3fd7-4121-b63f-8d2dc36f4de3",
+      "name": "39.3力旧日",
+      "category": "strength",
+      "archetype": "旧日支配者",
+      "baseBonus": 39.3,
+      "multiplier": 11.2,
+      "negativeEffect": "群体献祭"
+    },
+    {
+      "id": "contract_8ce34308-c63b-46bd-86ad-c9e71be8f598",
+      "name": "38.7魔流血饮命",
+      "category": "magic",
+      "archetype": "饮命者（魔力）",
+      "baseBonus": 38.7,
+      "multiplier": 5.44,
+      "negativeEffect": "群体献祭"
+    },
+    {
+      "id": "contract_1b414845-d174-4f5a-8a57-59fb8509097c",
+      "name": "37.8魔盲目饮命",
+      "category": "magic",
+      "archetype": "饮命者（魔力）",
+      "baseBonus": 37.8,
+      "multiplier": 5.44,
+      "negativeEffect": "群体盲目"
+    }
+  ]
+}

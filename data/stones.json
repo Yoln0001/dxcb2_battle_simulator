@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "stones": [
+    {
+      "id": "f53b163b-0909-4df5-9f4d-9539a6091c03",
+      "name": "96-34-18",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 96,
+        "technique": 34,
+        "speed": 28,
+        "constitution": 18,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "f533bff5-d5b4-4f0d-b063-07cab8310366",
+      "name": "88-40-23",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 88,
+        "technique": 40,
+        "speed": 32,
+        "constitution": 23,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "f8f95d23-cf41-4c49-b850-f4536933978a",
+      "name": "88-36-26-魔增幅",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 88,
+        "technique": 36,
+        "speed": 22,
+        "constitution": 26,
+        "hitRate": 0
+      }
+    },
+    {
+      "id": "750c8cb3-36b2-44c7-b1bb-1fd9558133b3",
+      "name": "91-35-26",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 91,
+        "technique": 35,
+        "speed": 21,
+        "constitution": 26,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "2829cdc2-29a5-4742-a686-55d7461e89d7",
+      "name": "95-12",
+      "kind": "猎神者之石",
+      "attributes": {
+        "strength": 12,
+        "magic": 9,
+        "technique": 17,
+        "speed": 95,
+        "constitution": 42,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "e9e83ffd-9939-49ac-b5b5-daad016a2091",
+      "name": "95-38-17",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 95,
+        "technique": 38,
+        "speed": 14,
+        "constitution": 17,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "481d57c0-f1aa-439b-b3a5-26722e5f17ee",
+      "name": "98暴君",
+      "kind": "暴君之石",
+      "attributes": {
+        "strength": 98,
+        "magic": 0,
+        "technique": 26,
+        "speed": 30,
+        "constitution": 34,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "c20d46c8-7af6-414c-bca6-7d9ff250b4f4",
+      "name": "95暴君",
+      "kind": "暴君之石",
+      "attributes": {
+        "strength": 95,
+        "magic": 0,
+        "technique": 29,
+        "speed": 31,
+        "constitution": 43,
+        "hitRate": 15
+      }
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "people": [
+    {
+      "id": "65924e75-96ed-4bba-bdf9-fd4fbfb9b273",
+      "name": "1219-875",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 119,
+        "magic": 1219,
+        "technique": 875,
+        "speed": 530,
+        "constitution": 600,
+        "armor": 24,
+        "resistance": 75
+      }
+    },
+    {
+      "id": "db963941-019d-4a6a-a8fb-2bd52f1c90ea",
+      "name": "1227-867",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 139,
+        "magic": 1227,
+        "technique": 867,
+        "speed": 521,
+        "constitution": 572,
+        "armor": 24,
+        "resistance": 77
+      }
+    },
+    {
+      "id": "7d645702-7dfd-48b7-a4e2-a75edb146a5f",
+      "name": "1227-815",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 114,
+        "magic": 1227,
+        "technique": 815,
+        "speed": 527,
+        "constitution": 586,
+        "armor": 24,
+        "resistance": 75
+      }
+    },
+    {
+      "id": "42e293c8-ced5-4fa3-aff2-3a57e8e5b042",
+      "name": "1211-736",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 136,
+        "magic": 1211,
+        "technique": 736,
+        "speed": 457,
+        "constitution": 726,
+        "armor": 25,
+        "resistance": 77
+      }
+    },
+    {
+      "id": "8f238dda-68bf-46aa-be28-7b4cc829f699",
+      "name": "1236-744",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 143,
+        "magic": 1236,
+        "technique": 744,
+        "speed": 503,
+        "constitution": 645,
+        "armor": 24,
+        "resistance": 76
+      }
+    },
+    {
+      "id": "ec84b346-4aed-4ac9-bed0-02b442030396",
+      "name": "1231-756",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 129,
+        "magic": 1231,
+        "technique": 756,
+        "speed": 509,
+        "constitution": 571,
+        "armor": 24,
+        "resistance": 76
+      }
+    },
+    {
+      "id": "f511f867-9328-4863-9608-feb141801871",
+      "name": "1112-857",
+      "job": "寒霜法师",
+      "attributes": {
+        "strength": 135,
+        "magic": 1112,
+        "technique": 857,
+        "speed": 509,
+        "constitution": 671,
+        "armor": 26,
+        "resistance": 74
+      }
+    },
+    {
+      "id": "e6e85d54-4829-47b9-9391-6b03a548ac42",
+      "name": "1104-821",
+      "job": "寒霜法师",
+      "attributes": {
+        "strength": 116,
+        "magic": 1104,
+        "technique": 821,
+        "speed": 567,
+        "constitution": 576,
+        "armor": 26,
+        "resistance": 73
+      }
+    },
+    {
+      "id": "b17f33b1-80e6-4170-9870-b2c1b502f236",
+      "name": "632-1103",
+      "job": "夜魇",
+      "attributes": {
+        "strength": 632,
+        "magic": 76,
+        "technique": 995,
+        "speed": 1103,
+        "constitution": 541,
+        "armor": 43,
+        "resistance": 33
+      }
+    },
+    {
+      "id": "722be7ec-fb87-431c-a449-19e1a3706d68",
+      "name": "1113血法",
+      "job": "血法师",
+      "attributes": {
+        "strength": 116,
+        "magic": 1113,
+        "technique": 722,
+        "speed": 526,
+        "constitution": 752,
+        "armor": 30,
+        "resistance": 70
+      }
+    },
+    {
+      "id": "6508b70f-018c-47cf-a979-9103052ab143",
+      "name": "1104魂贤",
+      "job": "灵魂贤者",
+      "attributes": {
+        "strength": 70,
+        "magic": 1104,
+        "technique": 924,
+        "speed": 555,
+        "constitution": 623,
+        "armor": 22,
+        "resistance": 101
+      }
+    },
+    {
+      "id": "a4001a8e-1c89-4daf-91d8-701061d48d51",
+      "name": "1166圣光",
+      "job": "圣光贤者",
+      "attributes": {
+        "strength": 418,
+        "magic": 1166,
+        "technique": 524,
+        "speed": 602,
+        "constitution": 599,
+        "armor": 26,
+        "resistance": 90
+      }
+    },
+    {
+      "id": "070c5452-8c38-4af1-ad40-52c3bf13e130",
+      "name": "992火刑",
+      "job": "火刑官",
+      "attributes": {
+        "strength": 992,
+        "magic": 118,
+        "technique": 683,
+        "speed": 714,
+        "constitution": 743,
+        "armor": 47,
+        "resistance": 26
+      }
+    },
+    {
+      "id": "79cb13d1-3db6-4614-8fca-c5b38fc402f3",
+      "name": "1219狂战",
+      "job": "狂战神",
+      "attributes": {
+        "strength": 1219,
+        "magic": 148,
+        "technique": 522,
+        "speed": 653,
+        "constitution": 790,
+        "armor": 42,
+        "resistance": 21
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "stones": [
+    {
+      "id": "d51a06fb-b52a-425d-babc-1208f66a32b2",
+      "name": "闪火石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 20,
+        "magic": 0,
+        "technique": 20,
+        "speed": 80,
+        "constitution": 60,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "331da020-eb07-44bc-9303-1833b30aac30",
+      "name": "耀晶石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 0,
+        "magic": 80,
+        "technique": 50,
+        "speed": 0,
+        "constitution": 50,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "eae9a87a-2371-46de-bb9a-b1bafccf5f74",
+      "name": "星界石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 80,
+        "magic": 0,
+        "technique": 40,
+        "speed": 0,
+        "constitution": 60,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "b54ef233-bd04-4290-ba29-828d238292db",
+      "name": "飓风之石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 15,
+        "magic": 0,
+        "technique": 30,
+        "speed": 80,
+        "constitution": 35,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "0b745956-504a-42df-ba6b-dba354e7b4e8",
+      "name": "新月石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 0,
+        "magic": 85,
+        "technique": 45,
+        "speed": 0,
+        "constitution": 50,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "ab571f51-eb2a-4cc1-bd8c-53149d06656e",
+      "name": "虚构石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 15,
+        "magic": 0,
+        "technique": 30,
+        "speed": 85,
+        "constitution": 50,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "bf03a529-cd76-4cc8-b43b-7be324a9a132",
+      "name": "龙巫妖之石",
+      "kind": "唯一魔石",
+      "attributes": {
+        "strength": 0,
+        "magic": 80,
+        "technique": 60,
+        "speed": 0,
+        "constitution": 40,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "c88da09c-189b-46ec-be07-61a02945e0a5",
+      "name": "90-15-20-35",
+      "kind": "猎神者之石",
+      "attributes": {
+        "strength": 15,
+        "magic": 10,
+        "technique": 20,
+        "speed": 90,
+        "constitution": 35,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "a66eb068-75ef-49b3-8613-92d87833f04c",
+      "name": "90-25-35魔",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 90,
+        "technique": 35,
+        "speed": 20,
+        "constitution": 25,
+        "hitRate": 15
+      }
+    }
+  ]
+}

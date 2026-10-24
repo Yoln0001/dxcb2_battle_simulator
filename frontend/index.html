@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>地下城堡2 · 队伍配置</title><link rel="stylesheet" href="css/styles.css?v=b1d5873cb125"><link rel="stylesheet" href="css/skill-editor.css?v=2a465114da10"><link rel="stylesheet" href="css/equipment-editor.css?v=93586c85321d"><link rel="stylesheet" href="css/skill-group-editor.css?v=0aa422f2d708">
+<link rel="stylesheet" href="css/configuration-library.css?v=bb98470b183b">
+<link rel="stylesheet" href="css/unclassified-equipment.css?v=8ccb5e47964f">
+<link rel="stylesheet" href="css/wiki-equipment.css?v=fd7ef48d55f1">
+<style>.contract-library-dialog{width:min(1050px,94vw);max-height:92vh}.contract-library-workspace{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px}.contract-library-workspace aside{display:flex;flex-direction:column;gap:10px}.contract-library-workspace aside button{display:block;width:100%;margin-bottom:5px}.contract-library-workspace form{max-height:68vh;overflow:auto;padding-right:8px}.contract-library-workspace .field{margin-bottom:10px;min-height:40px}.contract-library-footer{position:sticky;bottom:0;background:white;padding:14px 0;display:flex;gap:8px;justify-content:flex-end}@media(max-width:700px){.contract-library-workspace{grid-template-columns:1fr}.contract-library-workspace form{max-height:55vh}}</style><link rel="stylesheet" href="css/tas.css?v=ac0f8207b7f8">
+</head>
+<body>
+<header><div class="brand"><span class="mark">Ⅱ</span><div><strong>地下城堡2模拟器</strong><span class="subtitle">队伍配置工作台</span></div></div><span class="phase">角色配置 · 第一版</span></header>
+<main>
+<section class="intro"><div><span class="eyebrow">TEAM BUILDER</span><h1>配置你的出战队伍</h1><p>录入面板，搭配技能与装备，为下一场战斗做好准备。</p></div><div class="team-count"><strong id="active-count">4</strong><span> / 4 位角色参战</span></div></section>
+<form id="team-form">
+<section class="toolbar"><div class="settings"><label>战斗时长 <div class="unit-input"><input id="duration" type="number" value="200" min="0.1" step="any" required><span>秒</span></div></label><label>模拟次数 <div class="unit-input"><input id="simulations" type="number" value="100" min="1" max="1000000" step="1" required><span>次</span></div></label></div><div class="actions"><div class="configuration-mode-tabs" role="group" aria-label="配置类型"><button type="button" id="mode-regular" aria-pressed="true">常规配置</button><button type="button" id="mode-special" aria-pressed="false">特殊配置</button></div><button type="button" id="simulate-batch" class="primary">开始批量模拟</button><button type="button" id="simulate-single" class="primary">开始单次模拟</button><button type="button" id="simulate-batch-boss">批量模拟（含Boss攻击）</button><button type="button" id="simulate-single-boss">单次模拟（含Boss攻击）</button><button type="button" id="open-tas" hidden>TAS 战斗</button><button type="button" id="open-bosses-library">Boss库</button><details class="toolbar-library-menu"><summary>己方库</summary><div class="toolbar-library-options"><button type="button" id="open-unclassified-equipment" hidden>未分类装备库</button><button type="button" id="open-equipment-editor">装备库</button><button type="button" id="open-skill-editor">技能库</button><button type="button" id="open-skill-group-editor">技能组</button><button type="button" id="open-stones-library">魔石库</button><button type="button" id="open-people-library">人物库</button><button type="button" id="open-trophy-library">战利品库</button><button type="button" id="open-contract-library">契约库</button><button type="button" id="open-ring-library">域之环库</button><button type="button" id="open-holies-library">圣迹库</button><button type="button" id="open-imprints-library">辉印库</button></div></details><button type="button" id="open-configuration-library">配置库</button><button type="button" id="import" hidden>导入配置</button><button type="button" id="export" hidden>导出配置</button><button type="submit" class="primary" formnovalidate>保存配置</button></div></section>
+<p id="configuration-mode-help" class="configuration-mode-help"></p>
+<div class="notice"><span class="notice-dot"></span>配置完成后点击“开始单次模拟”，查看战斗时间表与角色状态。<button type="button" id="preview">查看配置数据 ↗</button></div>
+<details class="side-information" id="enemy-information" open><summary>敌方信息</summary><div class="side-information-body"><div id="boss-target-picker"></div><details id="target-panel" class="target-panel" open>
+<summary><span>详细信息</span><small>本场战斗的敌方信息</small></summary>
+<div id="target-fields" class="target-grid" aria-label="敌方详细信息"></div>
+</details>
+</div></details>
+<details class="side-information" id="ally-information" open><summary>己方信息</summary><div class="side-information-body"><button type="button" id="add-character">＋ 添加备选角色</button><section id="characters" class="characters" aria-label="角色配置（最多四人参战）"></section>
+</div></details>
+<footer><span>百分比字段填写百分数，例如 11.2 表示 11.2%。面板填写开战前数值。</span><span id="save-state">配置尚未保存</span></footer>
+</form>
+</main>
+<input id="file-input" type="file" accept="application/json,.json" hidden>
+<datalist id="jobs"><option value="狂战神"><option value="圣枪侠"><option value="夜魇"><option value="寒霜法师"><option value="岩浆法师"></datalist>
+<datalist id="skills"><option value="原版狂战技能"><option value="原版圣枪1技能"><option value="原版圣枪2技能"><option value="原版夜魇技能"></datalist>
+<dialog id="data-dialog"><div class="dialog-head"><h2>队伍配置数据</h2><button id="close-dialog" type="button" aria-label="关闭">×</button></div><p>这些数据可以保存、导出，之后交给战斗引擎读取。</p><pre id="json-preview"></pre></dialog>
+<dialog id="skill-editor-dialog" class="skill-editor-dialog">
+<div class="dialog-head"><div><h2>角色技能库</h2><p>先定义技能的数值和特效，再用技能组安排施放顺序。</p></div><button type="button" id="close-skill-editor" aria-label="关闭技能库">×</button></div>
+<div class="skill-workspace">
+<aside class="skill-sidebar"><div class="skill-sidebar-head"><strong>技能列表</strong><span id="skill-library-count">0 个技能</span></div><button type="button" class="primary" id="new-skill">＋ 创建技能</button><input type="search" id="skill-search" placeholder="搜索技能名称或职业" aria-label="搜索技能"><div id="created-skill-list"></div><div class="skill-library-actions"><button type="button" id="import-skill-library">导入技能库</button><button type="button" id="export-skill-library">导出技能库</button></div></aside>
+<form id="skill-form" class="skill-form"><div class="skill-editor-content">
+<h3 id="skill-edit-title">创建技能</h3>
+<div class="skill-basic-grid">
+<div class="field skill-job-picker"><span>职业 → 转职</span><select name="skillProfession" aria-label="技能职业" required></select><span class="job-arrow" aria-hidden="true">→</span><select name="skillJob" aria-label="技能转职" required></select></div>
+<label class="field"><span>技能名称</span><input name="skillName" placeholder="例如：冰锥术 Lv.9" maxlength="120" required></label>
+<label class="field"><span>冷却（秒）</span><input name="cooldown" type="number" value="0" step="any" required></label>
+<label class="field"><span>命中率 %</span><input name="skillHitRate" type="number" value="0" min="0" max="100" step="any" required></label>
+<label class="field"><span>触发类型</span><select name="damageType"><option value="physical">物理伤害</option><option value="magic">魔法伤害</option><option value="none">回复技能</option></select></label><label class="field" id="skill-targeting-field"><span>伤害范围</span><select name="targeting"><option value="single">单体技能</option><option value="all">群体技能</option></select></label>
+<label class="field"><span>暴击率 %</span><input name="skillCriticalRate" type="number" value="0" min="0" max="100" step="any" required></label>
+<label class="field"><span>无视嘲讽</span><select name="ignoreTaunt"><option value="false">否</option><option value="true">是</option></select></label>
+
+<label class="field" id="skill-lifesteal-field"><span>吸血</span><input name="skillLifesteal" aria-label="技能吸血百分比" aria-describedby="skill-lifesteal-help" type="number" value="0" min="0" max="100" step="any" required><span class="field-unit">%</span></label>
+</div>
+
+<p class="skill-help" id="skill-lifesteal-help">技能吸血与装备、战利品等提供的对应吸血百分比相加。例如 15%＋10%＝25%，按技能实际伤害回复生命，并受到敌方吸血降低的影响。</p>
+<div class="section-label">技能属性倍率 <small>填写系数，例如 4.6</small></div><div id="skill-coefficients" class="skill-basic-grid"></div>
+<div class="skill-basic-grid" id="skill-healing-row" hidden><label class="field"><span>回复对象</span><select name="healingRecipient"><option value="self">单体</option><option value="allAllies">群体</option></select></label></div><div class="skill-basic-grid skill-race-row"><label class="field"><span>种族特攻</span><select name="raceBonus"><option value="none">无特攻</option><option value="spirit">灵体</option><option value="human">人形</option><option value="beast">野兽</option><option value="dragon">龙</option><option value="construct">傀儡</option><option value="other">黑暗</option></select></label><label class="field"><span>特攻增幅倍率</span><input name="raceMultiplier" type="number" value="0" min="0" step="any" required></label></div>
+<div class="section-label">触发特效</div><label class="field"><span>触发特效</span><select name="effectKind"><option value="none">无特效</option><option value="debuff">对怪附加 debuff</option><option value="buff">对友方释放 buff</option></select></label>
+<fieldset id="debuff-section" hidden disabled><legend>对怪附加 debuff</legend><div class="skill-basic-grid"><label class="field"><span>debuff 类型</span><select name="debuffType"><option value="bleeding">流血</option><option value="plague">瘟疫</option><option value="burn">灼烧</option><option value="slow">减速</option><option value="stun">眩晕</option><option value="weakness">虚弱（降低力量）</option><option value="fear">恐惧（降低技巧）</option><option value="lifeLoss">生命流失</option></select></label><label class="field"><span>异常附加率 %</span><input name="applicationRate" type="number" value="0" min="0" step="any" required></label><label class="field"><span>基础值</span><input name="debuffBase" type="number" value="0" min="0" step="any" required></label><label class="field"><span>持续时间（秒）</span><input name="debuffDuration" type="number" value="0" min="0" step="any" required></label></div><div id="debuff-coefficients" class="skill-basic-grid"></div><p class="skill-help">异常附加率保留输入原值，允许超过 100%；实际判定规则后续在战斗引擎中确定。</p></fieldset>
+<fieldset id="buff-section" hidden disabled><legend>对友方释放 buff</legend><div class="skill-basic-grid"><label class="field"><span>buff 类型</span><select name="buffType"><option value="strength">力量提升</option><option value="magic">魔力提升</option><option value="technique">技巧提升</option><option value="speed">速度提升</option><option value="armor">护甲提升</option><option value="resistance">抗性提升</option><option value="regeneration">回春</option></select></label><label class="field"><span>触发率 %</span><input name="buffTriggerRate" type="number" value="0" min="0" max="100" step="any" required></label><label class="field" id="skill-buff-base-field"><span>基础值</span><input name="buffBase" type="number" value="0" min="0" step="any" required></label><label class="field"><span>持续时间（秒）</span><input name="buffDuration" type="number" value="0" min="0" step="any" required></label><label class="field"><span>对象</span><select name="buffRecipient"><option value="self">自身</option><option value="allAllies">全体队友（含自身）</option><option value="singleAlly">单个队友</option><option value="healingTargets">被施加回复技能的对象</option></select></label><label class="field"><span>技能类型</span><select name="buffSkillType"><option value="damage">伤害技能</option><option value="support">回复技能</option></select></label></div><div id="skill-regeneration-fields" class="skill-basic-grid" hidden></div><div id="skill-conversion-heading" class="section-label">属性转化 <small>打开开关后填写各属性的转化系数</small></div><div id="buff-conversions"></div><p id="skill-buff-help" class="skill-help">每行记录六项属性到指定属性的转化系数。未启用的行不产生转化；叠加及取值时机待战斗规则确定。</p></fieldset>
+<p class="skill-help">当前只创建技能定义，不执行伤害，也不自动创建技能组。命中与暴击填写百分数。</p>
+<pre id="skill-json" hidden></pre></div><div class="skill-editor-footer"><div class="skill-form-actions"><button type="button" id="skill-preview">查看技能数据</button><button type="button" id="skill-duplicate" disabled>另存为副本</button><button type="submit" class="primary" id="skill-save">保存到技能库</button></div><p id="skill-message" role="status" aria-live="polite"></p></div>
+</form>
+</div></dialog>
+<input id="skill-library-file" type="file" accept=".json,application/json" hidden>
+
+<div id="toast" popover="manual" role="status" aria-live="polite"></div>
+<script src="js/ui/notifications.js?v=465816323b16"></script>
+<script src="js/ui/requests.js?v=8c78b0fee9da"></script>
+<script src="js/ui/library-sets.js?v=ec044c7e9e10"></script>
+<script src="js/skills/model.js?v=bac13c04dd9d"></script>
+<script src="js/configurations/special.js?v=d846c22e58f8"></script>
+<script src="js/stones/library.js?v=825be957ce9b"></script>
+<script src="js/people/library.js?v=7055005776e6"></script>
+<script src="js/trophies/library.js?v=8ec2b9e7d1f9"></script>
+<script src="js/holies/library.js?v=7c3446eb3bf6"></script>
+<script src="js/imprints/library.js?v=7b9d650d7f09"></script>
+<script src="js/rings/library.js?v=d065f3cffee1"></script>
+<script src="js/contracts/library.js?v=2f4815054b9d"></script>
+<script src="js/app.js?v=ae3501f0c18f"></script>
+<script src="js/bosses/library.js?v=b7720bd4a3ff"></script>
+<script src="js/configurations/library.js?v=ad0a6bd5f8b9"></script>
+<script src="js/skills/editor.js?v=3047441660b1"></script>
+<script src="js/equipment/model.js?v=376f76c14842"></script>
+<script src="js/equipment/wiki-details.js?v=d97f443fd107"></script>
+<script src="js/equipment/editor.js?v=af97f9ec4422"></script>
+<script src="js/equipment/wiki-editor.js?v=23d2b0e40fe2"></script>
+<script src="js/skill-groups/editor.js?v=40d919f6fc55"></script>
+<script src="js/battle/timeline.js?v=a16bbdb4e10c"></script>
+<script src="js/ui/character-drag.js?v=ad16ebcb79b5"></script>
+<script src="js/battle/result-export.js?v=d925c431b784"></script>
+<script src="js/battle/result-xlsx.js?v=31100beb16f4"></script>
+<script src="js/battle/batch.js?v=318602e5c887"></script>
+<script src="js/unclassified-equipment/library.js?v=0bd6d85c2403"></script>
+<script src="js/battle/tas.js?v=8fa5ab01014d"></script>
+</body></html>

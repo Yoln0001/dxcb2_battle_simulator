@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "holies": [
+    {
+      "id": "holy_0",
+      "name": "战士圣迹",
+      "kind": "战士",
+      "attributes": {
+        "strength": 850,
+        "magic": 0,
+        "technique": 850,
+        "speed": 660,
+        "constitution": 1320
+      },
+      "holyLevel": 100,
+      "obeliskLevel": 570
+    },
+    {
+      "id": "holy_1",
+      "name": "法师圣迹",
+      "kind": "法师",
+      "holyLevel": 100,
+      "obeliskLevel": 600,
+      "attributes": {
+        "strength": 0,
+        "magic": 1560,
+        "technique": 1560,
+        "speed": 0,
+        "constitution": 680
+      }
+    },
+    {
+      "id": "holy_2",
+      "name": "潜行者圣迹",
+      "kind": "潜行者",
+      "holyLevel": 100,
+      "obeliskLevel": 600,
+      "attributes": {
+        "strength": 400,
+        "magic": 0,
+        "technique": 1560,
+        "speed": 1160,
+        "constitution": 680
+      }
+    },
+    {
+      "id": "holy_3",
+      "name": "火枪手圣迹",
+      "kind": "火枪手",
+      "holyLevel": 100,
+      "obeliskLevel": 600,
+      "attributes": {
+        "strength": 880,
+        "magic": 0,
+        "technique": 1560,
+        "speed": 680,
+        "constitution": 680
+      }
+    },
+    {
+      "id": "holy_4",
+      "name": "圣职圣迹",
+      "kind": "圣职",
+      "holyLevel": 100,
+      "obeliskLevel": 600,
+      "attributes": {
+        "strength": 0,
+        "magic": 1560,
+        "technique": 1080,
+        "speed": 0,
+        "constitution": 1160
+      }
+    },
+    {
+      "id": "holy_5",
+      "name": "野蛮人圣迹",
+      "kind": "野蛮人",
+      "holyLevel": 100,
+      "obeliskLevel": 600,
+      "attributes": {
+        "strength": 1560,
+        "magic": 0,
+        "technique": 400,
+        "speed": 1160,
+        "constitution": 680
+      }
+    }
+  ]
+}

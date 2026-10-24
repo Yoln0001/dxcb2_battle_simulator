@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "trophies": [
+    {
+      "id": "da0b141d-0e9c-4147-942e-2fe31dab4be8",
+      "name": "寄宿孢球",
+      "attributes": {
+        "magic": 14,
+        "hitRate": 2
+      }
+    },
+    {
+      "id": "ca426388-464a-4ba8-81f1-6f66e1591f02",
+      "name": "追魂镖",
+      "attributes": {
+        "magic": 11.8,
+        "hitRate": 2,
+        "magicDamage": 1
+      }
+    },
+    {
+      "id": "699b7d83-04ff-47f7-b0eb-5eb1d3b3e283",
+      "name": "寻魔指针",
+      "attributes": {
+        "magic": 9,
+        "hitRate": 7
+      }
+    },
+    {
+      "id": "d5f8a1a6-6c20-44e2-a81b-d0a23ae8797a",
+      "name": "不灭油灯",
+      "attributes": {
+        "magic": 9.5,
+        "hitRate": 6.5
+      }
+    },
+    {
+      "id": "2a7054be-32ea-4417-a52b-611c494c18f0",
+      "name": "虹彩棱镜",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 6.5
+      }
+    },
+    {
+      "id": "7cfb0f8a-acc7-435a-b178-ea315e426ffb",
+      "name": "符文魔灯",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 5.5
+      }
+    },
+    {
+      "id": "2b4beaee-0e09-4bc0-9a6c-9ecf8572a03e",
+      "name": "尤瑟之旗",
+      "attributes": {
+        "magic": 13,
+        "hitRate": 2.5
+      }
+    },
+    {
+      "id": "24f551dc-212c-4edf-9f0e-652795002853",
+      "name": "回魂香炉",
+      "attributes": {
+        "magic": 11.5,
+        "magicDamage": 1.8,
+        "hitRate": 1.5
+      }
+    },
+    {
+      "id": "7362da18-111a-4ca4-aa3a-897bcc99376f",
+      "name": "通明玉简",
+      "attributes": {
+        "magic": 6,
+        "hitRate": 10
+      }
+    },
+    {
+      "id": "ef2add33-68c6-45aa-91dc-902b7e7bc75f",
+      "name": "森木灵盘",
+      "attributes": {
+        "magic": 12,
+        "hitRate": 3
+      }
+    },
+    {
+      "id": "87ceff5b-b63f-4d45-8994-2ef8ebf66cc9",
+      "name": "星轨罗盘",
+      "attributes": {
+        "magic": 12,
+        "criticalMultiplier": 2.4,
+        "hitRate": 1.8
+      }
+    },
+    {
+      "id": "512b3980-d8ea-4563-90c8-7e5d1fab6c52",
+      "name": "奥术果实",
+      "attributes": {
+        "magic": 10.8,
+        "magicDamage": 1.8,
+        "hitRate": 2
+      }
+    },
+    {
+      "id": "bdd0ed5d-328b-4e5c-9fa5-04f1dab7f4db",
+      "name": "黑凝矿盐",
+      "attributes": {
+        "magic": 12.5,
+        "technique": 2.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      }
+    },
+    {
+      "id": "1d6ea61b-85f0-4748-8979-155289dcbf5b",
+      "name": "远古鹿角",
+      "attributes": {
+        "magic": 12.3,
+        "hitRate": 2.5
+      }
+    },
+    {
+      "id": "6203d57f-8572-45e5-a90a-fe322e3603e6",
+      "name": "远航之镜",
+      "attributes": {
+        "magic": 8,
+        "hitRate": 8
+      }
+    },
+    {
+      "id": "3f87336a-1c6b-48cd-a1b0-31d14aea7655",
+      "name": "琉璃怀表",
+      "attributes": {
+        "magic": 9.5,
+        "hitRate": 4.5
+      }
+    },
+    {
+      "id": "b442931e-3a4f-4a34-b522-c3cafd1fbadf",
+      "name": "战栗魔琴",
+      "attributes": {
+        "magic": 5.5,
+        "hitRate": 10
+      }
+    },
+    {
+      "id": "1396a66e-29f3-43c1-a532-9a6bb2f8e425",
+      "name": "秘银盏",
+      "attributes": {
+        "magic": 8.2,
+        "hitRate": 7.5
+      }
+    },
+    {
+      "id": "51305ca5-3fcd-4e15-8f42-c082e367c9c1",
+      "name": "云之国发梳",
+      "attributes": {
+        "magic": 11
+      },
+      "firstStrike": true
+    },
+    {
+      "id": "d86bb569-7156-4ddd-abfb-5684c72994dc",
+      "name": "搜魂提灯",
+      "attributes": {
+        "magic": 11.5,
+        "hitRate": 3
+      }
+    },
+    {
+      "id": "dc1f15ae-faf7-4a25-af99-5c721b5e4b2d",
+      "name": "弦月之石",
+      "attributes": {
+        "magic": 12.5,
+        "adventureGoldBonus": 7.5
+      }
+    },
+    {
+      "id": "20eeede3-53a5-4f9b-aa7a-1450fb4208aa",
+      "name": "能量之瓶",
+      "attributes": {
+        "magic": 12,
+        "technique": 2,
+        "adventureGoldBonus": 7.5
+      }
+    },
+    {
+      "id": "ca421e71-06f3-4a1f-a714-0f736800d84c",
+      "name": "翡翠时匣",
+      "attributes": {
+        "magic": 12,
+        "technique": 3.7,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      }
+    },
+    {
+      "id": "4228ab02-e2f9-4701-bbe1-d002523ebea2",
+      "name": "魔能提灯",
+      "attributes": {
+        "magic": 5,
+        "magicDamage": 7.5
+      }
+    },
+    {
+      "id": "803a2079-0716-424a-9d36-51c22f7f456e",
+      "name": "赤鹦鹉螺",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 4.2
+      }
+    },
+    {
+      "id": "b5cd25cd-a272-4eb0-bb5a-06f453fdbb48",
+      "name": "腐化百合",
+      "attributes": {
+        "magic": 7.5,
+        "hitRate": 3,
+        "criticalMultiplier": 7.5
+      }
+    },
+    {
+      "id": "efd06557-1bb9-446b-9f45-33ec8432595f",
+      "name": "墨晶",
+      "attributes": {
+        "magic": 11.2,
+        "magicDamage": 2.5
+      }
+    },
+    {
+      "id": "2559c480-7dc5-475b-b456-2465ecb68ce2",
+      "name": "渡魂之灯",
+      "attributes": {
+        "magic": 8,
+        "magicSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "4502d9ee-47ff-4d00-a659-58aaaa19f51b",
+      "name": "血影之灯",
+      "attributes": {
+        "strength": 9.5,
+        "physicalSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "d7f43c48-7c30-4366-bbdb-2a62c0fc4281",
+      "name": "遗失锤柄",
+      "attributes": {
+        "strength": 2,
+        "physicalDamage": 8.5
+      }
+    },
+    {
+      "id": "3834b693-a4a4-48e9-b3ab-af741eaf916a",
+      "name": "血笼针",
+      "attributes": {
+        "physicalDamage": 8.2,
+        "physicalSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "a8f7ffab-185b-4ee1-be26-0d19fcd2a72f",
+      "name": "赤脉藤环",
+      "attributes": {
+        "physicalDamage": 8,
+        "criticalMultiplier": 9
+      }
+    },
+    {
+      "id": "6129a414-0512-4afa-8338-d8a8332380e5",
+      "name": "幽根玉石",
+      "attributes": {
+        "speed": 8.5,
+        "physicalDamage": 2.4,
+        "physicalSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "a0b8ea9d-fead-4434-8538-7aa7c15efee2",
+      "name": "霜环龙珀",
+      "attributes": {
+        "speed": 12,
+        "physicalDamage": 1,
+        "criticalMultiplier": 5
+      }
+    },
+    {
+      "id": "cf106d4c-69b3-49a1-86a4-26c9d97f503d",
+      "name": "蛮荒药杵",
+      "attributes": {
+        "speed": 12,
+        "physicalDamage": 1.5
+      }
+    },
+    {
+      "id": "a6ffab10-e6c6-44e6-b3b9-4b3e8c6753b3",
+      "name": "月蚀绘兔",
+      "attributes": {
+        "speed": 10,
+        "physicalDamage": 4
+      }
+    },
+    {
+      "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+      "name": "凛虫之卵",
+      "attributes": {
+        "strength": 13.5,
+        "hitRate": 3,
+        "criticalMultiplier": 3
+      }
+    },
+    {
+      "id": "4d968e34-dfa4-45e5-b8fe-d45f1c916a06",
+      "name": "秘域银杯",
+      "attributes": {
+        "strength": 15.8,
+        "hitRate": 1.2
+      }
+    },
+    {
+      "id": "631fd5e0-1f81-4d6e-a6e2-2a841ce627f1",
+      "name": "15.7黑曜石",
+      "attributes": {
+        "strength": 15.7,
+        "hitRate": 1.1
+      }
+    },
+    {
+      "id": "2abfaf07-16e7-43ec-b3e5-ba3ebc925c35",
+      "name": "腐冠残枝",
+      "attributes": {
+        "strength": 8,
+        "hitRate": 10
+      }
+    }
+  ]
+}

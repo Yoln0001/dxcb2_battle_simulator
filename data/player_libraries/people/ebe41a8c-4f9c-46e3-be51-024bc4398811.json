@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "people": [
+    {
+      "id": "8e01da9f-7c4f-4cb4-96f5-e88a7f94cf4b",
+      "name": "1065-600",
+      "job": "夜魇",
+      "attributes": {
+        "strength": 500,
+        "magic": 100,
+        "technique": 970,
+        "speed": 1065,
+        "constitution": 530,
+        "armor": 43,
+        "resistance": 33
+      }
+    },
+    {
+      "id": "8e428345-ee39-480e-b93d-b613f991dee5",
+      "name": "1215-830",
+      "job": "岩浆法师",
+      "attributes": {
+        "strength": 130,
+        "magic": 1215,
+        "technique": 830,
+        "speed": 530,
+        "constitution": 560,
+        "armor": 24,
+        "resistance": 76
+      }
+    },
+    {
+      "id": "5b2805b8-52d1-411a-bb99-61cadccf0733",
+      "name": "1015",
+      "job": "毁灭者",
+      "attributes": {
+        "strength": 1015,
+        "magic": 100,
+        "technique": 600,
+        "speed": 750,
+        "constitution": 800,
+        "armor": 46,
+        "resistance": 27
+      }
+    },
+    {
+      "id": "a438e142-2ce1-4ff4-a4e3-f60b356824d3",
+      "name": "1015-850",
+      "job": "剑豪",
+      "attributes": {
+        "strength": 1015,
+        "magic": 160,
+        "technique": 630,
+        "speed": 620,
+        "constitution": 850,
+        "armor": 62,
+        "resistance": 36
+      }
+    },
+    {
+      "id": "79c595ef-f272-4a40-8c98-668bc434ecee",
+      "name": "1080冰法",
+      "job": "寒霜法师",
+      "attributes": {
+        "strength": 120,
+        "magic": 1080,
+        "technique": 850,
+        "speed": 500,
+        "constitution": 640,
+        "armor": 26,
+        "resistance": 74
+      }
+    },
+    {
+      "id": "1ada5353-623b-4b4b-8284-aa23e20572b9",
+      "name": "1075血法",
+      "job": "血法师",
+      "attributes": {
+        "strength": 120,
+        "magic": 1075,
+        "technique": 685,
+        "speed": 500,
+        "constitution": 720,
+        "armor": 25,
+        "resistance": 75
+      }
+    },
+    {
+      "id": "80ad9220-af4c-49a1-9af8-69ec65c1bce4",
+      "name": "1080魂贤",
+      "job": "灵魂贤者",
+      "attributes": {
+        "strength": 120,
+        "magic": 1080,
+        "technique": 900,
+        "speed": 500,
+        "constitution": 565,
+        "armor": 20,
+        "resistance": 100
+      }
+    },
+    {
+      "id": "89f835cb-5375-4f91-b80d-b2cf0251fddd",
+      "name": "1105冰法",
+      "job": "寒霜法师",
+      "attributes": {
+        "strength": 120,
+        "magic": 1105,
+        "technique": 850,
+        "speed": 500,
+        "constitution": 640,
+        "armor": 26,
+        "resistance": 74
+      }
+    },
+    {
+      "id": "88b8c5e5-cd81-4c2a-9c78-e56bb5cf03f6",
+      "name": "1100血法",
+      "job": "血法师",
+      "attributes": {
+        "strength": 120,
+        "magic": 1100,
+        "technique": 685,
+        "speed": 500,
+        "constitution": 720,
+        "armor": 25,
+        "resistance": 75
+      }
+    },
+    {
+      "id": "8c8c57d3-cf49-4243-b201-d34ffe023f9b",
+      "name": "1105魂贤",
+      "job": "灵魂贤者",
+      "attributes": {
+        "strength": 120,
+        "magic": 1105,
+        "technique": 900,
+        "speed": 500,
+        "constitution": 565,
+        "armor": 20,
+        "resistance": 100
+      }
+    },
+    {
+      "id": "6a952dd0-49da-49f7-a328-44d87099dc3d",
+      "name": "1090-600夜魇",
+      "job": "夜魇",
+      "attributes": {
+        "strength": 500,
+        "magic": 100,
+        "technique": 970,
+        "speed": 1090,
+        "constitution": 530,
+        "armor": 43,
+        "resistance": 33
+      }
+    }
+  ]
+}

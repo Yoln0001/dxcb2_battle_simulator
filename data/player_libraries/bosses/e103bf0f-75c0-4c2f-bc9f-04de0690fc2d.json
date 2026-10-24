@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "bosses": [
+    {
+      "id": "3390dd40-0354-46e9-ace2-968262c6128a",
+      "name": "巨镰百足",
+      "race": "傀儡",
+      "hasSkills": true,
+      "partyWipe": {
+        "enabled": true,
+        "time": 60,
+        "strategy": "random"
+      },
+      "skillGroup": {
+        "name": "技能",
+        "skills": [
+          {
+            "id": "boss_skill_1791694433437_1",
+            "name": "杀戮巨镰Lv.3",
+            "damageType": "physical",
+            "targeting": "all",
+            "cooldown": 1,
+            "baseValue": 0,
+            "hitRate": 95,
+            "criticalRate": 91,
+            "coefficients": {
+              "strength": 0.13
+            },
+            "targetSelection": "lowestHp",
+            "ignoreTaunt": false,
+            "healingRecipient": "self",
+            "raceBonus": {
+              "race": "none",
+              "multiplier": 0
+            },
+            "effect": {
+              "kind": "debuff",
+              "baseValue": 460,
+              "duration": 1000,
+              "type": "lifeLoss",
+              "applicationRate": 760,
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "maxStacks": 999
+            }
+          },
+          {
+            "id": "boss_skill_1791695252258_1",
+            "name": "元能超负荷Lv.3",
+            "damageType": "magic",
+            "targeting": "all",
+            "cooldown": 1,
+            "baseValue": 0,
+            "hitRate": 97,
+            "criticalRate": 93,
+            "coefficients": {
+              "magic": 0.15
+            },
+            "targetSelection": "lowestHp",
+            "ignoreTaunt": false,
+            "healingRecipient": "self",
+            "raceBonus": {
+              "race": "none",
+              "multiplier": 0
+            },
+            "effect": {
+              "kind": "buff",
+              "baseValue": 4750,
+              "duration": 1000,
+              "type": "speed",
+              "triggerRate": 100,
+              "recipient": "self",
+              "skillType": "damage",
+              "conversions": [
+                {
+                  "target": "strength",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0
+                  }
+                },
+                {
+                  "target": "magic",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0
+                  }
+                },
+                {
+                  "target": "technique",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0
+                  }
+                },
+                {
+                  "target": "speed",
+                  "enabled": true,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0
+                  }
+                }
+              ],
+              "maxStacks": 999
+            }
+          }
+        ],
+        "entry": "boss_node_1791699137259_1",
+        "subgroups": [
+          {
+            "type": "random",
+            "id": "boss_subgroup_1791699137259_2",
+            "nextGroup": "boss_subgroup_1791699137259_2",
+            "skills": [
+              {
+                "id": "boss_node_1791699137259_1",
+                "skillIds": [
+                  "boss_skill_1791694433437_1",
+                  "boss_skill_1791695252258_1"
+                ],
+                "skillJumps": {
+                  "boss_skill_1791694433437_1": "boss_node_1791699162464_6",
+                  "boss_skill_1791695252258_1": "boss_node_1791699150216_4"
+                },
+                "skillTargets": {
+                  "boss_skill_1791694433437_1": "lowestHp",
+                  "boss_skill_1791695252258_1": "lowestHp"
+                },
+                "next": "",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          },
+          {
+            "type": "sequential",
+            "id": "boss_subgroup_1791699150216_3",
+            "nextGroup": "",
+            "skills": [
+              {
+                "id": "boss_node_1791699150216_4",
+                "skillId": "boss_skill_1791694433437_1",
+                "next": "boss_node_1791699162464_6",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          },
+          {
+            "type": "sequential",
+            "id": "boss_subgroup_1791699162464_5",
+            "nextGroup": "",
+            "skills": [
+              {
+                "id": "boss_node_1791699162464_6",
+                "skillId": "boss_skill_1791695252258_1",
+                "next": "boss_node_1791699150216_4",
+                "targetSelection": "lowestHp"
+              }
+            ]
+          }
+        ]
+      },
+      "attributes": {
+        "weaponPower": 0,
+        "strength": 102500,
+        "magic": 95000,
+        "technique": 97500,
+        "speed": 32500,
+        "constitution": 5300000,
+        "hitPoint": 53000000,
+        "armor": 1700,
+        "resistance": 1600,
+        "criticalRate": 0,
+        "hitRate": 0,
+        "ignoreArmor": 0,
+        "ignoreResistance": 0,
+        "abnormalBonus": 0,
+        "physicalDamage": 0,
+        "finalPhysicalDamage": 0,
+        "magicDamage": 0,
+        "finalMagicDamage": 0,
+        "dotDamage": 0,
+        "finalDotDamage": 0,
+        "healingBonus": 0,
+        "finalHealingBonus": 0,
+        "unload": 0,
+        "criticalMultiplier": 0,
+        "physicalSingleLifesteal": 0,
+        "magicSingleLifesteal": 0,
+        "physicalAreaLifesteal": 0,
+        "magicAreaLifesteal": 0,
+        "dodgeRate": 0
+      },
+      "targetRules": {
+        "physicalReduction": 0,
+        "magicReduction": 0,
+        "dotReduction": 0,
+        "allyLifestealReduction": 0,
+        "allyHealingReduction": 0,
+        "allyRegenerationReduction": 0,
+        "immuneBleeding": true,
+        "immunePlague": true,
+        "immuneBurn": true,
+        "immuneSpeedReduction": true,
+        "immuneStun": true,
+        "immuneWeakness": true,
+        "immuneFear": true,
+        "immuneLifeLoss": true,
+        "immunePhysicalVulnerability": true,
+        "immuneMagicVulnerability": true,
+        "immuneNegativeEffects": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 3,
+  "contracts": [
+    {
+      "id": "contract_fef87b5f-3f34-4cdf-885d-767c54d23e0d",
+      "name": "27魔盲目饮命",
+      "category": "magic",
+      "archetype": "饮命者（魔力）",
+      "baseBonus": 27,
+      "multiplier": 4.76,
+      "negativeEffect": "群体盲目"
+    },
+    {
+      "id": "contract_1f6d405b-5f07-4692-ad22-d3b54dc4379a",
+      "name": "27盲目饮命速",
+      "category": "speed",
+      "archetype": "饮命者（速度）",
+      "baseBonus": 27,
+      "multiplier": 2.38,
+      "negativeEffect": "群体盲目"
+    },
+    {
+      "id": "contract_11a1f1e2-9fbe-4657-a50c-fb728ea3f037",
+      "name": "27体质",
+      "category": "constitution",
+      "archetype": "安详女神",
+      "baseBonus": 27,
+      "multiplier": 0,
+      "negativeEffect": "群体脆化"
+    },
+    {
+      "id": "contract_d2b5e6fe-2563-446b-8f9c-e1b4254973b3",
+      "name": "39体质",
+      "category": "constitution",
+      "archetype": "安详女神",
+      "baseBonus": 39,
+      "multiplier": 0,
+      "negativeEffect": "群体脆化"
+    },
+    {
+      "id": "contract_c4c67ca6-98f8-400e-aff3-b534ecc79248",
+      "name": "39魔力盲目饮命",
+      "category": "magic",
+      "archetype": "饮命者（魔力）",
+      "baseBonus": 39,
+      "multiplier": 5.44,
+      "negativeEffect": "群体盲目"
+    },
+    {
+      "id": "contract_826b5bae-78f7-47d1-8e52-135a4958ed66",
+      "name": "39速",
+      "category": "speed",
+      "archetype": "饮命者（速度）",
+      "baseBonus": 39,
+      "multiplier": 0,
+      "negativeEffect": "群体盲目"
+    }
+  ]
+}

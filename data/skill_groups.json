@@ -1,0 +1,3804 @@
+{
+  "schemaVersion": 2,
+  "groups": [
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_0c86a059-4f69-4d9e-98c0-1b7ab8df4b42",
+      "name": "始终冰锥术Lv.9",
+      "job": "寒霜法师",
+      "entry": "node_68efd10d-6143-49e1-a374-ece0cc0318b8",
+      "subgroups": [
+        {
+          "id": "subgroup_a5218d86-7b7b-434e-9f63-0e885efc8d04",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_68efd10d-6143-49e1-a374-ece0cc0318b8",
+              "skillId": "skill_e923741e-9b4e-4e9d-ae1e-e7c0f7b880d0",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_a5218d86-7b7b-434e-9f63-0e885efc8d04",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_39f04a7e-2028-4a0a-93ce-9351ffb4b8f3",
+      "name": "始终冰锥术Lv.8",
+      "job": "寒霜法师",
+      "entry": "node_c4b06162-05ea-4729-a63c-99efd94eab88",
+      "subgroups": [
+        {
+          "id": "subgroup_a58bacf5-0c83-41ab-949b-c93ea321a5af",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c4b06162-05ea-4729-a63c-99efd94eab88",
+              "skillId": "skill_fe614b7d-5db7-4cf2-97c3-aa05a6bbcfb5",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_a58bacf5-0c83-41ab-949b-c93ea321a5af",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_749da39d-83f7-45da-9ebb-f1bd5ab85ee1",
+      "name": "始终炎爆术Lv.7",
+      "job": "岩浆法师",
+      "entry": "node_bbbd65a8-8bcf-4949-8388-f64678258fea",
+      "subgroups": [
+        {
+          "id": "subgroup_65671373-4485-4a3b-9de4-bc8db0cef0f2",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_bbbd65a8-8bcf-4949-8388-f64678258fea",
+              "skillId": "skill_9185e325-2575-4a8a-b577-459a220f3b94",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_65671373-4485-4a3b-9de4-bc8db0cef0f2",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_dd93a148-8152-4556-8d4d-37c0b0262b15",
+      "name": "始终炎爆术Lv.8",
+      "job": "岩浆法师",
+      "entry": "node_52ab0b6c-256f-4b4b-9bf9-6f5ceb4ad03d",
+      "subgroups": [
+        {
+          "id": "subgroup_e5f482f7-84e9-4a2c-8f84-4aa52071e314",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_52ab0b6c-256f-4b4b-9bf9-6f5ceb4ad03d",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_e5f482f7-84e9-4a2c-8f84-4aa52071e314",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_fac69570-52be-4ac7-9af1-5584b03ca685",
+      "name": "触发5层影兽之心特效之后打3奶1",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_9ed9516a-0f05-4ced-9ccd-c653d60e059f",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_c607fda3-69d2-4240-b975-68cc0d2221f3",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_9ed9516a-0f05-4ced-9ccd-c653d60e059f",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_c607fda3-69d2-4240-b975-68cc0d2221f3",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_43c3dc6d-602d-44f4-91aa-b052944df892",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5946e570-a76e-47a0-bfc9-6978e9fde120",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_d084bcc1-14df-40fb-a43e-ca8839924146",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_ab44a9a5-fbae-40c6-943b-99563fd28158",
+      "name": "触发4层影兽之心特效之后打3奶1",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_0cf98e83-f426-4464-a76e-91ffe3cb528c",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c8a4d38d-d0ad-4d37-89a3-98005ea85e6e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_8a9a6ac0-8000-46a5-92e1-786dac1a3fae",
+      "name": "触发3层影兽之心特效之后打3奶1",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_0cf98e83-f426-4464-a76e-91ffe3cb528c",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c8a4d38d-d0ad-4d37-89a3-98005ea85e6e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_54f571f3-85f1-4526-aaac-7fbf2564b05b",
+      "name": "触发2层影兽之心特效之后打3奶1",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_0cf98e83-f426-4464-a76e-91ffe3cb528c",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c8a4d38d-d0ad-4d37-89a3-98005ea85e6e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_ac91df5e-bdb8-4034-8760-e990dc230ce4",
+      "name": "触发1层影兽之心特效之后打3奶1",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_0cf98e83-f426-4464-a76e-91ffe3cb528c",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c8a4d38d-d0ad-4d37-89a3-98005ea85e6e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_74efea3b-b30e-4a70-a132-eafd72c12653",
+      "name": "打3奶1",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_0cf98e83-f426-4464-a76e-91ffe3cb528c",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c8a4d38d-d0ad-4d37-89a3-98005ea85e6e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_a1ce3e8f-07cd-4beb-b7c1-a0367139807a",
+      "name": "奶1打三",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_0cf98e83-f426-4464-a76e-91ffe3cb528c",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c8a4d38d-d0ad-4d37-89a3-98005ea85e6e",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_8b68e5f4-5560-4a29-8c0e-b32687cc8b30",
+      "name": "奶2再打三奶1循环",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_3fb79eeb-8fd3-4cda-98b1-2ad4f50648dc",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_51d1f9ac-8005-4d46-9c73-aeb7eab56307",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_4bc586b1-398f-4026-a564-74ca23bace5c",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_dd047f75-b86e-48e2-95cc-d2353d3b78a6",
+      "name": "奶4再打三奶1循环",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6e0871f3-c7ff-4142-b768-7cd311932741",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_24e9afbb-f5d3-4e71-b9b8-e78bfbb1bb5f",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_3fb79eeb-8fd3-4cda-98b1-2ad4f50648dc",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_51d1f9ac-8005-4d46-9c73-aeb7eab56307",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_4bc586b1-398f-4026-a564-74ca23bace5c",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": null
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_2152994f-cd1e-46e1-8d71-bdcc9d1f6746",
+      "name": "奶1再低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_05333291-04e9-4f64-9500-59b217ac8084",
+      "name": "奶2再低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_eee14b06-c59f-414a-bd52-ed4ceebba05d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_81617184-6387-4285-8ef3-47918696a22c",
+      "name": "奶3再低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_eee14b06-c59f-414a-bd52-ed4ceebba05d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_d085ce4d-8a17-4cb4-8afe-89e46a7a21e5",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_9c1d366e-bae3-439e-96ff-c7d9ec09fcf2",
+      "name": "触发5层影兽之心特效之后一直打",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_9ed9516a-0f05-4ced-9ccd-c653d60e059f",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_c607fda3-69d2-4240-b975-68cc0d2221f3",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_9ed9516a-0f05-4ced-9ccd-c653d60e059f",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_c607fda3-69d2-4240-b975-68cc0d2221f3",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_e6e1575d-217a-40cc-a2b5-1ff08dfe64b8",
+      "name": "触发4层影兽之心特效之后一直打",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_cd53eac7-e785-4669-8ea2-115fa56f4a1f",
+      "name": "触发3层影兽之心特效之后一直打",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_f1fce8db-3ec8-413a-becc-887acc1bea42",
+      "name": "触发2层影兽之心特效之后一直打",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_34a0de59-10d0-47b0-b190-49af072f91bd",
+      "name": "触发1层影兽之心特效之后一直打",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_f3a0c7e1-cc29-4277-999b-16a15eb3ec0a",
+      "name": "奶3再打三奶1循环",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6e0871f3-c7ff-4142-b768-7cd311932741",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_3fb79eeb-8fd3-4cda-98b1-2ad4f50648dc",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_51d1f9ac-8005-4d46-9c73-aeb7eab56307",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_4bc586b1-398f-4026-a564-74ca23bace5c",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_8cf0b61e-7ab4-4f0c-bcde-d4d238087460",
+      "name": "奶5再打三奶1循环",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_755bfae4-aa0c-41c1-8d7a-a5e7c17bd20e",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6e0871f3-c7ff-4142-b768-7cd311932741",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_24e9afbb-f5d3-4e71-b9b8-e78bfbb1bb5f",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_a43fec79-8592-4cdd-b043-7472fbdbfb9f",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_3fb79eeb-8fd3-4cda-98b1-2ad4f50648dc",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_51d1f9ac-8005-4d46-9c73-aeb7eab56307",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_4bc586b1-398f-4026-a564-74ca23bace5c",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_6bac6049-cc2b-483d-afa2-559be1539b0d",
+      "name": "百分之20奶队友始终炎爆",
+      "job": "岩浆法师",
+      "entry": "node_c384a208-5854-46bd-838b-39e93976e474",
+      "subgroups": [
+        {
+          "id": "subgroup_f4e9a33e-351a-44bf-8665-9fe4a0921ca2",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_c384a208-5854-46bd-838b-39e93976e474",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f4e9a33e-351a-44bf-8665-9fe4a0921ca2",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_396340d4-56af-4be2-ac8e-d65a757f6204",
+      "name": "奶4再低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_eee14b06-c59f-414a-bd52-ed4ceebba05d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_d085ce4d-8a17-4cb4-8afe-89e46a7a21e5",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_a2f268cd-b07f-4caf-b51e-5281b6acf454",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_73b9dac0-2380-4996-95e9-3778f9b8ff17",
+      "name": "奶5再低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+      "subgroups": [
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_eee14b06-c59f-414a-bd52-ed4ceebba05d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_d085ce4d-8a17-4cb4-8afe-89e46a7a21e5",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_a2f268cd-b07f-4caf-b51e-5281b6acf454",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            },
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_fb5ef26c-a721-4991-ac65-c957f1fc8094",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_5424436a-95dd-4c7a-b816-f17bd7fdd1c1",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_de5a2ec6-d29b-4d5e-a86e-a63b8528082a",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_954fc2bd-f807-4831-b210-18aa9776f966",
+      "name": "触发5层影兽之心特效之后低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_9ed9516a-0f05-4ced-9ccd-c653d60e059f",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_c607fda3-69d2-4240-b975-68cc0d2221f3",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_9ed9516a-0f05-4ced-9ccd-c653d60e059f",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_c607fda3-69d2-4240-b975-68cc0d2221f3",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_3ba5f059-0cd5-4f87-ae8b-f05472a1f0e5",
+      "name": "触发4层影兽之心特效之后低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7e9186bd-38d3-452f-bec9-4f052801f37d",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_9716d8d6-5131-4b16-891b-5a679dd9833e",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_5ce63bc4-1358-44ae-acd0-86b8b783fbe3",
+      "name": "触发3层影兽之心特效之后低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_1694694c-c5e7-4381-9f4e-651324237302",
+      "name": "触发2层影兽之心特效之后低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_0d45fe6e-db0e-43a8-8424-074639242eb1",
+      "name": "触发1层影兽之心特效之后低血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentId": "equipment_57c14396-1b08-4d15-a309-5402b0f27d92"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 20,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_ced8d4cc-ab95-4741-83d5-da816adfa853",
+      "name": "始终幻影连击Lv.8★",
+      "job": "夜魇",
+      "entry": "node_67417396-d277-4d96-98c0-561fd041ca82",
+      "subgroups": [
+        {
+          "id": "subgroup_280bb892-16e0-42cb-8d6b-fa963a4f574c",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_67417396-d277-4d96-98c0-561fd041ca82",
+              "skillId": "skill_b29fe096-a70a-4c3c-a11d-c73e7490d3b0",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_280bb892-16e0-42cb-8d6b-fa963a4f574c",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_854641dd-8eae-4f68-b124-89ab9fb78974",
+      "name": "始终鹰落斩Lv.7",
+      "job": "剑豪",
+      "entry": "node_4fdfb3b5-f736-4e1e-99d5-17c556c9d307",
+      "subgroups": [
+        {
+          "id": "subgroup_c9dff419-e33c-4232-a42f-81016a17101f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_4fdfb3b5-f736-4e1e-99d5-17c556c9d307",
+              "skillId": "skill_964e0fe8-db41-4316-93db-376ca489c44e",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_c9dff419-e33c-4232-a42f-81016a17101f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_0878f8b7-5e6f-43a1-88f7-a5fa3c716dae",
+      "name": "始终收割Lv.8",
+      "job": "毁灭者",
+      "entry": "node_fd556b0c-a02f-4f9e-b2a2-ec22f0609a6e",
+      "subgroups": [
+        {
+          "id": "subgroup_f047691f-be72-43f3-988f-559f5ea425ed",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_fd556b0c-a02f-4f9e-b2a2-ec22f0609a6e",
+              "skillId": "skill_f9fb05ce-5104-400f-a40d-fb18b64b7b09",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f047691f-be72-43f3-988f-559f5ea425ed",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_c745f29d-2728-4dff-b7ec-3b7feac66b31",
+      "name": "始终幻影连击Lv.8",
+      "job": "夜魇",
+      "entry": "node_67417396-d277-4d96-98c0-561fd041ca82",
+      "subgroups": [
+        {
+          "id": "subgroup_280bb892-16e0-42cb-8d6b-fa963a4f574c",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_67417396-d277-4d96-98c0-561fd041ca82",
+              "skillId": "skill_28b370b7-7feb-4450-9854-6c9277124c4b",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_280bb892-16e0-42cb-8d6b-fa963a4f574c",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_f8758688-4f7b-4ba4-92b4-5b447a07b4de",
+      "name": "始终蛛网术Lv.7",
+      "job": "血法师",
+      "entry": "node_2df2e632-5521-4838-ad04-8908a9ff58ae",
+      "subgroups": [
+        {
+          "id": "subgroup_d924d4da-58fb-4f18-a331-98c570a3bf56",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_2df2e632-5521-4838-ad04-8908a9ff58ae",
+              "skillId": "skill_f4be2189-a3e4-43ef-a407-b1f9bd9ca52a",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_d924d4da-58fb-4f18-a331-98c570a3bf56",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_7b2f603d-b10d-4760-b352-f89ef84ff57b",
+      "name": "始终幻影连击Lv.7",
+      "job": "夜魇",
+      "entry": "node_3a70fa3e-0818-47a8-895b-375b78632c7c",
+      "subgroups": [
+        {
+          "id": "subgroup_cf931965-8750-4297-8951-d6791bfd2700",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_3a70fa3e-0818-47a8-895b-375b78632c7c",
+              "skillId": "skill_020cb153-4c6e-49bf-a345-906b6d9e479b",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_cf931965-8750-4297-8951-d6791bfd2700",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "boss",
+        "bossId": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+        "bossName": "圣者的幻影",
+        "libraryId": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+        "libraryName": "图52"
+      },
+      "schemaVersion": 2,
+      "id": "group_41999948-f187-48be-8078-e3ff5e8be708",
+      "name": "图52圣者的幻影0.3-0.1",
+      "job": "灵魂贤者",
+      "entry": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+      "subgroups": [
+        {
+          "id": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+              "skillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "memberStatus",
+                    "threshold": 20,
+                    "includeSelf": true,
+                    "requiredDebuff": {
+                      "type": "lifeLoss",
+                      "skillId": "boss_skill_2",
+                      "skillName": "生命萃取（LV.3)"
+                    },
+                    "absentBuff": {
+                      "type": "regeneration",
+                      "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                      "skillName": "魂体重塑 Lv.8"
+                    },
+                    "recognitionDelay": 0.3,
+                    "operationDelay": 0.1,
+                    "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                    "targetSelection": "matchedMember"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "boss",
+        "bossId": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+        "bossName": "圣者的幻影",
+        "libraryId": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+        "libraryName": "图52"
+      },
+      "schemaVersion": 2,
+      "id": "group_dec84373-b18b-4e31-a54c-83b0ce98efb2",
+      "name": "图52圣者的幻影0-0",
+      "job": "灵魂贤者",
+      "entry": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+      "subgroups": [
+        {
+          "id": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+              "skillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "memberStatus",
+                    "threshold": 20,
+                    "includeSelf": true,
+                    "requiredDebuff": {
+                      "type": "lifeLoss",
+                      "skillId": "boss_skill_2",
+                      "skillName": "生命萃取（LV.3)"
+                    },
+                    "absentBuff": {
+                      "type": "regeneration",
+                      "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                      "skillName": "魂体重塑 Lv.8"
+                    },
+                    "recognitionDelay": 0.0,
+                    "operationDelay": 0.0,
+                    "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                    "targetSelection": "matchedMember"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "boss",
+        "bossId": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+        "bossName": "圣者的幻影",
+        "libraryId": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+        "libraryName": "图52"
+      },
+      "schemaVersion": 2,
+      "id": "group_de8793e0-ca2a-4a43-99c9-f04c151c8efb",
+      "name": "图52圣者的幻影0.1-0.1",
+      "job": "灵魂贤者",
+      "entry": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+      "subgroups": [
+        {
+          "id": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+              "skillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "memberStatus",
+                    "threshold": 20,
+                    "includeSelf": true,
+                    "requiredDebuff": {
+                      "type": "lifeLoss",
+                      "skillId": "boss_skill_2",
+                      "skillName": "生命萃取（LV.3)"
+                    },
+                    "absentBuff": {
+                      "type": "regeneration",
+                      "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                      "skillName": "魂体重塑 Lv.8"
+                    },
+                    "recognitionDelay": 0.1,
+                    "operationDelay": 0.1,
+                    "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                    "targetSelection": "matchedMember"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "boss",
+        "bossId": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+        "bossName": "圣者的幻影",
+        "libraryId": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+        "libraryName": "图52"
+      },
+      "schemaVersion": 2,
+      "id": "group_059027ec-4c57-4265-9825-71cf0db7a99a",
+      "name": "图52圣者的幻影0.2-0.1",
+      "job": "灵魂贤者",
+      "entry": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+      "subgroups": [
+        {
+          "id": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+              "skillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "memberStatus",
+                    "threshold": 20,
+                    "includeSelf": true,
+                    "requiredDebuff": {
+                      "type": "lifeLoss",
+                      "skillId": "boss_skill_2",
+                      "skillName": "生命萃取（LV.3)"
+                    },
+                    "absentBuff": {
+                      "type": "regeneration",
+                      "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                      "skillName": "魂体重塑 Lv.8"
+                    },
+                    "recognitionDelay": 0.2,
+                    "operationDelay": 0.1,
+                    "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                    "targetSelection": "matchedMember"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "boss",
+        "bossId": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+        "bossName": "圣者的幻影",
+        "libraryId": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+        "libraryName": "图52"
+      },
+      "schemaVersion": 2,
+      "id": "group_49b41fbe-3010-4a59-a084-0cfe82b2a4c5",
+      "name": "图52圣者的幻影0.4-0.1",
+      "job": "灵魂贤者",
+      "entry": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+      "subgroups": [
+        {
+          "id": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+              "skillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "memberStatus",
+                    "threshold": 20,
+                    "includeSelf": true,
+                    "requiredDebuff": {
+                      "type": "lifeLoss",
+                      "skillId": "boss_skill_2",
+                      "skillName": "生命萃取（LV.3)"
+                    },
+                    "absentBuff": {
+                      "type": "regeneration",
+                      "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                      "skillName": "魂体重塑 Lv.8"
+                    },
+                    "recognitionDelay": 0.4,
+                    "operationDelay": 0.1,
+                    "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                    "targetSelection": "matchedMember"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "boss",
+        "bossId": "0f3fdc6e-2749-419b-9678-1dfa376efe6c",
+        "bossName": "圣者的幻影",
+        "libraryId": "a189af57-4be6-4e8b-9104-a39e261c94d1",
+        "libraryName": "图52"
+      },
+      "schemaVersion": 2,
+      "id": "group_488a5952-179c-4c8d-a318-e6bc72f91aac",
+      "name": "图52圣者的幻影0.5-0.1",
+      "job": "灵魂贤者",
+      "entry": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+      "subgroups": [
+        {
+          "id": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_cc2bea79-8e37-40f5-a1fa-38d88a77894d",
+              "skillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "memberStatus",
+                    "threshold": 20,
+                    "includeSelf": true,
+                    "requiredDebuff": {
+                      "type": "lifeLoss",
+                      "skillId": "boss_skill_2",
+                      "skillName": "生命萃取（LV.3)"
+                    },
+                    "absentBuff": {
+                      "type": "regeneration",
+                      "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                      "skillName": "魂体重塑 Lv.8"
+                    },
+                    "recognitionDelay": 0.5,
+                    "operationDelay": 0.1,
+                    "skillId": "skill_0cdb4bc5-c7d9-4632-b563-d0183eec1517",
+                    "targetSelection": "matchedMember"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_764b0ce2-da9b-46cf-ab21-90ffd9ddf859"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f104f02a-49be-41ad-aff8-520e6f2a064d",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_58a53ea2-c2d0-46be-8d95-54859f8b17c2",
+      "name": "触发3层影兽之心特效之后18血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 18,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_848d9f2c-c759-410a-a401-36154a08b6cf",
+      "name": "触发3层影兽之心特效之后16血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 16,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_3835fa18-ba7a-4d0e-adfc-2903e28df34f",
+      "name": "触发3层影兽之心特效之后19血线奶",
+      "job": "岩浆法师",
+      "entry": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+      "subgroups": [
+        {
+          "id": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_7d0c09c0-c750-40c7-b59a-8a7bf4635da6",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b2dae35b-d6fb-4921-a57e-a9f083a90733",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_74a6b5f6-4ff0-4147-b3ae-701f4b11ab69",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_f134ba52-f519-4b5b-8acf-0caa3514e66f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_78da4cd2-a905-4a1f-ade6-8a8f1f6e1324",
+              "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+              "next": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "jumpCondition": {
+                "effectIndex": 0,
+                "effectName": "幽影启灵",
+                "equipmentName": "影兽之心★"
+              },
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_aaafc508-4b28-46fb-92d3-379ac7beb090",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        },
+        {
+          "id": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_6f80b97c-4391-4919-803a-8e7679d5deec",
+              "skillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              },
+              "decision": {
+                "cases": [
+                  {
+                    "kind": "allyHealthBelow",
+                    "threshold": 19,
+                    "skillId": "skill_0b27db52-31b1-4b60-970f-ad61ce26c78f",
+                    "targetSelection": "lowestHp"
+                  }
+                ],
+                "elseTargetSelection": "lowestHp",
+                "elseSkillId": "skill_5018b9c2-a739-4f19-921b-86b7030fb3b8"
+              }
+            }
+          ],
+          "nextGroup": "subgroup_5eb3c9ce-7b29-44bd-981e-0ced8327f8ae",
+          "healthBranch": null,
+          "conditionsEnabled": true
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_7a029233-2cb7-4088-9aca-3d5cb304ab70",
+      "name": "始终神圣净化Lv.7",
+      "job": "圣光贤者",
+      "entry": "node_86dc5c50-8048-4def-b920-e94f8805a74c",
+      "subgroups": [
+        {
+          "id": "subgroup_b0136894-cfba-4df8-8af0-2eb12aa39a83",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_86dc5c50-8048-4def-b920-e94f8805a74c",
+              "skillId": "skill_177e8201-fedf-4795-9c32-d6f288b829af",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b0136894-cfba-4df8-8af0-2eb12aa39a83",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_31e7ae24-a94c-41f7-a91d-8cd2749845ca",
+      "name": "始终火怒斩Lv.8",
+      "job": "火刑官",
+      "entry": "node_14f669f8-e517-4d5a-945b-16ff4c34de58",
+      "subgroups": [
+        {
+          "id": "subgroup_b78b4469-6c50-4afd-b64b-5de2ac0990ce",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_14f669f8-e517-4d5a-945b-16ff4c34de58",
+              "skillId": "skill_6e37a155-228e-4006-b421-2b3dea3c0c01",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_b78b4469-6c50-4afd-b64b-5de2ac0990ce",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    },
+    {
+      "scope": {
+        "kind": "general"
+      },
+      "schemaVersion": 2,
+      "id": "group_defd8fe1-5487-4529-8c0e-72c1203ed869",
+      "name": "始终乾坤一击Lv.8★",
+      "job": "狂战神",
+      "entry": "node_a67fa395-95cb-4098-ab84-81be3521f327",
+      "subgroups": [
+        {
+          "id": "subgroup_e18df9f6-ccb6-418d-9375-c13948fe131f",
+          "skills": [
+            {
+              "targetSelection": "lowestHp",
+              "id": "node_a67fa395-95cb-4098-ab84-81be3521f327",
+              "skillId": "skill_bc6dcc30-c9b3-4abf-aab2-444760fe3c21",
+              "next": "",
+              "jumpCondition": null,
+              "releaseCondition": {
+                "kind": "always",
+                "threshold": 20
+              }
+            }
+          ],
+          "nextGroup": "subgroup_e18df9f6-ccb6-418d-9375-c13948fe131f",
+          "healthBranch": null,
+          "conditionsEnabled": false
+        }
+      ],
+      "selfBuff": [],
+      "opening": []
+    }
+  ]
+}

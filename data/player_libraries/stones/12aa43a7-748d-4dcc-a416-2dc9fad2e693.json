@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "stones": [
+    {
+      "id": "stones_5c4ee481-589c-48cd-a2d6-1c0d97a6f5ec",
+      "name": "93-40-21",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 93,
+        "technique": 40,
+        "speed": 29,
+        "constitution": 21,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "stones_7042afae-de07-4321-a48b-39156bb04935",
+      "name": "92-43-22-魔增幅",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 92,
+        "technique": 43,
+        "speed": 29,
+        "constitution": 22,
+        "hitRate": 0
+      }
+    },
+    {
+      "id": "stones_329ea516-8394-4e44-81e8-b1b6b5934610",
+      "name": "98-24-24",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 98,
+        "technique": 24,
+        "speed": 20,
+        "constitution": 24,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "stones_e70ecf65-3fdb-4ebd-aa2a-e1f82b9a644b",
+      "name": "94-31-21",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 94,
+        "technique": 31,
+        "speed": 16,
+        "constitution": 21,
+        "hitRate": 15
+      }
+    }
+  ]
+}

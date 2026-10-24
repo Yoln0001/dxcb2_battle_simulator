@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "trophies": [
+    {
+      "id": "trophies_d86d881d-1d9a-4db7-b3c5-a7464528cb6f",
+      "name": "寄宿孢球",
+      "attributes": {
+        "magic": 14,
+        "hitRate": 2
+      }
+    },
+    {
+      "id": "trophies_e4466365-7e4d-4e88-a52f-ad4a1c6aed8f",
+      "name": "寻魔指针",
+      "attributes": {
+        "magic": 9,
+        "hitRate": 7
+      }
+    },
+    {
+      "id": "trophies_22daf096-5ce5-41f9-9e6f-b91909773df9",
+      "name": "虹彩棱镜",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 6.5
+      }
+    },
+    {
+      "id": "trophies_b1aec091-1c93-452e-9328-94ff736ae63e",
+      "name": "尤瑟之旗",
+      "attributes": {
+        "magic": 13,
+        "hitRate": 2.5
+      }
+    },
+    {
+      "id": "trophies_688331c6-f7ac-4d41-99ec-7b8add663bb9",
+      "name": "回魂香炉",
+      "attributes": {
+        "magic": 11.5,
+        "magicDamage": 1.8,
+        "hitRate": 1.5
+      }
+    },
+    {
+      "id": "trophies_3ff846ba-17fc-40a3-a34c-cb4cfe74f83c",
+      "name": "通明玉简",
+      "attributes": {
+        "magic": 6,
+        "hitRate": 10
+      }
+    },
+    {
+      "id": "trophies_f5312bcc-94ca-4668-a9be-8f9b5ac432d1",
+      "name": "星轨罗盘",
+      "attributes": {
+        "magic": 12,
+        "criticalMultiplier": 2.4,
+        "hitRate": 1.8
+      }
+    },
+    {
+      "id": "trophies_d0902731-c83f-43b5-8c72-16cd0f34f07d",
+      "name": "奥术果实",
+      "attributes": {
+        "magic": 10.8,
+        "magicDamage": 1.8,
+        "hitRate": 2
+      }
+    },
+    {
+      "id": "trophies_5e366782-e439-43ec-813d-579c959fad89",
+      "name": "黑凝矿盐",
+      "attributes": {
+        "magic": 12.5,
+        "technique": 2.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      }
+    },
+    {
+      "id": "trophies_4ca12674-b222-46c2-be6d-eb6666e93934",
+      "name": "远古鹿角",
+      "attributes": {
+        "magic": 12.3,
+        "hitRate": 2.5
+      }
+    },
+    {
+      "id": "trophies_3418bfd3-2ab5-42ff-8a56-fcb9d685d009",
+      "name": "远航之镜",
+      "attributes": {
+        "magic": 8,
+        "hitRate": 8
+      }
+    },
+    {
+      "id": "trophies_c46e2d14-f410-4053-a94c-6fe37dd9a222",
+      "name": "战栗魔琴",
+      "attributes": {
+        "magic": 5.5,
+        "hitRate": 10
+      }
+    },
+    {
+      "id": "trophies_87f41e94-2def-43ab-b5d6-2aaa6eb17539",
+      "name": "秘银盏",
+      "attributes": {
+        "magic": 8.2,
+        "hitRate": 7.5
+      }
+    },
+    {
+      "id": "trophies_f76ceb24-0fb1-49f2-a732-327adf35d842",
+      "name": "翡翠时匣",
+      "attributes": {
+        "magic": 12,
+        "technique": 3.7,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      }
+    },
+    {
+      "id": "trophies_b4744221-156a-49a6-a0a4-f0cdaf30c26c",
+      "name": "腐化百合",
+      "attributes": {
+        "magic": 7.5,
+        "hitRate": 3,
+        "criticalMultiplier": 7.5
+      }
+    },
+    {
+      "id": "6bd443bf-1ac8-4d72-9ed8-c34fce830fd5",
+      "name": "罪罚镜",
+      "attributes": {
+        "speed": 10.8,
+        "hitRate": 1.5,
+        "criticalMultiplier": 7.5
+      }
+    },
+    {
+      "id": "10469afb-54b9-4250-b507-0f6734c955f2",
+      "name": "海神酒杯",
+      "attributes": {
+        "speed": 11.6,
+        "hitRate": 1.5,
+        "criticalMultiplier": 6
+      }
+    },
+    {
+      "id": "b2914846-499c-43d3-82d2-c5ee7f6aff0f",
+      "name": "狂宴舞鞋",
+      "attributes": {
+        "speed": 8,
+        "criticalMultiplier": 12
+      }
+    }
+  ]
+}

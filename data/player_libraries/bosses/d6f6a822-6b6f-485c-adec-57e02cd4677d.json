@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "bosses": [
+    {
+      "id": "b3ee943b-c1e2-4342-85eb-f1b5564790e0",
+      "name": "进化先驱·风暴",
+      "race": "傀儡",
+      "hasSkills": true,
+      "partyWipe": {
+        "enabled": false,
+        "time": 120
+      },
+      "skillGroup": {
+        "name": "",
+        "skills": [],
+        "entry": "",
+        "subgroups": []
+      },
+      "attributes": {
+        "weaponPower": 0,
+        "strength": 54600,
+        "magic": 86800,
+        "technique": 98000,
+        "speed": 103600,
+        "constitution": 5208000,
+        "hitPoint": 52080000,
+        "armor": 2212,
+        "resistance": 2800,
+        "criticalRate": 0,
+        "hitRate": 0,
+        "ignoreArmor": 0,
+        "ignoreResistance": 2200,
+        "abnormalBonus": 0,
+        "physicalDamage": 0,
+        "finalPhysicalDamage": 0,
+        "magicDamage": 0,
+        "finalMagicDamage": 0,
+        "dotDamage": 0,
+        "finalDotDamage": 0,
+        "healingBonus": 0,
+        "finalHealingBonus": 0,
+        "unload": 0,
+        "criticalMultiplier": 0,
+        "physicalSingleLifesteal": 0,
+        "magicSingleLifesteal": 0,
+        "physicalAreaLifesteal": 0,
+        "magicAreaLifesteal": 0,
+        "dodgeRate": 0
+      },
+      "targetRules": {
+        "physicalReduction": 0,
+        "magicReduction": 0,
+        "dotReduction": 0,
+        "allyLifestealReduction": 0,
+        "allyHealingReduction": 0,
+        "allyRegenerationReduction": 0,
+        "immuneBleeding": false,
+        "immunePlague": false,
+        "immuneBurn": false,
+        "immuneSpeedReduction": false,
+        "immuneStun": false,
+        "immuneWeakness": false,
+        "immuneFear": false,
+        "immuneLifeLoss": false,
+        "immuneNegativeEffects": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+from .equipment_identity import battle_catalog
+from fastapi import APIRouter, Request
+from ..skills.store import SkillError
+from ..configurations.special import prepare_configuration as prepare_panel
+from engine.runtime.initialization import initialize_battle, BattleConfigurationError
+
+def prepare_configuration(payload,library):
+    from copy import deepcopy
+    payload=deepcopy(payload)
+    rows=payload.get('characters',[])
+    if not isinstance(rows,list) or not 1<=len(rows)<=100:raise BattleConfigurationError('角色配置数量无效')
+    if sum(c.get('enabled',True) for c in rows)>4:raise BattleConfigurationError('最多4名角色参战')
+    if len(rows)!=4:
+        rows=[c for c in rows if c.get('enabled',True)]
+        while len(rows)<4:rows.append({'name':'空位','enabled':False,'firstStrike':False,'stats':{},'equipment':{},'contract':'不激活','job':'','skillGroup':''})
+        payload['characters']=rows
+    return prepare_panel(payload,library)
+
+router = APIRouter(prefix='/api/battle', tags=['战斗'])
+
+@router.post('/initialize', summary='计算开战装备增幅并返回角色buff记录')
+def initialize(payload: dict, request: Request):
+    library = {item['id']: item for item in battle_catalog(request,payload)}
+    try:
+        payload=prepare_configuration(payload,list(library.values()))
+        return initialize_battle(payload, library).to_dict()
+    except BattleConfigurationError as error:
+        raise SkillError(str(error)) from error
+
+
+@router.post('/simulate-single', summary='以0.1秒步进执行单次模拟并返回时间表及状态快照')
+def simulate(payload: dict, request: Request):
+    from engine.runtime.simulation import simulate_single
+    equipment = {item['id']: item for item in battle_catalog(request,payload)}
+    skills = {item['id']: item for item in request.app.state.skill_store.read()['skills']}
+    groups = {item['id']: item for item in request.app.state.group_store.read()['groups']}
+    try:
+        payload=prepare_configuration(payload,list(equipment.values()))
+        return simulate_single(payload, equipment, skills, groups, seed=payload.get('seed'))
+    except BattleConfigurationError as error:
+        raise SkillError(str(error)) from error
+
+
+@router.post('/simulate-batch', summary='启动批量模拟并返回任务编号')
+def start_batch(payload: dict, request: Request):
+    equipment={item['id']:item for item in battle_catalog(request,payload)}
+    skills={item['id']:item for item in request.app.state.skill_store.read()['skills']}
+    groups={item['id']:item for item in request.app.state.group_store.read()['groups']}
+    try:
+        payload=prepare_configuration(payload,list(equipment.values()))
+        return request.app.state.batch_jobs.start(payload,equipment,skills,groups)
+    except BattleConfigurationError as error:
+        raise SkillError(str(error)) from error
+
+
+@router.get('/batch/{job_id}', summary='查看批量模拟进度和统计结果')
+def batch_status(job_id: str, request: Request):
+    try:
+        return request.app.state.batch_jobs.get(job_id)
+    except BattleConfigurationError as error:
+        raise SkillError(str(error),404) from error
+
+
+@router.post("/batch/{job_id}/cancel", summary="取消批量模拟")
+def cancel_batch(job_id: str, request: Request):
+    try:
+        return request.app.state.batch_jobs.cancel(job_id)
+    except BattleConfigurationError as error:
+        raise SkillError(str(error),404) from error
+
+
+@router.post('/simulate-single-with-boss', summary='独立接口：包含Boss攻击的单次模拟')
+def simulate_with_boss(payload: dict, request: Request):
+    from engine.runtime.boss_simulation import BossBattle
+    equipment={item['id']:item for item in battle_catalog(request,payload)}
+    skills={item['id']:item for item in request.app.state.skill_store.read()['skills']}
+    groups={item['id']:item for item in request.app.state.group_store.read()['groups']}
+    try:
+        payload=prepare_configuration(payload,list(equipment.values()))
+        result=BossBattle(payload,equipment,skills,groups,seed=payload.get('seed')).run()
+        result['boss_attacks']=True
+        return result
+    except BattleConfigurationError as error:
+        raise SkillError(str(error)) from error
+
+
+@router.post('/simulate-batch-with-boss', summary='独立接口：启动包含Boss攻击的njit批量模拟')
+def start_batch_with_boss(payload: dict, request: Request):
+    equipment={item['id']:item for item in battle_catalog(request,payload)}
+    skills={item['id']:item for item in request.app.state.skill_store.read()['skills']}
+    groups={item['id']:item for item in request.app.state.group_store.read()['groups']}
+    try:
+        payload=prepare_configuration(payload,list(equipment.values()))
+        return request.app.state.batch_jobs.start(payload,equipment,skills,groups,boss_attacks=True)
+    except BattleConfigurationError as error:
+        raise SkillError(str(error)) from error
