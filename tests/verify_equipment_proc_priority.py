@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from engine.runtime.simulation import SingleBattle
-config={'battle':{'duration':2},'characters':[{'enabled':True,'job':'寒霜法师','stats':{'constitution':100,'magic':100,'strength':0,'speed':99},'equipment':{},'skillGroup':'g'} for _ in range(4)]}
+config={'battle':{'duration':2},'target':{'speed':100},'characters':[{'enabled':True,'job':'寒霜法师','stats':{'constitution':100,'magic':100,'strength':0,'speed':99},'equipment':{},'skillGroup':'g'} for _ in range(4)]}
 skill={'id':'s','name':'技能','job':'寒霜法师','damageType':'magic','cooldown':0,'coefficients':{'magic':1}}
 group={'job':'寒霜法师','entry':'n','subgroups':[{'id':'sub','nextGroup':'sub','skills':[{'id':'n','skillId':'s','next':''}]}]}
 slots=['weapon','armor','accessory1','accessory2','stone']

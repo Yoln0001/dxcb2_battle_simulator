@@ -125,7 +125,7 @@ with tempfile.TemporaryDirectory() as temp:
         assert request('POST','/api/equipment?library='+lid,gear_payload)[0]==201
         assert any(i['id']=='test-player-gear' for i in request('GET','/api/library-sets/equipment/catalog')[1]['equipment'])
         code,copied=request('POST','/api/library-sets/equipment',{'name':'玩家装备副本','copy':True,'copyFrom':lid});assert code==201,copied
-        other=copied['item']['id'];assert request('GET','/api/equipment?library='+other)[1]['equipment'][0]['id']!='test-player-gear'
+        other=copied['item']['id'];assert request('GET','/api/equipment?library='+other)[1]['equipment'][0]['id']=='test-player-gear'
         assert request('GET','/api/equipment')[1]['equipment']==[]
         with_libraries=json.loads(json.dumps(config));with_libraries['librarySelections']={'equipment':lid,'people':'','stones':'','trophies':''}
         code,saved=request('POST','/api/configurations',{'name':'保存玩家库','configuration':with_libraries});assert code==201,saved
@@ -178,7 +178,7 @@ with tempfile.TemporaryDirectory() as temp:
             code,tmp=request('POST','/api/library-sets/'+kind,{'name':'待管理库'});assert code==201,tmp
             managed=tmp['item']['id'];before=request('GET','/api/'+kind+'?library='+managed)[1]
             code,renamed=request('PUT','/api/library-sets/'+kind+'/'+managed,{'name':'已重命名'});assert code==200,renamed
-            assert renamed['item']['id']==managed and renamed['item']['name']=='已重命名'
+            assert next(i for i in renamed['libraries'] if i['id']==managed)['name']=='已重命名'
             assert request('GET','/api/'+kind+'?library='+managed)[1]==before
             assert request('POST','/api/library-sets/'+kind,{'name':'已重命名'})[0]==409
             assert request('PUT','/api/library-sets/'+kind+'/'+managed,{'name':' '})[0]==400

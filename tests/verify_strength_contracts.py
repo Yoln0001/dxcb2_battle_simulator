@@ -46,7 +46,7 @@ try:initialize_battle(cfg,{})
 except BattleConfigurationError:pass
 else:raise AssertionError('multiple activated contracts accepted')
 with tempfile.TemporaryDirectory() as d:
-    store=ContractStore(Path(d)/'contracts.json');assert len(store.read()['contracts'])==11
+    store=ContractStore(Path(d)/'contracts.json');assert len(store.read()['contracts'])==14
     item=validate_item({**presets()[0],'level':2,'baseBonus':18});store._write({'schemaVersion':1,'contracts':[item]});assert store.read()['contracts'][0]['baseBonus']==18
 print('PASS: strength contract presets, persistence, worn/active separation, initial burst, loss thresholds, team strength, negative effects, single activation and Python/Numba parity')
 

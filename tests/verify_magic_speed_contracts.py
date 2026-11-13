@@ -26,7 +26,7 @@ for item in items:
         assert np.isclose(calculate_contract_damage(state)['damage'],baseline*1.6)
 with tempfile.TemporaryDirectory() as d:
     p=Path(d)/'contracts.json';p.write_text(json.dumps({'schemaVersion':1,'contracts':presets()[:5]}),encoding='utf-8');store=ContractStore(p)
-    assert len(store.read()['contracts'])==11
+    assert len(store.read()['contracts'])==14
     data=store.read();data['contracts']=[i for i in data['contracts'] if i['category']!='speed'];store._write(data)
-    assert len(store.read()['contracts'])==8
+    assert len(store.read()['contracts'])==11
 print('PASS: six magic/speed presets, 0.1-second clock, first burst, missing-health tiers, migration and Python/Numba parity')

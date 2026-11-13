@@ -1,9 +1,9 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const source=fs.readFileSync(path.resolve(__dirname,'../frontend/js/app.js'),'utf8');
-const context=vm.createContext({});
+const context=vm.createContext({structuredClone,window:{}});
 vm.runInContext(source.slice(source.indexOf('const fields ='),source.indexOf('const $ =')),context);
 vm.runInContext(`function blank(i){return {name:'角色 '+i,enabled:true,job:'',skillGroup:'',firstStrike:false,lifetime:200,stats:Object.fromEntries(fields.map(([k,,v])=>[k,v])),equipment:Object.fromEntries(slots.map(([k])=>[k,''])),contract:'不激活',negativeEffect:'无',skillMultiplier:1};} function normalizeTarget(t){return t;}`,context);
-vm.runInContext(source.slice(source.indexOf('function validateNumber('),source.indexOf('function apply(')),context);
+vm.runInContext(source.slice(source.indexOf('function validateNumber('),source.indexOf('async function apply(')),context);
 const data=vm.runInContext(`({schemaVersion:1,battle:{duration:200,simulations:100},target:{race:'傀儡'},characters:[0,1,2,3].map(blank)})`,context);
 for(const c of data.characters){c.job='寒霜法师';c.skillGroup='saved-group';c.stats.magic=12578;c.equipment.weapon='saved-weapon';delete c.stats.healingBonus;delete c.stats.finalHealingBonus;}
 const original=JSON.stringify(data);context.data=data;

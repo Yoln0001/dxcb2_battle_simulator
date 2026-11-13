@@ -6,6 +6,7 @@ from engine.runtime.health import apply_enemy_recovery
 from backend.equipment.validation import validate_equipment
 ns=runpy.run_path(str(Path(__file__).with_name('verify_opening_dot.py')))
 config=copy.deepcopy(ns['cfg']);gear=copy.deepcopy(ns['gear'])
+gear['a'].pop('battleStartEffects',None)
 gear['a']['startingDebuffs']['entries']=[{'name':'削弱','healingReduction':20},{'name':'削弱','healingReduction':30}]
 gear['a']=validate_equipment(gear['a'])
 state=initialize_battle(config,gear)
@@ -25,7 +26,7 @@ assert apply_enemy_recovery(state,1000)==0
 config['target']['immuneNegativeEffects']=True
 assert initialize_battle(config,gear).target['recoveryMultiplier']==1
 for invalid in (-1,101,float('nan')):
-    broken=copy.deepcopy(gear['a']);broken['startingDebuffs']['entries']=[{'healingReduction':invalid}]
+    broken=copy.deepcopy(gear['a']);broken.pop('battleStartEffects',None);broken['startingDebuffs']['entries']=[{'healingReduction':invalid}]
     try:validate_equipment(broken)
     except ValueError:pass
     else:raise AssertionError(invalid)

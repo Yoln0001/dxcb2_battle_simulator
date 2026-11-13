@@ -28,7 +28,7 @@ class Node {
  }});
  for(const kind of ['holies','imprints'])vm.runInContext(fs.readFileSync('frontend/js/'+kind+'/library.js','utf8'),context);
  const {execFileSync}=require('child_process');
- const cases=JSON.parse(execFileSync('venv/Scripts/python.exe',['-c',"import json;from backend.api.holies import TYPES,HOLY_LEVELS,level_attributes;print(json.dumps([[k,h,o,level_attributes(k,h,o)] for k in TYPES for h in HOLY_LEVELS for o in [0,1,6,29,30,31,599,600,601]]))"],{encoding:'utf8'}));
+ const cases=JSON.parse(execFileSync(['.venv/Scripts/python.exe','venv/Scripts/python.exe','.venv/bin/python','venv/bin/python'].find(p=>fs.existsSync(p))||'python',['-c',"import json;from backend.api.holies import TYPES,HOLY_LEVELS,level_attributes;print(json.dumps([[k,h,o,level_attributes(k,h,o)] for k in TYPES for h in HOLY_LEVELS for o in [0,1,6,29,30,31,599,600,601]]))"],{encoding:'utf8'}));
  for(const [kind,h,o,expected] of cases)assert.deepEqual(JSON.parse(JSON.stringify(window.HolyLibrary.levelAttributes(kind,h,o))),expected);
  console.log('PASS: frontend/backend holy tables and solar cycle agree for all six professions and level boundaries');
  const source=M.blank();source.holy={strength:9999};source.imprint={finalPhysicalDamage:99};

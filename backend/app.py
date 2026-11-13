@@ -1,5 +1,6 @@
 """FastAPI应用、网页托管和统一错误处理。"""
 from pathlib import Path
+from threading import RLock
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
@@ -7,32 +8,80 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.gzip import GZipMiddleware
 
-from .api.skills import router
-from .api.equipment import router as equipment_router
-from .equipment.store import EquipmentStore
-from .skill_groups.store import SkillGroupStore
-from .api.skill_groups import router as group_router
 from .api.battle import router as battle_router
+from .api.bosses import BossStore, router as boss_router
+from .api.configurations import router as configuration_router
+from .api.contracts import router as contract_router
+from .api.equipment import router as equipment_router
+from .api.holies import HolyStore, router as holy_router
+from .api.imprints import ImprintStore, router as imprint_router
+from .api.library_sets import LibrarySets, router as library_sets_router
+from .api.people import PeopleStore, router as people_router
+from .api.rings import router as ring_router
+from .api.skill_groups import router as group_router
+from .api.skills import router as skill_router
+from .api.stones import StoneStore, router as stone_router
+from .api.tas import router as tas_router
+from .api.trophies import TrophyStore, router as trophy_router
+from .api.unclassified_equipment import router as unclassified_router
+from .api.wiki_equipment import router as wiki_router
+from .batch_jobs import BatchJobs
+from .configurations.store import ConfigurationStore
+from .contracts.store import ContractStore
+from .equipment.store import EquipmentStore
+from .rings.store import RingStore
+from .skill_groups.store import SkillGroupStore
 from .skills.store import SkillError, SkillStore
+from .unclassified_equipment.store import UnclassifiedEquipmentStore
+from .wiki_equipment.store import WikiEquipmentStore
 
 ROOT = Path(__file__).resolve().parents[1]
+DATA = ROOT / 'data'
 MAX_BODY = 5 * 1024 * 1024
+
+# 路由按此顺序注册；FastAPI按注册顺序匹配，调整前请确认路径没有重叠。
+ROUTERS = (
+    tas_router, boss_router, contract_router, ring_router, holy_router, imprint_router,
+    library_sets_router, stone_router, people_router, trophy_router, wiki_router,
+    unclassified_router, configuration_router, skill_router, equipment_router,
+    group_router, battle_router,
+)
+
+
+def create_stores(state, data_file=None, equipment_file=None, group_file=None, configuration_file=None,
+                  unclassified_equipment_file=None, wiki_equipment_file=None, trophy_file=None,
+                  people_file=None, stone_file=None, boss_file=None):
+    """建立各数据库；未指定路径的库使用data目录下的默认文件。"""
+    state.skill_store = SkillStore(data_file or DATA / 'skills.json')
+    state.equipment_store = EquipmentStore(equipment_file or DATA / 'equipment.json')
+    state.group_store = SkillGroupStore(group_file or DATA / 'skill_groups.json')
+    state.group_store.skill_store = state.skill_store
+    state.configuration_store = ConfigurationStore(configuration_file or DATA / 'configurations.json')
+    state.unclassified_equipment_store = UnclassifiedEquipmentStore(
+        unclassified_equipment_file or DATA / 'unclassified_equipment.json')
+    state.wiki_equipment_store = WikiEquipmentStore(wiki_equipment_file or DATA / 'wiki_equipment.json')
+    state.trophy_store = TrophyStore(trophy_file or DATA / 'trophies.json')
+    state.people_store = PeopleStore(people_file or DATA / 'people.json')
+    state.stone_store = StoneStore(stone_file or DATA / 'stones.json')
+    # 以下各库与配置库放在同一目录，测试只需替换配置文件路径即可整体隔离。
+    folder = state.configuration_store.path.parent
+    state.boss_store = BossStore(boss_file or folder / 'bosses.json')
+    state.contract_store = ContractStore(folder / 'contracts.json')
+    state.ring_store = RingStore(folder / 'rings.json')
+    state.holy_store = HolyStore(folder / 'holies.json')
+    state.imprint_store = ImprintStore(folder / 'imprints.json')
+    state.library_sets = LibrarySets(folder / 'library_sets.json')
+
 
 def create_app(data_file=None, equipment_file=None, group_file=None, configuration_file=None, unclassified_equipment_file=None, wiki_equipment_file=None, trophy_file=None, people_file=None, stone_file=None, boss_file=None):
     app = FastAPI(title='地下城堡2模拟器接口', version='1.0.0')
     app.add_middleware(GZipMiddleware, minimum_size=1000)
-    from .batch_jobs import BatchJobs
     app.state.batch_jobs = BatchJobs()
-    from threading import RLock
-    from .api.tas import router as tas_router
     app.state.tas_sessions = {}
     app.state.tas_lock = RLock()
-    app.include_router(tas_router)
-    app.state.skill_store = SkillStore(data_file or ROOT / 'data' / 'skills.json')
-    app.state.equipment_store = EquipmentStore(equipment_file or ROOT / 'data' / 'equipment.json')
-
-    app.state.group_store = SkillGroupStore(group_file or ROOT / 'data' / 'skill_groups.json')
-    app.state.group_store.skill_store = app.state.skill_store
+    create_stores(app.state, data_file, equipment_file, group_file, configuration_file,
+                  unclassified_equipment_file, wiki_equipment_file, trophy_file, people_file,
+                  stone_file, boss_file)
 
     @app.middleware('http')
     async def local_requests(request: Request, call_next):
@@ -73,51 +122,8 @@ def create_app(data_file=None, equipment_file=None, group_file=None, configurati
     async def file_error(request, error):
         return JSONResponse({'error': '文件读写失败，请检查目录权限和磁盘空间'}, status_code=500)
 
-    from .configurations.store import ConfigurationStore
-    from .api.configurations import router as configuration_router
-    app.state.configuration_store=ConfigurationStore(configuration_file or ROOT / "data" / "configurations.json")
-    from .unclassified_equipment.store import UnclassifiedEquipmentStore
-    from .api.unclassified_equipment import router as unclassified_router
-    app.state.unclassified_equipment_store=UnclassifiedEquipmentStore(unclassified_equipment_file or ROOT / "data" / "unclassified_equipment.json")
-    from .wiki_equipment.store import WikiEquipmentStore
-    from .api.wiki_equipment import router as wiki_router
-    app.state.wiki_equipment_store=WikiEquipmentStore(wiki_equipment_file or ROOT / "data" / "wiki_equipment.json")
-    from .api.trophies import TrophyStore,router as trophy_router
-    app.state.trophy_store=TrophyStore(trophy_file or ROOT / "data" / "trophies.json")
-    from .api.people import PeopleStore,router as people_router
-    app.state.people_store=PeopleStore(people_file or ROOT / "data" / "people.json")
-    from .api.stones import StoneStore,router as stone_router
-    app.state.stone_store=StoneStore(stone_file or ROOT / "data" / "stones.json")
-    from .api.bosses import BossStore,router as boss_router
-    app.state.boss_store=BossStore(boss_file or app.state.configuration_store.path.parent / "bosses.json")
-    app.include_router(boss_router)
-    from .contracts.store import ContractStore
-    from .api.contracts import router as contract_router
-    app.state.contract_store=ContractStore(app.state.configuration_store.path.parent / "contracts.json")
-    app.include_router(contract_router)
-    from .rings.store import RingStore
-    from .api.rings import router as ring_router
-    app.state.ring_store=RingStore(app.state.configuration_store.path.parent / "rings.json")
-    app.include_router(ring_router)
-    from .api.holies import HolyStore,router as holy_router
-    from .api.imprints import ImprintStore,router as imprint_router
-    app.state.holy_store=HolyStore(app.state.configuration_store.path.parent / 'holies.json')
-    app.state.imprint_store=ImprintStore(app.state.configuration_store.path.parent / 'imprints.json')
-    app.include_router(holy_router)
-    app.include_router(imprint_router)
-    from .api.library_sets import LibrarySets,router as library_sets_router
-    app.state.library_sets=LibrarySets(app.state.configuration_store.path.parent / "library_sets.json")
-    app.include_router(library_sets_router)
-    app.include_router(stone_router)
-    app.include_router(people_router)
-    app.include_router(trophy_router)
-    app.include_router(wiki_router)
-    app.include_router(unclassified_router)
-    app.include_router(configuration_router)
-    app.include_router(router)
-    app.include_router(equipment_router)
-    app.include_router(group_router)
-    app.include_router(battle_router)
+    for router in ROUTERS:
+        app.include_router(router)
 
     @app.api_route('/api/{path:path}', methods=['GET', 'POST', 'PUT'], include_in_schema=False)
     def unknown_api(path):

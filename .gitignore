@@ -33,3 +33,6 @@ Thumbs.db
 /data/*.before-*.json
 /data/*.bak
 /data/*.tmp
+
+# Test runner output
+/tests/_results/
