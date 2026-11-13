@@ -1,6 +1,7 @@
 """Domain rings: independent base pairs and fixed restriction/gain combinations."""
 import json,uuid
 from ..skills.store import SkillStore,SkillError,text,number,choice
+from ..library_store import IdLibraryStore
 ATTRIBUTES=('strength','magic','technique','speed','constitution')
 # Existing field names and presets are retained for saved configuration compatibility.
 PAIRS={'sky':[('technique','speed'),('technique','strength'),('technique','magic')],'water':[('technique','constitution'),('magic','constitution'),('magic','technique')],'fire':[('strength','technique'),('magic','technique'),('speed','technique')],'earth':[('constitution','magic'),('constitution','strength'),('constitution','technique')]}
@@ -30,7 +31,8 @@ def validate_item(data,item_id=None):
     return dict(id=text(item_id or data.get('id') or 'ring_'+str(uuid.uuid4()),'域之环ID'),name=text(data.get('name'),'域之环名称'),kind=kind,level=level,mainAttribute=main,secondaryAttribute=secondary,mainValue=number(data.get('mainValue',750),'属性一数值'),secondaryValue=number(data.get('secondaryValue',500),'属性二数值'),restriction=choice(data.get('restriction'),RESTRICTIONS[kind],'限制条件'),gain=choice(gain,GAINS[kind],'增益'),gainValue=number(data.get('gainValue',0),'增益数值'))
 def presets():
     return [validate_item(dict(id=kind+'_'+str(i),name={'sky':'空之环','water':'水之环','fire':'炎之环','earth':'地之环'}[kind]+' · '+str(i+1),kind=kind,level=50,mainAttribute=main,secondaryAttribute=sub,mainValue=750,secondaryValue=500,restriction='fragile' if kind=='fire' else 'none',gain=GAINS[kind][0],gainValue=0)) for kind,pairs in PAIRS.items() for i,(main,sub) in enumerate(pairs)]
-class RingStore(SkillStore):
+class RingStore(IdLibraryStore):
+    key='rings';label='域之环';validate=staticmethod(validate_item)
     def read(self):
         with self.lock:
             if not self.path.exists():return {'schemaVersion':1,'rings':presets()}

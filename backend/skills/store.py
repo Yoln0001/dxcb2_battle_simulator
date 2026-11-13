@@ -1,9 +1,12 @@
 """技能校验及JSON文件存储，不依赖第三方库。"""
+import functools
 import json
 import math
 import os
+import pickle
 import threading
 import uuid
+from collections import OrderedDict
 from pathlib import Path
 
 ATTRS = ['strength', 'magic', 'technique', 'speed', 'constitution', 'hitPoint']
@@ -110,11 +113,59 @@ def validate_library(data):
         raise SkillError('技能库存在重复ID')
     return {'schemaVersion': 1, 'skills': skills}
 
+# 已校验库的内存缓存：文件的修改时间和大小都没变时，跳过重新解析和逐条校验。
+# 缓存保存序列化后的结果，每次读取都还原出独立副本，调用方可以放心修改返回值。
+_READ_CACHE = OrderedDict()
+_READ_CACHE_LOCK = threading.Lock()
+_READ_CACHE_LIMIT = 32
+
+
+def _file_stamp(path):
+    try:
+        stat = path.stat()
+    except OSError:
+        return None
+    return stat.st_mtime_ns, stat.st_size
+
+
+def forget_cached_read(path):
+    with _READ_CACHE_LOCK:
+        _READ_CACHE.pop(str(path), None)
+
+
+def cached_read(method):
+    """只用于结果完全由self.path文件内容决定的read方法。"""
+    @functools.wraps(method)
+    def read(self):
+        with self.lock:
+            key = str(self.path)
+            stamp = _file_stamp(self.path)
+            if stamp is None:
+                return method(self)
+            with _READ_CACHE_LOCK:
+                entry = _READ_CACHE.get(key)
+                if entry is not None and entry[0] is type(self) and entry[1] == stamp:
+                    _READ_CACHE.move_to_end(key)
+                    return pickle.loads(entry[2])
+            result = method(self)
+            # 读取期间文件被改动时不缓存，避免把旧内容记在新时间戳下。
+            if _file_stamp(self.path) == stamp:
+                blob = pickle.dumps(result, pickle.HIGHEST_PROTOCOL)
+                with _READ_CACHE_LOCK:
+                    _READ_CACHE[key] = (type(self), stamp, blob)
+                    _READ_CACHE.move_to_end(key)
+                    while len(_READ_CACHE) > _READ_CACHE_LIMIT:
+                        _READ_CACHE.popitem(last=False)
+            return result
+    return read
+
+
 class SkillStore:
     def __init__(self, path):
         self.path = Path(path)
         self.lock = threading.RLock()
 
+    @cached_read
     def read(self):
         with self.lock:
             if not self.path.exists():
@@ -136,6 +187,7 @@ class SkillStore:
             os.replace(temp, self.path)
         finally:
             temp.unlink(missing_ok=True)
+            forget_cached_read(self.path)
 
     def save(self, value, update_id=None):
         skill = validate_skill(value, generate_id=update_id is None)

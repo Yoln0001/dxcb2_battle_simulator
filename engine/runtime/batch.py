@@ -56,6 +56,9 @@ def simulate_batch(config,equipment,skills,groups,*,progress=None,parallel=None,
     if engine not in ('auto','python','numba'):raise BattleConfigurationError('未知批量计算内核')
     if engine!='python':
         try:
+            # prepare本身不依赖Numba，这里先确认已安装，缺失时才能正确回退到Python内核。
+            from importlib.util import find_spec
+            if find_spec('numba') is None:raise ImportError('numba')
             from .compiled.prepare import prepare,UnsupportedConfiguration
             compiled=prepare(config,equipment,skills,groups,boss_attacks=boss_attacks)
         except ImportError:

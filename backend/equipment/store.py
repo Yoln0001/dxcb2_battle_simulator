@@ -1,8 +1,9 @@
-from ..skills.store import SkillStore, SkillError
+from ..skills.store import SkillStore, SkillError, cached_read
 from .validation import validate_equipment, validate_library
 import json
 
 class EquipmentStore(SkillStore):
+    @cached_read
     def read(self):
             with self.lock:
                 if not self.path.exists():

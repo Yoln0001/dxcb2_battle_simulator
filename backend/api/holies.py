@@ -1,7 +1,6 @@
-from .library_sets import store_for
-"""Persistent custom trophy library."""
+"""Fixed holy library: one entry per job family, levels editable."""
 import json,uuid
-from fastapi import APIRouter,Request
+from .library_routes import library_router
 from ..skills.store import SkillStore,SkillError,text
 from ..configurations.special import KEYS,number
 
@@ -84,12 +83,4 @@ class HolyStore(SkillStore):
             return {**data,'item':item}
     def delete(self,item_id):
         raise SkillError('圣迹固定为每大类职业一种，不可删除',405)
-router=APIRouter(prefix='/api/holies',tags=['圣迹库'])
-@router.get('')
-def read(request:Request):return store_for(request,'holies').read()
-@router.post('',status_code=201)
-def create(payload:dict,request:Request):return store_for(request,'holies').save(payload)
-@router.put('/{item_id}')
-def update(item_id:str,payload:dict,request:Request):return store_for(request,'holies').save(payload,item_id)
-@router.delete('/{item_id}')
-def delete(item_id:str,request:Request):return store_for(request,'holies').delete(item_id)
+router=library_router('holies','圣迹库')

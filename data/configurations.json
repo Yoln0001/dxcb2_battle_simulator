@@ -12792,7 +12792,7 @@
         },
         "battle": {
           "duration": 165,
-          "simulations": 100000
+          "simulations": 1000000
         },
         "characters": [
           {
@@ -13053,7 +13053,7 @@
             "stats": {
               "weaponPower": 1906,
               "strength": 197.2,
-              "magic": 13187.251601,
+              "magic": 13201.499114,
               "technique": 5543.182,
               "speed": 1144.576,
               "constitution": 3754.216,
@@ -13105,17 +13105,17 @@
               "gainValue": 26
             },
             "selectedContract": {
-              "id": "contract_76622822-c47a-4535-8dfe-1efdba47c889",
-              "name": "37.2魔力旧日",
+              "id": "contract_1b414845-d174-4f5a-8a57-59fb8509097c",
+              "name": "37.8魔盲目饮命",
               "category": "magic",
-              "archetype": "旧日支配者（魔力）",
-              "baseBonus": 37.2,
-              "multiplier": 5.6,
-              "negativeEffect": "群体献祭"
+              "archetype": "饮命者（魔力）",
+              "baseBonus": 37.8,
+              "multiplier": 5.44,
+              "negativeEffect": "群体盲目"
             },
-            "contract": "旧日支配者-魔",
-            "negativeEffect": "群体献祭",
-            "skillMultiplier": 5.6,
+            "contract": "饮命者-魔",
+            "negativeEffect": "群体盲目",
+            "skillMultiplier": 5.44,
             "ringPanelIncluded": false,
             "ringPanelBonuses": {},
             "ringBattleMultipliers": {},
@@ -13176,13 +13176,13 @@
                 "gainValue": 26
               },
               "selectedContract": {
-                "id": "contract_76622822-c47a-4535-8dfe-1efdba47c889",
-                "name": "37.2魔力旧日",
+                "id": "contract_1b414845-d174-4f5a-8a57-59fb8509097c",
+                "name": "37.8魔盲目饮命",
                 "category": "magic",
-                "archetype": "旧日支配者（魔力）",
-                "baseBonus": 37.2,
-                "multiplier": 5.6,
-                "negativeEffect": "群体献祭"
+                "archetype": "饮命者（魔力）",
+                "baseBonus": 37.8,
+                "multiplier": 5.44,
+                "negativeEffect": "群体盲目"
               },
               "ringPanelBonuses": {},
               "ringBattleMultipliers": {

@@ -2,6 +2,7 @@
 import json,uuid
 from copy import deepcopy
 from ..skills.store import SkillStore,SkillError,text,number,choice
+from ..library_store import IdLibraryStore
 CATEGORIES=('strength','magic','technique','speed','constitution')
 RULES={'狂怒兽神':(3.6,['脆化','污秽','盲目','痴愚']),'饮命者':(6.9,['群体献祭','群体盲目','群体痴愚']),'旧日支配者':(7,['群体献祭']),'炎钢羽神':(1.5,['脆化','污秽','盲目','痴愚']),'饮魂者':(2.5,['群体献祭','群体盲目','群体痴愚'])}
 TYPES={'狂怒兽神':'strength','饮命者':'strength','旧日支配者':'strength','炎钢羽神':'technique','饮魂者':'technique'}
@@ -23,7 +24,8 @@ def validate_item(data,item_id=None):
     if data.get('level')==2:multiplier*=1.2
     bonus=number(data.get('baseBonus',12),'基础属性加成')
     return {'id':text(item_id or data.get('id') or 'contract_'+str(uuid.uuid4()),'契约ID'),'name':text(data.get('name'),'契约名称'),'category':category,'archetype':archetype,'baseBonus':bonus,'multiplier':multiplier,'negativeEffect':choice(data.get('negativeEffect'),RULES[archetype][1],'负面效果')}
-class ContractStore(SkillStore):
+class ContractStore(IdLibraryStore):
+    key='contracts';label='契约';validate=staticmethod(validate_item)
     def read(self):
         with self.lock:
             if not self.path.exists():return {'schemaVersion':3,'contracts':presets()}

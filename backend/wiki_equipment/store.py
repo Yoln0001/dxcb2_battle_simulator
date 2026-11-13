@@ -1,7 +1,7 @@
 """Separate editable encyclopedia equipment library; custom equipment is never overwritten."""
 import json,math
 from copy import deepcopy
-from ..skills.store import SkillStore,SkillError
+from ..skills.store import SkillStore,SkillError,cached_read
 from ..equipment.validation import validate_equipment
 from .classifier import ATTRIBUTES,RANGED_ATTRIBUTES
 EXTRA_KEYS=['crystal','baseAttributes','extraAttributes','startingEffects','effectDefinitions','passiveEffects','reviewIssues','classificationStatus','source','reviewNotes']
@@ -44,6 +44,7 @@ def progress(items):
         status=item.get('classificationStatus','needsReview');row['total']+=1;row[status]+=1;total[status]+=1
     return {'total':total,'categories':result}
 class WikiEquipmentStore(SkillStore):
+    @cached_read
     def read(self):
         with self.lock:
             if not self.path.exists():return {'schemaVersion':1,'equipment':[],'progress':progress([])}

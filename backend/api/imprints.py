@@ -1,7 +1,6 @@
-from .library_sets import store_for
-"""Persistent custom trophy library."""
+"""Fixed imprint library: preset entries, attribute values editable."""
 import json,uuid
-from fastapi import APIRouter,Request
+from .library_routes import library_router
 from ..skills.store import SkillStore,SkillError,text
 from ..configurations.special import KEYS,number
 
@@ -64,12 +63,4 @@ class ImprintStore(SkillStore):
             return {**data,'item':item}
     def delete(self,item_id):
         raise SkillError('辉印为固定条目，不可删除',405)
-router=APIRouter(prefix='/api/imprints',tags=['辉印库'])
-@router.get('')
-def read(request:Request):return store_for(request,'imprints').read()
-@router.post('',status_code=201)
-def create(payload:dict,request:Request):return store_for(request,'imprints').save(payload)
-@router.put('/{item_id}')
-def update(item_id:str,payload:dict,request:Request):return store_for(request,'imprints').save(payload,item_id)
-@router.delete('/{item_id}')
-def delete(item_id:str,request:Request):return store_for(request,'imprints').delete(item_id)
+router=library_router('imprints','辉印库')
