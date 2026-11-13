@@ -9111,11 +9111,11 @@
     {
       "schemaVersion": 1,
       "id": "equipment_9138edb8-aaca-4d47-89cb-efb7281ff5e9",
-      "name": "魔技速双生挂坠★",
+      "name": "双力速体魔双生挂坠★",
       "category": "accessory",
       "weaponJob": "",
       "attackType": "physical",
-      "effectName": "",
+      "effectName": "侵蚀",
       "triggerEffectName": "",
       "triggerEnabled": false,
       "startingBuff": {
@@ -9144,11 +9144,40 @@
       "triggerRate": 0,
       "effect": null,
       "wikiId": "wiki_882a70cd36f5b1af2cfd",
-      "mainAttribute": "magic",
+      "mainAttribute": "",
       "triggerEffects": [],
       "startingDebuffs": {
-        "enabled": false,
-        "entries": []
+        "enabled": true,
+        "entries": [
+          {
+            "name": "侵蚀",
+            "type": "magicVulnerability",
+            "dotEnabled": false,
+            "dotDamage": 0,
+            "physicalVulnerability": 0,
+            "magicVulnerability": 3,
+            "healingReduction": 0,
+            "lifeDeprivation": 0
+          },
+          {
+            "name": "熔毁",
+            "type": "physicalVulnerability",
+            "dotEnabled": false,
+            "dotDamage": 0,
+            "physicalVulnerability": 3,
+            "magicVulnerability": 0,
+            "healingReduction": 0,
+            "lifeDeprivation": 0
+          }
+        ],
+        "name": "侵蚀",
+        "type": "magicVulnerability",
+        "dotEnabled": false,
+        "dotDamage": 0,
+        "physicalVulnerability": 0,
+        "magicVulnerability": 3,
+        "healingReduction": 0,
+        "lifeDeprivation": 0
       },
       "negativeImmunities": {
         "immuneBleeding": false,
@@ -9176,17 +9205,17 @@
         },
         "strength": {
           "label": "力量",
-          "min": 0,
-          "max": 0,
-          "value": 0,
+          "min": 484,
+          "max": 528,
+          "value": null,
           "unit": "",
           "source": "",
           "ownedValue": 0.0
         },
         "magic": {
           "label": "魔力",
-          "min": 484,
-          "max": 528,
+          "min": 242,
+          "max": 264,
           "value": null,
           "unit": "",
           "source": "",
@@ -9194,9 +9223,9 @@
         },
         "technique": {
           "label": "技巧",
-          "min": 484,
-          "max": 528,
-          "value": null,
+          "min": 0,
+          "max": 0,
+          "value": 0,
           "unit": "",
           "source": "",
           "ownedValue": 506.0
@@ -9212,9 +9241,9 @@
         },
         "constitution": {
           "label": "体质",
-          "min": 0,
-          "max": 0,
-          "value": 0,
+          "min": 242,
+          "max": 264,
+          "value": null,
           "unit": "",
           "source": "",
           "ownedValue": 0.0
@@ -9417,34 +9446,36 @@
       },
       "reviewNotes": "",
       "battleStartEffects": {
-        "enabled": false,
+        "enabled": true,
         "entries": [
           {
-            "side": "ally",
-            "name": "",
+            "side": "enemy",
+            "name": "侵蚀",
             "enabled": true,
-            "buff": {
-              "enabled": true,
-              "recipient": "self",
-              "coefficients": {
-                "strength": 0,
-                "magic": 0,
-                "technique": 0,
-                "speed": 0
-              },
-              "target": "none",
-              "kind": "amplify",
-              "regeneration": {
-                "receivesHealingBonuses": true,
-                "baseValue": 0,
-                "coefficients": {
-                  "strength": 0,
-                  "magic": 0,
-                  "technique": 0,
-                  "speed": 0,
-                  "constitution": 0
-                }
-              }
+            "debuff": {
+              "name": "侵蚀",
+              "type": "magicVulnerability",
+              "dotEnabled": false,
+              "dotDamage": 0,
+              "physicalVulnerability": 0,
+              "magicVulnerability": 3,
+              "healingReduction": 0,
+              "lifeDeprivation": 0
+            }
+          },
+          {
+            "side": "enemy",
+            "name": "熔毁",
+            "enabled": true,
+            "debuff": {
+              "name": "熔毁",
+              "type": "physicalVulnerability",
+              "dotEnabled": false,
+              "dotDamage": 0,
+              "physicalVulnerability": 3,
+              "magicVulnerability": 0,
+              "healingReduction": 0,
+              "lifeDeprivation": 0
             }
           }
         ]

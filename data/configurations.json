@@ -10929,9 +10929,4018 @@
         ]
       },
       "libraryId": "default_special"
+    },
+    {
+      "id": "config_2d5ee128b09643e5be79c84a7bbffbdc",
+      "name": "2e傀儡",
+      "configuration": {
+        "schemaVersion": 1,
+        "configurationType": "special",
+        "librarySelections": {
+          "equipment": "",
+          "stones": "",
+          "people": "",
+          "trophies": "",
+          "bosses": "",
+          "contracts": "",
+          "rings": "",
+          "holies": "",
+          "imprints": ""
+        },
+        "target": {
+          "race": "傀儡",
+          "hitPoint": 200000000,
+          "armor": 0,
+          "resistance": 0,
+          "speed": 50000,
+          "dodgeRate": 0,
+          "physicalReduction": 0,
+          "magicReduction": 0,
+          "dotReduction": 0,
+          "allyLifestealReduction": 0,
+          "allyHealingReduction": 0,
+          "allyRegenerationReduction": 0,
+          "speedAuto": false,
+          "immuneBleeding": false,
+          "immunePlague": false,
+          "immuneBurn": false,
+          "immuneSpeedReduction": false,
+          "immuneStun": false,
+          "immuneWeakness": false,
+          "immuneFear": false,
+          "immuneLifeLoss": false,
+          "immunePhysicalVulnerability": false,
+          "immuneMagicVulnerability": false,
+          "immuneNegativeEffects": false,
+          "name": "2e傀儡",
+          "skillGroup": {
+            "name": "",
+            "skills": [],
+            "entry": "",
+            "subgroups": []
+          },
+          "attributes": {
+            "weaponPower": 0,
+            "strength": 50000,
+            "magic": 50000,
+            "technique": 50000,
+            "speed": 50000,
+            "constitution": 20000000,
+            "hitPoint": 200000000,
+            "armor": 0,
+            "resistance": 0,
+            "criticalRate": 0,
+            "hitRate": 0,
+            "ignoreArmor": 0,
+            "ignoreResistance": 0,
+            "abnormalBonus": 0,
+            "physicalDamage": 0,
+            "finalPhysicalDamage": 0,
+            "magicDamage": 0,
+            "finalMagicDamage": 0,
+            "dotDamage": 0,
+            "finalDotDamage": 0,
+            "healingBonus": 0,
+            "finalHealingBonus": 0,
+            "unload": 0,
+            "criticalMultiplier": 0,
+            "physicalSingleLifesteal": 0,
+            "magicSingleLifesteal": 0,
+            "physicalAreaLifesteal": 0,
+            "magicAreaLifesteal": 0,
+            "dodgeRate": 0
+          },
+          "partyWipe": {
+            "enabled": true,
+            "time": 200,
+            "strategy": "all"
+          },
+          "selectedBoss": {
+            "id": "f4622a71-2361-4b61-9fda-96acdbc6ff38",
+            "name": "2e傀儡",
+            "race": "傀儡",
+            "hasSkills": true,
+            "partyWipe": {
+              "enabled": true,
+              "time": 200,
+              "strategy": "all"
+            },
+            "skillGroup": {
+              "name": "",
+              "skills": [],
+              "entry": "",
+              "subgroups": []
+            },
+            "attributes": {
+              "weaponPower": 0,
+              "strength": 50000,
+              "magic": 50000,
+              "technique": 50000,
+              "speed": 50000,
+              "constitution": 20000000,
+              "hitPoint": 200000000,
+              "armor": 0,
+              "resistance": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "dodgeRate": 0
+            },
+            "targetRules": {
+              "physicalReduction": 0,
+              "magicReduction": 0,
+              "dotReduction": 0,
+              "allyLifestealReduction": 0,
+              "allyHealingReduction": 0,
+              "allyRegenerationReduction": 0,
+              "immuneBleeding": false,
+              "immunePlague": false,
+              "immuneBurn": false,
+              "immuneSpeedReduction": false,
+              "immuneStun": false,
+              "immuneWeakness": false,
+              "immuneFear": false,
+              "immuneLifeLoss": false,
+              "immunePhysicalVulnerability": false,
+              "immuneMagicVulnerability": false,
+              "immuneNegativeEffects": false
+            }
+          }
+        },
+        "battle": {
+          "duration": 200,
+          "simulations": 100
+        },
+        "characters": [
+          {
+            "name": "角色 1",
+            "enabled": true,
+            "job": "",
+            "skillGroup": "",
+            "firstStrike": false,
+            "lifetime": 200,
+            "stats": {
+              "weaponPower": 0,
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 0,
+              "resistance": 0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "",
+              "armor": "",
+              "accessory1": "",
+              "accessory2": "",
+              "stone": ""
+            },
+            "selectedRing": null,
+            "selectedContract": null,
+            "contract": "不激活",
+            "negativeEffect": "无",
+            "skillMultiplier": 1,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {},
+              "stone": {},
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0,
+                "constitution": 0
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 0,
+                "finalHealingBonus": 0,
+                "hitRate": 0,
+                "criticalRate": 0,
+                "abnormalBonus": 0
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {},
+              "selectedRing": null,
+              "selectedContract": null,
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [],
+              "selectedHoly": null,
+              "holyCustom": true,
+              "holyProfession": "",
+              "selectedImprint": null,
+              "selectedExtraImprint": null,
+              "imprintCustom": true,
+              "gearPercentEnabled": false
+            }
+          },
+          {
+            "name": "角色 2",
+            "enabled": true,
+            "job": "",
+            "skillGroup": "",
+            "firstStrike": false,
+            "lifetime": 200,
+            "stats": {
+              "weaponPower": 0,
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 0,
+              "resistance": 0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "",
+              "armor": "",
+              "accessory1": "",
+              "accessory2": "",
+              "stone": ""
+            },
+            "selectedRing": null,
+            "selectedContract": null,
+            "contract": "不激活",
+            "negativeEffect": "无",
+            "skillMultiplier": 1,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {},
+              "stone": {},
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0,
+                "constitution": 0
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 0,
+                "finalHealingBonus": 0,
+                "hitRate": 0,
+                "criticalRate": 0,
+                "abnormalBonus": 0
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {},
+              "selectedRing": null,
+              "selectedContract": null,
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [],
+              "selectedHoly": null,
+              "holyCustom": true,
+              "holyProfession": "",
+              "selectedImprint": null,
+              "selectedExtraImprint": null,
+              "imprintCustom": true,
+              "gearPercentEnabled": false
+            }
+          },
+          {
+            "name": "角色 3",
+            "enabled": true,
+            "job": "",
+            "skillGroup": "",
+            "firstStrike": false,
+            "lifetime": 200,
+            "stats": {
+              "weaponPower": 0,
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 0,
+              "resistance": 0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "",
+              "armor": "",
+              "accessory1": "",
+              "accessory2": "",
+              "stone": ""
+            },
+            "selectedRing": null,
+            "selectedContract": null,
+            "contract": "不激活",
+            "negativeEffect": "无",
+            "skillMultiplier": 1,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {},
+              "stone": {},
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0,
+                "constitution": 0
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 0,
+                "finalHealingBonus": 0,
+                "hitRate": 0,
+                "criticalRate": 0,
+                "abnormalBonus": 0
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {},
+              "selectedRing": null,
+              "selectedContract": null,
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [],
+              "selectedHoly": null,
+              "holyCustom": true,
+              "holyProfession": "",
+              "selectedImprint": null,
+              "selectedExtraImprint": null,
+              "imprintCustom": true,
+              "gearPercentEnabled": false
+            }
+          },
+          {
+            "name": "角色 4",
+            "enabled": true,
+            "job": "",
+            "skillGroup": "",
+            "firstStrike": false,
+            "lifetime": 200,
+            "stats": {
+              "weaponPower": 0,
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 0,
+              "resistance": 0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "",
+              "armor": "",
+              "accessory1": "",
+              "accessory2": "",
+              "stone": ""
+            },
+            "selectedRing": null,
+            "selectedContract": null,
+            "contract": "不激活",
+            "negativeEffect": "无",
+            "skillMultiplier": 1,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {},
+              "stone": {},
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0,
+                "constitution": 0
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 0,
+                "finalHealingBonus": 0,
+                "hitRate": 0,
+                "criticalRate": 0,
+                "abnormalBonus": 0
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {},
+              "selectedRing": null,
+              "selectedContract": null,
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [],
+              "selectedHoly": null,
+              "holyCustom": true,
+              "holyProfession": "",
+              "selectedImprint": null,
+              "selectedExtraImprint": null,
+              "imprintCustom": true,
+              "gearPercentEnabled": false
+            }
+          }
+        ]
+      },
+      "libraryId": "library_3c5ff49802d44f0aaf952a305f3b8aed"
+    },
+    {
+      "id": "config_4933638444ed4f88bc17950b690256c1",
+      "name": "旧版本2e魂碑",
+      "configuration": {
+        "schemaVersion": 1,
+        "configurationType": "special",
+        "librarySelections": {
+          "equipment": "",
+          "stones": "",
+          "people": "",
+          "trophies": "",
+          "bosses": "",
+          "contracts": "",
+          "rings": "",
+          "holies": "",
+          "imprints": ""
+        },
+        "target": {
+          "race": "傀儡",
+          "hitPoint": 200000000,
+          "armor": 0,
+          "resistance": 0,
+          "speed": 50000,
+          "dodgeRate": 0,
+          "physicalReduction": 0,
+          "magicReduction": 0,
+          "dotReduction": 0,
+          "allyLifestealReduction": 0,
+          "allyHealingReduction": 0,
+          "allyRegenerationReduction": 0,
+          "speedAuto": false,
+          "immuneBleeding": false,
+          "immunePlague": false,
+          "immuneBurn": false,
+          "immuneSpeedReduction": false,
+          "immuneStun": false,
+          "immuneWeakness": false,
+          "immuneFear": false,
+          "immuneLifeLoss": false,
+          "immunePhysicalVulnerability": false,
+          "immuneMagicVulnerability": false,
+          "immuneNegativeEffects": false,
+          "name": "2e傀儡",
+          "skillGroup": {
+            "name": "",
+            "skills": [],
+            "entry": "",
+            "subgroups": []
+          },
+          "attributes": {
+            "weaponPower": 0,
+            "strength": 50000,
+            "magic": 50000,
+            "technique": 50000,
+            "speed": 50000,
+            "constitution": 20000000,
+            "hitPoint": 200000000,
+            "armor": 0,
+            "resistance": 0,
+            "criticalRate": 0,
+            "hitRate": 0,
+            "ignoreArmor": 0,
+            "ignoreResistance": 0,
+            "abnormalBonus": 0,
+            "physicalDamage": 0,
+            "finalPhysicalDamage": 0,
+            "magicDamage": 0,
+            "finalMagicDamage": 0,
+            "dotDamage": 0,
+            "finalDotDamage": 0,
+            "healingBonus": 0,
+            "finalHealingBonus": 0,
+            "unload": 0,
+            "criticalMultiplier": 0,
+            "physicalSingleLifesteal": 0,
+            "magicSingleLifesteal": 0,
+            "physicalAreaLifesteal": 0,
+            "magicAreaLifesteal": 0,
+            "dodgeRate": 0
+          },
+          "partyWipe": {
+            "enabled": true,
+            "time": 200,
+            "strategy": "all"
+          },
+          "selectedBoss": {
+            "id": "f4622a71-2361-4b61-9fda-96acdbc6ff38",
+            "name": "2e傀儡",
+            "race": "傀儡",
+            "hasSkills": true,
+            "partyWipe": {
+              "enabled": true,
+              "time": 200,
+              "strategy": "all"
+            },
+            "skillGroup": {
+              "name": "",
+              "skills": [],
+              "entry": "",
+              "subgroups": []
+            },
+            "attributes": {
+              "weaponPower": 0,
+              "strength": 50000,
+              "magic": 50000,
+              "technique": 50000,
+              "speed": 50000,
+              "constitution": 20000000,
+              "hitPoint": 200000000,
+              "armor": 0,
+              "resistance": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "dodgeRate": 0
+            },
+            "targetRules": {
+              "physicalReduction": 0,
+              "magicReduction": 0,
+              "dotReduction": 0,
+              "allyLifestealReduction": 0,
+              "allyHealingReduction": 0,
+              "allyRegenerationReduction": 0,
+              "immuneBleeding": false,
+              "immunePlague": false,
+              "immuneBurn": false,
+              "immuneSpeedReduction": false,
+              "immuneStun": false,
+              "immuneWeakness": false,
+              "immuneFear": false,
+              "immuneLifeLoss": false,
+              "immunePhysicalVulnerability": false,
+              "immuneMagicVulnerability": false,
+              "immuneNegativeEffects": false
+            }
+          }
+        },
+        "battle": {
+          "duration": 160,
+          "simulations": 100000
+        },
+        "characters": [
+          {
+            "name": "角色 1",
+            "enabled": true,
+            "job": "狂战神",
+            "skillGroup": "group_defd8fe1-5487-4529-8c0e-72c1203ed869",
+            "firstStrike": false,
+            "lifetime": 160,
+            "stats": {
+              "weaponPower": 1899,
+              "strength": 13070.713194,
+              "magic": 722.6,
+              "technique": 2714.116,
+              "speed": 3424.938,
+              "constitution": 4640.64,
+              "criticalRate": 40,
+              "hitRate": 63,
+              "ignoreArmor": 2550,
+              "ignoreResistance": 300,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 15,
+              "finalHealingBonus": 5,
+              "unload": 500,
+              "criticalMultiplier": 33,
+              "physicalSingleLifesteal": 10,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 712.4,
+              "resistance": 707.7,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_97fb0b3c8937018cedce",
+              "armor": "wiki_3a9d6da0980d4cee341b",
+              "accessory1": "wiki_4642ae4801abf081c4bb",
+              "accessory2": "wiki_f9e7e32e1f9388f360cb",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "fire_0",
+              "name": "26力火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "strength",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_b3a10859-3fd7-4121-b63f-8d2dc36f4de3",
+              "name": "39.3力旧日",
+              "category": "strength",
+              "archetype": "旧日支配者",
+              "baseBonus": 39.3,
+              "multiplier": 11.2,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 11.2,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 1219,
+                "magic": 148,
+                "technique": 522,
+                "speed": 653,
+                "constitution": 790,
+                "armor": 42,
+                "resistance": 21
+              },
+              "stone": {
+                "strength": 98,
+                "magic": 0,
+                "technique": 26,
+                "speed": 30,
+                "constitution": 34,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 1560,
+                "magic": 0,
+                "technique": 400,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 5,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "fire_0",
+                "name": "26力火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "strength",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_b3a10859-3fd7-4121-b63f-8d2dc36f4de3",
+                "name": "39.3力旧日",
+                "category": "strength",
+                "archetype": "旧日支配者",
+                "baseBonus": 39.3,
+                "multiplier": 11.2,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.26,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+                  "name": "凛虫之卵",
+                  "attributes": {
+                    "strength": 13.5,
+                    "hitRate": 3,
+                    "criticalMultiplier": 3
+                  }
+                },
+                {
+                  "id": "ab0e930a-d78e-4042-ad4c-14146baa191a",
+                  "name": "嗜战古镜",
+                  "attributes": {
+                    "strength": 12.5,
+                    "physicalSingleLifesteal": 10
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_5",
+                "name": "野蛮人圣迹",
+                "kind": "野蛮人",
+                "attributes": {
+                  "strength": 1560,
+                  "magic": 0,
+                  "technique": 400,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "野蛮人",
+              "selectedImprint": {
+                "id": "imprint_5",
+                "name": "野蛮人辉印",
+                "kind": "野蛮人",
+                "attributes": {
+                  "finalPhysicalDamage": 7,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 5,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "野蛮人"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_31",
+                "name": "狂战神额外辉印",
+                "kind": "野蛮人",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "狂战神"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "79cb13d1-3db6-4614-8fca-c5b38fc402f3",
+                "name": "1219狂战",
+                "job": "狂战神",
+                "attributes": {
+                  "strength": 1219,
+                  "magic": 148,
+                  "technique": 522,
+                  "speed": 653,
+                  "constitution": 790,
+                  "armor": 42,
+                  "resistance": 21
+                }
+              },
+              "selectedStone": {
+                "id": "481d57c0-f1aa-439b-b3a5-26722e5f17ee",
+                "name": "98暴君",
+                "kind": "暴君之石",
+                "attributes": {
+                  "strength": 98,
+                  "magic": 0,
+                  "technique": 26,
+                  "speed": 30,
+                  "constitution": 34,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 2",
+            "enabled": true,
+            "job": "血法师",
+            "skillGroup": "group_f8758688-4f7b-4ba4-92b4-5b447a07b4de",
+            "firstStrike": false,
+            "lifetime": 160,
+            "stats": {
+              "weaponPower": 1906,
+              "strength": 197.2,
+              "magic": 12867.955246,
+              "technique": 5543.182,
+              "speed": 1144.576,
+              "constitution": 3754.216,
+              "criticalRate": 40,
+              "hitRate": 47,
+              "ignoreArmor": 0,
+              "ignoreResistance": 2700,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 8,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 0,
+              "finalHealingBonus": 15,
+              "unload": 300,
+              "criticalMultiplier": 30,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 10,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 529.0,
+              "resistance": 654.0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_dc60324ad393419225e6",
+              "armor": "wiki_cd70629c5dc6d535b576",
+              "accessory1": "wiki_8a652d52bbfb029493d5",
+              "accessory2": "wiki_47b9ee63bf20d6d6f263",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+              "name": "26魔火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "magic",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_46a0eb8a-ae12-49e1-9ea6-dbaeb72a93d0",
+              "name": "39.3妖精",
+              "category": "magic",
+              "archetype": "至高妖精",
+              "baseBonus": 39.3,
+              "multiplier": 3.68,
+              "negativeEffect": "痴愚"
+            },
+            "contract": "不激活",
+            "negativeEffect": "痴愚",
+            "skillMultiplier": 3.68,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 116,
+                "magic": 1113,
+                "technique": 722,
+                "speed": 526,
+                "constitution": 752,
+                "armor": 30,
+                "resistance": 70
+              },
+              "stone": {
+                "strength": 0,
+                "magic": 96,
+                "technique": 34,
+                "speed": 28,
+                "constitution": 18,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 1560,
+                "technique": 1560,
+                "speed": 0,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 8,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 15,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+                "name": "26魔火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "magic",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_46a0eb8a-ae12-49e1-9ea6-dbaeb72a93d0",
+                "name": "39.3妖精",
+                "category": "magic",
+                "archetype": "至高妖精",
+                "baseBonus": 39.3,
+                "multiplier": 3.68,
+                "negativeEffect": "痴愚"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.22,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "2559c480-7dc5-475b-b456-2465ecb68ce2",
+                  "name": "渡魂之灯",
+                  "attributes": {
+                    "magic": 8,
+                    "magicSingleLifesteal": 10
+                  }
+                },
+                {
+                  "id": "da0b141d-0e9c-4147-942e-2fe31dab4be8",
+                  "name": "寄宿孢球",
+                  "attributes": {
+                    "magic": 14,
+                    "hitRate": 2
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_1",
+                "name": "法师圣迹",
+                "kind": "法师",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 1560,
+                  "technique": 1560,
+                  "speed": 0,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "法师",
+              "selectedImprint": {
+                "id": "imprint_1",
+                "name": "法师辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 5,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 15,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "法师"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_18",
+                "name": "血法师额外辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 3,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "血法师"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "722be7ec-fb87-431c-a449-19e1a3706d68",
+                "name": "1113血法",
+                "job": "血法师",
+                "attributes": {
+                  "strength": 116,
+                  "magic": 1113,
+                  "technique": 722,
+                  "speed": 526,
+                  "constitution": 752,
+                  "armor": 30,
+                  "resistance": 70
+                }
+              },
+              "selectedStone": {
+                "id": "f53b163b-0909-4df5-9f4d-9539a6091c03",
+                "name": "96-34-18",
+                "kind": "古精灵之石",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 96,
+                  "technique": 34,
+                  "speed": 28,
+                  "constitution": 18,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 3",
+            "enabled": true,
+            "job": "夜魇",
+            "skillGroup": "group_ced8d4cc-ab95-4741-83d5-da816adfa853",
+            "firstStrike": false,
+            "lifetime": 160,
+            "stats": {
+              "weaponPower": 1494,
+              "strength": 2972.792,
+              "magic": 140.828,
+              "technique": 4436.055,
+              "speed": 11463.8656766,
+              "constitution": 3490.126,
+              "criticalRate": 15,
+              "hitRate": 44.5,
+              "ignoreArmor": 2550,
+              "ignoreResistance": 0,
+              "abnormalBonus": 25,
+              "physicalDamage": 3.2,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 6,
+              "healingBonus": 0,
+              "finalHealingBonus": 5,
+              "unload": 0,
+              "criticalMultiplier": 64.5,
+              "physicalSingleLifesteal": 10,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 629.1,
+              "resistance": 568.1,
+              "dodgeRate": 55,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_8ac3c09bcee592575d08",
+              "armor": "wiki_2d1e5c2adea3c0b96f5e",
+              "accessory1": "wiki_f052245d87782c95e811",
+              "accessory2": "wiki_545e106ecf9954cd5df2",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_4ec7032e-c7c8-47ff-82b7-115bf240675a",
+              "name": "24.8速火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "speed",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 24.8
+            },
+            "selectedContract": {
+              "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+              "name": "38.7旧日",
+              "category": "speed",
+              "archetype": "旧日支配者（速度）",
+              "baseBonus": 38.7,
+              "multiplier": 5.6,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 5.6,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 632,
+                "magic": 76,
+                "technique": 995,
+                "speed": 1103,
+                "constitution": 541,
+                "armor": 43,
+                "resistance": 33
+              },
+              "stone": {
+                "strength": 12,
+                "magic": 9,
+                "technique": 17,
+                "speed": 95,
+                "constitution": 42,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 400,
+                "magic": 0,
+                "technique": 1560,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 6,
+                "finalHealingBonus": 5,
+                "hitRate": 3,
+                "criticalRate": 5,
+                "abnormalBonus": 25
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_4ec7032e-c7c8-47ff-82b7-115bf240675a",
+                "name": "24.8速火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "speed",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 24.8
+              },
+              "selectedContract": {
+                "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+                "name": "38.7旧日",
+                "category": "speed",
+                "archetype": "旧日支配者（速度）",
+                "baseBonus": 38.7,
+                "multiplier": 5.6,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.178,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "8bdbcd8b-22e4-46a9-b8e5-ff92919f5e29",
+                  "name": "振幅香瓶",
+                  "attributes": {
+                    "speed": 7,
+                    "physicalDamage": 3.2,
+                    "physicalSingleLifesteal": 10
+                  }
+                },
+                {
+                  "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
+                  "name": "罪罚镜",
+                  "attributes": {
+                    "speed": 10.8,
+                    "hitRate": 1.5,
+                    "criticalMultiplier": 7.5
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_2",
+                "name": "潜行者圣迹",
+                "kind": "潜行者",
+                "attributes": {
+                  "strength": 400,
+                  "magic": 0,
+                  "technique": 1560,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "潜行者",
+              "selectedImprint": {
+                "id": "imprint_2",
+                "name": "潜行者辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 4,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 6,
+                  "finalHealingBonus": 5,
+                  "hitRate": 3,
+                  "criticalRate": 5,
+                  "abnormalBonus": 25
+                },
+                "scope": "base",
+                "job": "潜行者"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_24",
+                "name": "夜魇额外辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 3,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "夜魇"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "b17f33b1-80e6-4170-9870-b2c1b502f236",
+                "name": "632-1103",
+                "job": "夜魇",
+                "attributes": {
+                  "strength": 632,
+                  "magic": 76,
+                  "technique": 995,
+                  "speed": 1103,
+                  "constitution": 541,
+                  "armor": 43,
+                  "resistance": 33
+                }
+              },
+              "selectedStone": {
+                "id": "2829cdc2-29a5-4742-a686-55d7461e89d7",
+                "name": "95-12",
+                "kind": "猎神者之石",
+                "attributes": {
+                  "strength": 12,
+                  "magic": 9,
+                  "technique": 17,
+                  "speed": 95,
+                  "constitution": 42,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 4",
+            "enabled": true,
+            "job": "夜魇",
+            "skillGroup": "group_7b2f603d-b10d-4760-b352-f89ef84ff57b",
+            "firstStrike": false,
+            "lifetime": 160,
+            "stats": {
+              "weaponPower": 693,
+              "strength": 2768.047,
+              "magic": 503.806,
+              "technique": 5095.006,
+              "speed": 11058.485772,
+              "constitution": 2885.671,
+              "criticalRate": 15,
+              "hitRate": 60,
+              "ignoreArmor": 1750,
+              "ignoreResistance": 200,
+              "abnormalBonus": 0,
+              "physicalDamage": 5.5,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 6,
+              "healingBonus": 20,
+              "finalHealingBonus": 5,
+              "unload": 500,
+              "criticalMultiplier": 9,
+              "physicalSingleLifesteal": 10,
+              "magicSingleLifesteal": 10,
+              "physicalAreaLifesteal": 10,
+              "magicAreaLifesteal": 10,
+              "armor": 522.1,
+              "resistance": 524.1,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_4dca92550f5257e46380",
+              "armor": "wiki_3002f716c0e6f55d69c2",
+              "accessory1": "wiki_882a70cd36f5b1af2cfd",
+              "accessory2": "wiki_c690995a783721f0b2f2",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_4ec7032e-c7c8-47ff-82b7-115bf240675a",
+              "name": "24.8速火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "speed",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 24.8
+            },
+            "selectedContract": {
+              "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+              "name": "38.7旧日",
+              "category": "speed",
+              "archetype": "旧日支配者（速度）",
+              "baseBonus": 38.7,
+              "multiplier": 5.6,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "旧日支配者-速",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 5.6,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 607,
+                "magic": 122,
+                "technique": 1001,
+                "speed": 1094,
+                "constitution": 503,
+                "armor": 43,
+                "resistance": 33
+              },
+              "stone": {
+                "strength": 13,
+                "magic": 19,
+                "technique": 18,
+                "speed": 93,
+                "constitution": 21,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 400,
+                "magic": 0,
+                "technique": 1560,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 6,
+                "finalHealingBonus": 5,
+                "hitRate": 3,
+                "criticalRate": 5,
+                "abnormalBonus": 25
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_4ec7032e-c7c8-47ff-82b7-115bf240675a",
+                "name": "24.8速火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "speed",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 24.8
+              },
+              "selectedContract": {
+                "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+                "name": "38.7旧日",
+                "category": "speed",
+                "archetype": "旧日支配者（速度）",
+                "baseBonus": 38.7,
+                "multiplier": 5.6,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.22,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "cf106d4c-69b3-49a1-86a4-26c9d97f503d",
+                  "name": "蛮荒药杵",
+                  "attributes": {
+                    "speed": 12,
+                    "physicalDamage": 1.5
+                  }
+                },
+                {
+                  "id": "a6ffab10-e6c6-44e6-b3b9-4b3e8c6753b3",
+                  "name": "月蚀绘兔",
+                  "attributes": {
+                    "speed": 10,
+                    "physicalDamage": 4
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_2",
+                "name": "潜行者圣迹",
+                "kind": "潜行者",
+                "attributes": {
+                  "strength": 400,
+                  "magic": 0,
+                  "technique": 1560,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "潜行者",
+              "selectedImprint": {
+                "id": "imprint_2",
+                "name": "潜行者辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 4,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 6,
+                  "finalHealingBonus": 5,
+                  "hitRate": 3,
+                  "criticalRate": 5,
+                  "abnormalBonus": 25
+                },
+                "scope": "base",
+                "job": "潜行者"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_24",
+                "name": "夜魇额外辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 3,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "夜魇"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "905d885e-0d87-4dd7-b83a-93a01810f53f",
+                "name": "607 1094夜魇",
+                "job": "夜魇",
+                "attributes": {
+                  "strength": 607,
+                  "magic": 122,
+                  "technique": 1001,
+                  "speed": 1094,
+                  "constitution": 503,
+                  "armor": 43,
+                  "resistance": 33
+                }
+              },
+              "selectedStone": {
+                "id": "b9328ab7-c72c-45ac-a0fa-91320924f2da",
+                "name": "93速",
+                "kind": "猎神者之石",
+                "attributes": {
+                  "strength": 13,
+                  "magic": 19,
+                  "technique": 18,
+                  "speed": 93,
+                  "constitution": 21,
+                  "hitRate": 15
+                }
+              }
+            }
+          }
+        ]
+      },
+      "libraryId": "library_3c5ff49802d44f0aaf952a305f3b8aed"
+    },
+    {
+      "id": "config_ec90cf5b38f2426b842602656f3c2ee1",
+      "name": "我的2e魂碑",
+      "configuration": {
+        "schemaVersion": 1,
+        "configurationType": "special",
+        "librarySelections": {
+          "equipment": "",
+          "stones": "",
+          "people": "",
+          "trophies": "",
+          "bosses": "",
+          "contracts": "",
+          "rings": "",
+          "holies": "",
+          "imprints": ""
+        },
+        "target": {
+          "race": "傀儡",
+          "hitPoint": 200000000,
+          "armor": 0,
+          "resistance": 0,
+          "speed": 50000,
+          "dodgeRate": 0,
+          "physicalReduction": 0,
+          "magicReduction": 0,
+          "dotReduction": 0,
+          "allyLifestealReduction": 0,
+          "allyHealingReduction": 0,
+          "allyRegenerationReduction": 0,
+          "speedAuto": false,
+          "immuneBleeding": false,
+          "immunePlague": false,
+          "immuneBurn": false,
+          "immuneSpeedReduction": false,
+          "immuneStun": false,
+          "immuneWeakness": false,
+          "immuneFear": false,
+          "immuneLifeLoss": false,
+          "immunePhysicalVulnerability": false,
+          "immuneMagicVulnerability": false,
+          "immuneNegativeEffects": false,
+          "name": "2e傀儡",
+          "skillGroup": {
+            "name": "",
+            "skills": [],
+            "entry": "",
+            "subgroups": []
+          },
+          "attributes": {
+            "weaponPower": 0,
+            "strength": 50000,
+            "magic": 50000,
+            "technique": 50000,
+            "speed": 50000,
+            "constitution": 20000000,
+            "hitPoint": 200000000,
+            "armor": 0,
+            "resistance": 0,
+            "criticalRate": 0,
+            "hitRate": 0,
+            "ignoreArmor": 0,
+            "ignoreResistance": 0,
+            "abnormalBonus": 0,
+            "physicalDamage": 0,
+            "finalPhysicalDamage": 0,
+            "magicDamage": 0,
+            "finalMagicDamage": 0,
+            "dotDamage": 0,
+            "finalDotDamage": 0,
+            "healingBonus": 0,
+            "finalHealingBonus": 0,
+            "unload": 0,
+            "criticalMultiplier": 0,
+            "physicalSingleLifesteal": 0,
+            "magicSingleLifesteal": 0,
+            "physicalAreaLifesteal": 0,
+            "magicAreaLifesteal": 0,
+            "dodgeRate": 0
+          },
+          "partyWipe": {
+            "enabled": true,
+            "time": 200,
+            "strategy": "all"
+          },
+          "selectedBoss": {
+            "id": "f4622a71-2361-4b61-9fda-96acdbc6ff38",
+            "name": "2e傀儡",
+            "race": "傀儡",
+            "hasSkills": true,
+            "partyWipe": {
+              "enabled": true,
+              "time": 200,
+              "strategy": "all"
+            },
+            "skillGroup": {
+              "name": "",
+              "skills": [],
+              "entry": "",
+              "subgroups": []
+            },
+            "attributes": {
+              "weaponPower": 0,
+              "strength": 50000,
+              "magic": 50000,
+              "technique": 50000,
+              "speed": 50000,
+              "constitution": 20000000,
+              "hitPoint": 200000000,
+              "armor": 0,
+              "resistance": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "dodgeRate": 0
+            },
+            "targetRules": {
+              "physicalReduction": 0,
+              "magicReduction": 0,
+              "dotReduction": 0,
+              "allyLifestealReduction": 0,
+              "allyHealingReduction": 0,
+              "allyRegenerationReduction": 0,
+              "immuneBleeding": false,
+              "immunePlague": false,
+              "immuneBurn": false,
+              "immuneSpeedReduction": false,
+              "immuneStun": false,
+              "immuneWeakness": false,
+              "immuneFear": false,
+              "immuneLifeLoss": false,
+              "immunePhysicalVulnerability": false,
+              "immuneMagicVulnerability": false,
+              "immuneNegativeEffects": false
+            }
+          }
+        },
+        "battle": {
+          "duration": 165,
+          "simulations": 100000
+        },
+        "characters": [
+          {
+            "name": "角色 1",
+            "enabled": true,
+            "job": "狂战神",
+            "skillGroup": "group_defd8fe1-5487-4529-8c0e-72c1203ed869",
+            "firstStrike": false,
+            "lifetime": 165,
+            "stats": {
+              "weaponPower": 1899,
+              "strength": 13174.449013,
+              "magic": 722.6,
+              "technique": 2714.116,
+              "speed": 3424.938,
+              "constitution": 4640.64,
+              "criticalRate": 40,
+              "hitRate": 66,
+              "ignoreArmor": 2550,
+              "ignoreResistance": 300,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 15,
+              "finalHealingBonus": 5,
+              "unload": 500,
+              "criticalMultiplier": 36,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 712.4,
+              "resistance": 707.7,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_97fb0b3c8937018cedce",
+              "armor": "wiki_3a9d6da0980d4cee341b",
+              "accessory1": "wiki_4642ae4801abf081c4bb",
+              "accessory2": "wiki_f9e7e32e1f9388f360cb",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "fire_0",
+              "name": "26力火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "strength",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_b3a10859-3fd7-4121-b63f-8d2dc36f4de3",
+              "name": "39.3力旧日",
+              "category": "strength",
+              "archetype": "旧日支配者",
+              "baseBonus": 39.3,
+              "multiplier": 11.2,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 11.2,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 1219,
+                "magic": 148,
+                "technique": 522,
+                "speed": 653,
+                "constitution": 790,
+                "armor": 42,
+                "resistance": 21
+              },
+              "stone": {
+                "strength": 98,
+                "magic": 0,
+                "technique": 26,
+                "speed": 30,
+                "constitution": 34,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 1560,
+                "magic": 0,
+                "technique": 400,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 5,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "fire_0",
+                "name": "26力火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "strength",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_b3a10859-3fd7-4121-b63f-8d2dc36f4de3",
+                "name": "39.3力旧日",
+                "category": "strength",
+                "archetype": "旧日支配者",
+                "baseBonus": 39.3,
+                "multiplier": 11.2,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.27,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+                  "name": "凛虫之卵",
+                  "attributes": {
+                    "strength": 13.5,
+                    "hitRate": 3,
+                    "criticalMultiplier": 3
+                  }
+                },
+                {
+                  "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+                  "name": "凛虫之卵",
+                  "attributes": {
+                    "strength": 13.5,
+                    "hitRate": 3,
+                    "criticalMultiplier": 3
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_5",
+                "name": "野蛮人圣迹",
+                "kind": "野蛮人",
+                "attributes": {
+                  "strength": 1560,
+                  "magic": 0,
+                  "technique": 400,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "野蛮人",
+              "selectedImprint": {
+                "id": "imprint_5",
+                "name": "野蛮人辉印",
+                "kind": "野蛮人",
+                "attributes": {
+                  "finalPhysicalDamage": 7,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 5,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "野蛮人"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_31",
+                "name": "狂战神额外辉印",
+                "kind": "野蛮人",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "狂战神"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "79cb13d1-3db6-4614-8fca-c5b38fc402f3",
+                "name": "1219狂战",
+                "job": "狂战神",
+                "attributes": {
+                  "strength": 1219,
+                  "magic": 148,
+                  "technique": 522,
+                  "speed": 653,
+                  "constitution": 790,
+                  "armor": 42,
+                  "resistance": 21
+                }
+              },
+              "selectedStone": {
+                "id": "481d57c0-f1aa-439b-b3a5-26722e5f17ee",
+                "name": "98暴君",
+                "kind": "暴君之石",
+                "attributes": {
+                  "strength": 98,
+                  "magic": 0,
+                  "technique": 26,
+                  "speed": 30,
+                  "constitution": 34,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 2",
+            "enabled": true,
+            "job": "血法师",
+            "skillGroup": "group_f8758688-4f7b-4ba4-92b4-5b447a07b4de",
+            "firstStrike": false,
+            "lifetime": 165,
+            "stats": {
+              "weaponPower": 1906,
+              "strength": 197.2,
+              "magic": 13187.251601,
+              "technique": 5543.182,
+              "speed": 1144.576,
+              "constitution": 3754.216,
+              "criticalRate": 40,
+              "hitRate": 48.5,
+              "ignoreArmor": 0,
+              "ignoreResistance": 2700,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 1.8,
+              "finalMagicDamage": 8,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 0,
+              "finalHealingBonus": 15,
+              "unload": 300,
+              "criticalMultiplier": 30,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 529.0,
+              "resistance": 654.0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_dc60324ad393419225e6",
+              "armor": "wiki_cd70629c5dc6d535b576",
+              "accessory1": "wiki_8a652d52bbfb029493d5",
+              "accessory2": "wiki_47b9ee63bf20d6d6f263",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+              "name": "26魔火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "magic",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_76622822-c47a-4535-8dfe-1efdba47c889",
+              "name": "37.2魔力旧日",
+              "category": "magic",
+              "archetype": "旧日支配者（魔力）",
+              "baseBonus": 37.2,
+              "multiplier": 5.6,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "旧日支配者-魔",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 5.6,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 116,
+                "magic": 1113,
+                "technique": 722,
+                "speed": 526,
+                "constitution": 752,
+                "armor": 30,
+                "resistance": 70
+              },
+              "stone": {
+                "strength": 0,
+                "magic": 96,
+                "technique": 34,
+                "speed": 28,
+                "constitution": 18,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 1560,
+                "technique": 1560,
+                "speed": 0,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 8,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 15,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+                "name": "26魔火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "magic",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_76622822-c47a-4535-8dfe-1efdba47c889",
+                "name": "37.2魔力旧日",
+                "category": "magic",
+                "archetype": "旧日支配者（魔力）",
+                "baseBonus": 37.2,
+                "multiplier": 5.6,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.255,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "da0b141d-0e9c-4147-942e-2fe31dab4be8",
+                  "name": "寄宿孢球",
+                  "attributes": {
+                    "magic": 14,
+                    "hitRate": 2
+                  }
+                },
+                {
+                  "id": "24f551dc-212c-4edf-9f0e-652795002853",
+                  "name": "回魂香炉",
+                  "attributes": {
+                    "magic": 11.5,
+                    "magicDamage": 1.8,
+                    "hitRate": 1.5
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_1",
+                "name": "法师圣迹",
+                "kind": "法师",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 1560,
+                  "technique": 1560,
+                  "speed": 0,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "法师",
+              "selectedImprint": {
+                "id": "imprint_1",
+                "name": "法师辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 5,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 15,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "法师"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_18",
+                "name": "血法师额外辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 3,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "血法师"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "722be7ec-fb87-431c-a449-19e1a3706d68",
+                "name": "1113血法",
+                "job": "血法师",
+                "attributes": {
+                  "strength": 116,
+                  "magic": 1113,
+                  "technique": 722,
+                  "speed": 526,
+                  "constitution": 752,
+                  "armor": 30,
+                  "resistance": 70
+                }
+              },
+              "selectedStone": {
+                "id": "f53b163b-0909-4df5-9f4d-9539a6091c03",
+                "name": "96-34-18",
+                "kind": "古精灵之石",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 96,
+                  "technique": 34,
+                  "speed": 28,
+                  "constitution": 18,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 3",
+            "enabled": true,
+            "job": "夜魇",
+            "skillGroup": "group_ced8d4cc-ab95-4741-83d5-da816adfa853",
+            "firstStrike": false,
+            "lifetime": 165,
+            "stats": {
+              "weaponPower": 1494,
+              "strength": 3278.328,
+              "magic": 140.828,
+              "technique": 4436.055,
+              "speed": 11674.6695288,
+              "constitution": 3227.126,
+              "criticalRate": 15,
+              "hitRate": 51.0,
+              "ignoreArmor": 2450,
+              "ignoreResistance": 0,
+              "abnormalBonus": 25,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 6,
+              "healingBonus": 0,
+              "finalHealingBonus": 5,
+              "unload": 0,
+              "criticalMultiplier": 70.5,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 535.1,
+              "resistance": 562.1,
+              "dodgeRate": 55,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_8ac3c09bcee592575d08",
+              "armor": "wiki_7b5d13e15cd4dc7b40be",
+              "accessory1": "wiki_f052245d87782c95e811",
+              "accessory2": "wiki_545e106ecf9954cd5df2",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_4ec7032e-c7c8-47ff-82b7-115bf240675a",
+              "name": "24.8速火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "speed",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 24.8
+            },
+            "selectedContract": {
+              "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+              "name": "38.7旧日",
+              "category": "speed",
+              "archetype": "旧日支配者（速度）",
+              "baseBonus": 38.7,
+              "multiplier": 5.6,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 5.6,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 632,
+                "magic": 76,
+                "technique": 995,
+                "speed": 1103,
+                "constitution": 541,
+                "armor": 43,
+                "resistance": 33
+              },
+              "stone": {
+                "strength": 12,
+                "magic": 9,
+                "technique": 17,
+                "speed": 95,
+                "constitution": 42,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 400,
+                "magic": 0,
+                "technique": 1560,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 6,
+                "finalHealingBonus": 5,
+                "hitRate": 3,
+                "criticalRate": 5,
+                "abnormalBonus": 25
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_4ec7032e-c7c8-47ff-82b7-115bf240675a",
+                "name": "24.8速火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "speed",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 24.8
+              },
+              "selectedContract": {
+                "id": "contract_73b2b872-b148-4924-bda5-b191085a1188",
+                "name": "38.7旧日",
+                "category": "speed",
+                "archetype": "旧日支配者（速度）",
+                "baseBonus": 38.7,
+                "multiplier": 5.6,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.224,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
+                  "name": "罪罚镜",
+                  "attributes": {
+                    "speed": 10.8,
+                    "hitRate": 1.5,
+                    "criticalMultiplier": 7.5
+                  }
+                },
+                {
+                  "id": "d1e0ea58-7344-4978-8da7-d8310bb9f528",
+                  "name": "海神酒杯",
+                  "attributes": {
+                    "speed": 11.6,
+                    "hitRate": 1.5,
+                    "criticalMultiplier": 6
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_2",
+                "name": "潜行者圣迹",
+                "kind": "潜行者",
+                "attributes": {
+                  "strength": 400,
+                  "magic": 0,
+                  "technique": 1560,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "潜行者",
+              "selectedImprint": {
+                "id": "imprint_2",
+                "name": "潜行者辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 4,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 6,
+                  "finalHealingBonus": 5,
+                  "hitRate": 3,
+                  "criticalRate": 5,
+                  "abnormalBonus": 25
+                },
+                "scope": "base",
+                "job": "潜行者"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_24",
+                "name": "夜魇额外辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 3,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "夜魇"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "b17f33b1-80e6-4170-9870-b2c1b502f236",
+                "name": "632-1103",
+                "job": "夜魇",
+                "attributes": {
+                  "strength": 632,
+                  "magic": 76,
+                  "technique": 995,
+                  "speed": 1103,
+                  "constitution": 541,
+                  "armor": 43,
+                  "resistance": 33
+                }
+              },
+              "selectedStone": {
+                "id": "2829cdc2-29a5-4742-a686-55d7461e89d7",
+                "name": "95-12",
+                "kind": "猎神者之石",
+                "attributes": {
+                  "strength": 12,
+                  "magic": 9,
+                  "technique": 17,
+                  "speed": 95,
+                  "constitution": 42,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 4",
+            "enabled": true,
+            "job": "寒霜法师",
+            "skillGroup": "group_0c86a059-4f69-4d9e-98c0-1b7ab8df4b42",
+            "firstStrike": false,
+            "lifetime": 165,
+            "stats": {
+              "weaponPower": 1969,
+              "strength": 229.5,
+              "magic": 12335.082088,
+              "technique": 6538.522,
+              "speed": 986.442,
+              "constitution": 3677.166,
+              "criticalRate": 40,
+              "hitRate": 56.5,
+              "ignoreArmor": 0,
+              "ignoreResistance": 2750,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 8,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 0,
+              "finalHealingBonus": 15,
+              "unload": 300,
+              "criticalMultiplier": 30,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 517.2,
+              "resistance": 612.8,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_bb043a3737172a0ffb94",
+              "armor": "wiki_34258f5c74a129538395",
+              "accessory1": "wiki_98bd55aa0e137cff0caa",
+              "accessory2": "wiki_96cf0f054c450871bad3",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_34809271-1f9f-4359-bc20-1672d3dafdfb",
+              "name": "24.8魔火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "magic",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 24.8
+            },
+            "selectedContract": {
+              "id": "contract_46a0eb8a-ae12-49e1-9ea6-dbaeb72a93d0",
+              "name": "39.3妖精",
+              "category": "magic",
+              "archetype": "至高妖精",
+              "baseBonus": 39.3,
+              "multiplier": 3.68,
+              "negativeEffect": "痴愚"
+            },
+            "contract": "不激活",
+            "negativeEffect": "痴愚",
+            "skillMultiplier": 3.68,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 135,
+                "magic": 1112,
+                "technique": 857,
+                "speed": 509,
+                "constitution": 671,
+                "armor": 26,
+                "resistance": 74
+              },
+              "stone": {
+                "strength": 0,
+                "magic": 95,
+                "technique": 38,
+                "speed": 14,
+                "constitution": 17,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 1560,
+                "technique": 1560,
+                "speed": 0,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 8,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 15,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_34809271-1f9f-4359-bc20-1672d3dafdfb",
+                "name": "24.8魔火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "magic",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 24.8
+              },
+              "selectedContract": {
+                "id": "contract_46a0eb8a-ae12-49e1-9ea6-dbaeb72a93d0",
+                "name": "39.3妖精",
+                "category": "magic",
+                "archetype": "至高妖精",
+                "baseBonus": 39.3,
+                "multiplier": 3.68,
+                "negativeEffect": "痴愚"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.19,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "2a7054be-32ea-4417-a52b-611c494c18f0",
+                  "name": "虹彩棱镜",
+                  "attributes": {
+                    "magic": 10,
+                    "hitRate": 6.5
+                  }
+                },
+                {
+                  "id": "699b7d83-04ff-47f7-b0eb-5eb1d3b3e283",
+                  "name": "寻魔指针",
+                  "attributes": {
+                    "magic": 9,
+                    "hitRate": 7
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_1",
+                "name": "法师圣迹",
+                "kind": "法师",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 1560,
+                  "technique": 1560,
+                  "speed": 0,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "法师",
+              "selectedImprint": {
+                "id": "imprint_1",
+                "name": "法师辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 5,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 15,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "法师"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_17",
+                "name": "寒霜法师额外辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 3,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "寒霜法师"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "f511f867-9328-4863-9608-feb141801871",
+                "name": "1112-857",
+                "job": "寒霜法师",
+                "attributes": {
+                  "strength": 135,
+                  "magic": 1112,
+                  "technique": 857,
+                  "speed": 509,
+                  "constitution": 671,
+                  "armor": 26,
+                  "resistance": 74
+                }
+              },
+              "selectedStone": {
+                "id": "e9e83ffd-9939-49ac-b5b5-daad016a2091",
+                "name": "95-38-17",
+                "kind": "古精灵之石",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 95,
+                  "technique": 38,
+                  "speed": 14,
+                  "constitution": 17,
+                  "hitRate": 15
+                }
+              }
+            }
+          }
+        ]
+      },
+      "libraryId": "library_3c5ff49802d44f0aaf952a305f3b8aed"
+    },
+    {
+      "id": "config_d2793d7c409645dca29a82e49677b7be",
+      "name": "顶配2e傀儡",
+      "configuration": {
+        "schemaVersion": 1,
+        "configurationType": "special",
+        "librarySelections": {
+          "equipment": "de18e124-e66d-4c30-b4d0-5f6ae4d41e2c",
+          "stones": "9b1dea75-4811-4fca-9cc1-91da6797b213",
+          "people": "84090270-6b1c-4d7d-9fdc-f2840a909e08",
+          "trophies": "",
+          "bosses": "",
+          "contracts": "983402ef-a8d3-4eb3-8f11-02eedf6593ab",
+          "rings": "",
+          "holies": "",
+          "imprints": ""
+        },
+        "target": {
+          "race": "傀儡",
+          "hitPoint": 200000000,
+          "armor": 0,
+          "resistance": 0,
+          "speed": 50000,
+          "dodgeRate": 0,
+          "physicalReduction": 0,
+          "magicReduction": 0,
+          "dotReduction": 0,
+          "allyLifestealReduction": 0,
+          "allyHealingReduction": 0,
+          "allyRegenerationReduction": 0,
+          "speedAuto": false,
+          "immuneBleeding": false,
+          "immunePlague": false,
+          "immuneBurn": false,
+          "immuneSpeedReduction": false,
+          "immuneStun": false,
+          "immuneWeakness": false,
+          "immuneFear": false,
+          "immuneLifeLoss": false,
+          "immunePhysicalVulnerability": false,
+          "immuneMagicVulnerability": false,
+          "immuneNegativeEffects": false,
+          "name": "2e傀儡",
+          "skillGroup": {
+            "name": "",
+            "skills": [],
+            "entry": "",
+            "subgroups": []
+          },
+          "attributes": {
+            "weaponPower": 0,
+            "strength": 50000,
+            "magic": 50000,
+            "technique": 50000,
+            "speed": 50000,
+            "constitution": 20000000,
+            "hitPoint": 200000000,
+            "armor": 0,
+            "resistance": 0,
+            "criticalRate": 0,
+            "hitRate": 0,
+            "ignoreArmor": 0,
+            "ignoreResistance": 0,
+            "abnormalBonus": 0,
+            "physicalDamage": 0,
+            "finalPhysicalDamage": 0,
+            "magicDamage": 0,
+            "finalMagicDamage": 0,
+            "dotDamage": 0,
+            "finalDotDamage": 0,
+            "healingBonus": 0,
+            "finalHealingBonus": 0,
+            "unload": 0,
+            "criticalMultiplier": 0,
+            "physicalSingleLifesteal": 0,
+            "magicSingleLifesteal": 0,
+            "physicalAreaLifesteal": 0,
+            "magicAreaLifesteal": 0,
+            "dodgeRate": 0
+          },
+          "partyWipe": {
+            "enabled": true,
+            "time": 200,
+            "strategy": "all"
+          },
+          "selectedBoss": {
+            "id": "f4622a71-2361-4b61-9fda-96acdbc6ff38",
+            "name": "2e傀儡",
+            "race": "傀儡",
+            "hasSkills": true,
+            "partyWipe": {
+              "enabled": true,
+              "time": 200,
+              "strategy": "all"
+            },
+            "skillGroup": {
+              "name": "",
+              "skills": [],
+              "entry": "",
+              "subgroups": []
+            },
+            "attributes": {
+              "weaponPower": 0,
+              "strength": 50000,
+              "magic": 50000,
+              "technique": 50000,
+              "speed": 50000,
+              "constitution": 20000000,
+              "hitPoint": 200000000,
+              "armor": 0,
+              "resistance": 0,
+              "criticalRate": 0,
+              "hitRate": 0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 0,
+              "abnormalBonus": 0,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 0,
+              "healingBonus": 0,
+              "finalHealingBonus": 0,
+              "unload": 0,
+              "criticalMultiplier": 0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "dodgeRate": 0
+            },
+            "targetRules": {
+              "physicalReduction": 0,
+              "magicReduction": 0,
+              "dotReduction": 0,
+              "allyLifestealReduction": 0,
+              "allyHealingReduction": 0,
+              "allyRegenerationReduction": 0,
+              "immuneBleeding": false,
+              "immunePlague": false,
+              "immuneBurn": false,
+              "immuneSpeedReduction": false,
+              "immuneStun": false,
+              "immuneWeakness": false,
+              "immuneFear": false,
+              "immuneLifeLoss": false,
+              "immunePhysicalVulnerability": false,
+              "immuneMagicVulnerability": false,
+              "immuneNegativeEffects": false
+            }
+          }
+        },
+        "battle": {
+          "duration": 162,
+          "simulations": 100000
+        },
+        "characters": [
+          {
+            "name": "角色 1",
+            "enabled": true,
+            "job": "狂战神",
+            "skillGroup": "group_defd8fe1-5487-4529-8c0e-72c1203ed869",
+            "firstStrike": false,
+            "lifetime": 162,
+            "stats": {
+              "weaponPower": 1894.75,
+              "strength": 13443.594525,
+              "magic": 658.3,
+              "technique": 2843.34,
+              "speed": 3547.2,
+              "constitution": 4856.41,
+              "criticalRate": 40,
+              "hitRate": 66,
+              "ignoreArmor": 2550,
+              "ignoreResistance": 300,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 15,
+              "finalHealingBonus": 5,
+              "unload": 500,
+              "criticalMultiplier": 36,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 768.7,
+              "resistance": 730.4,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_97fb0b3c8937018cedce",
+              "armor": "wiki_3a9d6da0980d4cee341b",
+              "accessory1": "wiki_4642ae4801abf081c4bb",
+              "accessory2": "wiki_f9e7e32e1f9388f360cb",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "fire_0",
+              "name": "26力火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "strength",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_05290429-8bf0-4b63-b4dc-99fae3911bc6",
+              "name": "40.5力饮命",
+              "category": "strength",
+              "archetype": "饮命者",
+              "baseBonus": 40.5,
+              "multiplier": 11.04,
+              "negativeEffect": "群体盲目"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体盲目",
+            "skillMultiplier": 11.04,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 1235,
+                "magic": 100,
+                "technique": 540,
+                "speed": 700,
+                "constitution": 770,
+                "armor": 46,
+                "resistance": 27
+              },
+              "stone": {
+                "strength": 100,
+                "magic": 0,
+                "technique": 30,
+                "speed": 30,
+                "constitution": 35,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 1560,
+                "magic": 0,
+                "technique": 400,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 5,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "fire_0",
+                "name": "26力火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "strength",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_05290429-8bf0-4b63-b4dc-99fae3911bc6",
+                "name": "40.5力饮命",
+                "category": "strength",
+                "archetype": "饮命者",
+                "baseBonus": 40.5,
+                "multiplier": 11.04,
+                "negativeEffect": "群体盲目"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.27,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+                  "name": "凛虫之卵",
+                  "attributes": {
+                    "strength": 13.5,
+                    "hitRate": 3,
+                    "criticalMultiplier": 3
+                  }
+                },
+                {
+                  "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+                  "name": "凛虫之卵",
+                  "attributes": {
+                    "strength": 13.5,
+                    "hitRate": 3,
+                    "criticalMultiplier": 3
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_5",
+                "name": "野蛮人圣迹",
+                "kind": "野蛮人",
+                "attributes": {
+                  "strength": 1560,
+                  "magic": 0,
+                  "technique": 400,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "野蛮人",
+              "selectedImprint": {
+                "id": "imprint_5",
+                "name": "野蛮人辉印",
+                "kind": "野蛮人",
+                "attributes": {
+                  "finalPhysicalDamage": 7,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 5,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "野蛮人"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_31",
+                "name": "狂战神额外辉印",
+                "kind": "野蛮人",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "狂战神"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "72a19440-7716-41da-982e-b513c10bec7f",
+                "name": "1235狂战",
+                "job": "狂战神",
+                "attributes": {
+                  "strength": 1235,
+                  "magic": 100,
+                  "technique": 540,
+                  "speed": 700,
+                  "constitution": 770,
+                  "armor": 46,
+                  "resistance": 27
+                }
+              },
+              "selectedStone": {
+                "id": "cd0a8431-d5d9-404f-ba1d-2ca0cd370327",
+                "name": "100暴君",
+                "kind": "暴君之石",
+                "attributes": {
+                  "strength": 100,
+                  "magic": 0,
+                  "technique": 30,
+                  "speed": 30,
+                  "constitution": 35,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 2",
+            "enabled": true,
+            "job": "血法师",
+            "skillGroup": "group_f8758688-4f7b-4ba4-92b4-5b447a07b4de",
+            "firstStrike": false,
+            "lifetime": 162,
+            "stats": {
+              "weaponPower": 1856.5,
+              "strength": 204.0,
+              "magic": 13479.3118125,
+              "technique": 5551.38,
+              "speed": 1020.0,
+              "constitution": 3860.94,
+              "criticalRate": 40,
+              "hitRate": 48.5,
+              "ignoreArmor": 0,
+              "ignoreResistance": 2700,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 1.8,
+              "finalMagicDamage": 8,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 0,
+              "finalHealingBonus": 15,
+              "unload": 300,
+              "criticalMultiplier": 30,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 582.0,
+              "resistance": 667.0,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_dc60324ad393419225e6",
+              "armor": "wiki_cd70629c5dc6d535b576",
+              "accessory1": "wiki_8a652d52bbfb029493d5",
+              "accessory2": "wiki_47b9ee63bf20d6d6f263",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+              "name": "26魔火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "magic",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_6b7c4714-70ee-44ce-bfc8-8d18224d6dfa",
+              "name": "40.5魔饮命",
+              "category": "magic",
+              "archetype": "饮命者（魔力）",
+              "baseBonus": 40.5,
+              "multiplier": 5.44,
+              "negativeEffect": "群体盲目"
+            },
+            "contract": "饮命者-魔",
+            "negativeEffect": "群体盲目",
+            "skillMultiplier": 5.44,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 120,
+                "magic": 1125,
+                "technique": 685,
+                "speed": 500,
+                "constitution": 720,
+                "armor": 25,
+                "resistance": 75
+              },
+              "stone": {
+                "strength": 0,
+                "magic": 100,
+                "technique": 35,
+                "speed": 20,
+                "constitution": 25,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 1560,
+                "technique": 1560,
+                "speed": 0,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 8,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 15,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+                "name": "26魔火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "magic",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_6b7c4714-70ee-44ce-bfc8-8d18224d6dfa",
+                "name": "40.5魔饮命",
+                "category": "magic",
+                "archetype": "饮命者（魔力）",
+                "baseBonus": 40.5,
+                "multiplier": 5.44,
+                "negativeEffect": "群体盲目"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.255,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "da0b141d-0e9c-4147-942e-2fe31dab4be8",
+                  "name": "寄宿孢球",
+                  "attributes": {
+                    "magic": 14,
+                    "hitRate": 2
+                  }
+                },
+                {
+                  "id": "24f551dc-212c-4edf-9f0e-652795002853",
+                  "name": "回魂香炉",
+                  "attributes": {
+                    "magic": 11.5,
+                    "magicDamage": 1.8,
+                    "hitRate": 1.5
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_1",
+                "name": "法师圣迹",
+                "kind": "法师",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 1560,
+                  "technique": 1560,
+                  "speed": 0,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "法师",
+              "selectedImprint": {
+                "id": "imprint_1",
+                "name": "法师辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 5,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 15,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "法师"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_18",
+                "name": "血法师额外辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 3,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "血法师"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "people_8a8f824f-0841-4ecb-942a-1e06364ee680",
+                "name": "1125血法",
+                "job": "血法师",
+                "attributes": {
+                  "strength": 120,
+                  "magic": 1125,
+                  "technique": 685,
+                  "speed": 500,
+                  "constitution": 720,
+                  "armor": 25,
+                  "resistance": 75
+                }
+              },
+              "selectedStone": {
+                "id": "214a7b7d-f41e-43c7-94c6-2bef296fe552",
+                "name": "100古精灵",
+                "kind": "古精灵之石",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 100,
+                  "technique": 35,
+                  "speed": 20,
+                  "constitution": 25,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 3",
+            "enabled": true,
+            "job": "夜魇",
+            "skillGroup": "group_ced8d4cc-ab95-4741-83d5-da816adfa853",
+            "firstStrike": false,
+            "lifetime": 162,
+            "stats": {
+              "weaponPower": 1385.25,
+              "strength": 3167.5,
+              "magic": 187.0,
+              "technique": 4467.8,
+              "speed": 11683.72624,
+              "constitution": 3209.01,
+              "criticalRate": 15,
+              "hitRate": 51.0,
+              "ignoreArmor": 2450,
+              "ignoreResistance": 0,
+              "abnormalBonus": 25,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 7,
+              "magicDamage": 0,
+              "finalMagicDamage": 0,
+              "dotDamage": 0,
+              "finalDotDamage": 6,
+              "healingBonus": 0,
+              "finalHealingBonus": 5,
+              "unload": 0,
+              "criticalMultiplier": 72.0,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 597.1,
+              "resistance": 580.1,
+              "dodgeRate": 55,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_8ac3c09bcee592575d08",
+              "armor": "wiki_7b5d13e15cd4dc7b40be",
+              "accessory1": "wiki_f052245d87782c95e811",
+              "accessory2": "wiki_545e106ecf9954cd5df2",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_4211dcba-1f6b-4c01-8b72-a0b2fa0bda63",
+              "name": "26速火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "speed",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_b8b87bb5-cff3-4f49-9925-db97443ba155",
+              "name": "40.5速旧日",
+              "category": "speed",
+              "archetype": "旧日支配者（速度）",
+              "baseBonus": 40.5,
+              "multiplier": 5.6,
+              "negativeEffect": "群体献祭"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体献祭",
+            "skillMultiplier": 5.6,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 500,
+                "magic": 100,
+                "technique": 970,
+                "speed": 1115,
+                "constitution": 530,
+                "armor": 43,
+                "resistance": 33
+              },
+              "stone": {
+                "strength": 15,
+                "magic": 10,
+                "technique": 20,
+                "speed": 90,
+                "constitution": 35,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 400,
+                "magic": 0,
+                "technique": 1560,
+                "speed": 1160,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 7,
+                "finalMagicDamage": 0,
+                "finalDotDamage": 6,
+                "finalHealingBonus": 5,
+                "hitRate": 3,
+                "criticalRate": 5,
+                "abnormalBonus": 25
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_4211dcba-1f6b-4c01-8b72-a0b2fa0bda63",
+                "name": "26速火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "speed",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_b8b87bb5-cff3-4f49-9925-db97443ba155",
+                "name": "40.5速旧日",
+                "category": "speed",
+                "archetype": "旧日支配者（速度）",
+                "baseBonus": 40.5,
+                "multiplier": 5.6,
+                "negativeEffect": "群体献祭"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.0,
+                "technique": 1.0,
+                "speed": 1.216,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
+                  "name": "罪罚镜",
+                  "attributes": {
+                    "speed": 10.8,
+                    "hitRate": 1.5,
+                    "criticalMultiplier": 7.5
+                  }
+                },
+                {
+                  "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
+                  "name": "罪罚镜",
+                  "attributes": {
+                    "speed": 10.8,
+                    "hitRate": 1.5,
+                    "criticalMultiplier": 7.5
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_2",
+                "name": "潜行者圣迹",
+                "kind": "潜行者",
+                "attributes": {
+                  "strength": 400,
+                  "magic": 0,
+                  "technique": 1560,
+                  "speed": 1160,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "潜行者",
+              "selectedImprint": {
+                "id": "imprint_2",
+                "name": "潜行者辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 4,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 6,
+                  "finalHealingBonus": 5,
+                  "hitRate": 3,
+                  "criticalRate": 5,
+                  "abnormalBonus": 25
+                },
+                "scope": "base",
+                "job": "潜行者"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_24",
+                "name": "夜魇额外辉印",
+                "kind": "潜行者",
+                "attributes": {
+                  "finalPhysicalDamage": 3,
+                  "finalMagicDamage": 0,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "夜魇"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "people_97547e65-11b0-4826-b13e-25d860df932f",
+                "name": "1115-600",
+                "job": "夜魇",
+                "attributes": {
+                  "strength": 500,
+                  "magic": 100,
+                  "technique": 970,
+                  "speed": 1115,
+                  "constitution": 530,
+                  "armor": 43,
+                  "resistance": 33
+                }
+              },
+              "selectedStone": {
+                "id": "1e6d07c1-23e9-4b66-9ac4-88614a75bf06",
+                "name": "100猎神",
+                "kind": "猎神者之石",
+                "attributes": {
+                  "strength": 15,
+                  "magic": 10,
+                  "technique": 20,
+                  "speed": 90,
+                  "constitution": 35,
+                  "hitRate": 15
+                }
+              }
+            }
+          },
+          {
+            "name": "角色 4",
+            "enabled": true,
+            "job": "寒霜法师",
+            "skillGroup": "group_0c86a059-4f69-4d9e-98c0-1b7ab8df4b42",
+            "firstStrike": false,
+            "lifetime": 162,
+            "stats": {
+              "weaponPower": 1904.75,
+              "strength": 204.0,
+              "magic": 12567.127875,
+              "technique": 6632.25,
+              "speed": 1020.0,
+              "constitution": 3859.98,
+              "criticalRate": 40,
+              "hitRate": 56.0,
+              "ignoreArmor": 0,
+              "ignoreResistance": 2750,
+              "abnormalBonus": 20,
+              "physicalDamage": 0,
+              "finalPhysicalDamage": 0,
+              "magicDamage": 0,
+              "finalMagicDamage": 8,
+              "dotDamage": 0,
+              "finalDotDamage": 2,
+              "healingBonus": 0,
+              "finalHealingBonus": 15,
+              "unload": 300,
+              "criticalMultiplier": 30,
+              "physicalSingleLifesteal": 0,
+              "magicSingleLifesteal": 0,
+              "physicalAreaLifesteal": 0,
+              "magicAreaLifesteal": 0,
+              "armor": 555.2,
+              "resistance": 683.55,
+              "dodgeRate": 0,
+              "dodge": 0,
+              "load": 0,
+              "physicalBlock": 0,
+              "magicBlock": 0
+            },
+            "equipment": {
+              "weapon": "wiki_bb043a3737172a0ffb94",
+              "armor": "wiki_34258f5c74a129538395",
+              "accessory1": "wiki_98bd55aa0e137cff0caa",
+              "accessory2": "wiki_96cf0f054c450871bad3",
+              "stone": ""
+            },
+            "selectedRing": {
+              "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+              "name": "26魔火",
+              "kind": "fire",
+              "level": 50,
+              "mainAttribute": "magic",
+              "secondaryAttribute": "technique",
+              "mainValue": 750,
+              "secondaryValue": 500,
+              "restriction": "fragile",
+              "gain": "physicalMagicDamage",
+              "gainValue": 26
+            },
+            "selectedContract": {
+              "id": "contract_6b7c4714-70ee-44ce-bfc8-8d18224d6dfa",
+              "name": "40.5魔饮命",
+              "category": "magic",
+              "archetype": "饮命者（魔力）",
+              "baseBonus": 40.5,
+              "multiplier": 5.44,
+              "negativeEffect": "群体盲目"
+            },
+            "contract": "不激活",
+            "negativeEffect": "群体盲目",
+            "skillMultiplier": 5.44,
+            "ringPanelIncluded": false,
+            "ringPanelBonuses": {},
+            "ringBattleMultipliers": {},
+            "specialSources": {
+              "day10": {
+                "strength": 120,
+                "magic": 1130,
+                "technique": 850,
+                "speed": 500,
+                "constitution": 640,
+                "armor": 26,
+                "resistance": 74
+              },
+              "stone": {
+                "strength": 0,
+                "magic": 95,
+                "technique": 35,
+                "speed": 20,
+                "constitution": 25,
+                "hitRate": 15
+              },
+              "contract": {},
+              "holy": {
+                "strength": 0,
+                "magic": 1560,
+                "technique": 1560,
+                "speed": 0,
+                "constitution": 680
+              },
+              "imprint": {
+                "finalPhysicalDamage": 0,
+                "finalMagicDamage": 8,
+                "finalDotDamage": 2,
+                "finalHealingBonus": 15,
+                "hitRate": 5,
+                "criticalRate": 5,
+                "abnormalBonus": 20
+              },
+              "ring": {},
+              "trophies": {},
+              "saturation": {
+                "weapon": {},
+                "armor": {},
+                "accessory1": {},
+                "accessory2": {}
+              },
+              "selectedRing": {
+                "id": "ring_58fb35dc-fd15-4460-b9b6-4067fcf18761",
+                "name": "26魔火",
+                "kind": "fire",
+                "level": 50,
+                "mainAttribute": "magic",
+                "secondaryAttribute": "technique",
+                "mainValue": 750,
+                "secondaryValue": 500,
+                "restriction": "fragile",
+                "gain": "physicalMagicDamage",
+                "gainValue": 26
+              },
+              "selectedContract": {
+                "id": "contract_6b7c4714-70ee-44ce-bfc8-8d18224d6dfa",
+                "name": "40.5魔饮命",
+                "category": "magic",
+                "archetype": "饮命者（魔力）",
+                "baseBonus": 40.5,
+                "multiplier": 5.44,
+                "negativeEffect": "群体盲目"
+              },
+              "ringPanelBonuses": {},
+              "ringBattleMultipliers": {
+                "strength": 1.0,
+                "magic": 1.195,
+                "technique": 1.0,
+                "speed": 1.0,
+                "constitution": 1.0
+              },
+              "selectedTrophies": [
+                {
+                  "id": "2a7054be-32ea-4417-a52b-611c494c18f0",
+                  "name": "虹彩棱镜",
+                  "attributes": {
+                    "magic": 10,
+                    "hitRate": 6.5
+                  }
+                },
+                {
+                  "id": "d5f8a1a6-6c20-44e2-a81b-d0a23ae8797a",
+                  "name": "不灭油灯",
+                  "attributes": {
+                    "magic": 9.5,
+                    "hitRate": 6.5
+                  }
+                }
+              ],
+              "selectedHoly": {
+                "id": "holy_1",
+                "name": "法师圣迹",
+                "kind": "法师",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 1560,
+                  "technique": 1560,
+                  "speed": 0,
+                  "constitution": 680
+                },
+                "holyLevel": 100,
+                "obeliskLevel": 600
+              },
+              "holyCustom": true,
+              "holyProfession": "法师",
+              "selectedImprint": {
+                "id": "imprint_1",
+                "name": "法师辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 5,
+                  "finalDotDamage": 2,
+                  "finalHealingBonus": 15,
+                  "hitRate": 5,
+                  "criticalRate": 5,
+                  "abnormalBonus": 20
+                },
+                "scope": "base",
+                "job": "法师"
+              },
+              "selectedExtraImprint": {
+                "id": "imprint_17",
+                "name": "寒霜法师额外辉印",
+                "kind": "法师",
+                "attributes": {
+                  "finalPhysicalDamage": 0,
+                  "finalMagicDamage": 3,
+                  "finalDotDamage": 0,
+                  "finalHealingBonus": 0,
+                  "hitRate": 0,
+                  "criticalRate": 0,
+                  "abnormalBonus": 0
+                },
+                "scope": "extra",
+                "job": "寒霜法师"
+              },
+              "imprintCustom": true,
+              "gearPercentEnabled": false,
+              "selectedPerson": {
+                "id": "people_e1eeac60-d7cc-444d-a541-76449d5121ef",
+                "name": "1130冰法",
+                "job": "寒霜法师",
+                "attributes": {
+                  "strength": 120,
+                  "magic": 1130,
+                  "technique": 850,
+                  "speed": 500,
+                  "constitution": 640,
+                  "armor": 26,
+                  "resistance": 74
+                }
+              },
+              "selectedStone": {
+                "id": "58965284-e8a0-4b6b-92a3-5f6c9fc6b664",
+                "name": "95古精灵",
+                "kind": "古精灵之石",
+                "attributes": {
+                  "strength": 0,
+                  "magic": 95,
+                  "technique": 35,
+                  "speed": 20,
+                  "constitution": 25,
+                  "hitRate": 15
+                }
+              }
+            }
+          }
+        ]
+      },
+      "libraryId": "library_3c5ff49802d44f0aaf952a305f3b8aed"
     }
   ],
-  "activeId": "config_d80391df63d14588a1c0151289b5c43a",
+  "activeId": "config_ec90cf5b38f2426b842602656f3c2ee1",
   "initialized": true,
   "libraries": [
     {
@@ -10955,6 +14964,12 @@
     {
       "id": "library_0750c003358c41e6a413aa9f8d7f3c20",
       "name": "图52",
+      "configurationType": "special",
+      "default": false
+    },
+    {
+      "id": "library_3c5ff49802d44f0aaf952a305f3b8aed",
+      "name": "魂碑",
       "configurationType": "special",
       "default": false
     }

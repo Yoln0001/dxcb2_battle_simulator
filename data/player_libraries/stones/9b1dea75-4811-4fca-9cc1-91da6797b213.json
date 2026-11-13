@@ -117,6 +117,58 @@
         "constitution": 25,
         "hitRate": 15
       }
+    },
+    {
+      "id": "cd0a8431-d5d9-404f-ba1d-2ca0cd370327",
+      "name": "100暴君",
+      "kind": "暴君之石",
+      "attributes": {
+        "strength": 100,
+        "magic": 0,
+        "technique": 30,
+        "speed": 30,
+        "constitution": 35,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "1e6d07c1-23e9-4b66-9ac4-88614a75bf06",
+      "name": "100猎神",
+      "kind": "猎神者之石",
+      "attributes": {
+        "strength": 15,
+        "magic": 10,
+        "technique": 20,
+        "speed": 90,
+        "constitution": 35,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "214a7b7d-f41e-43c7-94c6-2bef296fe552",
+      "name": "100古精灵",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 100,
+        "technique": 35,
+        "speed": 20,
+        "constitution": 25,
+        "hitRate": 15
+      }
+    },
+    {
+      "id": "58965284-e8a0-4b6b-92a3-5f6c9fc6b664",
+      "name": "95古精灵",
+      "kind": "古精灵之石",
+      "attributes": {
+        "strength": 0,
+        "magic": 95,
+        "technique": 35,
+        "speed": 20,
+        "constitution": 25,
+        "hitRate": 15
+      }
     }
   ]
 }

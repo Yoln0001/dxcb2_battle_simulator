@@ -54,6 +54,15 @@
       "baseBonus": 37.8,
       "multiplier": 5.44,
       "negativeEffect": "群体盲目"
+    },
+    {
+      "id": "contract_76622822-c47a-4535-8dfe-1efdba47c889",
+      "name": "37.2魔力旧日",
+      "category": "magic",
+      "archetype": "旧日支配者（魔力）",
+      "baseBonus": 37.2,
+      "multiplier": 5.6,
+      "negativeEffect": "群体献祭"
     }
   ]
 }

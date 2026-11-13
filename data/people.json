@@ -196,6 +196,20 @@
         "armor": 42,
         "resistance": 21
       }
+    },
+    {
+      "id": "905d885e-0d87-4dd7-b83a-93a01810f53f",
+      "name": "607 1094夜魇",
+      "job": "夜魇",
+      "attributes": {
+        "strength": 607,
+        "magic": 122,
+        "technique": 1001,
+        "speed": 1094,
+        "constitution": 503,
+        "armor": 43,
+        "resistance": 33
+      }
     }
   ]
 }

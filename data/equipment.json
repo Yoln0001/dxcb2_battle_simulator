@@ -9111,11 +9111,11 @@
     {
       "schemaVersion": 1,
       "id": "wiki_882a70cd36f5b1af2cfd",
-      "name": "魔技速双生挂坠★",
+      "name": "双力速体魔双生挂坠★",
       "category": "accessory",
       "weaponJob": "",
       "attackType": "physical",
-      "effectName": "",
+      "effectName": "侵蚀",
       "triggerEffectName": "",
       "triggerEnabled": false,
       "startingBuff": {
@@ -9144,11 +9144,40 @@
       "triggerRate": 0,
       "effect": null,
       "wikiId": "wiki_882a70cd36f5b1af2cfd",
-      "mainAttribute": "magic",
+      "mainAttribute": "",
       "triggerEffects": [],
       "startingDebuffs": {
-        "enabled": false,
-        "entries": []
+        "enabled": true,
+        "entries": [
+          {
+            "name": "侵蚀",
+            "type": "magicVulnerability",
+            "dotEnabled": false,
+            "dotDamage": 0,
+            "physicalVulnerability": 0,
+            "magicVulnerability": 3,
+            "healingReduction": 0,
+            "lifeDeprivation": 0
+          },
+          {
+            "name": "熔毁",
+            "type": "physicalVulnerability",
+            "dotEnabled": false,
+            "dotDamage": 0,
+            "physicalVulnerability": 3,
+            "magicVulnerability": 0,
+            "healingReduction": 0,
+            "lifeDeprivation": 0
+          }
+        ],
+        "name": "侵蚀",
+        "type": "magicVulnerability",
+        "dotEnabled": false,
+        "dotDamage": 0,
+        "physicalVulnerability": 0,
+        "magicVulnerability": 3,
+        "healingReduction": 0,
+        "lifeDeprivation": 0
       },
       "negativeImmunities": {
         "immuneBleeding": false,
@@ -9176,27 +9205,27 @@
         },
         "strength": {
           "label": "力量",
-          "min": 0,
-          "max": 0,
-          "value": 0,
+          "min": 484,
+          "max": 528,
+          "value": null,
           "unit": "",
           "source": "",
-          "ownedValue": null
+          "ownedValue": 489
         },
         "magic": {
           "label": "魔力",
-          "min": 484,
-          "max": 528,
+          "min": 242,
+          "max": 264,
           "value": null,
           "unit": "",
           "source": "",
-          "ownedValue": null
+          "ownedValue": 257
         },
         "technique": {
           "label": "技巧",
-          "min": 484,
-          "max": 528,
-          "value": null,
+          "min": 0,
+          "max": 0,
+          "value": 0,
           "unit": "",
           "source": "",
           "ownedValue": null
@@ -9208,16 +9237,16 @@
           "value": null,
           "unit": "",
           "source": "",
-          "ownedValue": null
+          "ownedValue": 502
         },
         "constitution": {
           "label": "体质",
-          "min": 0,
-          "max": 0,
-          "value": 0,
+          "min": 242,
+          "max": 264,
+          "value": null,
           "unit": "",
           "source": "",
-          "ownedValue": null
+          "ownedValue": 262
         },
         "armor": {
           "label": "护甲",
@@ -9417,34 +9446,36 @@
       },
       "reviewNotes": "",
       "battleStartEffects": {
-        "enabled": false,
+        "enabled": true,
         "entries": [
           {
-            "side": "ally",
-            "name": "",
+            "side": "enemy",
+            "name": "侵蚀",
             "enabled": true,
-            "buff": {
-              "enabled": true,
-              "recipient": "self",
-              "coefficients": {
-                "strength": 0,
-                "magic": 0,
-                "technique": 0,
-                "speed": 0
-              },
-              "target": "none",
-              "kind": "amplify",
-              "regeneration": {
-                "receivesHealingBonuses": true,
-                "baseValue": 0,
-                "coefficients": {
-                  "strength": 0,
-                  "magic": 0,
-                  "technique": 0,
-                  "speed": 0,
-                  "constitution": 0
-                }
-              }
+            "debuff": {
+              "name": "侵蚀",
+              "type": "magicVulnerability",
+              "dotEnabled": false,
+              "dotDamage": 0,
+              "physicalVulnerability": 0,
+              "magicVulnerability": 3,
+              "healingReduction": 0,
+              "lifeDeprivation": 0
+            }
+          },
+          {
+            "side": "enemy",
+            "name": "熔毁",
+            "enabled": true,
+            "debuff": {
+              "name": "熔毁",
+              "type": "physicalVulnerability",
+              "dotEnabled": false,
+              "dotDamage": 0,
+              "physicalVulnerability": 3,
+              "magicVulnerability": 0,
+              "healingReduction": 0,
+              "lifeDeprivation": 0
             }
           }
         ]
@@ -28360,6 +28391,1162 @@
                 "speed": 0
               },
               "target": "strength",
+              "kind": "amplify",
+              "regeneration": {
+                "receivesHealingBonuses": true,
+                "baseValue": 0,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "wiki_2d1e5c2adea3c0b96f5e",
+      "name": "戏命风衣",
+      "category": "armor",
+      "weaponJob": "",
+      "attackType": "physical",
+      "effectName": "",
+      "triggerEffectName": "速攻",
+      "triggerEnabled": true,
+      "startingBuff": {
+        "enabled": false,
+        "recipient": "self",
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0,
+          "speed": 0
+        },
+        "target": "none",
+        "kind": "amplify",
+        "regeneration": {
+          "receivesHealingBonuses": true,
+          "baseValue": 0,
+          "coefficients": {
+            "strength": 0,
+            "magic": 0,
+            "technique": 0,
+            "speed": 0,
+            "constitution": 0
+          }
+        }
+      },
+      "triggerRate": 10,
+      "effect": {
+        "kind": "amplify",
+        "conversions": [
+          {
+            "target": "strength",
+            "enabled": true,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0.35,
+              "speed": 0.95,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "magic",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "technique",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "speed",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "armor",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "resistance",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          }
+        ]
+      },
+      "wikiId": "wiki_2d1e5c2adea3c0b96f5e",
+      "mainAttribute": "speed",
+      "triggerEffects": [
+        {
+          "name": "速攻",
+          "triggerType": "physical",
+          "probability": 10,
+          "effect": {
+            "kind": "amplify",
+            "conversions": [
+              {
+                "target": "strength",
+                "enabled": true,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0.35,
+                  "speed": 0.95,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "magic",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "technique",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "speed",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "armor",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "resistance",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "startingDebuffs": {
+        "enabled": false,
+        "entries": []
+      },
+      "negativeImmunities": {
+        "immuneBleeding": false,
+        "immunePlague": false,
+        "immuneBurn": false,
+        "immuneStun": false,
+        "immunePhysicalVulnerability": false,
+        "immuneMagicVulnerability": false,
+        "immuneStrengthDecay": false,
+        "immuneMagicDecay": false,
+        "immuneTechniqueDecay": false,
+        "immuneSpeedDecay": false,
+        "immuneArmorDecay": false,
+        "immuneResistanceDecay": false
+      },
+      "baseAttributes": {
+        "weaponPower": {
+          "label": "武威",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": "",
+          "ownedValue": null
+        },
+        "strength": {
+          "label": "力量",
+          "min": 220,
+          "max": 320,
+          "value": null,
+          "unit": "",
+          "source": "力量220-320",
+          "ownedValue": 269
+        },
+        "magic": {
+          "label": "魔力",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": "",
+          "ownedValue": null
+        },
+        "technique": {
+          "label": "技巧",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": "",
+          "ownedValue": null
+        },
+        "speed": {
+          "label": "速度",
+          "min": 646,
+          "max": 786,
+          "value": null,
+          "unit": "",
+          "source": "速度646-786",
+          "ownedValue": 767
+        },
+        "constitution": {
+          "label": "体质",
+          "min": 206,
+          "max": 294,
+          "value": null,
+          "unit": "",
+          "source": "体质206-294",
+          "ownedValue": 263
+        },
+        "armor": {
+          "label": "护甲",
+          "min": 367,
+          "max": 465,
+          "value": null,
+          "unit": "",
+          "source": "护甲367-465",
+          "ownedValue": 417
+        },
+        "resistance": {
+          "label": "抗性",
+          "min": 367,
+          "max": 465,
+          "value": null,
+          "unit": "",
+          "source": "抗性367-465",
+          "ownedValue": 381
+        },
+        "criticalRate": {
+          "label": "暴击率",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "hitRate": {
+          "label": "命中率",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "dodgeRate": {
+          "label": "闪避率",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "healingBonus": {
+          "label": "回复效果",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "ignoreArmor": {
+          "label": "无视护甲",
+          "min": 300,
+          "max": 300,
+          "value": 300,
+          "unit": "",
+          "source": "无视护甲+300"
+        },
+        "ignoreResistance": {
+          "label": "无视抗性",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "criticalMultiplier": {
+          "label": "暴击伤害系数",
+          "min": 6,
+          "max": 6,
+          "value": 6,
+          "unit": "%",
+          "source": "暴击伤害系数6%"
+        },
+        "dodge": {
+          "label": "闪避",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "abnormalBonus": {
+          "label": "异常附加率",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "unload": {
+          "label": "卸负",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "load": {
+          "label": "负重",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "hitPoint": {
+          "label": "血量",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "lifesteal": {
+          "label": "吸血",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%"
+        }
+      },
+      "crystal": {
+        "enabled": true,
+        "attributes": {
+          "strength": 6,
+          "magic": 0,
+          "technique": 0,
+          "speed": 6,
+          "constitution": 0
+        }
+      },
+      "extraAttributes": [],
+      "startingEffects": [],
+      "effectDefinitions": [
+        {
+          "name": "速攻",
+          "description": "在发动物理攻击的瞬间，10%概率同时将95%的速度和35%的技巧附加为力量",
+          "timing": "action",
+          "supported": true,
+          "triggerType": "physical",
+          "parameters": {
+            "name": "速攻",
+            "triggerType": "physical",
+            "probability": 10,
+            "effect": {
+              "kind": "amplify",
+              "conversions": [
+                {
+                  "target": "strength",
+                  "enabled": true,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0.35000000000000003,
+                    "speed": 0.9500000000000001,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                },
+                {
+                  "target": "magic",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                },
+                {
+                  "target": "technique",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                },
+                {
+                  "target": "speed",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "passiveEffects": [],
+      "reviewIssues": [],
+      "classificationStatus": "converted",
+      "source": {
+        "id": "bwiki_2d1e5c2adea3c0b96f5e",
+        "category": "armor",
+        "url": "https://wiki.biligame.com/dxcb2/%E6%88%8F%E5%91%BD%E9%A3%8E%E8%A1%A3",
+        "attributes": "护甲367-465，抗性367-465，体质206-294，速度646-786，力量220-320，暴击伤害系数6%，无视护甲+300",
+        "effects": "速攻：在发动物理攻击的瞬间，10%概率同时将95%的速度和35%的技巧附加为力量"
+      },
+      "reviewNotes": "",
+      "battleStartEffects": {
+        "enabled": false,
+        "entries": [
+          {
+            "side": "ally",
+            "name": "",
+            "enabled": true,
+            "buff": {
+              "enabled": true,
+              "recipient": "self",
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "target": "none",
+              "kind": "amplify",
+              "regeneration": {
+                "receivesHealingBonuses": true,
+                "baseValue": 0,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "wiki_c690995a783721f0b2f2",
+      "name": "腐败之心",
+      "category": "accessory",
+      "weaponJob": "",
+      "attackType": "physical",
+      "effectName": "腐败激素",
+      "triggerEffectName": "能量增幅",
+      "triggerEnabled": true,
+      "startingBuff": {
+        "enabled": true,
+        "recipient": "self",
+        "coefficients": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0,
+          "speed": 0.25
+        },
+        "target": "speed",
+        "kind": "amplify",
+        "regeneration": {
+          "receivesHealingBonuses": true,
+          "baseValue": 0,
+          "coefficients": {
+            "strength": 0,
+            "magic": 0,
+            "technique": 0,
+            "speed": 0,
+            "constitution": 0
+          }
+        }
+      },
+      "triggerRate": 100,
+      "effect": {
+        "kind": "amplify",
+        "conversions": [
+          {
+            "target": "strength",
+            "enabled": true,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0.4,
+              "speed": 0.6,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "magic",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "technique",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "speed",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "armor",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          },
+          {
+            "target": "resistance",
+            "enabled": false,
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0,
+              "constitution": 0,
+              "hitPoint": 0,
+              "lostHitPoint": 0,
+              "armor": 0,
+              "resistance": 0
+            }
+          }
+        ]
+      },
+      "wikiId": "wiki_c690995a783721f0b2f2",
+      "mainAttribute": "",
+      "triggerEffects": [
+        {
+          "name": "能量增幅",
+          "triggerType": "physical",
+          "probability": 100,
+          "effect": {
+            "kind": "amplify",
+            "conversions": [
+              {
+                "target": "strength",
+                "enabled": true,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0.4,
+                  "speed": 0.6,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "magic",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "technique",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "speed",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "armor",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              },
+              {
+                "target": "resistance",
+                "enabled": false,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0,
+                  "hitPoint": 0,
+                  "lostHitPoint": 0,
+                  "armor": 0,
+                  "resistance": 0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "startingDebuffs": {
+        "enabled": false,
+        "entries": []
+      },
+      "negativeImmunities": {
+        "immuneBleeding": false,
+        "immunePlague": false,
+        "immuneBurn": false,
+        "immuneStun": false,
+        "immunePhysicalVulnerability": false,
+        "immuneMagicVulnerability": false,
+        "immuneStrengthDecay": false,
+        "immuneMagicDecay": false,
+        "immuneTechniqueDecay": false,
+        "immuneSpeedDecay": true,
+        "immuneArmorDecay": false,
+        "immuneResistanceDecay": false
+      },
+      "baseAttributes": {
+        "weaponPower": {
+          "label": "武威",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": "",
+          "ownedValue": null
+        },
+        "strength": {
+          "label": "力量",
+          "min": 132,
+          "max": 264,
+          "value": null,
+          "unit": "",
+          "source": "力量132-264",
+          "ownedValue": 193
+        },
+        "magic": {
+          "label": "魔力",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": "",
+          "ownedValue": null
+        },
+        "technique": {
+          "label": "技巧",
+          "min": 440,
+          "max": 572,
+          "value": null,
+          "unit": "",
+          "source": "技巧440-572",
+          "ownedValue": 508
+        },
+        "speed": {
+          "label": "速度",
+          "min": 528,
+          "max": 748,
+          "value": null,
+          "unit": "",
+          "source": "速度528-748",
+          "ownedValue": 730
+        },
+        "constitution": {
+          "label": "体质",
+          "min": 572,
+          "max": 660,
+          "value": null,
+          "unit": "",
+          "source": "体质572-660",
+          "ownedValue": 612
+        },
+        "armor": {
+          "label": "护甲",
+          "min": 57,
+          "max": 129,
+          "value": null,
+          "unit": "",
+          "source": "护甲57-129",
+          "ownedValue": 83
+        },
+        "resistance": {
+          "label": "抗性",
+          "min": 51,
+          "max": 78,
+          "value": null,
+          "unit": "",
+          "source": "抗性51-78",
+          "ownedValue": 66
+        },
+        "criticalRate": {
+          "label": "暴击率",
+          "min": 10,
+          "max": 10,
+          "value": 10,
+          "unit": "%",
+          "source": "暴击率10%"
+        },
+        "hitRate": {
+          "label": "命中率",
+          "min": 10,
+          "max": 10,
+          "value": 10,
+          "unit": "%",
+          "source": "命中率10%"
+        },
+        "dodgeRate": {
+          "label": "闪避率",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "healingBonus": {
+          "label": "回复效果",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "ignoreArmor": {
+          "label": "无视护甲",
+          "min": 350,
+          "max": 350,
+          "value": 350,
+          "unit": "",
+          "source": "无视护甲+350"
+        },
+        "ignoreResistance": {
+          "label": "无视抗性",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "criticalMultiplier": {
+          "label": "暴击伤害系数",
+          "min": 3,
+          "max": 3,
+          "value": 3,
+          "unit": "%",
+          "source": "暴击伤害系数3%"
+        },
+        "dodge": {
+          "label": "闪避",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "abnormalBonus": {
+          "label": "异常附加率",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%",
+          "source": ""
+        },
+        "unload": {
+          "label": "卸负",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "load": {
+          "label": "负重",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "hitPoint": {
+          "label": "血量",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "",
+          "source": ""
+        },
+        "lifesteal": {
+          "label": "吸血",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%"
+        }
+      },
+      "crystal": {
+        "enabled": false,
+        "attributes": {
+          "strength": 0,
+          "magic": 0,
+          "technique": 0,
+          "speed": 0,
+          "constitution": 0
+        }
+      },
+      "extraAttributes": [],
+      "startingEffects": [
+        {
+          "name": "腐败激素",
+          "buffName": "腐败激素",
+          "enabled": true,
+          "recipient": "self",
+          "coefficients": {
+            "strength": 0,
+            "magic": 0,
+            "technique": 0,
+            "speed": 0.25
+          },
+          "target": "speed"
+        }
+      ],
+      "effectDefinitions": [
+        {
+          "name": "辉印",
+          "description": "所有最高阶潜行者职业命中率增加1%，速度衰减免疫，",
+          "timing": "passive",
+          "supported": false
+        },
+        {
+          "name": "能量增幅",
+          "description": "在发动物理攻击的瞬间，100%概率同时将60%的速度和40%的技巧附加为力量。",
+          "timing": "action",
+          "supported": true,
+          "triggerType": "physical",
+          "parameters": {
+            "name": "能量增幅",
+            "triggerType": "physical",
+            "probability": 100,
+            "effect": {
+              "kind": "amplify",
+              "conversions": [
+                {
+                  "target": "strength",
+                  "enabled": true,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0.4,
+                    "speed": 0.6,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                },
+                {
+                  "target": "magic",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                },
+                {
+                  "target": "technique",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                },
+                {
+                  "target": "speed",
+                  "enabled": false,
+                  "coefficients": {
+                    "strength": 0,
+                    "magic": 0,
+                    "technique": 0,
+                    "speed": 0,
+                    "constitution": 0,
+                    "hitPoint": 0,
+                    "lostHitPoint": 0
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "腐败激素",
+          "description": "在战斗开始时，对自身附加腐败激素（提高25%速度）。",
+          "timing": "battleStart",
+          "supported": true,
+          "parameters": {
+            "name": "腐败激素",
+            "buffName": "腐败激素",
+            "enabled": true,
+            "recipient": "self",
+            "coefficients": {
+              "strength": 0,
+              "magic": 0,
+              "technique": 0,
+              "speed": 0.25
+            },
+            "target": "speed"
+          }
+        }
+      ],
+      "passiveEffects": [
+        {
+          "name": "辉印",
+          "description": "所有最高阶潜行者职业命中率增加1%，速度衰减免疫，"
+        }
+      ],
+      "reviewIssues": [],
+      "classificationStatus": "converted",
+      "source": {
+        "id": "bwiki_c690995a783721f0b2f2",
+        "category": "accessory",
+        "url": "https://wiki.biligame.com/dxcb2/%E8%85%90%E8%B4%A5%E4%B9%8B%E5%BF%83",
+        "attributes": "护甲57-129，抗性51-78，体质572-660，速度528-748，力量132-264，技巧440-572，命中率10%，暴击率10%，暴击伤害系数3%，无视护甲+350",
+        "effects": "辉印：所有最高阶潜行者职业命中率增加1%，速度衰减免疫，能量增幅：在发动物理攻击的瞬间，100%概率同时将60%的速度和40%的技巧附加为力量。\n腐败激素：在战斗开始时，对自身附加腐败激素（提高25%速度）。"
+      },
+      "reviewNotes": "",
+      "battleStartEffects": {
+        "enabled": true,
+        "entries": [
+          {
+            "side": "ally",
+            "name": "腐败激素",
+            "enabled": true,
+            "buff": {
+              "enabled": true,
+              "recipient": "self",
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0.25
+              },
+              "target": "speed",
               "kind": "amplify",
               "regeneration": {
                 "receivesHealingBonuses": true,

@@ -104,6 +104,19 @@
         "constitution": 43,
         "hitRate": 15
       }
+    },
+    {
+      "id": "b9328ab7-c72c-45ac-a0fa-91320924f2da",
+      "name": "93速",
+      "kind": "猎神者之石",
+      "attributes": {
+        "strength": 13,
+        "magic": 19,
+        "technique": 18,
+        "speed": 93,
+        "constitution": 21,
+        "hitRate": 15
+      }
     }
   ]
 }

@@ -333,6 +333,58 @@
         "strength": 8,
         "hitRate": 10
       }
+    },
+    {
+      "id": "ab0e930a-d78e-4042-ad4c-14146baa191a",
+      "name": "嗜战古镜",
+      "attributes": {
+        "strength": 12.5,
+        "physicalSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "8bdbcd8b-22e4-46a9-b8e5-ff92919f5e29",
+      "name": "振幅香瓶",
+      "attributes": {
+        "speed": 7,
+        "physicalDamage": 3.2,
+        "physicalSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
+      "name": "罪罚镜",
+      "attributes": {
+        "speed": 10.8,
+        "hitRate": 1.5,
+        "criticalMultiplier": 7.5
+      }
+    },
+    {
+      "id": "d1e0ea58-7344-4978-8da7-d8310bb9f528",
+      "name": "海神酒杯",
+      "attributes": {
+        "speed": 11.6,
+        "hitRate": 1.5,
+        "criticalMultiplier": 6
+      }
+    },
+    {
+      "id": "6c322671-a57f-4fae-9607-7a5ab10d73f3",
+      "name": "折桂令",
+      "attributes": {
+        "magic": 6.5,
+        "hitRate": 5,
+        "magicSingleLifesteal": 10
+      }
+    },
+    {
+      "id": "a8e6ee94-fc41-4057-8db7-abbc61420dee",
+      "name": "狂宴舞鞋",
+      "attributes": {
+        "speed": 8,
+        "criticalMultiplier": 12
+      }
     }
   ]
 }

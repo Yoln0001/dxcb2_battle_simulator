@@ -65,6 +65,19 @@
       "restriction": "fragile",
       "gain": "physicalMagicDamage",
       "gainValue": 24.8
+    },
+    {
+      "id": "ring_4211dcba-1f6b-4c01-8b72-a0b2fa0bda63",
+      "name": "26速火",
+      "kind": "fire",
+      "level": 50,
+      "mainAttribute": "speed",
+      "secondaryAttribute": "technique",
+      "mainValue": 750,
+      "secondaryValue": 500,
+      "restriction": "fragile",
+      "gain": "physicalMagicDamage",
+      "gainValue": 26
     }
   ]
 }

@@ -75,6 +75,16 @@
       "id": "e9b22154-4d55-448c-ba28-5cf4831b71e2",
       "kind": "equipment",
       "name": "85-50-70"
+    },
+    {
+      "id": "84090270-6b1c-4d7d-9fdc-f2840a909e08",
+      "kind": "people",
+      "name": "顶配人物"
+    },
+    {
+      "id": "de18e124-e66d-4c30-b4d0-5f6ae4d41e2c",
+      "kind": "equipment",
+      "name": "90-75-75"
     }
   ],
   "displayNames": {
