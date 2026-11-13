@@ -18,7 +18,10 @@ class N {
   setAttribute(k, v) {
     this.attrs[k] = v;
   }
-  addEventListener() {}
+  addEventListener(type, callback) {
+    this["on" + type] = callback;
+  }
+  focus() {}
   showModal() {
     this.open = true;
   }
@@ -107,19 +110,34 @@ const walk = (n) => [n, ...n.children.flatMap(walk)];
     sources = {},
     changes = [];
   context.window.TrophyLibrary.attach(host, sources, () => changes.push(1));
-  const select = walk(host).find((n) => n.attrs["aria-label"] === "从战利品库选择");
+  const pickerDetails = walk(host).find((n) => n.className === "trophy-picker"),
+    options = walk(pickerDetails).find((n) => n.className === "trophy-picker-options");
+  pickerDetails.open = true;
+  pickerDetails.ontoggle();
   order.value = "desc";
   order.onchange();
-  assert.equal(select.children[1].textContent, "魔力战利品（副本）");
+  assert.equal(options.children[0].textContent, "魔力战利品（副本）");
   order.value = "asc";
   order.onchange();
-  assert.equal(select.children[1].textContent, "魔力战利品");
-  select.value = "t1";
+  assert.equal(options.children[0].textContent, "魔力战利品");
+  filter.value = "hitRate";
+  filter.onchange();
+  assert.equal(options.children[0].textContent, "没有匹配的战利品");
+  filter.value = "magic";
+  filter.onchange();
+  search.value = "副本";
+  search.oninput();
+  assert.deepEqual(options.children.map((option) => option.textContent), ["魔力战利品（副本）"]);
+  search.value = "";
+  search.oninput();
+  options.children[0].onclick();
+  assert.equal(pickerDetails.open, false);
   walk(host)
     .find((n) => n.textContent === "＋ 选入战利品")
     .onclick();
   assert.equal(sources.selectedTrophies[0].attributes.magic, 5);
   items[0].attributes.magic = 9;
+  items[0].name = "寄宿孢球";
   assert.equal(sources.selectedTrophies[0].attributes.magic, 5);
   await open.onclick();
   assert.equal(sources.selectedTrophies[0].attributes.magic, 9);

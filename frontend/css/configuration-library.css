@@ -196,8 +196,17 @@
   min-height: 0;
   overflow: auto;
 }
+.trophy-filter-field {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+}
+.trophy-filter-field > span {
+  padding: 9px;
+}
 #trophy-library .trophy-layout > div > input,
-#trophy-library .trophy-layout > div > select {
+#trophy-library .trophy-layout > div > select,
+#trophy-library .trophy-filter-field > select {
   width: 100%;
   box-sizing: border-box;
   padding: 9px;
@@ -1278,6 +1287,57 @@ body .field:has(input[readonly], input:disabled, select:disabled) > .field-unit 
 .character-from-library .character-choice-trophies > div {
   min-width: 0;
 }
+.trophy-picker {
+  position: relative;
+  min-width: 0;
+}
+.trophy-picker > summary,
+.trophy-picker-options {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: white;
+}
+.trophy-picker > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 4px 8px;
+  cursor: pointer;
+  list-style: none;
+}
+.trophy-picker > summary::-webkit-details-marker {
+  display: none;
+}
+.trophy-picker > summary::after {
+  content: "▾";
+  margin-left: auto;
+}
+.trophy-picker-options {
+  position: absolute;
+  z-index: 3;
+  inset: 100% 0 auto;
+  max-height: min(40vh, 20rem);
+  overflow: auto;
+  padding: 4px;
+  box-shadow: 0 4px 12px #28455326;
+}
+.trophy-picker-options > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  text-align: left;
+  border-color: transparent;
+}
+.trophy-picker-options > button[aria-pressed="true"],
+.trophy-picker-options > button:hover {
+  background: #eef7f7;
+}
+.trophy-picker-options > p {
+  margin: 8px;
+}
 .character-from-library .trophy-selected {
   display: flex;
   align-items: center;
@@ -1544,3 +1604,4 @@ body .field:has(input[readonly], input:disabled, select:disabled) > .field-unit 
   gap: 16px;
   margin-top: 18px;
 }
+

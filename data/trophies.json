@@ -2,170 +2,1404 @@
   "schemaVersion": 1,
   "trophies": [
     {
-      "id": "da0b141d-0e9c-4147-942e-2fe31dab4be8",
-      "name": "寄宿孢球",
+      "id": "5e168e5c-e6d1-5c2c-8b52-d5e3e9414ea1",
+      "name": "淘金五周年",
       "attributes": {
-        "magic": 14,
-        "hitRate": 2
-      }
-    },
-    {
-      "id": "ca426388-464a-4ba8-81f1-6f66e1591f02",
-      "name": "追魂镖",
-      "attributes": {
-        "magic": 11.8,
-        "hitRate": 2,
-        "magicDamage": 1
-      }
-    },
-    {
-      "id": "699b7d83-04ff-47f7-b0eb-5eb1d3b3e283",
-      "name": "寻魔指针",
-      "attributes": {
-        "magic": 9,
-        "hitRate": 7
-      }
-    },
-    {
-      "id": "d5f8a1a6-6c20-44e2-a81b-d0a23ae8797a",
-      "name": "不灭油灯",
-      "attributes": {
-        "magic": 9.5,
-        "hitRate": 6.5
-      }
-    },
-    {
-      "id": "2a7054be-32ea-4417-a52b-611c494c18f0",
-      "name": "虹彩棱镜",
-      "attributes": {
-        "magic": 10,
-        "hitRate": 6.5
-      }
-    },
-    {
-      "id": "7cfb0f8a-acc7-435a-b178-ea315e426ffb",
-      "name": "符文魔灯",
-      "attributes": {
-        "magic": 10,
-        "hitRate": 5.5
-      }
-    },
-    {
-      "id": "2b4beaee-0e09-4bc0-9a6c-9ecf8572a03e",
-      "name": "尤瑟之旗",
-      "attributes": {
-        "magic": 13,
-        "hitRate": 2.5
-      }
-    },
-    {
-      "id": "24f551dc-212c-4edf-9f0e-652795002853",
-      "name": "回魂香炉",
-      "attributes": {
-        "magic": 11.5,
-        "magicDamage": 1.8,
-        "hitRate": 1.5
-      }
-    },
-    {
-      "id": "7362da18-111a-4ca4-aa3a-897bcc99376f",
-      "name": "通明玉简",
-      "attributes": {
-        "magic": 6,
-        "hitRate": 10
-      }
-    },
-    {
-      "id": "ef2add33-68c6-45aa-91dc-902b7e7bc75f",
-      "name": "森木灵盘",
-      "attributes": {
-        "magic": 12,
-        "hitRate": 3
-      }
-    },
-    {
-      "id": "87ceff5b-b63f-4d45-8994-2ef8ebf66cc9",
-      "name": "星轨罗盘",
-      "attributes": {
-        "magic": 12,
-        "criticalMultiplier": 2.4,
-        "hitRate": 1.8
-      }
-    },
-    {
-      "id": "512b3980-d8ea-4563-90c8-7e5d1fab6c52",
-      "name": "奥术果实",
-      "attributes": {
-        "magic": 10.8,
-        "magicDamage": 1.8,
-        "hitRate": 2
-      }
-    },
-    {
-      "id": "bdd0ed5d-328b-4e5c-9fa5-04f1dab7f4db",
-      "name": "黑凝矿盐",
-      "attributes": {
-        "magic": 12.5,
-        "technique": 2.8,
-        "adventureGoldBonus": 7.5,
-        "adventureSoulBonus": 7.5
-      }
-    },
-    {
-      "id": "1d6ea61b-85f0-4748-8979-155289dcbf5b",
-      "name": "远古鹿角",
-      "attributes": {
-        "magic": 12.3,
-        "hitRate": 2.5
-      }
-    },
-    {
-      "id": "6203d57f-8572-45e5-a90a-fe322e3603e6",
-      "name": "远航之镜",
-      "attributes": {
-        "magic": 8,
-        "hitRate": 8
-      }
-    },
-    {
-      "id": "3f87336a-1c6b-48cd-a1b0-31d14aea7655",
-      "name": "琉璃怀表",
-      "attributes": {
-        "magic": 9.5,
-        "hitRate": 4.5
-      }
-    },
-    {
-      "id": "b442931e-3a4f-4a34-b522-c3cafd1fbadf",
-      "name": "战栗魔琴",
-      "attributes": {
-        "magic": 5.5,
-        "hitRate": 10
-      }
-    },
-    {
-      "id": "1396a66e-29f3-43c1-a532-9a6bb2f8e425",
-      "name": "秘银盏",
-      "attributes": {
-        "magic": 8.2,
-        "hitRate": 7.5
-      }
-    },
-    {
-      "id": "51305ca5-3fcd-4e15-8f42-c082e367c9c1",
-      "name": "云之国发梳",
-      "attributes": {
-        "magic": 11
+        "strength": 8,
+        "speed": 8
       },
+      "relicId": 72
+    },
+    {
+      "id": "4114b8c5-551b-583e-80f4-55c6b6d78ced",
+      "name": "圣天使之羽",
+      "attributes": {
+        "speed": 8
+      },
+      "relicId": 73,
       "firstStrike": true
     },
     {
-      "id": "d86bb569-7156-4ddd-abfb-5684c72994dc",
-      "name": "搜魂提灯",
+      "id": "57c18e1b-6bab-5713-9afa-718e97b14cc3",
+      "name": "圣战挂坠",
       "attributes": {
-        "magic": 11.5,
+        "healingBonus": 10
+      },
+      "relicId": 74
+    },
+    {
+      "id": "4dd36080-aec5-54d2-8c57-b20ad135ed41",
+      "name": "圣战书页",
+      "attributes": {
+        "magic": 10
+      },
+      "relicId": 75
+    },
+    {
+      "id": "97b2b81c-e24f-57c3-a3ae-03a90908e297",
+      "name": "雷霆使者",
+      "attributes": {
+        "strength": 8,
+        "technique": 8
+      },
+      "relicId": 76
+    },
+    {
+      "id": "0003b1d9-b434-5310-9e39-a9058a5243a5",
+      "name": "毅力徽章",
+      "attributes": {
+        "magic": 5,
+        "technique": 8
+      },
+      "relicId": 77
+    },
+    {
+      "id": "32cb6695-6177-5c2d-9f26-84d1ada7e2dd",
+      "name": "孔雀石",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "technique": 8
+      },
+      "relicId": 78
+    },
+    {
+      "id": "2879fc44-1b7e-528a-a7c9-ddaa274762a2",
+      "name": "汲魂面具",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "magic": 8
+      },
+      "relicId": 79
+    },
+    {
+      "id": "7917feca-40a5-5944-b15f-95086a3fdda2",
+      "name": "流浪剑客徽章",
+      "attributes": {
+        "constitution": 5,
+        "technique": 8
+      },
+      "relicId": 90
+    },
+    {
+      "id": "89bf68ad-fa5b-5788-8caf-4d07f2f1d31c",
+      "name": "祝福挂坠",
+      "attributes": {
+        "healingBonus": 8
+      },
+      "relicId": 91
+    },
+    {
+      "id": "256a6905-a5c4-5394-9bd5-6e8568a576b8",
+      "name": "魔法书页",
+      "attributes": {
+        "magic": 8
+      },
+      "relicId": 92
+    },
+    {
+      "id": "672200f2-9e30-5bf8-9060-c13f8bf52f83",
+      "name": "海域图集",
+      "attributes": {
+        "hitRate": 4
+      },
+      "relicId": 93,
+      "firstStrike": true
+    },
+    {
+      "id": "bbc819e6-9471-551b-a8ca-d8c190f10592",
+      "name": "周年纪念徽章",
+      "attributes": {
+        "constitution": 5,
+        "hitRate": 8
+      },
+      "relicId": 94
+    },
+    {
+      "id": "5b1686f6-c921-5a4a-9a30-b385fa9ac82d",
+      "name": "元宵纪念徽章",
+      "attributes": {
+        "dodgeRate": 5,
+        "hitRate": 8
+      },
+      "relicId": 95
+    },
+    {
+      "id": "eec214ce-4057-501e-addf-6988718feb4e",
+      "name": "二周年徽章",
+      "attributes": {
+        "criticalRate": 8,
+        "hitRate": 8
+      },
+      "relicId": 96
+    },
+    {
+      "id": "4e2d5d89-8cea-5bc9-bc69-6f59ed54d633",
+      "name": "三周年徽章",
+      "attributes": {
+        "technique": 8,
+        "hitRate": 5
+      },
+      "relicId": 97
+    },
+    {
+      "id": "d6cf4bf9-ba10-54ba-8154-1a5f08877025",
+      "name": "四周年徽章",
+      "attributes": {
+        "magicDamage": 8,
+        "constitution": 5
+      },
+      "relicId": 98
+    },
+    {
+      "id": "348c8322-73fc-5f99-a9ef-8403ff7c8efa",
+      "name": "五周年徽章",
+      "attributes": {
+        "speed": 7,
+        "constitution": 7
+      },
+      "relicId": 99
+    },
+    {
+      "id": "bdc92ddc-51b5-52d2-82c9-61a4e30de1ff",
+      "name": "测试战利品",
+      "attributes": {},
+      "relicId": 100,
+      "firstStrike": true,
+      "hasRandomAttributes": true
+    },
+    {
+      "id": "005d52fa-9fb8-5feb-ad19-c4b28baaec45",
+      "name": "测试战利品2",
+      "attributes": {},
+      "relicId": 101,
+      "firstStrike": true,
+      "hasRandomAttributes": true
+    },
+    {
+      "id": "73ea3836-90e1-5320-a8d5-a82b6d09070e",
+      "name": "测试战利品3",
+      "attributes": {},
+      "relicId": 102,
+      "firstStrike": true,
+      "hasRandomAttributes": true
+    },
+    {
+      "id": "86aaf19e-1519-5eed-99cb-313f088222e6",
+      "name": "全能战利品",
+      "attributes": {
+        "hitRate": 10,
+        "dodgeRate": 10,
+        "healingBonus": 10,
+        "criticalRate": 20,
+        "physicalDamage": 10,
+        "magic": 10,
+        "technique": 10,
+        "speed": 10
+      },
+      "relicId": 103
+    },
+    {
+      "id": "aaebfcd2-976d-5a97-a6ea-1ef3657d101a",
+      "name": "持续伤害15.6",
+      "attributes": {
+        "dotDamage": 15.6
+      },
+      "relicId": 108
+    },
+    {
+      "id": "a0797b1f-71a0-5a52-9f4e-f19ae154e1a1",
+      "name": "星之国火种",
+      "attributes": {
+        "strength": 10,
+        "magic": 10,
+        "technique": 10,
+        "speed": 10
+      },
+      "relicId": 117
+    },
+    {
+      "id": "631fd5e0-1f81-4d6e-a6e2-2a841ce627f1",
+      "name": "15.7黑曜石",
+      "attributes": {
+        "strength": 15.7,
+        "hitRate": 1.1
+      },
+      "relicId": 123
+    },
+    {
+      "id": "84b93730-654b-5b71-81c1-f09e5cdb2292",
+      "name": "天河石",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 8
+      },
+      "relicId": 200
+    },
+    {
+      "id": "b8b1747c-d7aa-5769-a6bf-ec3233e0321e",
+      "name": "魔纹石板",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "technique": 8
+      },
+      "relicId": 201
+    },
+    {
+      "id": "fd713333-15bb-52d9-9d20-15c4af04e13d",
+      "name": "神之触角",
+      "attributes": {
+        "magic": 8
+      },
+      "relicId": 202,
+      "firstStrike": true
+    },
+    {
+      "id": "10678820-54d5-5eff-91f8-d2929e9b69dd",
+      "name": "烫金圣典",
+      "attributes": {
+        "strength": 9.5
+      },
+      "relicId": 203,
+      "firstStrike": true
+    },
+    {
+      "id": "80061512-507e-58a9-8d22-435595e3896a",
+      "name": "骑士袖章",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 9.5
+      },
+      "relicId": 204
+    },
+    {
+      "id": "d898d121-bce6-5db7-8c72-4000ca74b1b2",
+      "name": "猎手短刃",
+      "attributes": {
+        "hitRate": 4,
+        "technique": 4
+      },
+      "relicId": 205,
+      "firstStrike": true
+    },
+    {
+      "id": "09320cf0-1d72-5aa0-bebf-478c737da85d",
+      "name": "炼金残章",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 8
+      },
+      "relicId": 206
+    },
+    {
+      "id": "f46f2872-a8c9-50d4-8211-d0540d22122c",
+      "name": "紫龙晶",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 8
+      },
+      "relicId": 207
+    },
+    {
+      "id": "d52337d9-3d9e-554c-92a6-baf3f2bfd5ae",
+      "name": "监视者之眼",
+      "attributes": {
+        "hitRate": 5
+      },
+      "relicId": 208,
+      "firstStrike": true
+    },
+    {
+      "id": "a1dfeb5c-4751-52c3-9f47-18c2bfb5e9e0",
+      "name": "炼金者短刃",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "hitRate": 10
+      },
+      "relicId": 209
+    },
+    {
+      "id": "59d37ef6-3f3e-57a1-a5f7-657d1b95291b",
+      "name": "红龙锐齿",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "physicalDamage": 10
+      },
+      "relicId": 210
+    },
+    {
+      "id": "1a4fb60c-d79c-5708-924e-7d41b33b78e1",
+      "name": "深海之主触须",
+      "attributes": {
+        "healingBonus": 5
+      },
+      "relicId": 211,
+      "firstStrike": true
+    },
+    {
+      "id": "901f5241-ff7a-55ff-b441-cb035fe17922",
+      "name": "骑士长袖章",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 9.5
+      },
+      "relicId": 212
+    },
+    {
+      "id": "e356d512-5d15-587d-b9aa-449a8b80e292",
+      "name": "缪斯之弦",
+      "attributes": {
+        "technique": 8
+      },
+      "relicId": 213,
+      "firstStrike": true
+    },
+    {
+      "id": "ec6d56cc-a47e-5293-988a-07ed83efc74a",
+      "name": "炼金禁章",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magicDamage": 10
+      },
+      "relicId": 214
+    },
+    {
+      "id": "97eb66de-6f06-59b2-a27c-17d936e0ac99",
+      "name": "堕天使之羽",
+      "attributes": {
+        "magic": 10.8
+      },
+      "relicId": 215
+    },
+    {
+      "id": "7fa5075c-0291-5849-b9dc-b80030c038ff",
+      "name": "大盗密卷",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "speed": 10
+      },
+      "relicId": 216
+    },
+    {
+      "id": "acdfcc88-69e7-5acd-a2ec-9c1493545b8f",
+      "name": "地龙鳞",
+      "attributes": {
+        "hitRate": 5,
+        "strength": 10
+      },
+      "relicId": 217
+    },
+    {
+      "id": "10631d14-c6be-56e1-906f-8c3464bd9815",
+      "name": "黄金甲虫壳",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 9.5
+      },
+      "relicId": 218
+    },
+    {
+      "id": "744e663e-c1af-5296-af84-a904bc0ee717",
+      "name": "银貂皮",
+      "attributes": {
+        "technique": 10,
+        "speed": 3
+      },
+      "relicId": 219
+    },
+    {
+      "id": "2c79ec43-88b7-5b33-9cfc-4739f78935d3",
+      "name": "尘世巨蟒蜕壳",
+      "attributes": {
+        "armor": 10,
+        "constitution": 8.8
+      },
+      "relicId": 220
+    },
+    {
+      "id": "ccb315c3-3e9c-5f90-aab2-718e8af245fd",
+      "name": "黄金天使之羽",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "healingBonus": 10.8
+      },
+      "relicId": 221
+    },
+    {
+      "id": "4361a766-fac2-5374-ad0c-416943f98992",
+      "name": "魔力眼球",
+      "attributes": {
+        "magic": 10,
         "hitRate": 3
-      }
+      },
+      "relicId": 222
+    },
+    {
+      "id": "73b75cbd-8d08-5332-a725-95263438e1df",
+      "name": "青金石",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "technique": 10
+      },
+      "relicId": 223
+    },
+    {
+      "id": "92f28915-702a-5f73-a60e-e55c2b5aac9e",
+      "name": "米迦勒之羽",
+      "attributes": {
+        "speed": 10.8
+      },
+      "relicId": 224
+    },
+    {
+      "id": "25c77d68-2a56-5728-b210-4651a5415bf7",
+      "name": "炼金术士面具",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 10
+      },
+      "relicId": 225
+    },
+    {
+      "id": "7e7b04a5-9957-59ba-a422-abcfb4ae738e",
+      "name": "凶兽之牙",
+      "attributes": {
+        "strength": 10
+      },
+      "relicId": 226,
+      "firstStrike": true
+    },
+    {
+      "id": "9acf1777-80a5-5167-ac9d-c9bae105c0fd",
+      "name": "红龙鳞",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 8.8,
+        "armor": 8.8
+      },
+      "relicId": 227
+    },
+    {
+      "id": "8c888ff8-cc5a-53f0-80e5-698c81bb6d01",
+      "name": "古精灵吊坠",
+      "attributes": {
+        "magic": 6,
+        "magicDamage": 6
+      },
+      "relicId": 228
+    },
+    {
+      "id": "ea0ee481-7623-5ac5-8046-9db72c7ab1cd",
+      "name": "蛇尾女的高傲",
+      "attributes": {
+        "magic": 7.5,
+        "speed": 5
+      },
+      "relicId": 229
+    },
+    {
+      "id": "be739dcd-4a17-5559-b40b-012f754517ef",
+      "name": "魔蜥之尾",
+      "attributes": {
+        "magic": 10
+      },
+      "relicId": 230,
+      "firstStrike": true
+    },
+    {
+      "id": "6c2e562b-408f-5f7e-8989-a02ecefe6d14",
+      "name": "炼金术士符石",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 8,
+        "armor": 10
+      },
+      "relicId": 231
+    },
+    {
+      "id": "7384ef4d-b2b0-5b16-a392-0df593e77048",
+      "name": "凶兽之颅",
+      "attributes": {
+        "strength": 6,
+        "physicalDamage": 8
+      },
+      "relicId": 232
+    },
+    {
+      "id": "eb12c3e0-d006-52ec-831f-605a3632b7ec",
+      "name": "匠神小刀",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "technique": 10.8
+      },
+      "relicId": 233
+    },
+    {
+      "id": "d7f0fb6a-16c5-58b9-9459-9fabe1f57e59",
+      "name": "鹰身女妖之眼",
+      "attributes": {
+        "hitRate": 10.8
+      },
+      "relicId": 234
+    },
+    {
+      "id": "62535633-0e15-52ba-af9f-c705cd6e1acc",
+      "name": "混沌触手",
+      "attributes": {
+        "physicalDamage": 10,
+        "magicDamage": 10
+      },
+      "relicId": 235
+    },
+    {
+      "id": "d029f7f8-3008-5b7f-b2ec-b61aa7512cd4",
+      "name": "德库拉锐齿",
+      "attributes": {
+        "physicalSingleLifesteal": 10,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 236
+    },
+    {
+      "id": "93fb6900-b8fa-5d04-a93e-c829b8787670",
+      "name": "绿水晶",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 8,
+        "technique": 8
+      },
+      "relicId": 237
+    },
+    {
+      "id": "060968f7-f629-50c1-b19c-0fb85597ec7b",
+      "name": "禁忌之爪",
+      "attributes": {
+        "technique": 5,
+        "speed": 5
+      },
+      "relicId": 238,
+      "firstStrike": true
+    },
+    {
+      "id": "0c03feef-bcb8-5af2-b7b2-1b8e1bb30bf5",
+      "name": "凶兽手骨",
+      "attributes": {
+        "constitution": 10,
+        "strength": 5
+      },
+      "relicId": 239
+    },
+    {
+      "id": "8f8ce33b-b874-5734-8dda-a50ecdf1bee4",
+      "name": "魔狼之心",
+      "attributes": {
+        "strength": 5,
+        "physicalDamage": 5
+      },
+      "relicId": 240,
+      "firstStrike": true
+    },
+    {
+      "id": "f21a3ee3-ec84-573b-bade-6cada6bf3a02",
+      "name": "德库拉锐匕",
+      "attributes": {
+        "criticalRate": 5,
+        "physicalSingleLifesteal": 8,
+        "magicSingleLifesteal": 8,
+        "physicalAreaLifesteal": 8,
+        "magicAreaLifesteal": 8
+      },
+      "relicId": 241
+    },
+    {
+      "id": "40ed957e-e011-52cd-8ffa-ecdb7311da2d",
+      "name": "贪兽之舌",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 7.5,
+        "magic": 7.5
+      },
+      "relicId": 242
+    },
+    {
+      "id": "e548ced6-db3e-57e8-af9b-23604229efda",
+      "name": "巨兽冰魄",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 10.8
+      },
+      "relicId": 243
+    },
+    {
+      "id": "06066966-067c-5f43-ace3-0a0fc1bac655",
+      "name": "魂晶坠",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "magic": 10.8
+      },
+      "relicId": 244
+    },
+    {
+      "id": "f76b2d4f-9036-56f5-8d3c-1689341c348f",
+      "name": "血魔心脏",
+      "attributes": {
+        "physicalSingleLifesteal": 10,
+        "strength": 9.5
+      },
+      "relicId": 245
+    },
+    {
+      "id": "6b29dbf4-d5f4-58a5-99b5-f69c8f5a1ea0",
+      "name": "新月之弦",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 7.5,
+        "technique": 7.5
+      },
+      "relicId": 246
+    },
+    {
+      "id": "9994ade2-29bd-5b1a-9a02-956185b44d11",
+      "name": "骑士长佩刀",
+      "attributes": {
+        "strength": 5,
+        "hitRate": 10
+      },
+      "relicId": 247
+    },
+    {
+      "id": "f3108104-52b1-5688-9e16-db8f1be1d2b4",
+      "name": "贪兽之眼",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "technique": 10,
+        "hitRate": 2,
+        "criticalRate": 2
+      },
+      "relicId": 248
+    },
+    {
+      "id": "d7af5f3d-89a3-5821-97d1-e346d03a285a",
+      "name": "魔狼腿骨",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "speed": 10,
+        "hitRate": 2,
+        "criticalRate": 2
+      },
+      "relicId": 249
+    },
+    {
+      "id": "baadf243-66af-52d5-9ced-7cfe46e5ab67",
+      "name": "血魔面具",
+      "attributes": {
+        "magicSingleLifesteal": 10,
+        "magic": 8
+      },
+      "relicId": 250
+    },
+    {
+      "id": "268ba1db-514a-5ee8-b70e-e4006c302eab",
+      "name": "黄金龙鳞",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 10,
+        "technique": 6
+      },
+      "relicId": 251
+    },
+    {
+      "id": "071a519a-1bc6-55d0-b774-686253b3f206",
+      "name": "异界傀儡残片",
+      "attributes": {
+        "constitution": 6,
+        "strength": 6
+      },
+      "relicId": 252,
+      "firstStrike": true
+    },
+    {
+      "id": "d9b7833b-2be6-53c1-a111-6fa6a5e1b570",
+      "name": "水巨灵精魄",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 10,
+        "hitRate": 2,
+        "criticalRate": 2
+      },
+      "relicId": 253
+    },
+    {
+      "id": "6b01698c-65a6-5ee6-93a7-057d1f29f569",
+      "name": "魔界书册",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "magic": 10,
+        "hitRate": 2,
+        "criticalRate": 2
+      },
+      "relicId": 254
+    },
+    {
+      "id": "0285f79d-3948-5e98-b487-f82a2f876b44",
+      "name": "云之国剑穗",
+      "attributes": {
+        "technique": 7.5,
+        "hitRate": 3
+      },
+      "relicId": 255,
+      "firstStrike": true
+    },
+    {
+      "id": "92c15802-4835-54c3-af4d-5503d0238e7b",
+      "name": "云之国玉佩",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "armor": 10,
+        "constitution": 8.8
+      },
+      "relicId": 256
+    },
+    {
+      "id": "acd35ad4-d8a5-5271-887a-edbfa20396dd",
+      "name": "千花璎珞",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "magicSingleLifesteal": 10,
+        "magic": 7.5,
+        "hitRate": 1.5
+      },
+      "relicId": 257
+    },
+    {
+      "id": "ea059d4f-d448-546c-a885-7e79f0cc8cb2",
+      "name": "红莲灯芯",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 10,
+        "technique": 2,
+        "constitution": 2
+      },
+      "relicId": 258
+    },
+    {
+      "id": "4447a53f-3f59-53ac-8de1-9dc7315d6537",
+      "name": "迅兽之牙",
+      "attributes": {
+        "physicalDamage": 6,
+        "speed": 7.5
+      },
+      "relicId": 259
+    },
+    {
+      "id": "2140beab-f04d-570c-85fb-a6997372caf2",
+      "name": "风巨灵之翼",
+      "attributes": {
+        "technique": 10
+      },
+      "relicId": 260,
+      "firstStrike": true
+    },
+    {
+      "id": "3e273cc8-43ca-5b66-bac8-9d93c8c25266",
+      "name": "监视者面具",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "hitRate": 10,
+        "technique": 2,
+        "constitution": 2
+      },
+      "relicId": 261
+    },
+    {
+      "id": "03a07638-170a-54c9-b28a-15564d07a3a4",
+      "name": "魂雀之羽",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "magicDamage": 10,
+        "hitRate": 2
+      },
+      "relicId": 262
+    },
+    {
+      "id": "5688a158-3be2-5394-a294-8dfa8f1e2722",
+      "name": "缪斯挂坠",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "technique": 10,
+        "strength": 2,
+        "constitution": 2
+      },
+      "relicId": 263
+    },
+    {
+      "id": "59f38564-3b41-50fe-bf5d-d39acb6d1ae9",
+      "name": "隼魔之眼",
+      "attributes": {
+        "hitRate": 10,
+        "strength": 2,
+        "technique": 2
+      },
+      "relicId": 264
+    },
+    {
+      "id": "f6101fa3-0a01-5634-bb07-5190b1e7d095",
+      "name": "森精灵之羽",
+      "attributes": {
+        "constitution": 10
+      },
+      "relicId": 265,
+      "firstStrike": true
+    },
+    {
+      "id": "fa20776b-a1f1-5827-9f24-8033bc0937fc",
+      "name": "土巨灵之石",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 10,
+        "technique": 2,
+        "constitution": 2
+      },
+      "relicId": 266
+    },
+    {
+      "id": "19591382-43d1-5a4f-a5ee-ce7199790fe6",
+      "name": "水晶之书",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "magic": 10,
+        "technique": 2,
+        "constitution": 2
+      },
+      "relicId": 267
+    },
+    {
+      "id": "eed57774-586a-5b52-981b-435aa6a149f2",
+      "name": "炼金假面",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 8,
+        "constitution": 8
+      },
+      "relicId": 268
+    },
+    {
+      "id": "f4d2f8b3-8458-5123-9747-e23820756e8b",
+      "name": "不竭魔心",
+      "attributes": {
+        "magic": 10
+      },
+      "relicId": 269,
+      "firstStrike": true
+    },
+    {
+      "id": "2a96d0e8-784a-5d37-8d75-5956f23ede9b",
+      "name": "深海珍珠",
+      "attributes": {
+        "physicalDamage": 8
+      },
+      "relicId": 270,
+      "firstStrike": true
+    },
+    {
+      "id": "adfca89a-c0db-594a-9a19-3ba7f88ab35d",
+      "name": "流光珊瑚",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 10,
+        "technique": 2,
+        "constitution": 2
+      },
+      "relicId": 271
+    },
+    {
+      "id": "1c8dc1b3-5b13-5ce4-a468-f3d75602ace7",
+      "name": "海星化石",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "constitution": 8.8,
+        "armor": 10
+      },
+      "relicId": 272
+    },
+    {
+      "id": "60f1a4ba-674b-591f-919a-9784a3d4b96f",
+      "name": "血晶钻",
+      "attributes": {
+        "physicalDamage": 7,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 273
+    },
+    {
+      "id": "35d5e62c-33c1-5a63-b82d-6759f1273a7f",
+      "name": "风纹玉",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 8,
+        "speed": 8
+      },
+      "relicId": 274
+    },
+    {
+      "id": "8bc15770-b85f-5198-83ee-7b1ce412c092",
+      "name": "云之国香包",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "armor": 9,
+        "constitution": 10
+      },
+      "relicId": 275
+    },
+    {
+      "id": "4311ee80-95cc-5879-be6d-fc6ec1129fc1",
+      "name": "青龙玉佩",
+      "attributes": {
+        "strength": 10,
+        "physicalDamage": 5
+      },
+      "relicId": 276
+    },
+    {
+      "id": "c5e6d5df-4b05-537a-961b-0ea86045f683",
+      "name": "驱魔叶",
+      "attributes": {
+        "technique": 10,
+        "healingBonus": 4
+      },
+      "relicId": 277
+    },
+    {
+      "id": "7fdc72aa-b092-5665-8595-920d31d3ad20",
+      "name": "太阳石（命中率2%）",
+      "attributes": {
+        "physicalDamage": 10,
+        "hitRate": 2
+      },
+      "relicId": 278
+    },
+    {
+      "id": "83ceca4f-b7b7-593d-91ea-157e31792d75",
+      "name": "黎明之灯",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "healingBonus": 10,
+        "technique": 4
+      },
+      "relicId": 279
+    },
+    {
+      "id": "519119a1-b55c-5c0b-ae5c-4790be5cb0e8",
+      "name": "太阳石",
+      "attributes": {
+        "physicalDamage": 10,
+        "hitRate": 1.8
+      },
+      "relicId": 280
+    },
+    {
+      "id": "6228efbf-23fe-5e27-8ab3-e057258218c0",
+      "name": "地狱军印",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 15
+      },
+      "relicId": 281
+    },
+    {
+      "id": "cc015b0c-ea61-5557-97d1-889b8db72535",
+      "name": "异兽之镰",
+      "attributes": {
+        "speed": 10,
+        "constitution": 2,
+        "hitRate": 2
+      },
+      "relicId": 282
+    },
+    {
+      "id": "0094d005-e5eb-5bc3-a0b5-3594f990fbef",
+      "name": "血污魔链",
+      "attributes": {
+        "magicDamage": 7,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 283
+    },
+    {
+      "id": "f6676d22-a81c-53a0-8558-f5bb382c7077",
+      "name": "热忱之心",
+      "attributes": {
+        "constitution": 10,
+        "strength": 2,
+        "hitRate": 2
+      },
+      "relicId": 284
+    },
+    {
+      "id": "c67f052a-6f1b-58ed-aba0-a9609e0d6adc",
+      "name": "活力之灯",
+      "attributes": {
+        "constitution": 10
+      },
+      "relicId": 285,
+      "firstStrike": true
+    },
+    {
+      "id": "9b592312-a1f7-5ee2-83df-929ac14e4b91",
+      "name": "勇气之灯",
+      "attributes": {
+        "strength": 10
+      },
+      "relicId": 286,
+      "firstStrike": true
+    },
+    {
+      "id": "45581f51-791d-566f-a683-b95f86d6a23a",
+      "name": "魔力之灯",
+      "attributes": {
+        "magic": 10
+      },
+      "relicId": 287,
+      "firstStrike": true
+    },
+    {
+      "id": "a5a70d26-05bc-5692-b159-a04508c01fd0",
+      "name": "月光之灯",
+      "attributes": {
+        "technique": 10
+      },
+      "relicId": 288,
+      "firstStrike": true
+    },
+    {
+      "id": "425762ac-87dc-5e5b-ad1d-c649fae4f729",
+      "name": "迅捷之灯",
+      "attributes": {
+        "speed": 10
+      },
+      "relicId": 289,
+      "firstStrike": true
+    },
+    {
+      "id": "4502d9ee-47ff-4d00-a659-58aaaa19f51b",
+      "name": "血影之灯",
+      "attributes": {
+        "strength": 9.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 290
+    },
+    {
+      "id": "2559c480-7dc5-475b-b456-2465ecb68ce2",
+      "name": "渡魂之灯",
+      "attributes": {
+        "magic": 8,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 291
+    },
+    {
+      "id": "4f4b6fca-5942-5d76-bfcf-50b3980ec245",
+      "name": "贵族怀表",
+      "attributes": {
+        "constitution": 7.5,
+        "technique": 7.5,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 292
+    },
+    {
+      "id": "936fe001-1e71-59ed-8fb2-73e2736a6beb",
+      "name": "月痕挂坠",
+      "attributes": {
+        "magic": 10,
+        "magicDamage": 2,
+        "hitRate": 2
+      },
+      "relicId": 293
+    },
+    {
+      "id": "ad8891c4-35f4-5c55-8211-9707d5588eaf",
+      "name": "时之骰",
+      "attributes": {
+        "speed": 10,
+        "hitRate": 2,
+        "physicalDamage": 2
+      },
+      "relicId": 294
+    },
+    {
+      "id": "4af6aac2-3484-5f46-a1e6-f4b8190bde90",
+      "name": "魔力枫叶",
+      "attributes": {
+        "magic": 9,
+        "technique": 5,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 295
+    },
+    {
+      "id": "9652f875-14c1-5a5f-9f10-9914505cf0e9",
+      "name": "古树之心",
+      "attributes": {
+        "strength": 11.5,
+        "hitRate": 2,
+        "physicalDamage": 2
+      },
+      "relicId": 296
+    },
+    {
+      "id": "587ed1fd-cf94-5b8f-8920-07663c3914f6",
+      "name": "染血鹿角",
+      "attributes": {
+        "physicalDamage": 5,
+        "hitRate": 3,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 297
+    },
+    {
+      "id": "05f3ec16-5b64-51fa-8717-147fbbb11ac1",
+      "name": "猩红箭头",
+      "attributes": {
+        "hitRate": 7,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 298
+    },
+    {
+      "id": "31fd29fc-ae2a-5ddb-99a7-52ec00c97312",
+      "name": "逐风之羽",
+      "attributes": {
+        "physicalDamage": 8,
+        "hitRate": 5
+      },
+      "relicId": 299
+    },
+    {
+      "id": "ab7be6fb-34da-573b-87b3-131b111c8036",
+      "name": "玫瑰血钻",
+      "attributes": {
+        "hitRate": 7,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 300
+    },
+    {
+      "id": "137f29ba-e910-58fd-b653-a33afa21c8e4",
+      "name": "满月之石",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 6,
+        "strength": 10
+      },
+      "relicId": 301
+    },
+    {
+      "id": "e29b1382-13d0-5f99-a896-28c0a9a43798",
+      "name": "启程之灯",
+      "attributes": {
+        "technique": 11.2
+      },
+      "relicId": 302
+    },
+    {
+      "id": "70ffb372-b63b-5853-a5b1-f7ba7bedff57",
+      "name": "黄金果实",
+      "attributes": {
+        "healingBonus": 7.5,
+        "technique": 7.5
+      },
+      "relicId": 303
+    },
+    {
+      "id": "63d9a40c-0ebf-550d-8bf7-c6830335c766",
+      "name": "胜利旗帜",
+      "attributes": {
+        "magic": 5,
+        "magicSingleLifesteal": 8,
+        "magicAreaLifesteal": 8
+      },
+      "relicId": 304
+    },
+    {
+      "id": "1b7f4709-0c2b-5adf-a316-6bb3317b63a2",
+      "name": "苍龙之角",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "constitution": 11,
+        "armor": 8
+      },
+      "relicId": 305
+    },
+    {
+      "id": "df260e2e-22ba-5e7d-85ef-99a510808a99",
+      "name": "黄金花蕊",
+      "attributes": {
+        "physicalDamage": 8,
+        "speed": 5
+      },
+      "relicId": 306
+    },
+    {
+      "id": "510a6eee-8c96-5920-94df-07e753f9185e",
+      "name": "玉石酒杯",
+      "attributes": {
+        "hitRate": 4,
+        "physicalDamage": 4,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 307
+    },
+    {
+      "id": "f959dbe6-390f-5139-bae7-40840a4fbf4a",
+      "name": "六棱寒晶",
+      "attributes": {
+        "magic": 9,
+        "hitRate": 5
+      },
+      "relicId": 308
+    },
+    {
+      "id": "8f78d98b-02bf-5d69-a91e-a9f6095baa72",
+      "name": "血晶剑坠",
+      "attributes": {
+        "strength": 6,
+        "physicalSingleLifesteal": 8,
+        "physicalAreaLifesteal": 8
+      },
+      "relicId": 309
+    },
+    {
+      "id": "fe0d81a7-ed98-5f81-b080-a34f24cfc704",
+      "name": "青焰凶坠",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 11,
+        "constitution": 5
+      },
+      "relicId": 310
+    },
+    {
+      "id": "82bb8a58-394c-56d1-8b85-210802798dd6",
+      "name": "麒麟角",
+      "attributes": {
+        "strength": 12,
+        "hitRate": 4
+      },
+      "relicId": 311
+    },
+    {
+      "id": "dcde31b7-fb82-5cce-9266-1b88fcd5b711",
+      "name": "汲魂魔杯",
+      "attributes": {
+        "magicSingleLifesteal": 10,
+        "hitRate": 4,
+        "magicDamage": 4
+      },
+      "relicId": 312
+    },
+    {
+      "id": "bcf26706-a05b-5d7e-b203-1a926ec42db9",
+      "name": "巨象之牙",
+      "attributes": {
+        "constitution": 12
+      },
+      "relicId": 313
+    },
+    {
+      "id": "afc03b47-1033-5fc0-b513-7346b74e4457",
+      "name": "魔素之瓶",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 9,
+        "constitution": 5
+      },
+      "relicId": 314
+    },
+    {
+      "id": "25c1d561-be60-5ef4-9ce6-96ad225c2ef0",
+      "name": "凶兽之角",
+      "attributes": {
+        "physicalDamage": 10,
+        "strength": 2
+      },
+      "relicId": 315
+    },
+    {
+      "id": "72b42803-4131-500c-9789-6d4932f1094f",
+      "name": "异族血晶",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "magic": 10,
+        "technique": 4
+      },
+      "relicId": 316
+    },
+    {
+      "id": "a15e6fe9-76aa-536f-be33-cc6e7ae03748",
+      "name": "弹簧剑鞘",
+      "attributes": {
+        "strength": 6,
+        "hitRate": 5
+      },
+      "relicId": 317,
+      "firstStrike": true
+    },
+    {
+      "id": "85799c48-9ae2-5e04-8e38-3ee84c98b8a8",
+      "name": "赐福树苗",
+      "attributes": {
+        "hitRate": 8,
+        "dodgeRate": 8
+      },
+      "relicId": 318
+    },
+    {
+      "id": "a619affe-046c-56dc-a020-7b40c2f15edd",
+      "name": "黄金兽首",
+      "attributes": {
+        "adventureGoldBonus": 7.5,
+        "strength": 9,
+        "constitution": 7
+      },
+      "relicId": 319
+    },
+    {
+      "id": "dcac5036-2272-5b19-b77f-3736e0d5d99f",
+      "name": "精灵之灯",
+      "attributes": {
+        "magic": 1.8,
+        "magicDamage": 10
+      },
+      "relicId": 320
+    },
+    {
+      "id": "ffaa4630-9951-526f-8608-4bdf6316d99f",
+      "name": "鸾鸟尾羽",
+      "attributes": {
+        "magic": 5,
+        "hitRate": 5
+      },
+      "relicId": 321,
+      "firstStrike": true
+    },
+    {
+      "id": "30f98127-57a4-53c7-96fa-0bb3fbc81bfb",
+      "name": "猎手护符",
+      "attributes": {
+        "constitution": 10,
+        "technique": 5
+      },
+      "relicId": 322
+    },
+    {
+      "id": "5a4463bf-2547-57ab-9a99-04640258a571",
+      "name": "祭祀号角",
+      "attributes": {
+        "adventureSoulBonus": 7.5,
+        "technique": 10.8
+      },
+      "relicId": 323
     },
     {
       "id": "dc1f15ae-faf7-4a25-af99-5c721b5e4b2d",
@@ -173,7 +1407,262 @@
       "attributes": {
         "magic": 12.5,
         "adventureGoldBonus": 7.5
-      }
+      },
+      "relicId": 324
+    },
+    {
+      "id": "703a10ca-5c69-5123-8fc5-0c176ea9e14c",
+      "name": "黄金龙角",
+      "attributes": {
+        "constitution": 5,
+        "armor": 8,
+        "resistance": 8
+      },
+      "relicId": 325
+    },
+    {
+      "id": "3596bcea-6bdf-5cbc-b4af-4d32b07fb10e",
+      "name": "德库拉断刃",
+      "attributes": {
+        "hitRate": 5,
+        "physicalSingleLifesteal": 8,
+        "physicalAreaLifesteal": 8
+      },
+      "relicId": 326
+    },
+    {
+      "id": "1216b6ec-b804-566f-a09b-f042aa26f18e",
+      "name": "好运铃铛",
+      "attributes": {
+        "dodgeRate": 8,
+        "technique": 8
+      },
+      "relicId": 327
+    },
+    {
+      "id": "1013cbff-672e-5c38-983a-fb8414569c2c",
+      "name": "吉兆爆竹",
+      "attributes": {
+        "strength": 7.5,
+        "criticalRate": 15
+      },
+      "relicId": 328
+    },
+    {
+      "id": "c55daa79-8290-5166-a679-db61d275d91d",
+      "name": "琉璃花灯",
+      "attributes": {
+        "hitRate": 7,
+        "technique": 7
+      },
+      "relicId": 329
+    },
+    {
+      "id": "13aa46ed-b5f8-5d0d-8ddf-e99fd8f3de36",
+      "name": "红莲之箭",
+      "attributes": {
+        "strength": 8,
+        "hitRate": 8
+      },
+      "relicId": 330
+    },
+    {
+      "id": "b5a86d14-5487-5eda-80d3-6a2158128a82",
+      "name": "机关秘盒",
+      "attributes": {
+        "strength": 10.5,
+        "constitution": 5.5,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 331
+    },
+    {
+      "id": "b9d3a550-d083-581b-8be1-58169d7dc73c",
+      "name": "战甲纽扣",
+      "attributes": {
+        "strength": 7.5,
+        "physicalDamage": 7
+      },
+      "relicId": 332
+    },
+    {
+      "id": "de9b2743-ff66-5245-b81f-825dc1833c5d",
+      "name": "唤魂之哨",
+      "attributes": {
+        "technique": 10,
+        "constitution": 4,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 333
+    },
+    {
+      "id": "b102e065-3cc7-59da-9c12-4719f9dba1ec",
+      "name": "秘术魔镜",
+      "attributes": {
+        "hitRate": 5,
+        "magicSingleLifesteal": 8,
+        "magicAreaLifesteal": 8
+      },
+      "relicId": 334
+    },
+    {
+      "id": "a5d44939-2d4f-53ba-807c-a8e1e72fb0b5",
+      "name": "勇者护肩",
+      "attributes": {
+        "constitution": 10.8,
+        "armor": 8.5,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 335
+    },
+    {
+      "id": "4228ab02-e2f9-4701-bbe1-d002523ebea2",
+      "name": "魔能提灯",
+      "attributes": {
+        "magic": 5,
+        "magicDamage": 7.5
+      },
+      "relicId": 336
+    },
+    {
+      "id": "099f1ed6-e1ca-5b93-b58c-5a00b9f9bf9d",
+      "name": "血族箭袋",
+      "attributes": {
+        "constitution": 6,
+        "strength": 5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 337
+    },
+    {
+      "id": "38fd8a99-e833-573e-b7ae-c761bfc98b86",
+      "name": "自然之瓶",
+      "attributes": {
+        "strength": 12,
+        "constitution": 4,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 338
+    },
+    {
+      "id": "ae532fa7-e8d1-57a6-b4fb-c68c5d9e5b2a",
+      "name": "猎手刀鞘",
+      "attributes": {
+        "speed": 6,
+        "physicalDamage": 7.2
+      },
+      "relicId": 339
+    },
+    {
+      "id": "54c61c3b-4c0c-5055-ac2e-ca42a6f12320",
+      "name": "柳叶手环",
+      "attributes": {
+        "magic": 7.5,
+        "healingBonus": 7.5
+      },
+      "relicId": 340
+    },
+    {
+      "id": "66ddb0f3-3517-5015-9a92-e7106ee01ad8",
+      "name": "魔能火炬",
+      "attributes": {
+        "technique": 8,
+        "magic": 7,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 341
+    },
+    {
+      "id": "bd4ebd77-f267-5fb8-9b4a-7ff89e7d524d",
+      "name": "骑士马刺",
+      "attributes": {
+        "technique": 10,
+        "hitRate": 5
+      },
+      "relicId": 342
+    },
+    {
+      "id": "83c8ba73-516f-511d-a39a-ad88cf023564",
+      "name": "诅咒刀坯",
+      "attributes": {
+        "strength": 12.5,
+        "physicalDamage": 2,
+        "hitRate": 1.5
+      },
+      "relicId": 343
+    },
+    {
+      "id": "f017c940-b45f-526b-9901-c737e37684ba",
+      "name": "玉骨笛",
+      "attributes": {
+        "technique": 11.5
+      },
+      "relicId": 344
+    },
+    {
+      "id": "f231d7b3-7c02-5497-8ab1-9b86d6555d12",
+      "name": "腥红羽毛笔",
+      "attributes": {
+        "physicalDamage": 6,
+        "hitRate": 2,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 345
+    },
+    {
+      "id": "07a6db2d-76c8-501b-a1ca-afd7e41f29ae",
+      "name": "符文眼罩",
+      "attributes": {
+        "strength": 2,
+        "physicalDamage": 2,
+        "hitRate": 10
+      },
+      "relicId": 346
+    },
+    {
+      "id": "bf82f561-f22d-5359-9e3e-6083fd931014",
+      "name": "白水晶挂坠",
+      "attributes": {
+        "constitution": 10,
+        "strength": 5,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 347
+    },
+    {
+      "id": "436beb8e-5a97-5daa-a10d-f295d7a24b24",
+      "name": "破损战矛",
+      "attributes": {
+        "hitRate": 10
+      },
+      "relicId": 348
+    },
+    {
+      "id": "d7f43c48-7c30-4366-bbdb-2a62c0fc4281",
+      "name": "遗失锤柄",
+      "attributes": {
+        "strength": 2,
+        "physicalDamage": 8.5
+      },
+      "relicId": 349
+    },
+    {
+      "id": "0ee458dd-d3e7-5cc9-9143-b21b0592e781",
+      "name": "水晶毛笔",
+      "attributes": {
+        "magicDamage": 8.5,
+        "magic": 2
+      },
+      "relicId": 350
+    },
+    {
+      "id": "ccc55f65-87f2-5910-b3b5-17a3975bad27",
+      "name": "战意发簪",
+      "attributes": {
+        "strength": 12,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 351
     },
     {
       "id": "20eeede3-53a5-4f9b-aa7a-1450fb4208aa",
@@ -182,7 +1671,1992 @@
         "magic": 12,
         "technique": 2,
         "adventureGoldBonus": 7.5
-      }
+      },
+      "relicId": 352
+    },
+    {
+      "id": "b40e5f92-ed82-5f2b-a976-44f1f4658865",
+      "name": "奥术魔方",
+      "attributes": {
+        "hitRate": 7,
+        "physicalDamage": 3
+      },
+      "relicId": 353,
+      "firstStrike": true
+    },
+    {
+      "id": "c0462902-8839-5af0-8d27-5673854e06e9",
+      "name": "聚火之心",
+      "attributes": {
+        "constitution": 10,
+        "magic": 2,
+        "hitRate": 2
+      },
+      "relicId": 354
+    },
+    {
+      "id": "339ab349-4ce8-54f4-81b4-6bc35f5d30a5",
+      "name": "六周年徽章",
+      "attributes": {
+        "hitRate": 6,
+        "physicalDamage": 6
+      },
+      "relicId": 355
+    },
+    {
+      "id": "0b08ce3f-8e1e-58ee-8096-cc45a171c2aa",
+      "name": "旅者酒壶",
+      "attributes": {
+        "strength": 10,
+        "constitution": 3,
+        "speed": 3,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 356
+    },
+    {
+      "id": "b3816df1-42ed-5569-99f2-b10090f75d31",
+      "name": "霜玉胸针",
+      "attributes": {
+        "physicalDamage": 8.5,
+        "hitRate": 3.5
+      },
+      "relicId": 357
+    },
+    {
+      "id": "0607c29d-eb1d-5736-a4e7-c02d17d9703a",
+      "name": "祭司银币",
+      "attributes": {
+        "magic": 11,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 358
+    },
+    {
+      "id": "7fccc49e-c416-512a-b050-ab6ba7844d3c",
+      "name": "附魔子弹",
+      "attributes": {
+        "technique": 10,
+        "magic": 5
+      },
+      "relicId": 359
+    },
+    {
+      "id": "c0e48c62-3d8b-5cb1-bbbd-0cd58b4c1b99",
+      "name": "猎魔火药瓶",
+      "attributes": {
+        "constitution": 12,
+        "armor": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 360
+    },
+    {
+      "id": "c9c35d89-68d9-575b-9583-70b77e9e347f",
+      "name": "羽箭银币",
+      "attributes": {
+        "hitRate": 12
+      },
+      "relicId": 361
+    },
+    {
+      "id": "0614657b-dc25-56ad-9192-960771397f34",
+      "name": "龙人之钥",
+      "attributes": {
+        "physicalDamage": 6.5,
+        "hitRate": 1,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 362
+    },
+    {
+      "id": "63899cad-3e22-5987-aa65-4d252297988f",
+      "name": "海神金币",
+      "attributes": {
+        "constitution": 1,
+        "strength": 14,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 363
+    },
+    {
+      "id": "25e85a2b-0186-5539-b982-e5c743fddb40",
+      "name": "王族断戟",
+      "attributes": {
+        "strength": 3.5,
+        "physicalDamage": 9.5
+      },
+      "relicId": 364
+    },
+    {
+      "id": "c63b9b0d-575c-5768-9279-02b39964fac0",
+      "name": "奥术眼镜",
+      "attributes": {
+        "technique": 12,
+        "hitRate": 1
+      },
+      "relicId": 365
+    },
+    {
+      "id": "02928ffe-7f18-5a2f-a8c1-a309fe01231b",
+      "name": "神木酒杯",
+      "attributes": {
+        "strength": 12
+      },
+      "relicId": 366,
+      "firstStrike": true
+    },
+    {
+      "id": "0eafac12-7810-5d7b-8542-60e8f3df860a",
+      "name": "血族铜币",
+      "attributes": {
+        "strength": 5,
+        "hitRate": 5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 367
+    },
+    {
+      "id": "1133eab0-9a7b-5764-a1b6-61e448c2dc5c",
+      "name": "火凤凰之羽",
+      "attributes": {
+        "magic": 10.5,
+        "technique": 4,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 368
+    },
+    {
+      "id": "6203d57f-8572-45e5-a90a-fe322e3603e6",
+      "name": "远航之镜",
+      "attributes": {
+        "magic": 8,
+        "hitRate": 8
+      },
+      "relicId": 369
+    },
+    {
+      "id": "e1285082-8517-5e96-b472-e25f65b5f631",
+      "name": "猎手烟斗",
+      "attributes": {
+        "technique": 12,
+        "magic": 1
+      },
+      "relicId": 370
+    },
+    {
+      "id": "15efa2f2-48d6-5ff9-9367-e1c6c2a290b1",
+      "name": "火龙护石",
+      "attributes": {
+        "strength": 15,
+        "speed": 1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 371
+    },
+    {
+      "id": "9848619f-2c85-5d74-9d2e-26be424dc6f7",
+      "name": "桂花酒瓶",
+      "attributes": {
+        "magic": 11,
+        "magicDamage": 1.5,
+        "hitRate": 1
+      },
+      "relicId": 372
+    },
+    {
+      "id": "25d7e68c-b740-51c7-9b2c-1f7b24c31cc0",
+      "name": "满月香炉",
+      "attributes": {
+        "constitution": 11
+      },
+      "relicId": 373,
+      "firstStrike": true
+    },
+    {
+      "id": "308c7c57-664f-5547-9795-a3be8ed5dcc0",
+      "name": "部落木笛",
+      "attributes": {
+        "physicalDamage": 4,
+        "physicalSingleLifesteal": 8,
+        "physicalAreaLifesteal": 8
+      },
+      "relicId": 374
+    },
+    {
+      "id": "51305ca5-3fcd-4e15-8f42-c082e367c9c1",
+      "name": "云之国发梳",
+      "attributes": {
+        "magic": 11
+      },
+      "firstStrike": true,
+      "relicId": 375
+    },
+    {
+      "id": "ee2b7f3b-5c5d-54cb-bc49-20dc9961273b",
+      "name": "祖人面具",
+      "attributes": {
+        "constitution": 11.2,
+        "armor": 5,
+        "resistance": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 376
+    },
+    {
+      "id": "cd33f795-cfd1-5b92-9cc2-547c714f1b0d",
+      "name": "警戒摇铃",
+      "attributes": {
+        "technique": 10.5
+      },
+      "relicId": 377,
+      "firstStrike": true
+    },
+    {
+      "id": "536c31e2-b5a2-54ff-ba55-6e7308085188",
+      "name": "猎手卷轴",
+      "attributes": {
+        "hitRate": 12,
+        "strength": 3.5
+      },
+      "relicId": 378
+    },
+    {
+      "id": "03a9b5fe-9a8b-53f8-9618-5b8427e2c9e2",
+      "name": "术士魂灯",
+      "attributes": {
+        "constitution": 8,
+        "technique": 7,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 379
+    },
+    {
+      "id": "38cab125-97df-5204-a244-964ea91e2268",
+      "name": "夜影勋章",
+      "attributes": {
+        "strength": 12,
+        "physicalAreaLifesteal": 10
+      },
+      "relicId": 380
+    },
+    {
+      "id": "d3abac2c-a7ce-52f7-a891-9dffcfe6c5c0",
+      "name": "南瓜沙漏",
+      "attributes": {
+        "strength": 14.5,
+        "constitution": 1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 381
+    },
+    {
+      "id": "d86bb569-7156-4ddd-abfb-5684c72994dc",
+      "name": "搜魂提灯",
+      "attributes": {
+        "magic": 11.5,
+        "hitRate": 3
+      },
+      "relicId": 382
+    },
+    {
+      "id": "997b1aeb-b8b7-584c-8258-2dc2f28222f6",
+      "name": "古树酒杯",
+      "attributes": {
+        "technique": 12,
+        "constitution": 1
+      },
+      "relicId": 383
+    },
+    {
+      "id": "74049119-2937-5f9b-ac74-2a065353a901",
+      "name": "南瓜魂灯",
+      "attributes": {
+        "armor": 10,
+        "constitution": 6
+      },
+      "relicId": 384
+    },
+    {
+      "id": "58414f0e-5b5b-53f3-843c-117988b54c18",
+      "name": "暗贤者断刃",
+      "attributes": {
+        "magic": 4,
+        "hitRate": 5,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 385
+    },
+    {
+      "id": "0b6a87b2-3dd1-5f51-adda-d4978c72a978",
+      "name": "猎手水袋",
+      "attributes": {
+        "technique": 9,
+        "healingBonus": 6
+      },
+      "relicId": 386
+    },
+    {
+      "id": "92cf48ab-4401-5827-a510-0a297bb1aef2",
+      "name": "窥心水晶球",
+      "attributes": {
+        "magic": 10,
+        "technique": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 387
+    },
+    {
+      "id": "cf106d4c-69b3-49a1-86a4-26c9d97f503d",
+      "name": "蛮荒药杵",
+      "attributes": {
+        "speed": 12,
+        "physicalDamage": 1.5
+      },
+      "relicId": 388
+    },
+    {
+      "id": "17498206-9d15-5ff6-b56d-1a5d2456a4f7",
+      "name": "谐音竖琴",
+      "attributes": {
+        "technique": 9,
+        "constitution": 6
+      },
+      "relicId": 389
+    },
+    {
+      "id": "5a0b4df2-c510-5502-af1e-56bfccb5cc10",
+      "name": "异兽鱼钩",
+      "attributes": {
+        "hitRate": 7,
+        "magic": 3
+      },
+      "relicId": 390,
+      "firstStrike": true
+    },
+    {
+      "id": "dc4b4d3b-2b79-5162-b8df-54b6253a0128",
+      "name": "冰之牙",
+      "attributes": {
+        "constitution": 12.8,
+        "adventureGoldBonus": 7.5
+      },
+      "relicId": 391
+    },
+    {
+      "id": "42afc4a0-ec80-59bf-b5bc-0fcdb977e5a2",
+      "name": "深渊之心",
+      "attributes": {
+        "constitution": 8,
+        "strength": 8,
+        "magic": 8,
+        "technique": 8,
+        "speed": 8
+      },
+      "relicId": 392
+    },
+    {
+      "id": "ee3d62d1-e9cf-5fef-af4e-97559a8852c2",
+      "name": "赐福绣球",
+      "attributes": {
+        "technique": 1,
+        "strength": 15,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 393
+    },
+    {
+      "id": "ec183e53-6d07-5209-beb1-581ab7e1ee7e",
+      "name": "狡兔面具",
+      "attributes": {
+        "strength": 1,
+        "physicalDamage": 10.5
+      },
+      "relicId": 394
+    },
+    {
+      "id": "1cb822ff-b4d0-5ecb-879a-137603dff649",
+      "name": "折梅之扇",
+      "attributes": {
+        "strength": 1,
+        "technique": 12
+      },
+      "relicId": 395
+    },
+    {
+      "id": "00eb298b-d48b-5886-aa95-7fd411094217",
+      "name": "风车挂坠",
+      "attributes": {
+        "strength": 2,
+        "physicalDamage": 6,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 396
+    },
+    {
+      "id": "1d6ea61b-85f0-4748-8979-155289dcbf5b",
+      "name": "远古鹿角",
+      "attributes": {
+        "magic": 12.3,
+        "hitRate": 2.5
+      },
+      "relicId": 397
+    },
+    {
+      "id": "d3d8e6cd-9784-57d0-a7cd-f8e676ed9434",
+      "name": "迎春花鼓",
+      "attributes": {
+        "constitution": 14,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 398
+    },
+    {
+      "id": "ebb45812-3014-5001-a881-024a3bc72cff",
+      "name": "庆典龙灯",
+      "attributes": {
+        "speed": 1.5,
+        "strength": 14.7,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 399
+    },
+    {
+      "id": "62008272-a0a6-500f-9dd0-4f4ba499fe78",
+      "name": "渡鸦信筒",
+      "attributes": {
+        "physicalDamage": 1.2,
+        "strength": 4,
+        "hitRate": 10.5
+      },
+      "relicId": 400
+    },
+    {
+      "id": "f7c63069-9682-5924-b700-26ca9c3cd5c6",
+      "name": "辟邪桃符",
+      "attributes": {
+        "hitRate": 3.3,
+        "magicDamage": 6,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 401
+    },
+    {
+      "id": "4e59c462-c351-5709-9df4-9a47ab8b235a",
+      "name": "玲珑骰子",
+      "attributes": {
+        "constitution": 5,
+        "strength": 9,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 402
+    },
+    {
+      "id": "d451d18a-731a-50a9-9b2f-3796b10b95d3",
+      "name": "玫瑰胸针",
+      "attributes": {
+        "technique": 8,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 403
+    },
+    {
+      "id": "e60d570a-5553-525d-9aad-365d91fda985",
+      "name": "恶魔之手",
+      "attributes": {
+        "hitRate": 5.2,
+        "strength": 11
+      },
+      "relicId": 404
+    },
+    {
+      "id": "c49a983e-a735-58bb-bc4c-d956d6883f1c",
+      "name": "复仇之心",
+      "attributes": {
+        "technique": 2.5,
+        "magic": 11.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 405
+    },
+    {
+      "id": "d165f377-b6af-5027-a074-09024a6acd7b",
+      "name": "恶魔之脚",
+      "attributes": {
+        "hitRate": 3.5,
+        "physicalDamage": 5
+      },
+      "relicId": 406,
+      "firstStrike": true
+    },
+    {
+      "id": "c04c5885-7e00-5e4e-ba29-1773a17272dc",
+      "name": "踏春玉锄",
+      "attributes": {
+        "technique": 6,
+        "magic": 7.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 407
+    },
+    {
+      "id": "37533f36-7c82-57ce-98a8-12b533d4c07a",
+      "name": "春桃花环",
+      "attributes": {
+        "hitRate": 4.5,
+        "magic": 6,
+        "magicAreaLifesteal": 10
+      },
+      "relicId": 408
+    },
+    {
+      "id": "71d7f7e6-85f9-5f29-8793-ac5941daafc5",
+      "name": "常青之壶",
+      "attributes": {
+        "constitution": 2,
+        "strength": 14,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 409
+    },
+    {
+      "id": "71321b36-6d85-5482-9b7e-ef594b24a13f",
+      "name": "暗夜面具",
+      "attributes": {
+        "speed": 10.8,
+        "physicalDamage": 2.5
+      },
+      "relicId": 410
+    },
+    {
+      "id": "61fa5abd-a15a-5721-9f2a-1d9964d03839",
+      "name": "柳枝发钗",
+      "attributes": {
+        "magic": 3,
+        "technique": 11
+      },
+      "relicId": 411
+    },
+    {
+      "id": "d329173d-3f80-5bc9-9553-83a3ea578778",
+      "name": "海棠折扇",
+      "attributes": {
+        "speed": 5,
+        "physicalDamage": 2.4,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 412
+    },
+    {
+      "id": "bba9d1db-c2da-5ed3-9b84-d4e25a578ec9",
+      "name": "青铜蹄铁",
+      "attributes": {
+        "speed": 1.5,
+        "constitution": 3,
+        "strength": 10,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 413
+    },
+    {
+      "id": "02d07f8c-7c3d-5fe8-9f1a-cbcc3b0447e7",
+      "name": "勇者缎带",
+      "attributes": {
+        "strength": 2,
+        "constitution": 12.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 414
+    },
+    {
+      "id": "576ea9f5-6877-5128-b786-26dba5251768",
+      "name": "符文火钳",
+      "attributes": {
+        "strength": 4.2,
+        "hitRate": 1.6,
+        "physicalDamage": 8.1
+      },
+      "relicId": 415
+    },
+    {
+      "id": "b442931e-3a4f-4a34-b522-c3cafd1fbadf",
+      "name": "战栗魔琴",
+      "attributes": {
+        "magic": 5.5,
+        "hitRate": 10
+      },
+      "relicId": 416
+    },
+    {
+      "id": "b7a2bf05-7892-5b28-b082-568d480d9f5b",
+      "name": "翠绿玉牌",
+      "attributes": {
+        "constitution": 7,
+        "technique": 8.5
+      },
+      "relicId": 417
+    },
+    {
+      "id": "f9b8c23b-e804-5c87-8a66-a1c43be5f1e1",
+      "name": "聚宝钱袋",
+      "attributes": {
+        "technique": 1.5,
+        "constitution": 10,
+        "armor": 3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 418
+    },
+    {
+      "id": "2780aab6-f6ac-5452-9701-1c32257429ed",
+      "name": "四叶金币",
+      "attributes": {
+        "hitRate": 1.5,
+        "strength": 15
+      },
+      "relicId": 419
+    },
+    {
+      "id": "164730ec-23ce-5350-a1a8-3bcf58eee56d",
+      "name": "辨识之镜",
+      "attributes": {
+        "constitution": 7,
+        "armor": 7
+      },
+      "relicId": 420,
+      "firstStrike": true
+    },
+    {
+      "id": "421db1d1-6ebe-5c62-b77f-7edec2c95a3c",
+      "name": "先民之钥",
+      "attributes": {
+        "technique": 10.8,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 421
+    },
+    {
+      "id": "7a5604a1-5280-5da3-a06d-0203f206b82d",
+      "name": "七周年徽章",
+      "attributes": {
+        "technique": 7,
+        "magicDamage": 7
+      },
+      "relicId": 422
+    },
+    {
+      "id": "cfaaa201-ba16-52ab-a1af-ebfe0ff4a1cf",
+      "name": "铸炼祭锤",
+      "attributes": {
+        "speed": 6,
+        "hitRate": 6,
+        "magic": 6
+      },
+      "relicId": 423
+    },
+    {
+      "id": "ea572c3a-9e8c-52ae-9b7d-dfca5de7321a",
+      "name": "三好城主",
+      "attributes": {
+        "speed": 6,
+        "hitRate": 6,
+        "magic": 6
+      },
+      "relicId": 424
+    },
+    {
+      "id": "09a2f0b0-9faa-57f4-a806-81e10a5b8a86",
+      "name": "无名剑穗",
+      "attributes": {
+        "strength": 1.8,
+        "physicalDamage": 5.4,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 425
+    },
+    {
+      "id": "7cebfc60-b531-5303-b954-9acd8f5b2903",
+      "name": "秘术之镜",
+      "attributes": {
+        "technique": 4.5,
+        "magic": 8.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 426
+    },
+    {
+      "id": "4ab548a6-6c87-5481-8353-4794d7228ed8",
+      "name": "龙骨伞",
+      "attributes": {
+        "technique": 1.5,
+        "strength": 14.7,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 427
+    },
+    {
+      "id": "512b3980-d8ea-4563-90c8-7e5d1fab6c52",
+      "name": "奥术果实",
+      "attributes": {
+        "magic": 10.8,
+        "magicDamage": 1.8,
+        "hitRate": 2
+      },
+      "relicId": 428
+    },
+    {
+      "id": "8716abb9-9e91-569f-9792-edd983ac6083",
+      "name": "红水晶面具",
+      "attributes": {
+        "physicalDamage": 2.2,
+        "hitRate": 1.8,
+        "strength": 8
+      },
+      "relicId": 429,
+      "firstStrike": true
+    },
+    {
+      "id": "79bdda09-5652-5614-96e4-161c50bcac5b",
+      "name": "战意竖琴",
+      "attributes": {
+        "constitution": 4.5,
+        "strength": 10,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 430
+    },
+    {
+      "id": "3dc0f5ae-5a64-58b8-95e3-0838e559a455",
+      "name": "秘石酒瓶",
+      "attributes": {
+        "hitRate": 3.6,
+        "strength": 8.4,
+        "physicalAreaLifesteal": 10
+      },
+      "relicId": 431
+    },
+    {
+      "id": "91b44208-eb11-52f3-8c40-d8103aed1467",
+      "name": "聚魂灯",
+      "attributes": {
+        "technique": 3.3,
+        "magic": 11.2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 432
+    },
+    {
+      "id": "41a711bf-ab39-56e6-9064-0e37fc0f0d2a",
+      "name": "星界访客的面具",
+      "attributes": {
+        "hitRate": 6.5,
+        "physicalDamage": 3,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 433
+    },
+    {
+      "id": "b8ca28e4-ca46-5d4a-98fb-91cb874882f8",
+      "name": "义贼钩爪",
+      "attributes": {
+        "technique": 10.5,
+        "magicAreaLifesteal": 10
+      },
+      "relicId": 434
+    },
+    {
+      "id": "cac0cf9a-1509-5199-b93d-8cd7d7d81b27",
+      "name": "自然沙漏",
+      "attributes": {
+        "armor": 5,
+        "constitution": 10.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 435
+    },
+    {
+      "id": "faf692b5-8fdc-5144-bcfc-991f7c7b39c3",
+      "name": "魔能指针",
+      "attributes": {
+        "magic": 3,
+        "hitRate": 6,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 436
+    },
+    {
+      "id": "b98f7943-156a-517e-bcb0-055d3cbee40d",
+      "name": "森林圣杯",
+      "attributes": {
+        "constitution": 1.5,
+        "strength": 14.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 437
+    },
+    {
+      "id": "22fdf891-72f9-576a-a97e-41d5a40162b2",
+      "name": "蛮族刀架",
+      "attributes": {
+        "physicalDamage": 4,
+        "strength": 11.5
+      },
+      "relicId": 438
+    },
+    {
+      "id": "db5ef808-2cf3-5306-8d0b-060d99c7fa8b",
+      "name": "翎尾勺",
+      "attributes": {
+        "hitRate": 3.5,
+        "magic": 8
+      },
+      "relicId": 439,
+      "firstStrike": true
+    },
+    {
+      "id": "0b632713-1513-5c80-a0e2-4b995974529c",
+      "name": "翡翠音盒",
+      "attributes": {
+        "strength": 12.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 440
+    },
+    {
+      "id": "3f87336a-1c6b-48cd-a1b0-31d14aea7655",
+      "name": "琉璃怀表",
+      "attributes": {
+        "magic": 9.5,
+        "hitRate": 4.5
+      },
+      "relicId": 441
+    },
+    {
+      "id": "65240b7a-9779-51a5-aea9-943d8358f4b9",
+      "name": "玲珑玉盒",
+      "attributes": {
+        "constitution": 12.6,
+        "armor": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 442
+    },
+    {
+      "id": "0efb5e41-8741-5119-9687-bfad7c7dc38a",
+      "name": "唤魂鼓棒",
+      "attributes": {
+        "physicalDamage": 4.5,
+        "speed": 9
+      },
+      "relicId": 443
+    },
+    {
+      "id": "a0c3843f-9110-5e02-8132-bf1208b99957",
+      "name": "星耀肩章",
+      "attributes": {
+        "constitution": 4,
+        "technique": 11
+      },
+      "relicId": 444
+    },
+    {
+      "id": "93cb3bd6-0414-55b1-9958-51ff96802224",
+      "name": "秘文书签",
+      "attributes": {
+        "technique": 4,
+        "magic": 9,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 445
+    },
+    {
+      "id": "0db91cbd-fa29-507e-acdf-1aab04790e6a",
+      "name": "辉晶烛台",
+      "attributes": {
+        "hitRate": 3.5,
+        "magic": 7,
+        "magicAreaLifesteal": 10
+      },
+      "relicId": 446
+    },
+    {
+      "id": "b5dd6598-1dae-562b-beab-04b5541e1bb5",
+      "name": "骁勇马镫",
+      "attributes": {
+        "speed": 1.2,
+        "strength": 15,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 447
+    },
+    {
+      "id": "4eb048dd-74fc-5999-982d-3fb586f853fa",
+      "name": "翎羽叉",
+      "attributes": {
+        "physicalDamage": 1,
+        "hitRate": 1.5,
+        "strength": 13.5
+      },
+      "relicId": 448
+    },
+    {
+      "id": "d8f04356-c7df-5427-baaa-c02fc4e3bb2e",
+      "name": "恶狼假面",
+      "attributes": {
+        "hitRate": 1.8,
+        "physicalDamage": 6.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 449
+    },
+    {
+      "id": "528b23b6-1c74-55bb-9d8b-d6e1f10f0468",
+      "name": "鼓舞旌旗",
+      "attributes": {
+        "constitution": 4,
+        "strength": 10.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 450
+    },
+    {
+      "id": "148027da-fc60-5b5d-86e0-db12881c664e",
+      "name": "先机暗盒",
+      "attributes": {
+        "hitRate": 3,
+        "physicalDamage": 9
+      },
+      "relicId": 451
+    },
+    {
+      "id": "9a282e21-71f6-5444-a3cf-2d92c8ead039",
+      "name": "锁魂镣铐",
+      "attributes": {
+        "technique": 4,
+        "magic": 11,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 452
+    },
+    {
+      "id": "ca426388-464a-4ba8-81f1-6f66e1591f02",
+      "name": "追魂镖",
+      "attributes": {
+        "magic": 11.8,
+        "hitRate": 2,
+        "magicDamage": 1
+      },
+      "relicId": 453
+    },
+    {
+      "id": "57de344f-f882-5fa9-9dd2-8efd4fc0a6fa",
+      "name": "先民弹弓",
+      "attributes": {
+        "strength": 2.5,
+        "technique": 11.5
+      },
+      "relicId": 454
+    },
+    {
+      "id": "6f976c7b-3809-5df1-930b-57a4a2d2cc90",
+      "name": "密纹齿轮",
+      "attributes": {
+        "technique": 5.4,
+        "constitution": 10,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 455
+    },
+    {
+      "id": "fef78a67-eb0f-5f38-8862-10ec66ab4d00",
+      "name": "燃魂蜡烛",
+      "attributes": {
+        "physicalDamage": 3,
+        "speed": 4.8,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 456
+    },
+    {
+      "id": "c4916b5d-0830-53ff-95fe-376f2fa76936",
+      "name": "遗族之镐",
+      "attributes": {
+        "constitution": 1,
+        "strength": 15,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 457
+    },
+    {
+      "id": "40f18007-87d1-569d-a35e-f59de0070b8d",
+      "name": "猎兽钉",
+      "attributes": {
+        "hitRate": 1.5,
+        "physicalDamage": 10.5
+      },
+      "relicId": 458
+    },
+    {
+      "id": "699b7d83-04ff-47f7-b0eb-5eb1d3b3e283",
+      "name": "寻魔指针",
+      "attributes": {
+        "magic": 9,
+        "hitRate": 7
+      },
+      "relicId": 459
+    },
+    {
+      "id": "0d73973f-c581-589f-905b-58b08761886e",
+      "name": "鼓舞海螺",
+      "attributes": {
+        "speed": 1,
+        "constitution": 3.5,
+        "strength": 10.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 460
+    },
+    {
+      "id": "0812a03e-cf3e-54fa-bbf4-9a925e42c921",
+      "name": "引路之号",
+      "attributes": {
+        "hitRate": 3.5,
+        "magic": 3.5,
+        "magicDamage": 2,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 461
+    },
+    {
+      "id": "2298809d-0786-57be-a3cb-5e93de4a5779",
+      "name": "医者坩埚",
+      "attributes": {
+        "strength": 4,
+        "constitution": 12.3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 462
+    },
+    {
+      "id": "e28c099a-91e5-5bfa-b1c8-6dab16abc9b2",
+      "name": "翠玉镰",
+      "attributes": {
+        "hitRate": 1.5,
+        "physicalDamage": 3,
+        "speed": 10.5
+      },
+      "relicId": 463
+    },
+    {
+      "id": "e1126eba-5e3f-5950-95ed-a8f46a7b8119",
+      "name": "秘术之球",
+      "attributes": {
+        "hitRate": 2.5,
+        "physicalDamage": 3,
+        "strength": 10.5
+      },
+      "relicId": 464
+    },
+    {
+      "id": "b5fd65b7-526b-5b80-979a-0c884afb0a7a",
+      "name": "白鱼玉佩",
+      "attributes": {
+        "hitRate": 3,
+        "magicDamage": 5
+      },
+      "relicId": 465,
+      "firstStrike": true
+    },
+    {
+      "id": "c67eda6a-613c-5da8-96cf-fe6aad0043b0",
+      "name": "缔誓印章",
+      "attributes": {
+        "magic": 9.5,
+        "technique": 3.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 466
+    },
+    {
+      "id": "2dc616a9-fe6d-5f63-9899-f94705d12e14",
+      "name": "暮光目镜",
+      "attributes": {
+        "physicalDamage": 7.2,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 467
+    },
+    {
+      "id": "ea040428-216d-5411-a2ab-3028137ee7d4",
+      "name": "震雷玉鼓",
+      "attributes": {
+        "technique": 1.5,
+        "strength": 15,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 468
+    },
+    {
+      "id": "47b1f636-05f8-598e-ac23-3ee4f34893a2",
+      "name": "汲魂笔",
+      "attributes": {
+        "hitRate": 3.5,
+        "magic": 7.2,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 469
+    },
+    {
+      "id": "06338a10-cb97-5d63-bde5-49d447d8e762",
+      "name": "星族秘匣",
+      "attributes": {
+        "technique": 11
+      },
+      "relicId": 470,
+      "firstStrike": true
+    },
+    {
+      "id": "bbe90cb0-37cb-5630-a2f3-b1017035639f",
+      "name": "战意之瓶",
+      "attributes": {
+        "technique": 4.5,
+        "strength": 11,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 471
+    },
+    {
+      "id": "ee6df707-f285-54ad-8f7a-025145ad346c",
+      "name": "原矩怀表",
+      "attributes": {
+        "constitution": 1,
+        "technique": 8.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 472
+    },
+    {
+      "id": "40584ef1-5318-58a4-8644-bdd2a28c6b83",
+      "name": "觅魂罗盘",
+      "attributes": {
+        "technique": 4.5,
+        "magic": 10.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 473
+    },
+    {
+      "id": "7cfb0f8a-acc7-435a-b178-ea315e426ffb",
+      "name": "符文魔灯",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 5.5
+      },
+      "relicId": 474
+    },
+    {
+      "id": "99ea9c76-097f-500d-a4d1-b20f6ae92ba8",
+      "name": "先民器皿",
+      "attributes": {
+        "physicalDamage": 6.5,
+        "hitRate": 7.2
+      },
+      "relicId": 475
+    },
+    {
+      "id": "26c81178-c12f-530c-83fd-aaa466ab9fdc",
+      "name": "双生托盘",
+      "attributes": {
+        "constitution": 10.8,
+        "strength": 2.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 476
+    },
+    {
+      "id": "c32a859f-f612-5826-8c9f-d38206f7457a",
+      "name": "自然之声",
+      "attributes": {
+        "strength": 2,
+        "hitRate": 2.5,
+        "physicalDamage": 8
+      },
+      "relicId": 477
+    },
+    {
+      "id": "23ad5936-01f5-5373-af00-f49fb84dacb6",
+      "name": "星空螺壳",
+      "attributes": {
+        "speed": 1.5,
+        "strength": 15,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 478
+    },
+    {
+      "id": "b9ee2f1c-d287-51b4-801a-ba8f4eb210e6",
+      "name": "远足药杵",
+      "attributes": {
+        "hitRate": 1.2,
+        "physicalDamage": 7,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 479
+    },
+    {
+      "id": "004c8c3c-9187-5984-b4ad-627185f21729",
+      "name": "琉璃药瓶",
+      "attributes": {
+        "hitRate": 1,
+        "strength": 15.5
+      },
+      "relicId": 480
+    },
+    {
+      "id": "0f144a18-194c-5026-ad1e-e1469107b060",
+      "name": "遗族之瓶",
+      "attributes": {
+        "speed": 1,
+        "constitution": 3,
+        "strength": 11,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 481
+    },
+    {
+      "id": "85e84f4e-7dc4-56cc-a7d3-4a65c79a8165",
+      "name": "灵智扫帚",
+      "attributes": {
+        "healingBonus": 6,
+        "technique": 10
+      },
+      "relicId": 482
+    },
+    {
+      "id": "278be7a6-0403-594e-b44f-3b89a98c153b",
+      "name": "八周年徽章",
+      "attributes": {
+        "hitRate": 5,
+        "magic": 8
+      },
+      "relicId": 483
+    },
+    {
+      "id": "d9e48d0f-9e47-5664-a7ef-23ddf67713fb",
+      "name": "溶炎琴",
+      "attributes": {
+        "physicalDamage": 11
+      },
+      "relicId": 484
+    },
+    {
+      "id": "74050651-5613-5244-b51f-a37898252c4f",
+      "name": "水晶棋子",
+      "attributes": {
+        "speed": 10.8,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 485
+    },
+    {
+      "id": "0cdc4a49-6208-56a3-98ec-186cd2943c0d",
+      "name": "萤草灯",
+      "attributes": {
+        "speed": 1,
+        "technique": 12.5
+      },
+      "relicId": 486
+    },
+    {
+      "id": "dd18391a-874c-573d-a0ec-49990cf19a3b",
+      "name": "引路之烛",
+      "attributes": {
+        "magic": 11.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 487
+    },
+    {
+      "id": "a7eae300-3227-55f7-bccf-52bbddda00fe",
+      "name": "符文锁",
+      "attributes": {
+        "hitRate": 5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 488,
+      "firstStrike": true
+    },
+    {
+      "id": "9bb18cd9-a3e8-51c8-b17c-da88f0fe33e1",
+      "name": "吟游木琴",
+      "attributes": {
+        "strength": 3,
+        "constitution": 13,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 489
+    },
+    {
+      "id": "8aed0e3d-bec5-58ca-9e04-39ab32921f16",
+      "name": "暗影飞镖",
+      "attributes": {
+        "hitRate": 6.5,
+        "strength": 5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 490
+    },
+    {
+      "id": "d5f8a1a6-6c20-44e2-a81b-d0a23ae8797a",
+      "name": "不灭油灯",
+      "attributes": {
+        "magic": 9.5,
+        "hitRate": 6.5
+      },
+      "relicId": 491
+    },
+    {
+      "id": "b0f1ce7a-2f00-5ede-a302-22f28c62da67",
+      "name": "先民陶壶",
+      "attributes": {
+        "constitution": 10.5,
+        "strength": 3.7,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 492
+    },
+    {
+      "id": "117b31cc-ee4a-50a8-bf87-4213e4ada87d",
+      "name": "吟游长笛",
+      "attributes": {
+        "strength": 2,
+        "hitRate": 10,
+        "physicalAreaLifesteal": 10
+      },
+      "relicId": 493
+    },
+    {
+      "id": "195fbdaa-1ec7-5054-abe5-4d11559b8280",
+      "name": "唤鹰之哨",
+      "attributes": {
+        "speed": 6.5,
+        "physicalDamage": 7.2
+      },
+      "relicId": 494
+    },
+    {
+      "id": "9d79f9cf-8b48-5970-bb25-57cb64b4536c",
+      "name": "野兽钩爪",
+      "attributes": {
+        "constitution": 3,
+        "technique": 11.5
+      },
+      "relicId": 495
+    },
+    {
+      "id": "acd7d8fa-bb66-5b04-9835-7ca284f2a949",
+      "name": "符文杯",
+      "attributes": {
+        "strength": 14.5,
+        "constitution": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 496
+    },
+    {
+      "id": "edd2b2c0-9548-5a3b-8ecc-a37359e174f4",
+      "name": "星界古币",
+      "attributes": {
+        "technique": 8.5,
+        "physicalDamage": 1.2,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 497
+    },
+    {
+      "id": "6c1259c7-8610-5956-8a03-49f1ec813fe6",
+      "name": "暗金锁",
+      "attributes": {
+        "strength": 11.5,
+        "constitution": 2.5,
+        "technique": 1.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 498
+    },
+    {
+      "id": "1d30e98a-0c40-5cc5-966d-961ef5c71df3",
+      "name": "遗失古籍",
+      "attributes": {
+        "magic": 11,
+        "constitution": 1.8,
+        "technique": 3.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 499
+    },
+    {
+      "id": "ab0e930a-d78e-4042-ad4c-14146baa191a",
+      "name": "嗜战古镜",
+      "attributes": {
+        "strength": 12.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 500
+    },
+    {
+      "id": "83f89285-9652-5d7a-8750-d91943fa5bb9",
+      "name": "古族权杖",
+      "attributes": {
+        "physicalDamage": 8.4,
+        "strength": 5.2
+      },
+      "relicId": 501
+    },
+    {
+      "id": "b6b5dd0b-4170-5774-9564-642c42a2afa9",
+      "name": "秘术卷轴",
+      "attributes": {
+        "magic": 10,
+        "constitution": 3,
+        "technique": 1.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 502
+    },
+    {
+      "id": "93feeb88-d397-5588-a68b-70636ea8e75c",
+      "name": "元素之钥",
+      "attributes": {
+        "hitRate": 5.6,
+        "magic": 3.6,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 503
+    },
+    {
+      "id": "ed38f9a9-116d-5a70-bbfc-5ab874e9375a",
+      "name": "泰坦法典",
+      "attributes": {
+        "strength": 15,
+        "technique": 1.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 504
+    },
+    {
+      "id": "2b4beaee-0e09-4bc0-9a6c-9ecf8572a03e",
+      "name": "尤瑟之旗",
+      "attributes": {
+        "magic": 13,
+        "hitRate": 2.5
+      },
+      "relicId": 505
+    },
+    {
+      "id": "5f20b5a1-bcfa-5793-ba06-085f35aa6aee",
+      "name": "尖啸骨笛",
+      "attributes": {
+        "constitution": 1,
+        "technique": 12.5
+      },
+      "relicId": 506
+    },
+    {
+      "id": "876a27a6-c9ce-5ade-a503-9bbc91c2a4e5",
+      "name": "阳炎胸针",
+      "attributes": {
+        "hitRate": 2.5,
+        "physicalDamage": 9.5
+      },
+      "relicId": 507
+    },
+    {
+      "id": "b95ff2e6-a49e-501a-9d6e-3d3afbb481a3",
+      "name": "灵域之花",
+      "attributes": {
+        "constitution": 4.2,
+        "strength": 11,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 508
+    },
+    {
+      "id": "4d968e34-dfa4-45e5-b8fe-d45f1c916a06",
+      "name": "秘域银杯",
+      "attributes": {
+        "strength": 15.8,
+        "hitRate": 1.2
+      },
+      "relicId": 509
+    },
+    {
+      "id": "8bdbcd8b-22e4-46a9-b8e5-ff92919f5e29",
+      "name": "振幅香瓶",
+      "attributes": {
+        "speed": 7,
+        "physicalDamage": 3.2,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 510
+    },
+    {
+      "id": "5f7f8aed-b1f5-5039-ab75-88d154e2044f",
+      "name": "圣人金像",
+      "attributes": {
+        "constitution": 12.6,
+        "strength": 3.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 511
+    },
+    {
+      "id": "fa80aaaf-3f90-53e4-941e-c9809d8d4a27",
+      "name": "漆黑之书",
+      "attributes": {
+        "magic": 6,
+        "hitRate": 3.2,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 512
+    },
+    {
+      "id": "1f390e2a-6c8e-5741-896f-0f10309dd6b7",
+      "name": "破碎星图",
+      "attributes": {
+        "constitution": 10.5,
+        "technique": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 513
+    },
+    {
+      "id": "bd945a17-585d-5e65-836a-2e33d01937e5",
+      "name": "苍月之壶",
+      "attributes": {
+        "speed": 1.8,
+        "strength": 15,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 514
+    },
+    {
+      "id": "e1cc8f82-7c6e-551a-9c2b-bb55d3d9e385",
+      "name": "荒芜之核",
+      "attributes": {
+        "physicalDamage": 7,
+        "strength": 1.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 515
+    },
+    {
+      "id": "7a4754bf-a898-521e-85eb-70a7a61a4a31",
+      "name": "秘银卷轴",
+      "attributes": {
+        "technique": 10.5,
+        "healingBonus": 5.5
+      },
+      "relicId": 516
+    },
+    {
+      "id": "18247cb4-3237-5be5-a25e-c040bd2c1f05",
+      "name": "深海之瞳",
+      "attributes": {
+        "strength": 1.5,
+        "hitRate": 8.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 517
+    },
+    {
+      "id": "de8b1bbc-5d50-53a5-8753-b7bda25ac6bd",
+      "name": "梦魇之砂",
+      "attributes": {
+        "speed": 1.5,
+        "constitution": 2.5,
+        "strength": 11.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 518
+    },
+    {
+      "id": "57fd9874-4849-5137-86b3-8e0c4818d881",
+      "name": "灵视宝珠",
+      "attributes": {
+        "magic": 11.5,
+        "technique": 4.3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 519
+    },
+    {
+      "id": "4aa01515-0e72-5d1f-8a2b-95397e84e056",
+      "name": "飞龙之心",
+      "attributes": {
+        "magicSingleLifesteal": 10,
+        "hitRate": 5
+      },
+      "relicId": 520,
+      "firstStrike": true
+    },
+    {
+      "id": "8a939bab-275c-563e-997f-ccaa7e5658da",
+      "name": "觉醒之章",
+      "attributes": {
+        "technique": 11.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 521
+    },
+    {
+      "id": "24f551dc-212c-4edf-9f0e-652795002853",
+      "name": "回魂香炉",
+      "attributes": {
+        "magic": 11.5,
+        "magicDamage": 1.8,
+        "hitRate": 1.5
+      },
+      "relicId": 522
+    },
+    {
+      "id": "801c1db1-314d-5292-a1d5-17f7328c7771",
+      "name": "誓神圆规",
+      "attributes": {
+        "hitRate": 10,
+        "criticalRate": 10,
+        "weaponPower": 10,
+        "healingBonus": 10
+      },
+      "relicId": 523
+    },
+    {
+      "id": "5ff5b038-8530-56cd-a824-800409ecbd56",
+      "name": "赤焰之印",
+      "attributes": {
+        "speed": 6,
+        "hitRate": 4.2,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 524
+    },
+    {
+      "id": "05881c38-6c2c-5b7a-9602-f4709d8e9350",
+      "name": "黄金之叶",
+      "attributes": {
+        "magic": 9.7,
+        "technique": 3.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 525
+    },
+    {
+      "id": "eb9868b9-d9ad-558f-a698-c77bf663d96d",
+      "name": "漆黑面具",
+      "attributes": {
+        "strength": 15.5,
+        "constitution": 1.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 526
+    },
+    {
+      "id": "c45bb572-3a78-5976-830b-bc8c1d04864a",
+      "name": "远古之铃",
+      "attributes": {
+        "strength": 1,
+        "technique": 12.5
+      },
+      "relicId": 527
+    },
+    {
+      "id": "d1e0ea58-7344-4978-8da7-d8310bb9f528",
+      "name": "海神酒杯",
+      "attributes": {
+        "speed": 11.6,
+        "hitRate": 1.5,
+        "criticalMultiplier": 6
+      },
+      "relicId": 528
+    },
+    {
+      "id": "fbc03353-8bc9-5b53-aba4-55682d959833",
+      "name": "福曦锦囊",
+      "attributes": {
+        "constitution": 3.6,
+        "strength": 3.6,
+        "magic": 3.6,
+        "technique": 3.6,
+        "speed": 3.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 529
+    },
+    {
+      "id": "cc9d797f-63a0-5f9f-9cdf-94449a38d4e5",
+      "name": "流光鱼灯",
+      "attributes": {
+        "strength": 11.5,
+        "constitution": 3.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 530
+    },
+    {
+      "id": "7c1e9efa-880d-54bf-af2f-24142839cc61",
+      "name": "机械灵雀I型",
+      "attributes": {
+        "physicalDamage": 4.6,
+        "strength": 3.6,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 531
+    },
+    {
+      "id": "eb1f7ab8-e291-5c23-8f5d-6896cca7450b",
+      "name": "机械灵雀II型",
+      "attributes": {
+        "hitRate": 5.8,
+        "physicalSingleLifesteal": 8,
+        "physicalAreaLifesteal": 8,
+        "magicSingleLifesteal": 8,
+        "magicAreaLifesteal": 8
+      },
+      "relicId": 532
+    },
+    {
+      "id": "28e074d9-9d67-51e2-9656-1172c7c05d56",
+      "name": "蚀骨蝶翼",
+      "attributes": {
+        "magic": 11.5,
+        "technique": 3.3,
+        "constitution": 1.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 533
+    },
+    {
+      "id": "dcb5f62b-f25c-565f-8761-ab39542f3df9",
+      "name": "幽萤髓液",
+      "attributes": {
+        "criticalMultiplier": 12.5,
+        "strength": 5.3
+      },
+      "relicId": 534
+    },
+    {
+      "id": "0b539102-8b1c-53d8-8cc9-5d6d944ca2d4",
+      "name": "雾隐船锚",
+      "attributes": {
+        "hitRate": 9,
+        "strength": 3.4,
+        "physicalAreaLifesteal": 10
+      },
+      "relicId": 535
+    },
+    {
+      "id": "cf5408e2-3564-5393-b5b9-99322e973aff",
+      "name": "时朽伞菌",
+      "attributes": {
+        "magic": 10,
+        "constitution": 2.1,
+        "technique": 2.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 536
+    },
+    {
+      "id": "803a2079-0716-424a-9d36-51c22f7f456e",
+      "name": "赤鹦鹉螺",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 4.2
+      },
+      "relicId": 537
+    },
+    {
+      "id": "87ceff5b-b63f-4d45-8994-2ef8ebf66cc9",
+      "name": "星轨罗盘",
+      "attributes": {
+        "magic": 12,
+        "criticalMultiplier": 2.4,
+        "hitRate": 1.8
+      },
+      "relicId": 538
+    },
+    {
+      "id": "109e12af-dae3-5c07-8c77-95ae171b7290",
+      "name": "提拉博琴",
+      "attributes": {
+        "hitRate": 10,
+        "strength": 6.8
+      },
+      "relicId": 539
+    },
+    {
+      "id": "7d9811de-56ad-59fa-a99b-1d906c07b398",
+      "name": "海月瓮",
+      "attributes": {
+        "constitution": 12.4,
+        "strength": 4.3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 540
+    },
+    {
+      "id": "90123eab-64e3-518d-983b-c63cfb83a261",
+      "name": "时虫琥珀",
+      "attributes": {
+        "technique": 8.8,
+        "physicalDamage": 1.2,
+        "constitution": 1.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 541
+    },
+    {
+      "id": "51e22ab6-3e95-5a6a-9b2d-043674dc694d",
+      "name": "噩梦瓶",
+      "attributes": {
+        "constitution": 10.6,
+        "armor": 9,
+        "technique": 1.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 542
+    },
+    {
+      "id": "1a9a1e0d-f876-5301-a58f-807c8b80ce17",
+      "name": "龙目铜匣",
+      "attributes": {
+        "strength": 12.5,
+        "criticalMultiplier": 6
+      },
+      "relicId": 543
+    },
+    {
+      "id": "c76525dd-acbf-5e10-b567-d0088084ee83",
+      "name": "幻蛾面具",
+      "attributes": {
+        "technique": 12.5,
+        "hitRate": 1
+      },
+      "relicId": 544
+    },
+    {
+      "id": "ed89fba3-e612-5dde-bcc8-c036a8728af0",
+      "name": "溟心海葵",
+      "attributes": {
+        "strength": 15.2,
+        "technique": 2.1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 545
+    },
+    {
+      "id": "c5735389-c5b8-55f1-8721-65181bba3744",
+      "name": "绿野之钥",
+      "attributes": {
+        "strength": 11,
+        "constitution": 3.6,
+        "technique": 1.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 546
+    },
+    {
+      "id": "1fc8776c-ecd2-5777-a6db-11ca407ea6c9",
+      "name": "森罗球",
+      "attributes": {
+        "strength": 10,
+        "constitution": 1.8,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 547
+    },
+    {
+      "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
+      "name": "凛虫之卵",
+      "attributes": {
+        "strength": 13.5,
+        "hitRate": 3,
+        "criticalMultiplier": 3
+      },
+      "relicId": 548
+    },
+    {
+      "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
+      "name": "罪罚镜",
+      "attributes": {
+        "speed": 10.8,
+        "hitRate": 1.5,
+        "criticalMultiplier": 7.5
+      },
+      "relicId": 549
     },
     {
       "id": "ca421e71-06f3-4a1f-a714-0f736800d84c",
@@ -192,23 +3666,39 @@
         "technique": 3.7,
         "adventureGoldBonus": 7.5,
         "adventureSoulBonus": 7.5
-      }
+      },
+      "relicId": 550
     },
     {
-      "id": "4228ab02-e2f9-4701-bbe1-d002523ebea2",
-      "name": "魔能提灯",
+      "id": "1d6b5d82-4b1e-5653-8acf-a6b7d47d6174",
+      "name": "九周年徽章",
       "attributes": {
-        "magic": 5,
-        "magicDamage": 7.5
-      }
+        "strength": 6,
+        "hitRate": 6,
+        "armor": 6
+      },
+      "relicId": 551
     },
     {
-      "id": "803a2079-0716-424a-9d36-51c22f7f456e",
-      "name": "赤鹦鹉螺",
+      "id": "e74beba3-bb81-56b0-aba7-279c394462cc",
+      "name": "鬼面铃",
       "attributes": {
-        "magic": 10,
-        "hitRate": 4.2
-      }
+        "magic": 7.5,
+        "hitRate": 3.5,
+        "magicAreaLifesteal": 10
+      },
+      "relicId": 552
+    },
+    {
+      "id": "d38c39af-c730-5e90-a6d7-92fdd084f21e",
+      "name": "水滴兽",
+      "attributes": {
+        "magic": 9.5,
+        "technique": 4.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 553
     },
     {
       "id": "b5cd25cd-a272-4eb0-bb5a-06f453fdbb48",
@@ -217,39 +3707,112 @@
         "magic": 7.5,
         "hitRate": 3,
         "criticalMultiplier": 7.5
-      }
+      },
+      "relicId": 554
     },
     {
-      "id": "efd06557-1bb9-446b-9f45-33ec8432595f",
-      "name": "墨晶",
+      "id": "1c06bba0-21c4-5875-b170-e6b88d6b16d6",
+      "name": "寂海珊瑚",
       "attributes": {
-        "magic": 11.2,
-        "magicDamage": 2.5
-      }
+        "physicalDamage": 1,
+        "technique": 12.5
+      },
+      "relicId": 555
     },
     {
-      "id": "2559c480-7dc5-475b-b456-2465ecb68ce2",
-      "name": "渡魂之灯",
+      "id": "ba96899e-6860-50e9-ba7f-1e295bdaaaa4",
+      "name": "海蚀珠",
       "attributes": {
-        "magic": 8,
-        "magicSingleLifesteal": 10
-      }
+        "strength": 15.2,
+        "speed": 2.1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 556
     },
     {
-      "id": "4502d9ee-47ff-4d00-a659-58aaaa19f51b",
-      "name": "血影之灯",
+      "id": "8e6f0681-1293-5933-a6ad-4036c99cf348",
+      "name": "回响之石",
       "attributes": {
-        "strength": 9.5,
+        "strength": 10,
+        "constitution": 5.4,
+        "technique": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 557
+    },
+    {
+      "id": "229f8f02-3c9c-55ca-8372-11a13aaeeb89",
+      "name": "刺夜烬果",
+      "attributes": {
+        "speed": 6,
+        "criticalMultiplier": 6,
         "physicalSingleLifesteal": 10
-      }
+      },
+      "relicId": 558
     },
     {
-      "id": "d7f43c48-7c30-4366-bbdb-2a62c0fc4281",
-      "name": "遗失锤柄",
+      "id": "fa355feb-b5a8-5877-b413-69de9292c82b",
+      "name": "暗蚀珠",
       "attributes": {
-        "strength": 2,
-        "physicalDamage": 8.5
-      }
+        "technique": 6.5,
+        "dotDamage": 6,
+        "constitution": 1
+      },
+      "relicId": 559
+    },
+    {
+      "id": "41d526bf-bbdb-5be5-b4e5-29e2df33ad0e",
+      "name": "枯竭面具",
+      "attributes": {
+        "magic": 6,
+        "hitRate": 5,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 560
+    },
+    {
+      "id": "1de55c0c-8892-5bba-93a8-9f8dd7d96588",
+      "name": "玲珑果",
+      "attributes": {
+        "constitution": 13,
+        "strength": 4.2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 561
+    },
+    {
+      "id": "7beaf41a-5f65-5a34-a142-9fce9b608cfb",
+      "name": "极光瓶",
+      "attributes": {
+        "criticalMultiplier": 1.2,
+        "physicalDamage": 10
+      },
+      "relicId": 562
+    },
+    {
+      "id": "6427e5b4-0e06-53af-ab56-4b425221504f",
+      "name": "冥辉曼珠",
+      "attributes": {
+        "constitution": 10,
+        "strength": 4.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 563
+    },
+    {
+      "id": "38dea862-2a61-5088-a5c6-1867b37bfde9",
+      "name": "炼狱号角",
+      "attributes": {
+        "strength": 15.5,
+        "technique": 1.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 564
     },
     {
       "id": "3834b693-a4a4-48e9-b3ab-af741eaf916a",
@@ -257,15 +3820,282 @@
       "attributes": {
         "physicalDamage": 8.2,
         "physicalSingleLifesteal": 10
-      }
+      },
+      "relicId": 565
     },
     {
-      "id": "a8f7ffab-185b-4ee1-be26-0d19fcd2a72f",
-      "name": "赤脉藤环",
+      "id": "97663d6a-80f6-58d9-aabb-3d8f2471c3d4",
+      "name": "永眠之烛",
       "attributes": {
-        "physicalDamage": 8,
-        "criticalMultiplier": 9
-      }
+        "healingBonus": 12,
+        "constitution": 4
+      },
+      "relicId": 566
+    },
+    {
+      "id": "c3451487-b3e5-57c7-b355-aa7a1d6688f0",
+      "name": "绿言钵",
+      "attributes": {
+        "strength": 12,
+        "constitution": 3.2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 567
+    },
+    {
+      "id": "1396a66e-29f3-43c1-a532-9a6bb2f8e425",
+      "name": "秘银盏",
+      "attributes": {
+        "magic": 8.2,
+        "hitRate": 7.5
+      },
+      "relicId": 568
+    },
+    {
+      "id": "91521c86-31ea-55db-b091-7cc62dfe8ac1",
+      "name": "小黑妹勋章",
+      "attributes": {
+        "physicalDamage": 6,
+        "magicDamage": 6,
+        "physicalSingleLifesteal": 6,
+        "physicalAreaLifesteal": 6,
+        "magicSingleLifesteal": 6,
+        "magicAreaLifesteal": 6
+      },
+      "relicId": 569
+    },
+    {
+      "id": "99263885-dac7-55cb-9401-05515eaf651c",
+      "name": "黄金桂",
+      "attributes": {
+        "magic": 11,
+        "technique": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 570
+    },
+    {
+      "id": "e5997c6d-52b1-5bb4-b3b1-d20baf72d062",
+      "name": "雷裂杵臼",
+      "attributes": {
+        "strength": 10,
+        "criticalMultiplier": 10
+      },
+      "relicId": 571
+    },
+    {
+      "id": "a6ffab10-e6c6-44e6-b3b9-4b3e8c6753b3",
+      "name": "月蚀绘兔",
+      "attributes": {
+        "speed": 10,
+        "physicalDamage": 4
+      },
+      "relicId": 572
+    },
+    {
+      "id": "9df76be2-4d2d-52ab-8564-b0b8c3bffabd",
+      "name": "翠石目遮",
+      "attributes": {
+        "magic": 10,
+        "technique": 3,
+        "constitution": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 573
+    },
+    {
+      "id": "1ef8e4c6-f5db-5a21-bc97-d61fafe33f10",
+      "name": "蛇骨铃",
+      "attributes": {
+        "criticalMultiplier": 6,
+        "hitRate": 2,
+        "physicalDamage": 6
+      },
+      "relicId": 574
+    },
+    {
+      "id": "6f38c351-2c4d-598f-a32f-cfccf97340ad",
+      "name": "月辉纱",
+      "attributes": {
+        "strength": 14.2,
+        "constitution": 1.6,
+        "technique": 1.6,
+        "speed": 1.6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 575
+    },
+    {
+      "id": "d94aefdf-4360-52d0-81b2-85eba4c98c69",
+      "name": "迷雾镜",
+      "attributes": {
+        "magic": 6,
+        "criticalMultiplier": 6,
+        "hitRate": 6
+      },
+      "relicId": 576
+    },
+    {
+      "id": "4e2d69e1-aed4-5e1f-8572-1cedc3bcc746",
+      "name": "绿贝母梳",
+      "attributes": {
+        "physicalDamage": 5,
+        "criticalMultiplier": 5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 577
+    },
+    {
+      "id": "c1b7978e-51a5-58c7-8410-07d715f60d4f",
+      "name": "阴阳扣",
+      "attributes": {
+        "strength": 10,
+        "constitution": 5,
+        "technique": 3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 578
+    },
+    {
+      "id": "f2a80e16-ec75-55ed-912f-400ec84d0641",
+      "name": "炎花裂石",
+      "attributes": {
+        "strength": 10,
+        "hitRate": 6
+      },
+      "relicId": 579
+    },
+    {
+      "id": "d1e798cb-938d-5b47-9e82-7827a5c6d119",
+      "name": "涎灵菇",
+      "attributes": {
+        "constitution": 12,
+        "strength": 6,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 580
+    },
+    {
+      "id": "8b301dab-fdcf-53d7-8f3a-932ee5234b57",
+      "name": "时漏之书",
+      "attributes": {
+        "speed": 4,
+        "criticalMultiplier": 7,
+        "hitRate": 1.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 581
+    },
+    {
+      "id": "3af0fa2d-fed4-58fd-84c9-ed22895b54a8",
+      "name": "符文骨剔",
+      "attributes": {
+        "technique": 10,
+        "dotDamage": 4
+      },
+      "relicId": 582
+    },
+    {
+      "id": "f12fbab5-3786-5b38-b3a2-7451c1877e3b",
+      "name": "蛇影石",
+      "attributes": {
+        "constitution": 8,
+        "strength": 8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 583
+    },
+    {
+      "id": "ef2add33-68c6-45aa-91dc-902b7e7bc75f",
+      "name": "森木灵盘",
+      "attributes": {
+        "magic": 12,
+        "hitRate": 3
+      },
+      "relicId": 584
+    },
+    {
+      "id": "e0054cae-ade4-574d-a4ba-316a010d41a4",
+      "name": "炼狱骨",
+      "attributes": {
+        "strength": 15,
+        "constitution": 2.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 585
+    },
+    {
+      "id": "f86ea1c5-3e61-54b1-9f29-f32cfad343ee",
+      "name": "冰铃锥",
+      "attributes": {
+        "criticalMultiplier": 12,
+        "strength": 3,
+        "physicalDamage": 3
+      },
+      "relicId": 586
+    },
+    {
+      "id": "3c706d29-03e2-5cad-8025-76e6d391e3f9",
+      "name": "翅翼花",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 1,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 587
+    },
+    {
+      "id": "33e2b2b7-f8d2-5433-963f-da7ddd4c4e4a",
+      "name": "星辉圣瓶",
+      "attributes": {
+        "magic": 10,
+        "constitution": 3.5,
+        "technique": 2.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 588
+    },
+    {
+      "id": "e8975224-ec87-506f-b242-49bc80e88dc4",
+      "name": "月梦网",
+      "attributes": {
+        "technique": 9,
+        "physicalDamage": 1,
+        "constitution": 1.5,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 589
+    },
+    {
+      "id": "961d3726-465a-5475-9f90-4657250fa50d",
+      "name": "渊声螺",
+      "attributes": {
+        "magic": 12,
+        "constitution": 3,
+        "technique": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 590
+    },
+    {
+      "id": "d96ecb44-6048-592b-892d-17fd5d4face0",
+      "name": "幻孢灯",
+      "attributes": {
+        "strength": 8,
+        "hitRate": 4,
+        "criticalMultiplier": 8
+      },
+      "relicId": 591
     },
     {
       "id": "6129a414-0512-4afa-8338-d8a8332380e5",
@@ -274,7 +4104,144 @@
         "speed": 8.5,
         "physicalDamage": 2.4,
         "physicalSingleLifesteal": 10
-      }
+      },
+      "relicId": 592
+    },
+    {
+      "id": "39271e27-5c83-56ad-82fb-2fb3ec4f2ab5",
+      "name": "活木笛",
+      "attributes": {
+        "strength": 14.5,
+        "constitution": 3.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 593
+    },
+    {
+      "id": "da0b141d-0e9c-4147-942e-2fe31dab4be8",
+      "name": "寄宿孢球",
+      "attributes": {
+        "magic": 14,
+        "hitRate": 2
+      },
+      "relicId": 594
+    },
+    {
+      "id": "740b3849-ecf7-5af2-b8ce-32ceaca424e5",
+      "name": "流金矿",
+      "attributes": {
+        "physicalDamage": 8,
+        "criticalMultiplier": 8
+      },
+      "relicId": 595
+    },
+    {
+      "id": "9a781731-c370-5487-9faa-cf6c27df2fe7",
+      "name": "暗枯蝉翅",
+      "attributes": {
+        "magic": 10,
+        "constitution": 5,
+        "technique": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 596
+    },
+    {
+      "id": "8e8036ef-e895-5760-a7d4-9a1c19864142",
+      "name": "囚魂光囊",
+      "attributes": {
+        "strength": 3,
+        "physicalDamage": 3,
+        "criticalMultiplier": 3,
+        "physicalSingleLifesteal": 10
+      },
+      "relicId": 597
+    },
+    {
+      "id": "bb476f7d-ff18-53e7-bd4a-43ba98c58c11",
+      "name": "霜木花",
+      "attributes": {
+        "strength": 11,
+        "constitution": 4,
+        "technique": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 598
+    },
+    {
+      "id": "f8876ac2-612b-586f-b282-265e4e88ec65",
+      "name": "寒蝉蜕",
+      "attributes": {
+        "strength": 7,
+        "hitRate": 9
+      },
+      "relicId": 599
+    },
+    {
+      "id": "b0f3aed1-056c-5401-9bac-6bc14a28ded3",
+      "name": "囚风瓶",
+      "attributes": {
+        "constitution": 13.5,
+        "strength": 4,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 600
+    },
+    {
+      "id": "4f3e32b0-ac8f-560e-bbb0-bd2b4d696ca9",
+      "name": "不融冰",
+      "attributes": {
+        "technique": 5,
+        "dotDamage": 10
+      },
+      "relicId": 601
+    },
+    {
+      "id": "4f31d4f9-aae7-5ed9-b785-b201a5427a39",
+      "name": "瞬燃火沫",
+      "attributes": {
+        "strength": 6,
+        "hitRate": 6,
+        "criticalMultiplier": 6
+      },
+      "relicId": 602
+    },
+    {
+      "id": "4f161267-486c-5c0d-ae45-9d3b1c3c8c28",
+      "name": "不烬残卷",
+      "attributes": {
+        "constitution": 12,
+        "strength": 2,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 603
+    },
+    {
+      "id": "65ad2146-c049-5005-b35a-f3f6330b59ac",
+      "name": "寄生墨矿",
+      "attributes": {
+        "magic": 5,
+        "hitRate": 5,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 604
+    },
+    {
+      "id": "d260ab5e-8ccd-5395-a993-d0624010d6f7",
+      "name": "幽璃眠灯",
+      "attributes": {
+        "strength": 14,
+        "constitution": 4,
+        "technique": 1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 605
     },
     {
       "id": "a0b8ea9d-fead-4434-8538-7aa7c15efee2",
@@ -283,48 +4250,49 @@
         "speed": 12,
         "physicalDamage": 1,
         "criticalMultiplier": 5
-      }
+      },
+      "relicId": 606
     },
     {
-      "id": "cf106d4c-69b3-49a1-86a4-26c9d97f503d",
-      "name": "蛮荒药杵",
+      "id": "01978b93-9963-5e92-97f7-8746ebbee842",
+      "name": "暮星遗砂",
       "attributes": {
-        "speed": 12,
-        "physicalDamage": 1.5
-      }
+        "technique": 12
+      },
+      "relicId": 607,
+      "firstStrike": true
     },
     {
-      "id": "a6ffab10-e6c6-44e6-b3b9-4b3e8c6753b3",
-      "name": "月蚀绘兔",
+      "id": "f540c47a-2afc-5b58-be3b-e8913ca2f206",
+      "name": "残月胎壳",
       "attributes": {
-        "speed": 10,
-        "physicalDamage": 4
-      }
+        "strength": 12,
+        "constitution": 2,
+        "technique": 3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 608
     },
     {
-      "id": "c993b66a-d80f-4772-aeb9-44a30bf71e76",
-      "name": "凛虫之卵",
+      "id": "351faebd-7fc5-5115-89fd-88283009787d",
+      "name": "哀嚎骨",
       "attributes": {
-        "strength": 13.5,
-        "hitRate": 3,
-        "criticalMultiplier": 3
-      }
+        "healingBonus": 8,
+        "technique": 8.5
+      },
+      "relicId": 609
     },
     {
-      "id": "4d968e34-dfa4-45e5-b8fe-d45f1c916a06",
-      "name": "秘域银杯",
+      "id": "bdd0ed5d-328b-4e5c-9fa5-04f1dab7f4db",
+      "name": "黑凝矿盐",
       "attributes": {
-        "strength": 15.8,
-        "hitRate": 1.2
-      }
-    },
-    {
-      "id": "631fd5e0-1f81-4d6e-a6e2-2a841ce627f1",
-      "name": "15.7黑曜石",
-      "attributes": {
-        "strength": 15.7,
-        "hitRate": 1.1
-      }
+        "magic": 12.5,
+        "technique": 2.8,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 610
     },
     {
       "id": "2abfaf07-16e7-43ec-b3e5-ba3ebc925c35",
@@ -332,42 +4300,210 @@
       "attributes": {
         "strength": 8,
         "hitRate": 10
-      }
+      },
+      "relicId": 611
     },
     {
-      "id": "ab0e930a-d78e-4042-ad4c-14146baa191a",
-      "name": "嗜战古镜",
+      "id": "3b75d71a-e795-5a02-9add-e9200b6bfd3d",
+      "name": "羽鸦铜牌",
       "attributes": {
-        "strength": 12.5,
+        "hitRate": 6,
+        "magic": 5,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 612
+    },
+    {
+      "id": "14efd29d-3eb0-5d8e-be1f-02df38603eed",
+      "name": "十周年奖杯",
+      "attributes": {
+        "hitRate": 6,
+        "resistance": 6,
+        "magic": 6
+      },
+      "relicId": 613
+    },
+    {
+      "id": "df4100a2-c60d-5bf8-a5be-098dd44804b4",
+      "name": "琥珀灵种",
+      "attributes": {
+        "strength": 15,
+        "constitution": 3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 614
+    },
+    {
+      "id": "a8f7ffab-185b-4ee1-be26-0d19fcd2a72f",
+      "name": "赤脉藤环",
+      "attributes": {
+        "physicalDamage": 8,
+        "criticalMultiplier": 9
+      },
+      "relicId": 615
+    },
+    {
+      "id": "2f9f0dc8-1298-5d09-8580-eb588d61e4fa",
+      "name": "霜骨蘑伞",
+      "attributes": {
+        "technique": 13
+      },
+      "relicId": 616
+    },
+    {
+      "id": "61df16e0-aa77-57bd-8eca-0f6e25e6acfa",
+      "name": "枭像画",
+      "attributes": {
+        "magic": 10,
+        "constitution": 3,
+        "technique": 3,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 617
+    },
+    {
+      "id": "2831dc9c-9289-5087-b37f-ae3d985baa07",
+      "name": "宝鎏蛇钥",
+      "attributes": {
+        "dotDamage": 13
+      },
+      "relicId": 618
+    },
+    {
+      "id": "936b7b8b-5eac-56db-8cbd-e37e95ed5664",
+      "name": "先祖麦酒",
+      "attributes": {
+        "strength": 12,
+        "constitution": 3,
+        "technique": 1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 619
+    },
+    {
+      "id": "06ed01da-4a13-5607-b7ff-1365e065b266",
+      "name": "宗师臂章",
+      "attributes": {
+        "physicalDamage": 5,
+        "criticalMultiplier": 8,
+        "hitRate": 2.5
+      },
+      "relicId": 620
+    },
+    {
+      "id": "c31e6840-edbc-5124-9f72-2b0b994f9c5c",
+      "name": "深红马铠",
+      "attributes": {
+        "constitution": 13,
+        "strength": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 621
+    },
+    {
+      "id": "2a7054be-32ea-4417-a52b-611c494c18f0",
+      "name": "虹彩棱镜",
+      "attributes": {
+        "magic": 10,
+        "hitRate": 6.5
+      },
+      "relicId": 622
+    },
+    {
+      "id": "729315db-66e1-5558-a3f2-2b5af97387a4",
+      "name": "战纹涂料",
+      "attributes": {
+        "strength": 13,
+        "criticalMultiplier": 5.5
+      },
+      "relicId": 623
+    },
+    {
+      "id": "6bdc6458-25be-5c7f-add5-ffd83c0808fc",
+      "name": "象牙餐叉",
+      "attributes": {
+        "constitution": 10,
+        "strength": 5,
+        "technique": 1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 624
+    },
+    {
+      "id": "85d2e164-5fff-5704-89f2-bd209ba5a611",
+      "name": "独眼图腾",
+      "attributes": {
+        "strength": 8.5,
+        "hitRate": 8.5
+      },
+      "relicId": 625
+    },
+    {
+      "id": "f964f1ac-14ba-59c5-9cbb-573a8b395547",
+      "name": "五帝铜钱",
+      "attributes": {
+        "strength": 14.5,
+        "constitution": 4,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 626
+    },
+    {
+      "id": "7362da18-111a-4ca4-aa3a-897bcc99376f",
+      "name": "通明玉简",
+      "attributes": {
+        "magic": 6,
+        "hitRate": 10
+      },
+      "relicId": 627
+    },
+    {
+      "id": "7f898be3-cd02-52a2-9dc8-d4509fd1166e",
+      "name": "护魂灵盏",
+      "attributes": {
+        "healingBonus": 10,
+        "technique": 6.5
+      },
+      "relicId": 628
+    },
+    {
+      "id": "d291f5bc-b7ee-5d87-8cf1-4556c790c8a9",
+      "name": "金羊角杯",
+      "attributes": {
+        "strength": 12,
+        "constitution": 3.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 629
+    },
+    {
+      "id": "97ab6e49-b3e0-5800-9828-f0f1fd0a4b36",
+      "name": "秋霜剑匣",
+      "attributes": {
+        "physicalDamage": 4,
+        "criticalMultiplier": 6,
         "physicalSingleLifesteal": 10
-      }
+      },
+      "relicId": 630
     },
     {
-      "id": "8bdbcd8b-22e4-46a9-b8e5-ff92919f5e29",
-      "name": "振幅香瓶",
+      "id": "a289130e-b448-5004-89f0-f673a55631ce",
+      "name": "聚宝冰蟾",
       "attributes": {
-        "speed": 7,
-        "physicalDamage": 3.2,
-        "physicalSingleLifesteal": 10
-      }
-    },
-    {
-      "id": "9912abfb-1629-4aaa-bfb2-9fad33878dee",
-      "name": "罪罚镜",
-      "attributes": {
-        "speed": 10.8,
-        "hitRate": 1.5,
-        "criticalMultiplier": 7.5
-      }
-    },
-    {
-      "id": "d1e0ea58-7344-4978-8da7-d8310bb9f528",
-      "name": "海神酒杯",
-      "attributes": {
-        "speed": 11.6,
-        "hitRate": 1.5,
-        "criticalMultiplier": 6
-      }
+        "magic": 12,
+        "technique": 3,
+        "constitution": 1,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 631
     },
     {
       "id": "6c322671-a57f-4fae-9607-7a5ab10d73f3",
@@ -376,7 +4512,29 @@
         "magic": 6.5,
         "hitRate": 5,
         "magicSingleLifesteal": 10
-      }
+      },
+      "relicId": 632
+    },
+    {
+      "id": "c5ba9ada-03b1-5e13-bf00-9a76bcfc3721",
+      "name": "青铜奔马",
+      "attributes": {
+        "strength": 13
+      },
+      "relicId": 633,
+      "firstStrike": true
+    },
+    {
+      "id": "1b8cf3c0-e3b1-5adc-9a59-d640365edc0e",
+      "name": "龙焰特酿",
+      "attributes": {
+        "magic": 10.5,
+        "technique": 2,
+        "constitution": 3.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 634
     },
     {
       "id": "a8e6ee94-fc41-4057-8db7-abbc61420dee",
@@ -384,7 +4542,60 @@
       "attributes": {
         "speed": 8,
         "criticalMultiplier": 12
-      }
+      },
+      "relicId": 635
+    },
+    {
+      "id": "000448c6-232c-50ab-bcb6-5d9569e8fe2c",
+      "name": "糖霜苹果",
+      "attributes": {
+        "strength": 14,
+        "constitution": 5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 636
+    },
+    {
+      "id": "5a7e9a9c-3d93-50ff-bb2f-f0ffdd599d6c",
+      "name": "糖果袋魔偶",
+      "attributes": {
+        "strength": 7.2,
+        "hitRate": 10.8
+      },
+      "relicId": 637
+    },
+    {
+      "id": "00b742c6-6b27-5197-b748-4fba3444142b",
+      "name": "惊奇尖叫屋",
+      "attributes": {
+        "magic": 6,
+        "hitRate": 6.5
+      },
+      "relicId": 638,
+      "firstStrike": true
+    },
+    {
+      "id": "567a36b7-cddc-5717-8a51-48f6ffdda78b",
+      "name": "集藏之匣",
+      "attributes": {
+        "strength": 12,
+        "constitution": 3,
+        "technique": 1.5,
+        "adventureGoldBonus": 7.5,
+        "adventureSoulBonus": 7.5
+      },
+      "relicId": 639
+    },
+    {
+      "id": "13dbcbed-a407-5e38-a0f9-6b0aa7ce1b39",
+      "name": "黑莲花",
+      "attributes": {
+        "magic": 3,
+        "hitRate": 7,
+        "magicSingleLifesteal": 10
+      },
+      "relicId": 640
     }
   ]
 }

@@ -56,7 +56,7 @@
     if (library !== (window.PlayerLibraries?.current.trophies || "")) return v;
     items = v.trophies;
     loaded = true;
-    for (const fn of subscribers) fn();
+    for (const refresh of subscribers) refresh(true);
     return v;
   }
   const dialog = el("dialog");
@@ -94,12 +94,12 @@
   });
   search.addEventListener("compositionend", () => {
     composing = false;
-    drawList();
+    updateVisibleItems();
   });
   search.oninput = () => {
-    if (!composing) drawList();
+    if (!composing) updateVisibleItems();
   };
-  filter.onchange = drawList;
+  filter.onchange = updateVisibleItems;
   const sort = el("select");
   sort.setAttribute("aria-label", "按战利品属性排序");
   sort.value = "";
@@ -125,15 +125,28 @@
         if (bv === undefined && av !== undefined) return -1;
         return ((av ?? 0) - (bv ?? 0)) * (direction.value === "asc" ? 1 : -1);
       });
+    } else {
+      const number = (item) => item.relicId ?? Number.MAX_SAFE_INTEGER;
+      result.sort((a, b) => number(a) - number(b));
     }
     return result;
   }
-  function sortingChanged() {
+  function updateVisibleItems() {
     drawList();
     for (const refresh of subscribers) refresh();
   }
-  sort.onchange = sortingChanged;
-  direction.onchange = sortingChanged;
+  sort.onchange = updateVisibleItems;
+  direction.onchange = updateVisibleItems;
+  function visibleItems() {
+    return orderItems(items.filter(
+      (item) =>
+        item.name.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase()) &&
+        (!filter.value ||
+          (filter.value === "firstStrike"
+            ? item.firstStrike === true
+            : Object.hasOwn(item.attributes, filter.value))),
+    ));
+  }
   let sortReady = false;
   function drawList() {
     if (!sortReady) {
@@ -166,18 +179,14 @@
         draft = { name: "", attributes: {} };
         drawForm();
       };
-      list.append(add, search, filter, sort, direction, results);
+      const filterField = el("label");
+      filterField.className = "trophy-filter-field";
+      filterField.append(el("span", "筛选"), filter);
+      list.append(add, search, filterField, sort, direction, results);
     }
     results.replaceChildren();
-    const matching = items.filter(
-      (item) =>
-        item.name.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase()) &&
-        (!filter.value ||
-          (filter.value === "firstStrike"
-            ? item.firstStrike === true
-            : Object.hasOwn(item.attributes, filter.value))),
-    );
-    for (const item of orderItems(matching)) {
+    const matching = visibleItems();
+    for (const item of matching) {
       const b = el("button", item.name);
       b.type = "button";
       b.onclick = () => {
@@ -207,6 +216,9 @@
     toggle.checked = !!draft.firstStrike;
     toggle.onchange = () => (draft.firstStrike = toggle.checked);
     special.append(toggle, el("span", "先发制人"));
+    if (draft.hasRandomAttributes) {
+      form.append(el("p", "这件战利品含随机词条。导入时只计入已知固定值，请按实物面板填写属性总值。"));
+    }
     form.append(special);
     const picker = el("select");
     picker.setAttribute("aria-label", "战利品属性");
@@ -321,8 +333,29 @@
   }
   function attach(host, s, onChange) {
     s.selectedTrophies ??= [];
-    const picker = el("select");
-    picker.setAttribute("aria-label", "从战利品库选择");
+    const picker = el("details");
+    picker.className = "trophy-picker";
+    const summary = el("summary");
+    const options = el("div");
+    options.className = "trophy-picker-options";
+    options.setAttribute("role", "group");
+    options.setAttribute("aria-label", "从战利品库选择");
+    picker.append(summary, options);
+    let candidate = "";
+    picker.addEventListener("toggle", () => {
+      if (picker.open) drawOptions(visibleItems());
+      else options.replaceChildren();
+    });
+    picker.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && picker.open) {
+        event.preventDefault();
+        picker.open = false;
+        summary.focus();
+      }
+    });
+    picker.addEventListener("focusout", (event) => {
+      if (event.relatedTarget && !picker.contains(event.relatedTarget)) picker.open = false;
+    });
     const add = el("button", "＋ 选入战利品");
     add.type = "button";
     const chosen = el("div");
@@ -338,21 +371,41 @@
           .filter(Boolean);
         if (JSON.stringify(latest) !== JSON.stringify(s.selectedTrophies)) {
           s.selectedTrophies = structuredClone(latest);
-          draw();
           onChange();
         }
+        draw();
       }
-      const current = picker.value;
-      picker.replaceChildren();
-      const placeholder = el("option", loaded ? "请选择库中战利品" : "正在读取战利品库");
-      placeholder.value = "";
-      picker.append(placeholder);
-      for (const item of orderItems(items)) {
-        const o = el("option", item.name);
-        o.value = item.id;
-        picker.append(o);
+      const matching = visibleItems();
+      const current = matching.find((item) => item.id === candidate);
+      if (!current) candidate = "";
+      drawSummary(current, matching.length);
+      if (picker.open) drawOptions(matching);
+    }
+    function drawSummary(item, count) {
+      const caption = el(
+        "span",
+        item?.name || (!loaded ? "正在读取战利品库" : count ? "请选择库中战利品" : "没有匹配的战利品"),
+      );
+      summary.replaceChildren(caption);
+    }
+    function drawOptions(matching) {
+      options.replaceChildren();
+      if (!matching.length) {
+        options.append(el("p", loaded ? "没有匹配的战利品" : "正在读取战利品库"));
+        return;
       }
-      picker.value = items.some((i) => i.id === current) ? current : "";
+      for (const item of matching) {
+        const option = el("button", item.name);
+        option.type = "button";
+        option.setAttribute("aria-pressed", String(item.id === candidate));
+        option.onclick = () => {
+          candidate = item.id;
+          drawSummary(item, matching.length);
+          summary.focus();
+          picker.open = false;
+        };
+        options.append(option);
+      }
     }
     function draw() {
       chosen.replaceChildren();
@@ -382,7 +435,7 @@
       });
     }
     add.onclick = () => {
-      const item = items.find((i) => i.id === picker.value);
+      const item = visibleItems().find((i) => i.id === candidate);
       if (!item) {
         window.showToast("请选择战利品");
         return;
@@ -395,7 +448,7 @@
       draw();
       onChange();
     };
-    subscribers.add(() => refresh(true));
+    subscribers.add(refresh);
     refresh();
     draw();
   }

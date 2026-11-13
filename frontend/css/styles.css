@@ -336,6 +336,40 @@ button.primary {
 .equipment .wide {
   grid-column: 1/-1;
 }
+.contract-state-storage[hidden] {
+  display: none;
+}
+.field.contract-state > .switch {
+  align-self: center;
+  flex: none;
+  width: 30px;
+  padding: 0;
+  background: #cbd5d8;
+  margin-inline: 8px 5px;
+}
+.field.contract-state > .switch:checked {
+  background: #53b987;
+}
+.contract-state > .switch:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.contract-state > .switch:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.character .contract-state > span:first-child {
+  flex: none;
+  min-width: 0;
+  padding-inline: 6px;
+}
+.contract-state > .contract-state-text {
+  min-width: 0;
+  padding: 0 5px 0 0;
+  border: 0;
+  background: transparent;
+  white-space: nowrap;
+}
 .contract {
   display: grid;
   gap: 5px;

@@ -500,7 +500,7 @@ function arrangeCharacterChoices(card) {
       (row) =>
         row.querySelector("select") &&
         !row.querySelector("[name]") &&
-        !row.querySelector('[aria-label="选择佩戴契约"]'),
+        !row.querySelector('[aria-label="选择契约"]'),
     );
   const details = document.createElement("div");
   details.className = "character-details";
@@ -738,19 +738,6 @@ function render(characters) {
       ),
       makeField("skillMultiplier", "技能倍率", c.skillMultiplier),
     );
-    const contractState = contract.querySelector('[name="contract"]');
-    contractState.addEventListener("change", () => {
-      if (
-        contractState.value !== "不激活" &&
-        [...document.querySelectorAll('.character [name="contract"]')].some(
-          (select) => select !== contractState && select.value !== "不激活",
-        )
-      ) {
-        contractState.value = "不激活";
-        toast("契约只能由一个角色开启");
-      }
-      dirty();
-    });
     body.append(
       identity,
       section("面板属性", "开战前数值"),

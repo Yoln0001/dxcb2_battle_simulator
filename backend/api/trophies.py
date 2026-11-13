@@ -21,6 +21,15 @@ def validate_item(payload, item_id=None):
         "name": name,
         "attributes": {k: number(v) for k, v in attrs.items()},
     }
+    if "relicId" in payload:
+        relic_id = payload["relicId"]
+        if relic_id is not None and (type(relic_id) is not int or relic_id < 1):
+            raise SkillError("战利品图标编号无效")
+        result["relicId"] = relic_id
+    if "hasRandomAttributes" in payload:
+        if type(payload["hasRandomAttributes"]) is not bool:
+            raise SkillError("战利品随机属性标记无效")
+        result["hasRandomAttributes"] = payload["hasRandomAttributes"]
     if "firstStrike" in payload:
         if type(payload["firstStrike"]) is not bool:
             raise SkillError("先发制人选项无效")

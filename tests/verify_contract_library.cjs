@@ -126,13 +126,40 @@ vm.runInContext(
   cards.push(card);
   context.window.ContractLibrary.attach(card, {});
   const wear = host.children[0].children[1];
+  const state = host.children[1].children[1];
+  assert.equal(host.children[0].children[0].textContent, "契约");
+  assert.equal(state.checked, false);
+  assert.equal(state.disabled, true);
   wear.value = data.at(-1).id;
   wear.onchange();
   assert.equal(card.selectedContract.category, "technique");
   assert(Math.abs(Number(multiplier.value) - 3.75) < 1e-10);
   assert(active.options.some((o) => o.value === "饮魂者-技"));
   assert.equal(negative.options.length, 3);
-  active.value = "饮魂者-技";
+  assert.equal(state.checked, false);
+  state.checked = true;
+  state.onchange();
+  assert.equal(active.value, "饮魂者-技");
+  const otherHost = new Node("div"),
+    otherActive = new Node("select"),
+    otherNegative = new Node("select"),
+    otherMultiplier = new Node("input");
+  otherActive.append(Object.assign(new Node("option"), { value: "不激活" }));
+  otherHost.querySelector = (s) =>
+    s.includes("negativeEffect") ? otherNegative : s.includes("skillMultiplier") ? otherMultiplier : otherActive;
+  const otherCard = { querySelector: () => otherHost, dispatchEvent() {}, specialSources: {} };
+  cards.push(otherCard);
+  context.window.ContractLibrary.attach(otherCard, { selectedContract: data.at(-1) });
+  const otherState = otherHost.children[1].children[1];
+  otherState.checked = true;
+  otherState.onchange();
+  assert.equal(active.value, "不激活");
+  assert.equal(state.checked, false);
+  assert.equal(otherActive.value, "饮魂者-技");
+  state.checked = true;
+  state.onchange();
+  assert.equal(otherState.checked, false);
+  assert.equal(otherActive.value, "不激活");
   fields.baseBonus.value = "32";
   fields.multiplier.value = "4.2";
   fields.name.value = "更新契约";
@@ -151,6 +178,7 @@ vm.runInContext(
   wear.onchange();
   assert.equal(card.specialSources.selectedContract.category, "constitution");
   assert.equal(active.options.length, 1);
+  assert.equal(state.disabled, true);
   assert.equal(active.value, "不激活");
   console.log(
     "PASS: contract library initializes, saves level/category/bonus, and role wear selection supplies activation, negative effects and upgraded coefficient",

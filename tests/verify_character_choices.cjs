@@ -97,7 +97,7 @@ for (const key of [
 identity.append(field("skillGroup"), field("job"));
 contract.append(
   field("", "选择域之环"),
-  field("", "选择佩戴契约"),
+  field("", "选择契约"),
   field("contract"),
   field("negativeEffect"),
   field("skillMultiplier"),

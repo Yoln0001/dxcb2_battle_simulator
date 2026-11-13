@@ -12792,7 +12792,7 @@
         },
         "battle": {
           "duration": 165,
-          "simulations": 1000000
+          "simulations": 100000
         },
         "characters": [
           {

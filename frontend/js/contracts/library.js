@@ -318,9 +318,8 @@
       const host = card.querySelector(".contract"),
         wearRow = E("label", undefined, "field"),
         wear = E("select");
-      wear.setAttribute("aria-label", "选择佩戴契约");
-      wearRow.append(E("span", "佩戴契约"), wear);
-      host.prepend(wearRow);
+      wear.setAttribute("aria-label", "选择契约");
+      wearRow.append(E("span", "契约"), wear);
       card.selectedContract = structuredClone(normalize(c.selectedContract));
       if (card.specialSources) {
         card.specialSources.selectedContract = structuredClone(card.selectedContract);
@@ -329,6 +328,42 @@
       const active = host.querySelector('[name="contract"]'),
         negative = host.querySelector('[name="negativeEffect"]'),
         multiplier = host.querySelector('[name="skillMultiplier"]');
+      const stateRow = E("label", undefined, "field contract-state");
+      const state = E("input", undefined, "switch");
+      state.type = "checkbox";
+      state.setAttribute("role", "switch");
+      state.setAttribute("aria-label", "激活契约");
+      const status = E("span", undefined, "contract-state-text");
+      stateRow.append(E("span", "状态"), state, status);
+      host.prepend(wearRow, stateRow);
+      const previousStateRow = active.closest?.(".field");
+      if (previousStateRow) {
+        previousStateRow.hidden = true;
+        previousStateRow.classList.add("contract-state-storage");
+      }
+
+      function updateState() {
+        state.checked = active.value !== "不激活";
+        state.disabled = ![...active.options].some((item) => item.value !== "不激活");
+        status.textContent = state.checked ? "已激活" : "不激活";
+      }
+
+      card.deactivateContract = () => {
+        active.value = "不激活";
+        updateState();
+      };
+      state.onchange = () => {
+        const available = [...active.options].find((item) => item.value !== "不激活");
+        if (state.checked && available) {
+          for (const other of document.querySelectorAll(".character")) {
+            if (other !== card) other.deactivateContract?.();
+          }
+          active.value = available.value;
+        } else {
+          card.deactivateContract();
+        }
+        updateState();
+      };
       function options() {
         const chosen = card.selectedContract;
         wear.replaceChildren(
@@ -340,10 +375,9 @@
         wear.value = chosen?.id || "";
         const was = active.value;
         active.replaceChildren(option("不激活", "不激活"));
-        if (!card.specialSources) {
-          active.append(option("旧日支配者-魔", "旧日支配者-魔（原配置）"));
-          if (!chosen && was !== "不激活" && was !== "旧日支配者-魔")
-            active.append(option(was, was + "（原配置）"));
+        if (!card.specialSources && !chosen) {
+          const legacy = c.contract && c.contract !== "不激活" ? c.contract : "旧日支配者-魔";
+          active.append(option(legacy, legacy + "（原配置）"));
         }
         if (chosen && chosen.category !== "constitution")
           active.append(option(activation(chosen), "激活 " + chosen.name));
@@ -364,8 +398,10 @@
         negative.value = [...negative.options].some((i) => i.value === old)
           ? old
           : chosen?.negativeEffect || "无";
+        updateState();
       }
       wear.onchange = () => {
+        if (wear.value !== (card.selectedContract?.id || "")) card.deactivateContract();
         card.selectedContract = structuredClone(library.find((i) => i.id === wear.value) || null);
         if (card.specialSources)
           card.specialSources.selectedContract = structuredClone(card.selectedContract);
@@ -397,6 +433,7 @@
               : "不激活";
           negative.value = latest?.negativeEffect || "无";
           multiplier.value = latest?.multiplier || 0;
+          updateState();
           card.refreshSpecial?.();
           card.dispatchEvent(new Event("change", { bubbles: true }));
         }
