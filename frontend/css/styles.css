@@ -1545,3 +1545,53 @@ input[type="number"] {
 .domain-ring-wear[hidden] {
   display: none;
 }
+
+/* 模拟按钮：左半直接单次模拟，右半下拉选择批量模拟 */
+.simulate-split {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+}
+.simulate-split > button.primary {
+  border-radius: 4px 0 0 4px;
+}
+.simulate-menu > summary {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 11px;
+  cursor: pointer;
+  list-style: none;
+  background: var(--teal);
+  color: white;
+  border: 1px solid var(--teal);
+  border-left-color: #ffffff73;
+  border-radius: 0 4px 4px 0;
+  transition: 0.15s;
+}
+.simulate-menu > summary::-webkit-details-marker {
+  display: none;
+}
+.simulate-menu > summary::after {
+  content: "▾";
+  font-size: 12px;
+}
+.simulate-menu[open] > summary,
+.simulate-menu > summary:hover {
+  filter: brightness(0.92);
+}
+.simulate-options {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 20;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 6px 20px #16354520;
+}
+.simulate-options button {
+  white-space: nowrap;
+}

@@ -38,8 +38,7 @@ class Node {
     this.open = false;
   }
 }
-const bossButton = new Node("button"),
-  button = new Node("button"),
+const button = new Node("button"),
   body = new Node("body");
 const text = (n) => [n.textContent || "", ...n.children.map(text)].join(" ");
 const data = {
@@ -77,12 +76,7 @@ const context = {
     body,
     createElement: (t) => new Node(t),
     createElementNS: (_, t) => new Node(t),
-    querySelector: (selector) =>
-      selector === "#simulate-batch"
-        ? button
-        : selector === "#simulate-batch-boss"
-          ? bossButton
-          : null,
+    querySelector: (selector) => (selector === "#simulate-batch" ? button : null),
   },
   window: {
     getTeamConfiguration: () => config,
@@ -151,15 +145,16 @@ vm.runInContext(
     c.survived_battles = 7;
   }
   data.characters[3].enabled = false;
-  await bossButton.handlers.click();
+  await button.handlers.click();
   assert(text(body).includes("全员存活场次 3"));
   assert(text(body).includes("全员存活比例 30%"));
   assert(text(body).includes("角色存活率"));
   assert(text(body).includes("70%"));
   assert(text(body).includes("存活 7 / 10 场"));
   assert(text(body).includes("未参战"));
-  assert(urls.includes("/api/battle/simulate-batch-with-boss"));
-  assert.equal(bossButton.disabled, false);
+  assert(urls.includes("/api/battle/simulate-batch"));
+  assert(!urls.some((url) => url.includes("with-boss")));
+  assert.equal(button.disabled, false);
   config.characters[0].stats.speed = 9999;
   const exportButton = nodes.find((n) => n.className === "batch-export-button");
   assert.equal(exportButton.hidden, false);
@@ -177,7 +172,7 @@ vm.runInContext(
   assert.equal(exported.snapshot.characters[0].stats.speed, 1318);
   assert.equal(xlsxButton.disabled, false);
   console.log(
-    "PASS: independent Boss endpoint; requested statistics layout, elapsed, four roles, effect means and live custom percentile",
+    "PASS: single batch endpoint with backend-decided Boss mode; requested statistics layout, elapsed, four roles, effect means and live custom percentile",
   );
 })().catch((e) => {
   console.error(e);

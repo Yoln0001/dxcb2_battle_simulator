@@ -73,19 +73,16 @@ def main():
                 return json.load(response)
 
         try:
-            old = req("/api/battle/simulate-single", cfg)
-            new = req("/api/battle/simulate-single-with-boss", cfg)
-            assert new["boss_attacks"] and any(
-                e["type"] == "boss_skill_damage" for f in new["timeline"] for e in f["events"]
-            )
-            assert not any(
-                e["type"] == "boss_skill_damage" for f in old["timeline"] for e in f["events"]
-            )
-            for path, enabled in (
-                ("/api/battle/simulate-batch", False),
-                ("/api/battle/simulate-batch-with-boss", True),
-            ):
-                job = req(path, cfg)
+
+            def boss_damage(result):
+                return any(
+                    e["type"] == "boss_skill_damage"
+                    for f in result["timeline"]
+                    for e in f["events"]
+                )
+
+            def batch(path, config):
+                job = req(path, config)
                 until = time.monotonic() + 120
                 while True:
                     status = req("/api/battle/batch/" + job["job_id"])
@@ -94,21 +91,26 @@ def main():
                     assert time.monotonic() < until
                     time.sleep(0.05)
                 assert status["status"] == "complete", status
-                assert (
-                    status["result"]["engine"] == "numba_njit"
-                    and status["result"]["boss_attacks"] == enabled
-                )
+                assert status["result"]["engine"] == "numba_njit"
+                return status["result"]
+
+            # 所选Boss有技能组：新路径和旧别名都包含Boss攻击。
+            for path in ("/api/battle/simulate-single", "/api/battle/simulate-single-with-boss"):
+                result = req(path, cfg)
+                assert result["boss_attacks"] is True and boss_damage(result), path
+            for path in ("/api/battle/simulate-batch", "/api/battle/simulate-batch-with-boss"):
+                assert batch(path, cfg)["boss_attacks"] is True, path
+            # 所选Boss没有技能组：自动按普通模拟计算，不报错。
             cfg["target"]["selectedBoss"]["skillGroup"]["entry"] = ""
             cfg["target"]["selectedBoss"]["skillGroup"]["subgroups"] = []
-            try:
-                req("/api/battle/simulate-single-with-boss", cfg)
-            except urllib.error.HTTPError as error:
-                assert error.code == 400
-            else:
-                raise AssertionError("empty Boss group must be rejected")
-            req("/api/battle/simulate-single", cfg)
+            for path in ("/api/battle/simulate-single", "/api/battle/simulate-single-with-boss"):
+                result = req(path, cfg)
+                assert result["boss_attacks"] is False and not boss_damage(result), path
+            for path in ("/api/battle/simulate-batch", "/api/battle/simulate-batch-with-boss"):
+                assert batch(path, cfg)["boss_attacks"] is False, path
             print(
-                "PASS: independent HTTP routes, both njit batch modes, shared polling and empty Boss group validation"
+                "PASS: merged HTTP routes choose Boss combat from the selected Boss skill group; "
+                "legacy aliases, njit batch in both modes and shared polling"
             )
         finally:
             server.should_exit = True

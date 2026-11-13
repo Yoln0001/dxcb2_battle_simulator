@@ -1203,9 +1203,9 @@
     renderTimeline();
     dialog.showModal();
   }
-  for (const id of ["simulate-single", "simulate-single-boss"]) {
-    const button = document.querySelector("#" + id);
-    if (!button) continue;
+  // 是否包含Boss攻击由后端按所选Boss有无技能组决定。
+  const button = document.querySelector("#simulate-single");
+  if (button) {
     const title = button.textContent;
     button.addEventListener("click", async () => {
       const config = window.getTeamConfiguration();
@@ -1214,16 +1214,11 @@
       button.disabled = true;
       button.textContent = "模拟中…";
       try {
-        const response = await (window.AppRequests?.fetch || fetch)(
-          id === "simulate-single-boss"
-            ? "/api/battle/simulate-single-with-boss"
-            : "/api/battle/simulate-single",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(config),
-          },
-        );
+        const response = await (window.AppRequests?.fetch || fetch)("/api/battle/simulate-single", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(config),
+        });
         const data = await response.json();
         if (!response.ok) throw Error(data.error || "单次模拟失败");
         render(data);

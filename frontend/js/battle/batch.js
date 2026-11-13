@@ -267,10 +267,16 @@
     }
     for (const warning of data.warnings) content.append(E("p", warning, "batch-warning"));
   }
-  for (const id of ["simulate-batch", "simulate-batch-boss"]) {
-    const button = document.querySelector("#" + id);
-    if (!button) continue;
+  // 是否包含Boss攻击由后端按所选Boss有无技能组决定，结果中的 boss_attacks 标明实际模式。
+  const button = document.querySelector("#simulate-batch");
+  if (button) {
+    // 批量按钮位于“开始单次模拟”右侧的下拉菜单里：选中后或点击菜单外部时收起菜单。
+    const menu = button.closest?.("details");
+    document.addEventListener?.("click", (event) => {
+      if (menu?.open && !menu.contains(event.target)) menu.open = false;
+    });
     button.addEventListener("click", async () => {
+      if (menu) menu.open = false;
       if (activeTask) return;
       const sourceConfig = window.getTeamConfiguration();
       if (!sourceConfig) return;
@@ -279,10 +285,7 @@
       exportConfig = null;
       exportButton.hidden = true;
       xlsxButton.hidden = true;
-      for (const key of ["simulate-batch", "simulate-batch-boss"]) {
-        const control = document.querySelector("#" + key);
-        if (control) control.disabled = true;
-      }
+      button.disabled = true;
       const current = { id: null, cancelled: false };
       activeTask = current;
       minimized = false;
@@ -292,16 +295,11 @@
       progress.textContent = "正在准备批量计算内核，首次运行需要加载或编译…";
       dialog.showModal();
       try {
-        const response = await (window.AppRequests?.fetch || fetch)(
-          id === "simulate-batch-boss"
-            ? "/api/battle/simulate-batch-with-boss"
-            : "/api/battle/simulate-batch",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(config),
-          },
-        );
+        const response = await (window.AppRequests?.fetch || fetch)("/api/battle/simulate-batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(config),
+        });
         const task = await response.json();
         if (!response.ok) throw Error(task.error || "批量模拟启动失败");
         current.id = task.job_id;
@@ -349,10 +347,7 @@
         window.showToast(error.message);
       } finally {
         if (activeTask === current) activeTask = null;
-        for (const key of ["simulate-batch", "simulate-batch-boss"]) {
-          const control = document.querySelector("#" + key);
-          if (control) control.disabled = false;
-        }
+        button.disabled = false;
       }
     });
   }

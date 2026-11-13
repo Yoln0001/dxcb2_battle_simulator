@@ -45,8 +45,7 @@ class Node {
     this.open = false;
   }
 }
-const bossButton = new Node("button"),
-  button = new Node("button"),
+const button = new Node("button"),
   body = new Node("body");
 let request;
 const character = {
@@ -126,12 +125,7 @@ const context = {
   document: {
     createElement: (t) => new Node(t),
     body,
-    querySelector: (selector) =>
-      selector === "#simulate-single"
-        ? button
-        : selector === "#simulate-single-boss"
-          ? bossButton
-          : null,
+    querySelector: (selector) => (selector === "#simulate-single" ? button : null),
   },
   window: {
     getTeamConfiguration: () => ({
@@ -611,13 +605,13 @@ const text = (n) => [n.textContent || "", ...n.children.map(text)].join(" ");
   nodes.find((n) => n.textContent === "取消 buff 追踪").handlers.click();
   assert.equal(bands().length, 0);
   assert(dots().every((n) => !n.classes.has("buff-affected")));
-  await bossButton.handlers.click();
-  assert.equal(request.url, "/api/battle/simulate-single-with-boss");
+  await button.handlers.click();
+  assert.equal(request.url, "/api/battle/simulate-single");
   assert.equal(skillWrap.hidden, false);
   assert(skillInputs().every((input) => !input.checked));
   assert(dots().every((n) => !n.classes.has("skill-highlighted")));
   console.log(
-    "PASS: independent Boss endpoint; vertical ticks, adjustable spacing, colored action/other dots, chronological events, actor/Boss and action filters, selected related-character/Boss snapshots",
+    "PASS: single simulation endpoint; vertical ticks, adjustable spacing, colored action/other dots, chronological events, actor/Boss and action filters, selected related-character/Boss snapshots",
   );
 })().catch((e) => {
   console.error(e);
