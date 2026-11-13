@@ -1,5 +1,5 @@
 from .library_sets import store_for
-from .equipment_sync import save_synced
+from .equipment_sync import save_synced, saved_response
 from fastapi import APIRouter, Request
 from ..schemas.equipment import EquipmentPayload, EquipmentLibraryPayload
 from ..skills.store import SkillError
@@ -23,7 +23,9 @@ def team_equipment(request: Request):
 
 @router.post("", status_code=201, summary="创建装备")
 def create_equipment(payload: EquipmentPayload, request: Request):
-    return save_synced(request, store_for(request, "equipment"), payload.model_dump())
+    return saved_response(
+        request, save_synced(request, store_for(request, "equipment"), payload.model_dump())
+    )
 
 
 @router.post("/import", summary="合并导入装备库")
@@ -48,7 +50,10 @@ def get_equipment(item_id: str, request: Request):
 
 @router.put("/{item_id:path}", summary="修改装备")
 def update_equipment(item_id: str, payload: EquipmentPayload, request: Request):
-    return save_synced(request, store_for(request, "equipment"), payload.model_dump(), item_id)
+    return saved_response(
+        request,
+        save_synced(request, store_for(request, "equipment"), payload.model_dump(), item_id),
+    )
 
 
 @router.delete("/{item_id}")

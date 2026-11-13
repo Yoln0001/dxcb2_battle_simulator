@@ -1097,13 +1097,15 @@ window.createEquipmentLibraryEditor = (options = {}) => {
       list.append(b);
     }
   }
-  async function request(path, method = "GET", body) {
+  async function request(path, method = "GET", body, itemOnly = false) {
     if (window.AppRequests) await window.AppRequests.ready;
+    const query = [];
+    if (!options.wiki && window.PlayerLibraries?.current.equipment)
+      query.push("library=" + encodeURIComponent(window.PlayerLibraries.current.equipment));
+    // 保存单件装备时只要求返回这一件，不回传整个装备库。
+    if (itemOnly) query.push("response=item");
     const res = await (window.AppRequests?.fetch || fetch)(
-      path +
-        (!options.wiki && window.PlayerLibraries?.current.equipment
-          ? "?library=" + encodeURIComponent(window.PlayerLibraries.current.equipment)
-          : ""),
+      path + (query.length ? "?" + query.join("&") : ""),
       {
         method,
         headers: body ? { "Content-Type": "application/json" } : {},
@@ -1130,17 +1132,21 @@ window.createEquipmentLibraryEditor = (options = {}) => {
             update ? api + "/" + encodeURIComponent(item.id) : api,
             update ? "PUT" : "POST",
             item,
+            true,
           )
         : await request(api + "/import", "POST", { schemaVersion: 1, equipment: validated });
-      items = M.library(result).equipment;
-      const refreshed = await Promise.allSettled([
-        window.refreshPlayerEquipment?.(),
-        item
-          ? options.wiki
-            ? window.customEquipmentEditor?.refresh()
-            : window.wikiEquipmentEditor?.refresh()
-          : undefined,
-      ]);
+      if (Array.isArray(result.equipment)) items = M.library(result).equipment;
+      else {
+        // 只返回了保存的这一件：就地替换或追加，其余装备不必重新校验。
+        const saved = M.library({ schemaVersion: 1, equipment: [result.item] }).equipment[0];
+        items = items.some((x) => x.id === saved.id)
+          ? items.map((x) => (x.id === saved.id ? saved : x))
+          : [...items, saved];
+      }
+      // 另一个装备库标签页此时不可见，只标记为待刷新，等切换到它时再重新加载。
+      if (item)
+        (options.wiki ? window.customEquipmentEditor : window.wikiEquipmentEditor)?.markStale?.();
+      const refreshed = await Promise.allSettled([window.refreshPlayerEquipment?.()]);
       for (const result of refreshed)
         if (result.status === "rejected")
           notify("装备已保存，但页面同步失败：" + result.reason.message);
@@ -1305,7 +1311,16 @@ window.createEquipmentLibraryEditor = (options = {}) => {
   if (restoreError) notify(restoreError);
   let ready = Promise.resolve(),
     loaded = !useAPI,
-    loading = null;
+    loading = null,
+    stale = false;
+  async function renderFresh() {
+    if (options.lazy) await ensureReady();
+    if (stale && useAPI) {
+      stale = false;
+      items = M.library(await request(api)).equipment;
+    }
+    renderList();
+  }
   function ensureReady() {
     if (loaded) return ready;
     if (loading) return loading;
@@ -1328,14 +1343,14 @@ window.createEquipmentLibraryEditor = (options = {}) => {
   return {
     dialog,
     canLeave: discard,
-    render: options.lazy
-      ? async () => {
-          await ensureReady();
-          renderList();
-        }
-      : renderList,
+    render: options.lazy ? renderFresh : () => (stale ? renderFresh() : renderList()),
+    // 其他地方的保存可能同步修改了本库：已加载过才需要标记，下次显示时重新读取。
+    markStale: () => {
+      if (loaded && useAPI) stale = true;
+    },
     switchLibrary: async () => {
       await ready;
+      stale = false;
       items = M.library(await request(api)).equipment;
       load(M.blank());
       renderList();
@@ -1343,6 +1358,7 @@ window.createEquipmentLibraryEditor = (options = {}) => {
     refresh: async () => {
       if (options.lazy && !loaded) return;
       await ready;
+      stale = false;
       if (useAPI) items = M.library(await request(api)).equipment;
       renderList();
     },

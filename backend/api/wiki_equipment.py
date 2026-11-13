@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from .equipment_sync import save_synced
+from .equipment_sync import save_synced, saved_response
 
 router = APIRouter(prefix="/api/wiki-equipment", tags=["百科装备库"])
 
@@ -11,12 +11,17 @@ def read(request: Request):
 
 @router.post("", status_code=201)
 def create(payload: dict, request: Request):
-    return save_synced(request, request.app.state.wiki_equipment_store, payload)
+    return saved_response(
+        request, save_synced(request, request.app.state.wiki_equipment_store, payload)
+    )
 
 
 @router.put("/{item_id}")
 def update(item_id: str, payload: dict, request: Request):
-    return save_synced(request, request.app.state.wiki_equipment_store, payload, item_id)
+    return saved_response(
+        request,
+        save_synced(request, request.app.state.wiki_equipment_store, payload, item_id),
+    )
 
 
 @router.post("/import")

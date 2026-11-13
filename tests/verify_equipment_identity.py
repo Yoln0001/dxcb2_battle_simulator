@@ -70,6 +70,56 @@ try:
     assert base.rows[0]["baseAttributes"]["magic"]["ownedValue"] == 100
 finally:
     module.store_for = previous
+
+# 装备库视图和战斗目录：别名来自全部装备库，数值只取所选库，各条目互不共享内容。
+from backend.api.equipment_identity import battle_catalog, library_view
+
+copied = Store([{**b, "id": "copy-b", "wikiId": "wiki-fixed"}])
+with tempfile.TemporaryDirectory() as folder:
+    registry = SimpleNamespace(
+        read=lambda: {"libraries": [{"id": "copy", "kind": "equipment", "name": "副本"}]},
+        path=Path(folder) / "library_sets.json",
+    )
+    state = SimpleNamespace(library_sets=registry, wiki_equipment_store=Store([wiki]))
+
+    def request_for(library):
+        return SimpleNamespace(
+            app=SimpleNamespace(state=state),
+            query_params={"library": library} if library else {},
+        )
+
+    def pick(request, kind, library_id=None):
+        if library_id is None:
+            library_id = request.query_params.get("library", "")
+        return copied if library_id == "copy" else base
+
+    try:
+        module.store_for = pick
+        view = library_view(request_for("copy"))["equipment"]
+        assert [row["id"] for row in view] == ["copy-b"]
+        assert view[0]["identityAliases"] == ["copy-b", "old-a", "wiki-fixed"]
+        canonical = library_view(request_for("copy"), canonical=True)["equipment"][0]
+        assert canonical["id"] == "wiki-fixed" and canonical["libraryRecordId"] == "copy-b"
+        assert library_view(request_for(""))["equipment"][0]["identityAliases"] == [
+            "copy-b",
+            "old-a",
+            "wiki-fixed",
+        ]
+        catalog = battle_catalog(request_for(""), {"librarySelections": {"equipment": "copy"}})
+        assert [row["id"] for row in catalog] == ["old-a", "copy-b", "wiki-fixed"]
+        assert all(row["baseAttributes"]["magic"]["ownedValue"] == 200 for row in catalog)
+        assert [row.get("libraryRecordId") for row in catalog] == [None, None, "copy-b"]
+        catalog[0]["baseAttributes"]["magic"]["ownedValue"] = 1
+        assert catalog[1]["baseAttributes"]["magic"]["ownedValue"] == 200
+        assert copied.rows[0]["baseAttributes"]["magic"]["ownedValue"] == 200
+        assert base.rows[0]["baseAttributes"]["magic"]["ownedValue"] == 100
+        default_catalog = battle_catalog(request_for(""), {})
+        assert [row["id"] for row in default_catalog] == ["old-a", "copy-b", "wiki-fixed"]
+        assert all(row["baseAttributes"]["magic"]["ownedValue"] == 100 for row in default_catalog)
+    finally:
+        module.store_for = previous
 print(
-    "PASS: source-based and persisted identity survives rename; selected library wins duplicate IDs; source rolls untouched"
+    "PASS: source-based and persisted identity survives rename; selected library wins duplicate IDs; "
+    "source rolls untouched; library view aliases and battle catalog use every library's IDs "
+    "with the selected library's rolls"
 )

@@ -30,6 +30,13 @@ def merged_definition(item, previous):
     return value
 
 
+def saved_response(request, result):
+    """带 ?response=item 时只返回保存的这一件装备，不回传整个装备库。"""
+    if request.query_params.get("response") == "item":
+        return {"item": result["item"], "syncedEquipmentCount": result["syncedEquipmentCount"]}
+    return result
+
+
 def save_synced(request, source, value, update_id=None):
     registry = request.app.state.library_sets
     with registry.lock, ExitStack() as locks:

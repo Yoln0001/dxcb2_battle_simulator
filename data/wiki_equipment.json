@@ -60,11 +60,12 @@
       "baseAttributes": {
         "weaponPower": {
           "label": "武威",
-          "min": 136.0,
-          "max": 180.0,
+          "min": 136,
+          "max": 180,
           "value": null,
           "unit": "",
-          "source": "武威136-180"
+          "source": "武威136-180",
+          "ownedValue": null
         },
         "strength": {
           "label": "力量",
@@ -72,7 +73,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "magic": {
           "label": "魔力",
@@ -80,23 +82,26 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "technique": {
           "label": "技巧",
-          "min": 60.0,
-          "max": 110.0,
+          "min": 60,
+          "max": 110,
           "value": null,
           "unit": "",
-          "source": "技巧60-110"
+          "source": "技巧60-110",
+          "ownedValue": null
         },
         "speed": {
           "label": "速度",
-          "min": 60.0,
-          "max": 110.0,
+          "min": 60,
+          "max": 110,
           "value": null,
           "unit": "",
-          "source": "速度60-110"
+          "source": "速度60-110",
+          "ownedValue": null
         },
         "constitution": {
           "label": "体质",
@@ -104,7 +109,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "armor": {
           "label": "护甲",
@@ -112,7 +118,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "resistance": {
           "label": "抗性",
@@ -120,7 +127,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "criticalRate": {
           "label": "暴击率",
@@ -132,9 +140,9 @@
         },
         "hitRate": {
           "label": "命中率",
-          "min": 5.0,
-          "max": 5.0,
-          "value": 5.0,
+          "min": 5,
+          "max": 5,
+          "value": 5,
           "unit": "%",
           "source": "命中率5%"
         },
@@ -217,6 +225,13 @@
           "value": 0,
           "unit": "",
           "source": ""
+        },
+        "lifesteal": {
+          "label": "吸血",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%"
         }
       },
       "crystal": {
@@ -245,7 +260,36 @@
       "reviewNotes": "",
       "battleStartEffects": {
         "enabled": false,
-        "entries": []
+        "entries": [
+          {
+            "side": "ally",
+            "name": "",
+            "enabled": true,
+            "buff": {
+              "enabled": true,
+              "recipient": "self",
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "target": "none",
+              "kind": "amplify",
+              "regeneration": {
+                "receivesHealingBonuses": true,
+                "baseValue": 0,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0
+                }
+              }
+            }
+          }
+        ]
       }
     },
     {
@@ -311,7 +355,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "strength": {
           "label": "力量",
@@ -319,7 +364,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "magic": {
           "label": "魔力",
@@ -327,7 +373,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "technique": {
           "label": "技巧",
@@ -335,7 +382,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "speed": {
           "label": "速度",
@@ -343,7 +391,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "constitution": {
           "label": "体质",
@@ -351,7 +400,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "armor": {
           "label": "护甲",
@@ -359,7 +409,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "resistance": {
           "label": "抗性",
@@ -367,7 +418,8 @@
           "max": 0,
           "value": 0,
           "unit": "",
-          "source": ""
+          "source": "",
+          "ownedValue": null
         },
         "criticalRate": {
           "label": "暴击率",
@@ -464,6 +516,13 @@
           "value": 0,
           "unit": "",
           "source": ""
+        },
+        "lifesteal": {
+          "label": "吸血",
+          "min": 0,
+          "max": 0,
+          "value": 0,
+          "unit": "%"
         }
       },
       "crystal": {
@@ -486,8 +545,8 @@
           "supported": false,
           "triggerType": "physical",
           "parameters": {
-            "probability": 20.0,
-            "duration": 8.0,
+            "probability": 20,
+            "duration": 8,
             "maxStacks": 1,
             "recipient": null,
             "kind": "debuff",
@@ -515,7 +574,36 @@
       "reviewNotes": "",
       "battleStartEffects": {
         "enabled": false,
-        "entries": []
+        "entries": [
+          {
+            "side": "ally",
+            "name": "",
+            "enabled": true,
+            "buff": {
+              "enabled": true,
+              "recipient": "self",
+              "coefficients": {
+                "strength": 0,
+                "magic": 0,
+                "technique": 0,
+                "speed": 0
+              },
+              "target": "none",
+              "kind": "amplify",
+              "regeneration": {
+                "receivesHealingBonuses": true,
+                "baseValue": 0,
+                "coefficients": {
+                  "strength": 0,
+                  "magic": 0,
+                  "technique": 0,
+                  "speed": 0,
+                  "constitution": 0
+                }
+              }
+            }
+          }
+        ]
       }
     },
     {

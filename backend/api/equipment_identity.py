@@ -45,35 +45,46 @@ def link_rows(rows, wiki):
     return result
 
 
-def identity_catalog(request):
-    """Include retained old files only to translate legacy wearing IDs, never their rolls."""
-    from .library_sets import equipment_catalog
+def link_fresh(rows, resolve):
+    """给刚从库里读出的行就地补上wikiId。库的read()每次返回独立副本，无需再复制。"""
+    for row in rows:
+        row["wikiId"] = resolve(row)
+    return rows
+
+
+def identity_pairs(request, resolve):
+    """全部装备库中每条记录的(库内ID, 百科身份)，顺序为默认库、各玩家库、已移除库的残留文件。
+
+    残留文件只用来翻译旧的穿戴ID，不提供数值。这里只取ID，不复制装备内容。
+    """
+    from .library_sets import store_for
     from ..equipment.store import EquipmentStore
 
-    rows = equipment_catalog(request)
     registry = request.app.state.library_sets
-    known = {item["id"] for item in registry.read()["libraries"] if item["kind"] == "equipment"}
-    wiki = request.app.state.wiki_equipment_store.read()["equipment"]
+    known = [item["id"] for item in registry.read()["libraries"] if item["kind"] == "equipment"]
+    rows = store_for(request, "equipment", "").read()["equipment"]
+    for library_id in known:
+        rows += store_for(request, "equipment", library_id).read()["equipment"]
+    pairs = [(row["id"], resolve(row)) for row in rows]
     for path in (registry.path.parent / "player_libraries" / "equipment").glob("*.json"):
         if path.stem in known:
             continue
         try:
-            rows += link_rows(EquipmentStore(path).read()["equipment"], wiki)
+            retained = EquipmentStore(path).read()["equipment"]
+            pairs += [(row["id"], resolve(row)) for row in retained]
         except ValueError:
             continue
-    return rows
+    return pairs
 
 
 def library_view(request, canonical=False):
-    from .library_sets import store_for, equipment_catalog
+    from .library_sets import store_for
 
-    rows = link_rows(
-        store_for(request, "equipment").read()["equipment"],
-        request.app.state.wiki_equipment_store.read()["equipment"],
-    )
+    resolve = identity_resolver(request.app.state.wiki_equipment_store.read()["equipment"])
+    rows = link_fresh(store_for(request, "equipment").read()["equipment"], resolve)
     aliases = {}
-    for item in identity_catalog(request):
-        aliases.setdefault(item["wikiId"], set()).add(item["id"])
+    for record_id, wiki_id in identity_pairs(request, resolve):
+        aliases.setdefault(wiki_id, set()).add(record_id)
     for row in rows:
         row["identityAliases"] = sorted(
             aliases.get(row["wikiId"], set()) | {row["id"], row["wikiId"]}
@@ -88,19 +99,27 @@ def library_view(request, canonical=False):
 def battle_catalog(request, config):
     from .library_sets import store_for
 
-    wiki = request.app.state.wiki_equipment_store.read()["equipment"]
-    selected = link_rows(
+    resolve = identity_resolver(request.app.state.wiki_equipment_store.read()["equipment"])
+    selected = link_fresh(
         store_for(
             request, "equipment", config.get("librarySelections", {}).get("equipment", "")
         ).read()["equipment"],
-        wiki,
+        resolve,
     )
     by_identity = {row["wikiId"]: row for row in selected}
-    result = {}
-    for old in identity_catalog(request):
-        row = by_identity.get(old["wikiId"])
-        if row:
-            result[old["id"]] = {**deepcopy(row), "id": old["id"]}
+    # 先只确定每个ID最终对应哪一行（同一ID后者覆盖前者，位置保持首次出现处），
+    # 再各复制一次；各库ID统一时，同一件装备不必按库的数量重复复制。
+    plan = {}
+    for record_id, wiki_id in identity_pairs(request, resolve):
+        if wiki_id in by_identity:
+            plan[record_id] = (by_identity[wiki_id], None)
     for row in selected:
-        result[row["wikiId"]] = {**deepcopy(row), "libraryRecordId": row["id"], "id": row["wikiId"]}
-    return list(result.values())
+        plan[row["wikiId"]] = (row, row["id"])
+    result = []
+    for key, (row, library_record_id) in plan.items():
+        item = deepcopy(row)
+        if library_record_id is not None:
+            item["libraryRecordId"] = library_record_id
+        item["id"] = key
+        result.append(item)
+    return result

@@ -123,6 +123,25 @@ for (const file of ["wiki-details.js", "editor.js", "wiki-editor.js"])
   await new Promise(setImmediate);
   assert.equal(calls.filter((u) => u.startsWith("/api/wiki-equipment")).length, 1);
   assert.equal(calls.filter((u) => u.startsWith("/api/equipment/team")).length, before);
+  // 另一处保存后只标记为待刷新：不立即请求，等该标签页再次显示时才重新读取一次。
+  const wikiCalls = () => calls.filter((u) => u.startsWith("/api/wiki-equipment")).length;
+  context.window.wikiEquipmentEditor.markStale();
+  await new Promise(setImmediate);
+  assert.equal(wikiCalls(), 1);
+  picker.options.onExtra("__wiki__");
+  await new Promise(setImmediate);
+  assert.equal(wikiCalls(), 2);
+  picker.options.onExtra("__wiki__");
+  await new Promise(setImmediate);
+  assert.equal(wikiCalls(), 2);
+  const customCalls = () => calls.filter((u) => u === "/api/equipment").length;
+  const customBefore = customCalls();
+  context.window.customEquipmentEditor.markStale();
+  assert.equal(customCalls(), customBefore);
+  await context.window.customEquipmentEditor.render();
+  assert.equal(customCalls(), customBefore + 1);
+  await context.window.customEquipmentEditor.render();
+  assert.equal(customCalls(), customBefore + 1);
   console.log(
     "PASS: encyclopedia makes zero startup requests, loads once on open, and list rerenders never reload team equipment",
   );

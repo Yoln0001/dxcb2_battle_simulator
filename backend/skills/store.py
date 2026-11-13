@@ -283,9 +283,10 @@ class SkillStore:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         temp = self.path.with_name(self.path.name + "." + uuid.uuid4().hex + ".tmp")
         try:
+            # 先整体转成文本再写入：内容与json.dump逐字节相同，但能用上C实现的编码器，大文件快数倍。
+            text = json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
             with temp.open("w", encoding="utf-8") as handle:
-                json.dump(data, handle, ensure_ascii=False, indent=2, allow_nan=False)
-                handle.write("\n")
+                handle.write(text)
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temp, self.path)
