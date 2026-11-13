@@ -146,8 +146,11 @@
             mountWaiters.set(kind, waiters);
           });
     },
-    async restore(value = {}) {
+    // changedOnly：只重新加载所选库发生变化的类别；全部未变时不发任何请求。
+    // 用于切换常规/特殊配置——两边的草稿来自同一会话，已加载的库内容仍然有效。
+    async restore(value = {}, { changedOnly = false } = {}) {
       if (this.pending) throw Error("正在加载所选库，请稍候");
+      const changed = new Set();
       for (const kind of [
         "equipment",
         "stones",
@@ -158,12 +161,17 @@
         "rings",
         "holies",
         "imprints",
-      ])
-        current[kind] = value[kind] || "";
+      ]) {
+        const next = value[kind] || "";
+        if ((current[kind] || "") !== next) changed.add(kind);
+        current[kind] = next;
+      }
+      const targets = [...controls].filter(([kind]) => !changedOnly || changed.has(kind));
+      if (!targets.length) return;
       this.pending = true;
       try {
         const results = await Promise.allSettled(
-          [...controls].map(async ([kind, control]) => {
+          targets.map(async ([kind, control]) => {
             await control.refresh();
             await control.switch();
           }),

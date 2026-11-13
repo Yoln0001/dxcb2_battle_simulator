@@ -930,7 +930,7 @@ function normalize(data) {
   };
 }
 let configurationLoading = false;
-async function apply(data) {
+async function apply(data, { changedLibrariesOnly = false } = {}) {
   if (configurationLoading) throw Error("正在加载配置，请稍候");
   if ($("#characters").children.length) modeDrafts[configurationType] = collect();
   const clean = normalize(data);
@@ -938,7 +938,9 @@ async function apply(data) {
   try {
     if (window.PlayerLibraries) {
       if (window.PlayerLibraries.whenMounted) await window.PlayerLibraries.whenMounted("equipment");
-      await window.PlayerLibraries.restore(clean.librarySelections || {});
+      await window.PlayerLibraries.restore(clean.librarySelections || {}, {
+        changedOnly: changedLibrariesOnly,
+      });
     }
     configurationType = clean.configurationType;
     window.ConfigurationLibrary?.selectType?.(configurationType);
@@ -1217,7 +1219,8 @@ window.switchConfigurationMode = async (type) => {
   modeDrafts[configurationType] = collect();
   const next = modeDrafts[type] || window.newTeamConfiguration(type);
   try {
-    await apply(structuredClone(next));
+    // 两种模式的草稿来自同一会话：库没换就不必重新向后端请求。
+    await apply(structuredClone(next), { changedLibrariesOnly: true });
     dirty();
   } catch (error) {
     toast("配置加载失败：" + error.message);
