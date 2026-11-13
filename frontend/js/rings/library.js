@@ -1,27 +1,385 @@
 "use strict";
-(()=>{
- const labels={strength:'力量',magic:'魔力',technique:'技巧',speed:'速度',constitution:'体质',sky:'空之环',water:'水之环',fire:'炎之环',earth:'地之环',twoEnemies:'敌人不少于两人',missingParty:'队伍不足四人，每少一人叠加一次',none:'无限制',fullHealth:'佩戴者生命全满',fragile:'承受物理和魔法伤害增加30%',polluted:'佩戴者治疗、回春、吸血降低30%',sacrifice:'每秒失去最大生命7.5%（可致死）',physicalMagicDamage:'物理与魔法伤害',dotDamage:'持续伤害',hitRate:'命中率',abnormalBonus:'异常附加率',healingBonus:'治疗效果',dodgeRate:'闪避率',physicalBlock:'物理格挡',magicBlock:'魔法格挡',doubleBlock:'物理和魔法双格挡'};
- const pairs={sky:[['technique','speed'],['technique','strength'],['technique','magic']],water:[['technique','constitution'],['magic','constitution'],['magic','technique']],fire:[['strength','technique'],['magic','technique'],['speed','technique']],earth:[['constitution','magic'],['constitution','strength'],['constitution','technique']]},restrictions={sky:['twoEnemies','missingParty','none'],water:['twoEnemies','missingParty','none'],fire:['fragile','polluted','sacrifice'],earth:['twoEnemies','fullHealth','missingParty','none']},gains={sky:['physicalMagicDamage','dotDamage','hitRate'],water:['abnormalBonus','healingBonus','dodgeRate'],fire:['physicalMagicDamage','dotDamage','hitRate'],earth:['physicalBlock','magicBlock','doubleBlock']};
- const E=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;},O=(value,text)=>{const n=E('option',text);n.value=value;return n;};
- const normalize=item=>item?{...item,gain:['physicalDamage','magicDamage'].includes(item.gain)?'physicalMagicDamage':item.gain}:null;
- const defaults=()=>Object.entries(pairs).flatMap(([kind,rows])=>rows.map(([mainAttribute,secondaryAttribute],i)=>({id:kind+'_'+i,name:labels[kind]+' · '+(i+1),kind,level:50,mainAttribute,secondaryAttribute,mainValue:750,secondaryValue:500,restriction:kind==='fire'?'fragile':'none',gain:gains[kind][0],gainValue:0})));
- let library=[],editing=null,loaded=false;const api=['http:','https:'].includes(location.protocol),storage='dungeon2-ring-library-v1';
- async function request(method='GET',body,id=''){if(window.AppRequests)await window.AppRequests.ready;const r=await (window.AppRequests?.fetch||fetch)('/api/rings'+(id?'/'+encodeURIComponent(id):'')+'?library='+encodeURIComponent(window.PlayerLibraries?.current.rings||''),{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'域之环保存失败');return d;}
- function refreshRoles(){document.querySelectorAll('.character').forEach(c=>c.refreshRingOptions?.());}
- async function refresh(){library=api?(await request()).rings:JSON.parse(localStorage.getItem(storage)||JSON.stringify(defaults()));library=library.map(normalize);loaded=true;drawList();refreshRoles();}
- const dialog=E('dialog',undefined,'configuration-dialog contract-library-dialog ring-library-dialog'),head=E('div',undefined,'dialog-head'),close=E('button','×');close.type='button';head.append(E('h2','域之环库'),close);dialog.append(head);document.body.append(dialog);close.onclick=()=>dialog.close();const controls=E('div');dialog.append(controls);window.PlayerLibraries?.mount(controls,'rings','默认域之环库',refresh);
- const workspace=E('div',undefined,'contract-library-workspace'),sidebar=E('aside'),form=E('form');workspace.append(sidebar,form);dialog.append(workspace);
- const add=E('button','＋ 新增域之环'),search=E('input'),filter=E('select'),list=E('div');add.type='button';search.placeholder='搜索域之环名称';filter.append(O('','全部种类'),...Object.keys(pairs).map(k=>O(k,labels[k])));sidebar.append(add,search,filter,list);
- let fieldHost=form;const fields={};function field(name,title,values){const row=E('label',undefined,'field'),input=E(values?'select':'input');row.append(E('span',title));if(values)input.append(...values.map(([v,t])=>O(v,t)));else{input.type=name==='name'?'text':'number';input.required=true;input.min=0;input.step='any';}input.name=name;fields[name]=input;row.append(input);fieldHost.append(row);return input;}
- form.append(E('h3','基础属性'));const baseGrid=E('div',undefined,'ring-base-grid');form.append(baseGrid);fieldHost=baseGrid;field('name','名称').parentNode.className+=' ring-name-field';field('kind','种类',Object.keys(pairs).map(k=>[k,labels[k]]));field('level','等级').min=1;fields.level.max=50;fields.level.step=1;field('mainAttribute','属性一',['strength','magic','technique','speed','constitution'].map(k=>[k,labels[k]]));field('mainValue','数值');field('secondaryAttribute','属性二',['strength','magic','technique','speed','constitution'].map(k=>[k,labels[k]]));field('secondaryValue','数值');fieldHost=form;
- form.append(E('p','两项属性均可从力量、魔力、技巧、速度、体质中选择，按实际数值填写，不分主副、不设数值上限。选择相同属性时数值相加。','skill-help'),E('h3','限制与增益'));field('restriction','限制条件',[]);field('gain','增益类型',[]);
- const gainInput=field('gainValue','增益数值'),unit=E('span','%','field-unit');gainInput.parentNode.append(unit);const help=E('p',undefined,'skill-help');form.append(help);const footer=E('div',undefined,'contract-library-footer'),save=E('button','保存域之环','primary'),copy=E('button','另存为副本'),remove=E('button','删除域之环');save.type='submit';copy.type=remove.type='button';footer.append(save,copy,remove);form.append(footer);
- function describe(){unit.hidden=fields.kind.value==='earth';help.textContent='增益数值按实际情况手动填写；百分比填百分数，例如7.5表示7.5%。格挡填固定数值。队伍不足四人的增益按存活参战人数计算，每少一人叠加一次。';}
- function kindOptions(){const k=fields.kind.value;fields.restriction.replaceChildren(...restrictions[k].map(r=>O(r,labels[r])));fields.gain.replaceChildren(...gains[k].map(g=>O(g,labels[g])));}
- function load(item){item=normalize(item);editing=item.id?structuredClone(item):null;for(const k of ['name','kind','level','mainValue','secondaryValue','gainValue'])fields[k].value=item[k];kindOptions();fields.mainAttribute.value=item.mainAttribute;fields.secondaryAttribute.value=item.secondaryAttribute;fields.restriction.value=item.restriction;fields.gain.value=item.gain;describe();}
- function drawList(){list.replaceChildren();for(const item of library.filter(i=>(!filter.value||i.kind===filter.value)&&i.name.includes(search.value.trim()))){const button=E('button',item.name+' · '+item.level+'级');button.type='button';button.onclick=()=>load(item);list.append(button);}if(!list.children.length)list.append(E('p','暂无域之环','skill-help'));}
- fields.kind.onchange=()=>{kindOptions();describe();};fields.restriction.onchange=fields.gain.onchange=describe;add.onclick=()=>load({...defaults()[0],id:'',name:''});search.oninput=filter.onchange=drawList;copy.onclick=()=>{editing=null;fields.name.value+='（副本）';};remove.onclick=async()=>{if(!editing||!confirm('删除此域之环？'))return;try{if(api)library=(await request('DELETE',undefined,editing.id)).rings;else{library=library.filter(i=>i.id!==editing.id);localStorage.setItem(storage,JSON.stringify(library));}editing=null;drawList();refreshRoles();}catch(e){window.showToast(e.message);}};
- form.onsubmit=async e=>{e.preventDefault();if(!form.reportValidity())return;const mainAttribute=fields.mainAttribute.value,secondaryAttribute=fields.secondaryAttribute.value,item={name:fields.name.value,kind:fields.kind.value,level:Number(fields.level.value),mainAttribute,secondaryAttribute,mainValue:Number(fields.mainValue.value),secondaryValue:Number(fields.secondaryValue.value),restriction:fields.restriction.value,gain:fields.gain.value,gainValue:Number(fields.gainValue.value)};if(editing)item.id=editing.id;save.disabled=true;try{if(api){const d=await request(editing?'PUT':'POST',item,editing?.id||'');library=d.rings;load(d.item);}else{item.id=item.id||'ring_'+crypto.randomUUID();library=library.filter(i=>i.id!==item.id);library.push(item);localStorage.setItem(storage,JSON.stringify(library));load(item);}drawList();refreshRoles();window.showToast('域之环已保存');}catch(e){window.showToast(e.message);}finally{save.disabled=false;}};
- window.RingLibrary={attach(card,c){card.selectedRing=structuredClone(normalize(c.selectedRing));if(card.specialSources)card.specialSources.selectedRing=structuredClone(card.selectedRing);const host=card.querySelector('.contract'),row=E('label',undefined,'field'),wear=E('select');row.className+=' domain-ring-wear';row.hidden=!card.specialSources;wear.setAttribute('aria-label','选择域之环');row.append(E('span','域之环'),wear);host.prepend(row);function options(){const chosen=card.selectedRing;wear.replaceChildren(O('','不佩戴'),...library.map(i=>O(i.id,i.name)));if(chosen&&!library.some(i=>i.id===chosen.id))wear.append(O(chosen.id,chosen.name+'（配置保存）'));wear.value=chosen?.id||'';}wear.onchange=()=>{card.selectedRing=structuredClone(library.find(i=>i.id===wear.value)||null);if(card.specialSources)card.specialSources.selectedRing=structuredClone(card.selectedRing);card.refreshSpecial?.();card.dispatchEvent(new Event('change',{bubbles:true}));};card.refreshRingOptions=()=>{if(!loaded)return;const previous=card.selectedRing;const latest=previous?(library.find(i=>i.id===previous.id)||library.find(i=>i.name===previous.name)||null):null;const changed=JSON.stringify(latest)!==JSON.stringify(previous);card.selectedRing=structuredClone(latest);if(card.specialSources)card.specialSources.selectedRing=structuredClone(latest);options();if(changed){card.refreshSpecial?.();card.dispatchEvent(new Event('change',{bubbles:true}));}};options();card.refreshRingOptions();card.refreshSpecial?.();}};
- document.querySelector('#open-ring-library').onclick=()=>{drawList();if(!editing)load(defaults()[0]);dialog.showModal();};refresh().catch(e=>window.showToast(e.message));
+(() => {
+  const labels = {
+    strength: "力量",
+    magic: "魔力",
+    technique: "技巧",
+    speed: "速度",
+    constitution: "体质",
+    sky: "空之环",
+    water: "水之环",
+    fire: "炎之环",
+    earth: "地之环",
+    twoEnemies: "敌人不少于两人",
+    missingParty: "队伍不足四人，每少一人叠加一次",
+    none: "无限制",
+    fullHealth: "佩戴者生命全满",
+    fragile: "承受物理和魔法伤害增加30%",
+    polluted: "佩戴者治疗、回春、吸血降低30%",
+    sacrifice: "每秒失去最大生命7.5%（可致死）",
+    physicalMagicDamage: "物理与魔法伤害",
+    dotDamage: "持续伤害",
+    hitRate: "命中率",
+    abnormalBonus: "异常附加率",
+    healingBonus: "治疗效果",
+    dodgeRate: "闪避率",
+    physicalBlock: "物理格挡",
+    magicBlock: "魔法格挡",
+    doubleBlock: "物理和魔法双格挡",
+  };
+  const pairs = {
+      sky: [
+        ["technique", "speed"],
+        ["technique", "strength"],
+        ["technique", "magic"],
+      ],
+      water: [
+        ["technique", "constitution"],
+        ["magic", "constitution"],
+        ["magic", "technique"],
+      ],
+      fire: [
+        ["strength", "technique"],
+        ["magic", "technique"],
+        ["speed", "technique"],
+      ],
+      earth: [
+        ["constitution", "magic"],
+        ["constitution", "strength"],
+        ["constitution", "technique"],
+      ],
+    },
+    restrictions = {
+      sky: ["twoEnemies", "missingParty", "none"],
+      water: ["twoEnemies", "missingParty", "none"],
+      fire: ["fragile", "polluted", "sacrifice"],
+      earth: ["twoEnemies", "fullHealth", "missingParty", "none"],
+    },
+    gains = {
+      sky: ["physicalMagicDamage", "dotDamage", "hitRate"],
+      water: ["abnormalBonus", "healingBonus", "dodgeRate"],
+      fire: ["physicalMagicDamage", "dotDamage", "hitRate"],
+      earth: ["physicalBlock", "magicBlock", "doubleBlock"],
+    };
+  const E = (tag, text, cls) => {
+      const n = document.createElement(tag);
+      if (text !== undefined) n.textContent = text;
+      if (cls) n.className = cls;
+      return n;
+    },
+    O = (value, text) => {
+      const n = E("option", text);
+      n.value = value;
+      return n;
+    };
+  const normalize = (item) =>
+    item
+      ? {
+          ...item,
+          gain: ["physicalDamage", "magicDamage"].includes(item.gain)
+            ? "physicalMagicDamage"
+            : item.gain,
+        }
+      : null;
+  const defaults = () =>
+    Object.entries(pairs).flatMap(([kind, rows]) =>
+      rows.map(([mainAttribute, secondaryAttribute], i) => ({
+        id: kind + "_" + i,
+        name: labels[kind] + " · " + (i + 1),
+        kind,
+        level: 50,
+        mainAttribute,
+        secondaryAttribute,
+        mainValue: 750,
+        secondaryValue: 500,
+        restriction: kind === "fire" ? "fragile" : "none",
+        gain: gains[kind][0],
+        gainValue: 0,
+      })),
+    );
+  let library = [],
+    editing = null,
+    loaded = false;
+  const api = ["http:", "https:"].includes(location.protocol),
+    storage = "dungeon2-ring-library-v1";
+  async function request(method = "GET", body, id = "") {
+    if (window.AppRequests) await window.AppRequests.ready;
+    const r = await (window.AppRequests?.fetch || fetch)(
+      "/api/rings" +
+        (id ? "/" + encodeURIComponent(id) : "") +
+        "?library=" +
+        encodeURIComponent(window.PlayerLibraries?.current.rings || ""),
+      {
+        method,
+        headers: body ? { "Content-Type": "application/json" } : {},
+        body: body ? JSON.stringify(body) : undefined,
+      },
+    );
+    const d = await r.json();
+    if (!r.ok) throw Error(d.error || "域之环保存失败");
+    return d;
+  }
+  function refreshRoles() {
+    document.querySelectorAll(".character").forEach((c) => c.refreshRingOptions?.());
+  }
+  async function refresh() {
+    library = api
+      ? (await request()).rings
+      : JSON.parse(localStorage.getItem(storage) || JSON.stringify(defaults()));
+    library = library.map(normalize);
+    loaded = true;
+    drawList();
+    refreshRoles();
+  }
+  const dialog = E(
+      "dialog",
+      undefined,
+      "configuration-dialog contract-library-dialog ring-library-dialog",
+    ),
+    head = E("div", undefined, "dialog-head"),
+    close = E("button", "×");
+  close.type = "button";
+  head.append(E("h2", "域之环库"), close);
+  dialog.append(head);
+  document.body.append(dialog);
+  close.onclick = () => dialog.close();
+  const controls = E("div");
+  dialog.append(controls);
+  window.PlayerLibraries?.mount(controls, "rings", "默认域之环库", refresh);
+  const workspace = E("div", undefined, "contract-library-workspace"),
+    sidebar = E("aside"),
+    form = E("form");
+  workspace.append(sidebar, form);
+  dialog.append(workspace);
+  const add = E("button", "＋ 新增域之环"),
+    search = E("input"),
+    filter = E("select"),
+    list = E("div");
+  add.type = "button";
+  search.placeholder = "搜索域之环名称";
+  filter.append(O("", "全部种类"), ...Object.keys(pairs).map((k) => O(k, labels[k])));
+  sidebar.append(add, search, filter, list);
+  let fieldHost = form;
+  const fields = {};
+  function field(name, title, values) {
+    const row = E("label", undefined, "field"),
+      input = E(values ? "select" : "input");
+    row.append(E("span", title));
+    if (values) input.append(...values.map(([v, t]) => O(v, t)));
+    else {
+      input.type = name === "name" ? "text" : "number";
+      input.required = true;
+      input.min = 0;
+      input.step = "any";
+    }
+    input.name = name;
+    fields[name] = input;
+    row.append(input);
+    fieldHost.append(row);
+    return input;
+  }
+  form.append(E("h3", "基础属性"));
+  const baseGrid = E("div", undefined, "ring-base-grid");
+  form.append(baseGrid);
+  fieldHost = baseGrid;
+  field("name", "名称").parentNode.className += " ring-name-field";
+  field(
+    "kind",
+    "种类",
+    Object.keys(pairs).map((k) => [k, labels[k]]),
+  );
+  field("level", "等级").min = 1;
+  fields.level.max = 50;
+  fields.level.step = 1;
+  field(
+    "mainAttribute",
+    "属性一",
+    ["strength", "magic", "technique", "speed", "constitution"].map((k) => [k, labels[k]]),
+  );
+  field("mainValue", "数值");
+  field(
+    "secondaryAttribute",
+    "属性二",
+    ["strength", "magic", "technique", "speed", "constitution"].map((k) => [k, labels[k]]),
+  );
+  field("secondaryValue", "数值");
+  fieldHost = form;
+  form.append(
+    E(
+      "p",
+      "两项属性均可从力量、魔力、技巧、速度、体质中选择，按实际数值填写，不分主副、不设数值上限。选择相同属性时数值相加。",
+      "skill-help",
+    ),
+    E("h3", "限制与增益"),
+  );
+  field("restriction", "限制条件", []);
+  field("gain", "增益类型", []);
+  const gainInput = field("gainValue", "增益数值"),
+    unit = E("span", "%", "field-unit");
+  gainInput.parentNode.append(unit);
+  const help = E("p", undefined, "skill-help");
+  form.append(help);
+  const footer = E("div", undefined, "contract-library-footer"),
+    save = E("button", "保存域之环", "primary"),
+    copy = E("button", "另存为副本"),
+    remove = E("button", "删除域之环");
+  save.type = "submit";
+  copy.type = remove.type = "button";
+  footer.append(save, copy, remove);
+  form.append(footer);
+  function describe() {
+    unit.hidden = fields.kind.value === "earth";
+    help.textContent =
+      "增益数值按实际情况手动填写；百分比填百分数，例如7.5表示7.5%。格挡填固定数值。队伍不足四人的增益按存活参战人数计算，每少一人叠加一次。";
+  }
+  function kindOptions() {
+    const k = fields.kind.value;
+    fields.restriction.replaceChildren(...restrictions[k].map((r) => O(r, labels[r])));
+    fields.gain.replaceChildren(...gains[k].map((g) => O(g, labels[g])));
+  }
+  function load(item) {
+    item = normalize(item);
+    editing = item.id ? structuredClone(item) : null;
+    for (const k of ["name", "kind", "level", "mainValue", "secondaryValue", "gainValue"])
+      fields[k].value = item[k];
+    kindOptions();
+    fields.mainAttribute.value = item.mainAttribute;
+    fields.secondaryAttribute.value = item.secondaryAttribute;
+    fields.restriction.value = item.restriction;
+    fields.gain.value = item.gain;
+    describe();
+  }
+  function drawList() {
+    list.replaceChildren();
+    for (const item of library.filter(
+      (i) => (!filter.value || i.kind === filter.value) && i.name.includes(search.value.trim()),
+    )) {
+      const button = E("button", item.name + " · " + item.level + "级");
+      button.type = "button";
+      button.onclick = () => load(item);
+      list.append(button);
+    }
+    if (!list.children.length) list.append(E("p", "暂无域之环", "skill-help"));
+  }
+  fields.kind.onchange = () => {
+    kindOptions();
+    describe();
+  };
+  fields.restriction.onchange = fields.gain.onchange = describe;
+  add.onclick = () => load({ ...defaults()[0], id: "", name: "" });
+  search.oninput = filter.onchange = drawList;
+  copy.onclick = () => {
+    editing = null;
+    fields.name.value += "（副本）";
+  };
+  remove.onclick = async () => {
+    if (!editing || !confirm("删除此域之环？")) return;
+    try {
+      if (api) library = (await request("DELETE", undefined, editing.id)).rings;
+      else {
+        library = library.filter((i) => i.id !== editing.id);
+        localStorage.setItem(storage, JSON.stringify(library));
+      }
+      editing = null;
+      drawList();
+      refreshRoles();
+    } catch (e) {
+      window.showToast(e.message);
+    }
+  };
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const mainAttribute = fields.mainAttribute.value,
+      secondaryAttribute = fields.secondaryAttribute.value,
+      item = {
+        name: fields.name.value,
+        kind: fields.kind.value,
+        level: Number(fields.level.value),
+        mainAttribute,
+        secondaryAttribute,
+        mainValue: Number(fields.mainValue.value),
+        secondaryValue: Number(fields.secondaryValue.value),
+        restriction: fields.restriction.value,
+        gain: fields.gain.value,
+        gainValue: Number(fields.gainValue.value),
+      };
+    if (editing) item.id = editing.id;
+    save.disabled = true;
+    try {
+      if (api) {
+        const d = await request(editing ? "PUT" : "POST", item, editing?.id || "");
+        library = d.rings;
+        load(d.item);
+      } else {
+        item.id = item.id || "ring_" + crypto.randomUUID();
+        library = library.filter((i) => i.id !== item.id);
+        library.push(item);
+        localStorage.setItem(storage, JSON.stringify(library));
+        load(item);
+      }
+      drawList();
+      refreshRoles();
+      window.showToast("域之环已保存");
+    } catch (e) {
+      window.showToast(e.message);
+    } finally {
+      save.disabled = false;
+    }
+  };
+  window.RingLibrary = {
+    attach(card, c) {
+      card.selectedRing = structuredClone(normalize(c.selectedRing));
+      if (card.specialSources)
+        card.specialSources.selectedRing = structuredClone(card.selectedRing);
+      const host = card.querySelector(".contract"),
+        row = E("label", undefined, "field"),
+        wear = E("select");
+      row.className += " domain-ring-wear";
+      row.hidden = !card.specialSources;
+      wear.setAttribute("aria-label", "选择域之环");
+      row.append(E("span", "域之环"), wear);
+      host.prepend(row);
+      function options() {
+        const chosen = card.selectedRing;
+        wear.replaceChildren(O("", "不佩戴"), ...library.map((i) => O(i.id, i.name)));
+        if (chosen && !library.some((i) => i.id === chosen.id))
+          wear.append(O(chosen.id, chosen.name + "（配置保存）"));
+        wear.value = chosen?.id || "";
+      }
+      wear.onchange = () => {
+        card.selectedRing = structuredClone(library.find((i) => i.id === wear.value) || null);
+        if (card.specialSources)
+          card.specialSources.selectedRing = structuredClone(card.selectedRing);
+        card.refreshSpecial?.();
+        card.dispatchEvent(new Event("change", { bubbles: true }));
+      };
+      card.refreshRingOptions = () => {
+        if (!loaded) return;
+        const previous = card.selectedRing;
+        const latest = previous
+          ? library.find((i) => i.id === previous.id) ||
+            library.find((i) => i.name === previous.name) ||
+            null
+          : null;
+        const changed = JSON.stringify(latest) !== JSON.stringify(previous);
+        card.selectedRing = structuredClone(latest);
+        if (card.specialSources) card.specialSources.selectedRing = structuredClone(latest);
+        options();
+        if (changed) {
+          card.refreshSpecial?.();
+          card.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+      };
+      options();
+      card.refreshRingOptions();
+      card.refreshSpecial?.();
+    },
+  };
+  document.querySelector("#open-ring-library").onclick = () => {
+    drawList();
+    if (!editing) load(defaults()[0]);
+    dialog.showModal();
+  };
+  refresh().catch((e) => window.showToast(e.message));
 })();

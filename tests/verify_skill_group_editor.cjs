@@ -1,20 +1,237 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert'),crypto=require('crypto'),path=require('path');
-const root=path.resolve(__dirname,'..'),nodes=[];
-class Node{constructor(tag){this.tag=tag;this.children=[];this.handlers={};this.value='';this.attributes={};this.classList={toggle(){},add(){}};nodes.push(this);}contains(target){return this===target||this.children.some(child=>child.contains(target));}querySelectorAll(selector){const all=this.children.flatMap(c=>[c,...c.querySelectorAll('*')]);return selector==='*'?all:all.filter(n=>n.className===selector.slice(1));}prepend(...items){this.children.unshift(...items);}get options(){return this.children;}after(){}append(...items){this.children.push(...items);}replaceChildren(...items){this.children=items;}setAttribute(k,v){this.attributes[k]=v;}addEventListener(k,fn){(this.handlers[k]??=[]).push(fn);}reportValidity(){return true;}showModal(){}close(){}click(){for(const fn of this.handlers.click||[])fn();}}
-const open=new Node('button'),storage={'dungeon2-skill-library-v1':JSON.stringify({skills:[{id:'ice',name:'冰锥',damageType:'magic',job:'寒霜法师'},{id:'heal',name:'静气凝神',damageType:'none',job:'寒霜法师'},{id:'other',name:'其他',job:'夜魇'}]})};storage['dungeon2-equipment-library-v1']=JSON.stringify({equipment:[{id:'staff',name:'世界树之杖',triggerEnabled:true,triggerEffects:[{name:'魔力增幅',triggerType:'magic',effect:{kind:'amplify'}},{name:'回复增幅',triggerType:'none',effect:{kind:'amplify'}},{name:'物理增幅',triggerType:'physical',effect:{kind:'amplify'}}]}]});let published;const alerts=[];
-const context={document:{body:new Node('body'),createElement:t=>new Node(t),querySelector:()=>open},location:{protocol:'file:'},SkillModel:require(root+'/frontend/js/skills/model.js'),window:{showToast:message=>alerts.push(message),onSkillGroupLibraryChange:g=>published=g},localStorage:{getItem:k=>storage[k]||null,setItem:(k,v)=>storage[k]=v},crypto,structuredClone,confirm:()=>true,console};
-vm.createContext(context);vm.runInContext(fs.readFileSync(root+'/frontend/js/skill-groups/editor.js','utf8'),context);
-(async()=>{
- const byLabel=label=>nodes.filter(n=>n.attributes['aria-label']===label).at(-1);
- const editArea=nodes.find(n=>n.className==='group-edit-area');assert.equal(editArea.hidden,true);const family=byLabel('筛选技能组职业大类');family.value='法师';family.handlers.change[0]();const initialForm=nodes.find(n=>n.tag==='form');for(const fn of initialForm.handlers.input||[])fn({target:family});for(const fn of initialForm.handlers.change||[])fn({target:family});context.confirm=()=>{throw Error('筛选不应触发未保存提示');};family.handlers.change[0]();context.confirm=()=>true;const job=byLabel('筛选技能组转职');job.value='寒霜法师';job.handlers.change[0]();nodes.find(n=>n.textContent==='＋ 创建技能组').click();assert.equal(editArea.hidden,false);byLabel('技能组名称').value='动态循环测试';
- assert.equal(byLabel('子技能组1技能1跳转到').value,'');assert.equal(byLabel('子技能组1结束后跳转到').value,'');assert.deepEqual(byLabel('子技能组1技能1').children.map(o=>o.value),['','ice','heal','__wait__']);byLabel('子技能组1技能1').value='ice';for(const fn of byLabel('子技能组1技能1').handlers.change||[])fn();assert.equal(byLabel('子技能组1技能1释放对象').disabled,false);assert.equal(byLabel('子技能组1技能1释放对象').value,'lowestHp');assert(byLabel('子技能组1技能1释放对象').options.some(o=>o.value==='random'));byLabel('子技能组1技能1释放对象').value='random';
- nodes.filter(n=>n.textContent==='＋ 添加技能').at(-1).click();assert(byLabel('子技能组1技能2'));byLabel('子技能组1技能2').value='ice';
- nodes.find(n=>n.textContent==='＋ 添加子技能组').click();byLabel('子技能组2技能1').value='ice';
- const jump=byLabel('子技能组1技能1跳转到');const dest=jump.children.find(o=>o.textContent==='子技能组2 · 技能1').value;jump.value=dest;
- byLabel('子技能组1结束后跳转到').value=byLabel('子技能组1结束后跳转到').children.find(o=>o.textContent==='子技能组2').value;
- const condition=byLabel('是否需要触发装备特效');assert.equal(condition.value,'no');condition.value='yes';for(const fn of condition.handlers.change)fn();const effect=byLabel('选择装备特效');const skillSelect=byLabel('子技能组2技能1');for(const fn of skillSelect.handlers.change)fn();assert.equal(effect.options.length,2);assert(effect.options[1].textContent.includes('魔力增幅'));effect.value=effect.options[1].value;skillSelect.value='heal';for(const fn of skillSelect.handlers.change)fn();assert.equal(effect.value,'');assert.equal(effect.options.length,2);assert(effect.options[1].textContent.includes('回复增幅'));skillSelect.value='ice';for(const fn of skillSelect.handlers.change)fn();effect.value=effect.options[1].value;byLabel('子技能组2技能1跳转到').value=dest;
- const branch=byLabel('子技能组1子技能组类型');branch.value='yes';for(const fn of branch.handlers.change)fn();byLabel('子技能组1条件1技能').value='heal';byLabel('条件1血量阈值').value='20';byLabel('子技能组1else技能').value='ice';nodes.filter(n=>n.textContent==='＋ 添加else if').at(-1).click();byLabel('子技能组1条件2技能').value='ice';byLabel('条件2血量阈值').value='40';const form=nodes.find(n=>n.tag==='form');assert(form.children.some(n=>n.className==='group-actions'));assert(!editArea.children.some(n=>n.className==='group-actions'));byLabel('子技能组1条件2技能释放对象').value='highestArmor';byLabel('子技能组1else技能释放对象').value='random';await form.handlers.submit[0]({preventDefault(){}});const saved=JSON.parse(storage['dungeon2-skill-groups-v1']).groups[0];assert.equal(saved.subgroups[1].skills[0].jumpCondition.equipmentName,'世界树之杖');assert.equal(byLabel('是否需要触发装备特效').value,'yes');assert.equal(saved.subgroups[0].skills[0].decision.cases[0].threshold,20);assert.equal(saved.subgroups[0].conditionsEnabled,true);assert.equal(byLabel('子技能组1子技能组类型').value,'yes');assert.equal(byLabel('子技能组1条件1技能').value,'heal');assert.equal(byLabel('子技能组1else技能').value,'ice');assert.equal(saved.subgroups[0].skills[0].decision.cases.length,2);assert.equal(saved.subgroups[0].skills[0].decision.cases[1].targetSelection,'highestArmor');assert.equal(saved.subgroups[0].skills[0].decision.elseTargetSelection,'random');assert.equal(byLabel('子技能组1条件1技能释放对象').disabled,true);assert.equal(byLabel('子技能组1else技能释放对象').disabled,false);assert.equal(saved.subgroups.length,2);assert.equal(saved.subgroups[0].nextGroup,saved.subgroups[1].id);assert.equal(saved.subgroups[0].skills.length,1);assert.equal(saved.subgroups[0].skills[0].next,saved.subgroups[1].skills[0].id);assert.equal(byLabel('子技能组1技能1跳转到').value,dest);assert.equal(published.length,1);assert(alerts.includes('技能组已保存'));
- const original=structuredClone(saved);nodes.find(n=>n.textContent==='＋ 创建技能组').click();assert.equal(byLabel('技能组名称').value,original.name);assert.equal(byLabel('子技能组1技能1跳转到').value,dest);await form.handlers.submit[0]({preventDefault(){}});assert.equal(JSON.parse(storage['dungeon2-skill-groups-v1']).groups.length,1);assert(alerts.some(x=>x.includes('名称已存在')));byLabel('技能组名称').value='新的技能组';await form.handlers.submit[0]({preventDefault(){}});const copies=JSON.parse(storage['dungeon2-skill-groups-v1']).groups;assert.equal(copies.length,2);assert.notEqual(copies[1].id,original.id);assert.deepEqual(copies[1].subgroups,original.subgroups);assert.deepEqual(copies[0],original);
- const waitCase=byLabel('子技能组1条件1技能');waitCase.value='__wait__';for(const fn of waitCase.handlers.change||[])fn();assert.equal(byLabel('子技能组1条件1技能释放对象').disabled,true);byLabel('子技能组1条件1技能等待时间').value='3.2';const waitElse=byLabel('子技能组1else技能');waitElse.value='__wait__';for(const fn of waitElse.handlers.change||[])fn();byLabel('子技能组1else技能等待时间').value='4';await form.handlers.submit[0]({preventDefault(){}});const waiting=JSON.parse(storage['dungeon2-skill-groups-v1']).groups[1].subgroups[0].skills[0];assert.equal(waiting.decision.cases[0].waitDuration,3.2);assert.equal(waiting.decision.elseWaitDuration,4);assert.equal(waiting.decision.elseSkillId,'__wait__');
- console.log('PASS: dynamic subgroup/skill addition, job filtering, per-node jumps, save and reload');
-})().catch(e=>{console.error(e);process.exitCode=1;});
+const fs = require("fs"),
+  vm = require("vm"),
+  assert = require("assert"),
+  crypto = require("crypto"),
+  path = require("path");
+const root = path.resolve(__dirname, ".."),
+  nodes = [];
+class Node {
+  constructor(tag) {
+    this.tag = tag;
+    this.children = [];
+    this.handlers = {};
+    this.value = "";
+    this.attributes = {};
+    this.classList = { toggle() {}, add() {} };
+    nodes.push(this);
+  }
+  contains(target) {
+    return this === target || this.children.some((child) => child.contains(target));
+  }
+  querySelectorAll(selector) {
+    const all = this.children.flatMap((c) => [c, ...c.querySelectorAll("*")]);
+    return selector === "*" ? all : all.filter((n) => n.className === selector.slice(1));
+  }
+  prepend(...items) {
+    this.children.unshift(...items);
+  }
+  get options() {
+    return this.children;
+  }
+  after() {}
+  append(...items) {
+    this.children.push(...items);
+  }
+  replaceChildren(...items) {
+    this.children = items;
+  }
+  setAttribute(k, v) {
+    this.attributes[k] = v;
+  }
+  addEventListener(k, fn) {
+    (this.handlers[k] ??= []).push(fn);
+  }
+  reportValidity() {
+    return true;
+  }
+  showModal() {}
+  close() {}
+  click() {
+    for (const fn of this.handlers.click || []) fn();
+  }
+}
+const open = new Node("button"),
+  storage = {
+    "dungeon2-skill-library-v1": JSON.stringify({
+      skills: [
+        { id: "ice", name: "冰锥", damageType: "magic", job: "寒霜法师" },
+        { id: "heal", name: "静气凝神", damageType: "none", job: "寒霜法师" },
+        { id: "other", name: "其他", job: "夜魇" },
+      ],
+    }),
+  };
+storage["dungeon2-equipment-library-v1"] = JSON.stringify({
+  equipment: [
+    {
+      id: "staff",
+      name: "世界树之杖",
+      triggerEnabled: true,
+      triggerEffects: [
+        { name: "魔力增幅", triggerType: "magic", effect: { kind: "amplify" } },
+        { name: "回复增幅", triggerType: "none", effect: { kind: "amplify" } },
+        { name: "物理增幅", triggerType: "physical", effect: { kind: "amplify" } },
+      ],
+    },
+  ],
+});
+let published;
+const alerts = [];
+const context = {
+  document: {
+    body: new Node("body"),
+    createElement: (t) => new Node(t),
+    querySelector: () => open,
+  },
+  location: { protocol: "file:" },
+  SkillModel: require(root + "/frontend/js/skills/model.js"),
+  window: {
+    showToast: (message) => alerts.push(message),
+    onSkillGroupLibraryChange: (g) => (published = g),
+  },
+  localStorage: { getItem: (k) => storage[k] || null, setItem: (k, v) => (storage[k] = v) },
+  crypto,
+  structuredClone,
+  confirm: () => true,
+  console,
+};
+vm.createContext(context);
+vm.runInContext(fs.readFileSync(root + "/frontend/js/skill-groups/editor.js", "utf8"), context);
+(async () => {
+  const byLabel = (label) => nodes.filter((n) => n.attributes["aria-label"] === label).at(-1);
+  const editArea = nodes.find((n) => n.className === "group-edit-area");
+  assert.equal(editArea.hidden, true);
+  const family = byLabel("筛选技能组职业大类");
+  family.value = "法师";
+  family.handlers.change[0]();
+  const initialForm = nodes.find((n) => n.tag === "form");
+  for (const fn of initialForm.handlers.input || []) fn({ target: family });
+  for (const fn of initialForm.handlers.change || []) fn({ target: family });
+  context.confirm = () => {
+    throw Error("筛选不应触发未保存提示");
+  };
+  family.handlers.change[0]();
+  context.confirm = () => true;
+  const job = byLabel("筛选技能组转职");
+  job.value = "寒霜法师";
+  job.handlers.change[0]();
+  nodes.find((n) => n.textContent === "＋ 创建技能组").click();
+  assert.equal(editArea.hidden, false);
+  byLabel("技能组名称").value = "动态循环测试";
+  assert.equal(byLabel("子技能组1技能1跳转到").value, "");
+  assert.equal(byLabel("子技能组1结束后跳转到").value, "");
+  assert.deepEqual(
+    byLabel("子技能组1技能1").children.map((o) => o.value),
+    ["", "ice", "heal", "__wait__"],
+  );
+  byLabel("子技能组1技能1").value = "ice";
+  for (const fn of byLabel("子技能组1技能1").handlers.change || []) fn();
+  assert.equal(byLabel("子技能组1技能1释放对象").disabled, false);
+  assert.equal(byLabel("子技能组1技能1释放对象").value, "lowestHp");
+  assert(byLabel("子技能组1技能1释放对象").options.some((o) => o.value === "random"));
+  byLabel("子技能组1技能1释放对象").value = "random";
+  nodes
+    .filter((n) => n.textContent === "＋ 添加技能")
+    .at(-1)
+    .click();
+  assert(byLabel("子技能组1技能2"));
+  byLabel("子技能组1技能2").value = "ice";
+  nodes.find((n) => n.textContent === "＋ 添加子技能组").click();
+  byLabel("子技能组2技能1").value = "ice";
+  const jump = byLabel("子技能组1技能1跳转到");
+  const dest = jump.children.find((o) => o.textContent === "子技能组2 · 技能1").value;
+  jump.value = dest;
+  byLabel("子技能组1结束后跳转到").value = byLabel("子技能组1结束后跳转到").children.find(
+    (o) => o.textContent === "子技能组2",
+  ).value;
+  const condition = byLabel("是否需要触发装备特效");
+  assert.equal(condition.value, "no");
+  condition.value = "yes";
+  for (const fn of condition.handlers.change) fn();
+  const effect = byLabel("选择装备特效");
+  const skillSelect = byLabel("子技能组2技能1");
+  for (const fn of skillSelect.handlers.change) fn();
+  assert.equal(effect.options.length, 2);
+  assert(effect.options[1].textContent.includes("魔力增幅"));
+  effect.value = effect.options[1].value;
+  skillSelect.value = "heal";
+  for (const fn of skillSelect.handlers.change) fn();
+  assert.equal(effect.value, "");
+  assert.equal(effect.options.length, 2);
+  assert(effect.options[1].textContent.includes("回复增幅"));
+  skillSelect.value = "ice";
+  for (const fn of skillSelect.handlers.change) fn();
+  effect.value = effect.options[1].value;
+  byLabel("子技能组2技能1跳转到").value = dest;
+  const branch = byLabel("子技能组1子技能组类型");
+  branch.value = "yes";
+  for (const fn of branch.handlers.change) fn();
+  byLabel("子技能组1条件1技能").value = "heal";
+  byLabel("条件1血量阈值").value = "20";
+  byLabel("子技能组1else技能").value = "ice";
+  nodes
+    .filter((n) => n.textContent === "＋ 添加else if")
+    .at(-1)
+    .click();
+  byLabel("子技能组1条件2技能").value = "ice";
+  byLabel("条件2血量阈值").value = "40";
+  const form = nodes.find((n) => n.tag === "form");
+  assert(form.children.some((n) => n.className === "group-actions"));
+  assert(!editArea.children.some((n) => n.className === "group-actions"));
+  byLabel("子技能组1条件2技能释放对象").value = "highestArmor";
+  byLabel("子技能组1else技能释放对象").value = "random";
+  await form.handlers.submit[0]({ preventDefault() {} });
+  const saved = JSON.parse(storage["dungeon2-skill-groups-v1"]).groups[0];
+  assert.equal(saved.subgroups[1].skills[0].jumpCondition.equipmentName, "世界树之杖");
+  assert.equal(byLabel("是否需要触发装备特效").value, "yes");
+  assert.equal(saved.subgroups[0].skills[0].decision.cases[0].threshold, 20);
+  assert.equal(saved.subgroups[0].conditionsEnabled, true);
+  assert.equal(byLabel("子技能组1子技能组类型").value, "yes");
+  assert.equal(byLabel("子技能组1条件1技能").value, "heal");
+  assert.equal(byLabel("子技能组1else技能").value, "ice");
+  assert.equal(saved.subgroups[0].skills[0].decision.cases.length, 2);
+  assert.equal(saved.subgroups[0].skills[0].decision.cases[1].targetSelection, "highestArmor");
+  assert.equal(saved.subgroups[0].skills[0].decision.elseTargetSelection, "random");
+  assert.equal(byLabel("子技能组1条件1技能释放对象").disabled, true);
+  assert.equal(byLabel("子技能组1else技能释放对象").disabled, false);
+  assert.equal(saved.subgroups.length, 2);
+  assert.equal(saved.subgroups[0].nextGroup, saved.subgroups[1].id);
+  assert.equal(saved.subgroups[0].skills.length, 1);
+  assert.equal(saved.subgroups[0].skills[0].next, saved.subgroups[1].skills[0].id);
+  assert.equal(byLabel("子技能组1技能1跳转到").value, dest);
+  assert.equal(published.length, 1);
+  assert(alerts.includes("技能组已保存"));
+  const original = structuredClone(saved);
+  nodes.find((n) => n.textContent === "＋ 创建技能组").click();
+  assert.equal(byLabel("技能组名称").value, original.name);
+  assert.equal(byLabel("子技能组1技能1跳转到").value, dest);
+  await form.handlers.submit[0]({ preventDefault() {} });
+  assert.equal(JSON.parse(storage["dungeon2-skill-groups-v1"]).groups.length, 1);
+  assert(alerts.some((x) => x.includes("名称已存在")));
+  byLabel("技能组名称").value = "新的技能组";
+  await form.handlers.submit[0]({ preventDefault() {} });
+  const copies = JSON.parse(storage["dungeon2-skill-groups-v1"]).groups;
+  assert.equal(copies.length, 2);
+  assert.notEqual(copies[1].id, original.id);
+  assert.deepEqual(copies[1].subgroups, original.subgroups);
+  assert.deepEqual(copies[0], original);
+  const waitCase = byLabel("子技能组1条件1技能");
+  waitCase.value = "__wait__";
+  for (const fn of waitCase.handlers.change || []) fn();
+  assert.equal(byLabel("子技能组1条件1技能释放对象").disabled, true);
+  byLabel("子技能组1条件1技能等待时间").value = "3.2";
+  const waitElse = byLabel("子技能组1else技能");
+  waitElse.value = "__wait__";
+  for (const fn of waitElse.handlers.change || []) fn();
+  byLabel("子技能组1else技能等待时间").value = "4";
+  await form.handlers.submit[0]({ preventDefault() {} });
+  const waiting = JSON.parse(storage["dungeon2-skill-groups-v1"]).groups[1].subgroups[0].skills[0];
+  assert.equal(waiting.decision.cases[0].waitDuration, 3.2);
+  assert.equal(waiting.decision.elseWaitDuration, 4);
+  assert.equal(waiting.decision.elseSkillId, "__wait__");
+  console.log(
+    "PASS: dynamic subgroup/skill addition, job filtering, per-node jumps, save and reload",
+  );
+})().catch((e) => {
+  console.error(e);
+  process.exitCode = 1;
+});

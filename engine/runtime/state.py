@@ -1,4 +1,5 @@
 """Shared mutable battle state; configuration remains immutable."""
+
 from dataclasses import dataclass, field, asdict
 from copy import deepcopy, copy
 
@@ -91,16 +92,16 @@ def clone_for_resolution(state):
     Buff deltas are replaced as new records, never edited. Periodic debuff timers
     and the contract are mutable and therefore receive independent copies.
     """
-    draft=copy(state)
-    draft.characters=[]
+    draft = copy(state)
+    draft.characters = []
     for original in state.characters:
-        character=copy(original)
-        character.stats=original.stats.copy()
-        character.negative_immunities=original.negative_immunities.copy()
-        character.regeneration_buffs=deepcopy(original.regeneration_buffs)
-        character.buffs=list(original.buffs)
-        character.debuffs=[copy(debuff) for debuff in original.debuffs]
+        character = copy(original)
+        character.stats = original.stats.copy()
+        character.negative_immunities = original.negative_immunities.copy()
+        character.regeneration_buffs = deepcopy(original.regeneration_buffs)
+        character.buffs = list(original.buffs)
+        character.debuffs = [copy(debuff) for debuff in original.debuffs]
         draft.characters.append(character)
-    draft.contract=copy(state.contract) if state.contract is not None else None
-    draft.events=list(state.events)
+    draft.contract = copy(state.contract) if state.contract is not None else None
+    draft.events = list(state.events)
     return draft

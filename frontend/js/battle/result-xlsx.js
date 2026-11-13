@@ -1,33 +1,228 @@
- 'use strict';
-(()=>{
- // Small, uncompressed OOXML workbook; no network dependency is needed for export.
- const xml=value=>String(value).replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
- const encoder=new TextEncoder(),ns='http://schemas.openxmlformats.org/spreadsheetml/2006/main';
- function zip(files){const parts=[],central=[];let offset=0,size=0;
-  const header=n=>new Uint8Array(n),u16=(a,p,v)=>new DataView(a.buffer).setUint16(p,v,true),u32=(a,p,v)=>new DataView(a.buffer).setUint32(p,v>>>0,true);
-  for(const [path,source] of Object.entries(files)){const name=encoder.encode(path),body=encoder.encode(source);let crc=0xffffffff;for(const byte of body){crc^=byte;for(let bit=0;bit<8;bit++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}crc=(crc^0xffffffff)>>>0;
-   const local=header(30);u32(local,0,0x04034b50);u16(local,4,20);u16(local,6,0x800);u16(local,12,33);u32(local,14,crc);u32(local,18,body.length);u32(local,22,body.length);u16(local,26,name.length);parts.push(local,name,body);
-   const entry=header(46);u32(entry,0,0x02014b50);u16(entry,4,20);u16(entry,6,20);u16(entry,8,0x800);u16(entry,14,33);u32(entry,16,crc);u32(entry,20,body.length);u32(entry,24,body.length);u16(entry,28,name.length);u32(entry,42,offset);central.push(entry,name);size+=entry.length+name.length;offset+=local.length+name.length+body.length;
+"use strict";
+(() => {
+  // Small, uncompressed OOXML workbook; no network dependency is needed for export.
+  const xml = (value) =>
+    String(value)
+      .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  const encoder = new TextEncoder(),
+    ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
+  function zip(files) {
+    const parts = [],
+      central = [];
+    let offset = 0,
+      size = 0;
+    const header = (n) => new Uint8Array(n),
+      u16 = (a, p, v) => new DataView(a.buffer).setUint16(p, v, true),
+      u32 = (a, p, v) => new DataView(a.buffer).setUint32(p, v >>> 0, true);
+    for (const [path, source] of Object.entries(files)) {
+      const name = encoder.encode(path),
+        body = encoder.encode(source);
+      let crc = 0xffffffff;
+      for (const byte of body) {
+        crc ^= byte;
+        for (let bit = 0; bit < 8; bit++) crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0);
+      }
+      crc = (crc ^ 0xffffffff) >>> 0;
+      const local = header(30);
+      u32(local, 0, 0x04034b50);
+      u16(local, 4, 20);
+      u16(local, 6, 0x800);
+      u16(local, 12, 33);
+      u32(local, 14, crc);
+      u32(local, 18, body.length);
+      u32(local, 22, body.length);
+      u16(local, 26, name.length);
+      parts.push(local, name, body);
+      const entry = header(46);
+      u32(entry, 0, 0x02014b50);
+      u16(entry, 4, 20);
+      u16(entry, 6, 20);
+      u16(entry, 8, 0x800);
+      u16(entry, 14, 33);
+      u32(entry, 16, crc);
+      u32(entry, 20, body.length);
+      u32(entry, 24, body.length);
+      u16(entry, 28, name.length);
+      u32(entry, 42, offset);
+      central.push(entry, name);
+      size += entry.length + name.length;
+      offset += local.length + name.length + body.length;
+    }
+    const end = header(22),
+      count = Object.keys(files).length;
+    u32(end, 0, 0x06054b50);
+    u16(end, 8, count);
+    u16(end, 10, count);
+    u32(end, 12, size);
+    u32(end, 16, offset);
+    return new Blob([...parts, ...central, end], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
   }
-  const end=header(22),count=Object.keys(files).length;u32(end,0,0x06054b50);u16(end,8,count);u16(end,10,count);u32(end,12,size);u32(end,16,offset);return new Blob([...parts,...central,end],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
- }
- function build(data,config){const rows=[];const percentStyle=value=>Number.isInteger(value)?5:4;const cell=(value,style=0)=>({value,style});const row=(...values)=>rows.push(values.map(value=>typeof value==='object'&&value!==null?value:cell(value)));
-  row(cell('批量战斗结果',1));row('目标',config.target?.selectedBoss?.name||config.target?.name||'未命名目标');row('模拟模式',data.boss_attacks?'包含 Boss 攻击':'普通批量模拟');row('战斗场次',cell(data.total_battles,2));row('达标场次',cell(data.passed_battles,2));row('通过率',cell(data.pass_rate,percentStyle(data.pass_rate)));row('全员存活场次',typeof data.all_alive_rate==='number'?cell(data.all_alive_battles,2):'未统计');row('全员存活比例',typeof data.all_alive_rate==='number'?cell(data.all_alive_rate,percentStyle(data.all_alive_rate)):'未统计');row('队伍期望伤害',cell(data.expected_damage,3));row();
-  const characters=Array.from({length:4},(_,i)=>({result:data.characters.find(c=>c.index===i+1)||{},source:config.characters?.[i]||{}}));
-  row(...['面板属性（开战前）','角色1','角色2','角色3','角色4'].map(value=>cell(value,1)));row('职业',...characters.map(c=>c.result.job||c.source.job||'未选职业'));row('参战状态',...characters.map(c=>c.result.enabled?'参战':'未参战'));row('角色存活场次',...characters.map(c=>!c.result.enabled?'未参战':typeof c.result.survived_battles==='number'?cell(c.result.survived_battles,2):'未统计'));row('角色存活率',...characters.map(c=>!c.result.enabled?'未参战':typeof c.result.survival_rate==='number'?cell(c.result.survival_rate,percentStyle(c.result.survival_rate)):'未统计'));row('角色期望伤害',...characters.map(c=>cell(c.result.expected_damage,2)));
-  const rounded=new Set(['strength','magic','technique','speed','constitution','armor','resistance','weaponPower']),percent=new Set(['hitRate','criticalMultiplier','physicalDamage','magicDamage']);
-  for(const [key,label] of [['strength','力量'],['constitution','体质'],['magic','魔力'],['armor','护甲'],['technique','技巧'],['resistance','抗性'],['speed','速度'],['weaponPower','武威'],['hitRate','命中率'],['criticalMultiplier','暴击伤害系数'],['physicalDamage','物理伤害'],['magicDamage','魔法伤害']])row(label,...characters.map(c=>Object.hasOwn(c.source.stats||{},key)?cell(c.source.stats[key],rounded.has(key)?2:percent.has(key)?percentStyle(c.source.stats[key]):3):'—'));
-  row();row('通过率说明','在设定时间内击败目标的场次 / 总场次');row('全员存活说明',typeof data.all_alive_rate==='number'?'四名队员均参战且存活至全体定时击杀前的场次 / 总场次；未触发则按战斗结束状态':'未统计');
-  const sheetRows=rows.map((values,i)=>'<row r="'+(i+1)+'" ht="25" customHeight="1">'+values.map((c,j)=>{const ref=String.fromCharCode(65+j)+(i+1);if(typeof c.value==='number'&&Number.isFinite(c.value))return '<c r="'+ref+'" s="'+c.style+'"><v>'+c.value+'</v></c>';return '<c r="'+ref+'" s="'+c.style+'" t="inlineStr"><is><t xml:space="preserve">'+xml(c.value??'—')+'</t></is></c>';}).join('')+'</row>').join('');
-  return zip({
-   '[Content_Types].xml':'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>',
-   '_rels/.rels':'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',
-   'xl/workbook.xml':'<workbook xmlns="'+ns+'" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="战斗结果" sheetId="1" r:id="rId1"/></sheets></workbook>',
-   'xl/_rels/workbook.xml.rels':'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>',
-   'xl/styles.xml':'<styleSheet xmlns="'+ns+'"><numFmts count="3"><numFmt numFmtId="164" formatCode="General"/><numFmt numFmtId="165" formatCode="0.###############&quot;%&quot;"/><numFmt numFmtId="166" formatCode="0&quot;%&quot;"/></numFmts><fonts count="2"><font><sz val="11"/><name val="Microsoft YaHei"/><color rgb="FF284553"/></font><font><b/><sz val="12"/><name val="Microsoft YaHei"/><color rgb="FFFFFFFF"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF008F83"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="1" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="166" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>',
-   'xl/worksheets/sheet1.xml':'<worksheet xmlns="'+ns+'"><sheetViews><sheetView workbookViewId="0" showGridLines="0"><pane ySplit="11" topLeftCell="A12" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols><col min="1" max="1" width="26" customWidth="1"/><col min="2" max="5" width="25" customWidth="1"/></cols><sheetData>'+sheetRows+'</sheetData><mergeCells count="4"><mergeCell ref="A1:E1"/><mergeCell ref="B2:E2"/><mergeCell ref="B28:E28"/><mergeCell ref="B29:E29"/></mergeCells></worksheet>'
-  });
- }
- async function download(data,config){const url=URL.createObjectURL(build(data,config)),link=document.createElement('a');link.href=url;link.download='战斗结果-'+data.total_battles+'场-'+(data.seed??Date.now())+'.xlsx';document.body.append(link);try{link.click();}finally{link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}}
- window.BatchResultXlsx={build,download};
+  function build(data, config) {
+    const rows = [];
+    const percentStyle = (value) => (Number.isInteger(value) ? 5 : 4);
+    const cell = (value, style = 0) => ({ value, style });
+    const row = (...values) =>
+      rows.push(
+        values.map((value) => (typeof value === "object" && value !== null ? value : cell(value))),
+      );
+    row(cell("批量战斗结果", 1));
+    row("目标", config.target?.selectedBoss?.name || config.target?.name || "未命名目标");
+    row("模拟模式", data.boss_attacks ? "包含 Boss 攻击" : "普通批量模拟");
+    row("战斗场次", cell(data.total_battles, 2));
+    row("达标场次", cell(data.passed_battles, 2));
+    row("通过率", cell(data.pass_rate, percentStyle(data.pass_rate)));
+    row(
+      "全员存活场次",
+      typeof data.all_alive_rate === "number" ? cell(data.all_alive_battles, 2) : "未统计",
+    );
+    row(
+      "全员存活比例",
+      typeof data.all_alive_rate === "number"
+        ? cell(data.all_alive_rate, percentStyle(data.all_alive_rate))
+        : "未统计",
+    );
+    row("队伍期望伤害", cell(data.expected_damage, 3));
+    row();
+    const characters = Array.from({ length: 4 }, (_, i) => ({
+      result: data.characters.find((c) => c.index === i + 1) || {},
+      source: config.characters?.[i] || {},
+    }));
+    row(
+      ...["面板属性（开战前）", "角色1", "角色2", "角色3", "角色4"].map((value) => cell(value, 1)),
+    );
+    row("职业", ...characters.map((c) => c.result.job || c.source.job || "未选职业"));
+    row("参战状态", ...characters.map((c) => (c.result.enabled ? "参战" : "未参战")));
+    row(
+      "角色存活场次",
+      ...characters.map((c) =>
+        !c.result.enabled
+          ? "未参战"
+          : typeof c.result.survived_battles === "number"
+            ? cell(c.result.survived_battles, 2)
+            : "未统计",
+      ),
+    );
+    row(
+      "角色存活率",
+      ...characters.map((c) =>
+        !c.result.enabled
+          ? "未参战"
+          : typeof c.result.survival_rate === "number"
+            ? cell(c.result.survival_rate, percentStyle(c.result.survival_rate))
+            : "未统计",
+      ),
+    );
+    row("角色期望伤害", ...characters.map((c) => cell(c.result.expected_damage, 2)));
+    const rounded = new Set([
+        "strength",
+        "magic",
+        "technique",
+        "speed",
+        "constitution",
+        "armor",
+        "resistance",
+        "weaponPower",
+      ]),
+      percent = new Set(["hitRate", "criticalMultiplier", "physicalDamage", "magicDamage"]);
+    for (const [key, label] of [
+      ["strength", "力量"],
+      ["constitution", "体质"],
+      ["magic", "魔力"],
+      ["armor", "护甲"],
+      ["technique", "技巧"],
+      ["resistance", "抗性"],
+      ["speed", "速度"],
+      ["weaponPower", "武威"],
+      ["hitRate", "命中率"],
+      ["criticalMultiplier", "暴击伤害系数"],
+      ["physicalDamage", "物理伤害"],
+      ["magicDamage", "魔法伤害"],
+    ])
+      row(
+        label,
+        ...characters.map((c) =>
+          Object.hasOwn(c.source.stats || {}, key)
+            ? cell(
+                c.source.stats[key],
+                rounded.has(key) ? 2 : percent.has(key) ? percentStyle(c.source.stats[key]) : 3,
+              )
+            : "—",
+        ),
+      );
+    row();
+    row("通过率说明", "在设定时间内击败目标的场次 / 总场次");
+    row(
+      "全员存活说明",
+      typeof data.all_alive_rate === "number"
+        ? "四名队员均参战且存活至全体定时击杀前的场次 / 总场次；未触发则按战斗结束状态"
+        : "未统计",
+    );
+    const sheetRows = rows
+      .map(
+        (values, i) =>
+          '<row r="' +
+          (i + 1) +
+          '" ht="25" customHeight="1">' +
+          values
+            .map((c, j) => {
+              const ref = String.fromCharCode(65 + j) + (i + 1);
+              if (typeof c.value === "number" && Number.isFinite(c.value))
+                return '<c r="' + ref + '" s="' + c.style + '"><v>' + c.value + "</v></c>";
+              return (
+                '<c r="' +
+                ref +
+                '" s="' +
+                c.style +
+                '" t="inlineStr"><is><t xml:space="preserve">' +
+                xml(c.value ?? "—") +
+                "</t></is></c>"
+              );
+            })
+            .join("") +
+          "</row>",
+      )
+      .join("");
+    return zip({
+      "[Content_Types].xml":
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>',
+      "_rels/.rels":
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',
+      "xl/workbook.xml":
+        '<workbook xmlns="' +
+        ns +
+        '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="战斗结果" sheetId="1" r:id="rId1"/></sheets></workbook>',
+      "xl/_rels/workbook.xml.rels":
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>',
+      "xl/styles.xml":
+        '<styleSheet xmlns="' +
+        ns +
+        '"><numFmts count="3"><numFmt numFmtId="164" formatCode="General"/><numFmt numFmtId="165" formatCode="0.###############&quot;%&quot;"/><numFmt numFmtId="166" formatCode="0&quot;%&quot;"/></numFmts><fonts count="2"><font><sz val="11"/><name val="Microsoft YaHei"/><color rgb="FF284553"/></font><font><b/><sz val="12"/><name val="Microsoft YaHei"/><color rgb="FFFFFFFF"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF008F83"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="1" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="166" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>',
+      "xl/worksheets/sheet1.xml":
+        '<worksheet xmlns="' +
+        ns +
+        '"><sheetViews><sheetView workbookViewId="0" showGridLines="0"><pane ySplit="11" topLeftCell="A12" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols><col min="1" max="1" width="26" customWidth="1"/><col min="2" max="5" width="25" customWidth="1"/></cols><sheetData>' +
+        sheetRows +
+        '</sheetData><mergeCells count="4"><mergeCell ref="A1:E1"/><mergeCell ref="B2:E2"/><mergeCell ref="B28:E28"/><mergeCell ref="B29:E29"/></mergeCells></worksheet>',
+    });
+  }
+  async function download(data, config) {
+    const url = URL.createObjectURL(build(data, config)),
+      link = document.createElement("a");
+    link.href = url;
+    link.download = "战斗结果-" + data.total_battles + "场-" + (data.seed ?? Date.now()) + ".xlsx";
+    document.body.append(link);
+    try {
+      link.click();
+    } finally {
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+  }
+  window.BatchResultXlsx = { build, download };
 })();

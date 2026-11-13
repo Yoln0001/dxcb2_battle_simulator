@@ -1,30 +1,429 @@
 "use strict";
-(()=>{
- const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
- let items=[],loaded=false;const subscribers=new Set();
- const removedAttributes=new Set(['dodge','ignoreArmor','ignoreResistance','abnormalBonus','finalPhysicalDamage','finalMagicDamage','finalDotDamage','finalHealingBonus','unload','load','physicalBlock','magicBlock']);
- const allLabels=()=>[...fields,...SpecialConfiguration.extras,["adventureGoldBonus","冒险金币收益 %",0],["adventureSoulBonus","冒险魂收益 %",0]].map(([k,l,v])=>[k,k==="hitRate"?"命中率 %":k==="criticalMultiplier"?"暴击伤害系数 %":l,v]);
- const labels=()=>allLabels().filter(([k])=>!removedAttributes.has(k));
- const labelFor=k=>allLabels().find(x=>x[0]===k)?.[1]||k;
- async function request(path='',method='GET',body){if(window.AppRequests)await window.AppRequests.ready;const library=window.PlayerLibraries?.current.trophies||'';const r=await (window.AppRequests?.fetch||fetch)('/api/trophies'+path+(window.PlayerLibraries?.current.trophies?'?library='+encodeURIComponent(window.PlayerLibraries.current.trophies):''),{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,cache:'no-store'});const v=await r.json();if(!r.ok)throw Error(v.error||'战利品接口失败');if(library!==(window.PlayerLibraries?.current.trophies||''))return v;items=v.trophies;loaded=true;for(const fn of subscribers)fn();return v;}
- const dialog=el('dialog');dialog.className='configuration-dialog';dialog.id='trophy-library';const heading=el('div');heading.className='configuration-heading';heading.append(el('h2','战利品库'));const close=el('button','×');close.type='button';close.onclick=()=>dialog.close();heading.append(close);dialog.append(heading);
- const layout=el('div');layout.className='trophy-layout';dialog.append(layout);const list=el('div'),form=el('form');layout.append(list,form);document.body.append(dialog);
- let selected='',draft={name:'',attributes:{}};
- const search=el('input');search.placeholder='搜索战利品名称';search.setAttribute('aria-label','搜索战利品名称');const filter=el('select');filter.setAttribute('aria-label','按属性筛选战利品');filter.value='';const results=el('div');results.className='trophy-list-results';let filterReady=false;let composing=false;search.addEventListener('compositionstart',()=>{composing=true;});search.addEventListener('compositionend',()=>{composing=false;drawList();});search.oninput=()=>{if(!composing)drawList();};filter.onchange=drawList;
- const sort=el('select');sort.setAttribute('aria-label','按战利品属性排序');sort.value='';const direction=el('select');direction.setAttribute('aria-label','战利品排序方向');for(const [value,label] of [['desc','从高到低'],['asc','从低到高']]){const o=el('option',label);o.value=value;direction.append(o);}direction.value='desc';function orderItems(rows){const result=[...rows];if(sort.value){const key=sort.value;result.sort((a,b)=>{const av=a.attributes[key],bv=b.attributes[key];if(av===undefined&&bv!==undefined)return 1;if(bv===undefined&&av!==undefined)return -1;return ((av??0)-(bv??0))*(direction.value==='asc'?1:-1);});}return result;}function sortingChanged(){drawList();for(const refresh of subscribers)refresh();}sort.onchange=sortingChanged;direction.onchange=sortingChanged;let sortReady=false;
- function drawList(){if(!sortReady){const original=el('option','默认顺序');original.value='';sort.append(original);for(const [k,l] of labels()){const o=el('option',l.replace(/ %$/,''));o.value=k;sort.append(o);}sortReady=true;}if(!filterReady){const all=el('option','全部属性');all.value='';filter.append(all);for(const [k,l] of [...labels(),['firstStrike','先发制人']]){const o=el('option',l.replace(/ %$/,''));o.value=k;filter.append(o);}filterReady=true;}if(!list.children.length){const add=el('button','＋ 新增战利品');add.type='button';add.onclick=()=>{selected='';draft={name:'',attributes:{}};drawForm();};list.append(add,search,filter,sort,direction,results);}results.replaceChildren();const matching=items.filter(item=>item.name.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase())&&(!filter.value||(filter.value==='firstStrike'?item.firstStrike===true:Object.hasOwn(item.attributes,filter.value))));for(const item of orderItems(matching)){const b=el('button',item.name);b.type='button';b.onclick=()=>{selected=item.id;draft=structuredClone(item);drawForm();};results.append(b);}if(!matching.length)results.append(el('p','没有匹配的战利品'));}
- function drawForm(){form.replaceChildren();form.append(el('h3',selected?'编辑战利品':'新增战利品'));const name=el('input');name.placeholder='战利品名称';name.setAttribute('aria-label','战利品名称');name.required=true;name.maxLength=120;name.value=draft.name;name.oninput=()=>draft.name=name.value;form.append(name,el('p','五维属性填写百分比，其余属性按对应单位填写。'));
- const special=el('label'),toggle=el('input');special.className='trophy-first-strike';toggle.type='checkbox';toggle.checked=!!draft.firstStrike;toggle.onchange=()=>draft.firstStrike=toggle.checked;special.append(toggle,el('span','先发制人'));form.append(special);const picker=el('select');picker.setAttribute('aria-label','战利品属性');for(const [k,l] of labels()){const o=el('option',l.replace(/ %$/,''));o.value=k;picker.append(o);}const add=el('button','＋ 添加属性');add.type='button';add.onclick=()=>{draft.attributes[picker.value]??=0;drawForm();};const tools=el('div');tools.className='trophy-property-tools';tools.append(picker,add);form.append(tools);
- const grid=el('div');grid.className='special-source-grid';form.append(grid);for(const [k,v] of Object.entries(draft.attributes)){const row=el('div');row.className='trophy-attribute';const field=el('label');field.className='field';const l=labelFor(k),caption=el('span',l.replace(/ %$/,'')),input=el('input');input.type='number';input.min=0;input.step='any';input.required=true;input.value=v;input.setAttribute('aria-label',l);input.oninput=()=>draft.attributes[k]=Number(input.value);field.append(caption,input);if(SpecialConfiguration.five.includes(k)||l.includes('%')){const unit=el('span','%');unit.className='field-unit';field.append(unit);}const remove=el('button','删除属性');remove.type='button';remove.onclick=()=>{delete draft.attributes[k];drawForm();};row.append(field,remove);grid.append(row);}
- const actions=el('div');actions.className='configuration-actions';const save=el('button','保存战利品');save.type='submit';save.className='primary';actions.append(save);if(selected){const copy=el('button','另存为副本');copy.type='button';copy.onclick=()=>{draft=structuredClone(draft);selected='';delete draft.id;const base=draft.name+'（副本）';let name=base,index=2;while(items.some(item=>item.name===name))name=base+' '+index++;draft.name=name.slice(0,120);drawForm();window.showToast('已复制，请修改后点击保存战利品');};actions.append(copy);const del=el('button','删除战利品');del.type='button';del.onclick=async()=>{if(!confirm('确认删除战利品“'+draft.name+'”？主界面已选入的该战利品也会移除。'))return;try{await request('/'+encodeURIComponent(selected),'DELETE');selected='';draft={name:'',attributes:{}};drawList();drawForm();window.showToast('战利品已删除');}catch(e){window.showToast(e.message);}};actions.append(del);}form.append(actions);
- form.onsubmit=async e=>{e.preventDefault();save.disabled=true;try{const result=await request(selected?'/'+encodeURIComponent(selected):'',selected?'PUT':'POST',draft);selected=result.item.id;draft=structuredClone(result.item);drawList();drawForm();window.showToast('战利品已保存');}catch(error){window.showToast(error.message);save.disabled=false;}};
- }
- function attach(host,s,onChange){s.selectedTrophies??=[];const picker=el('select');picker.setAttribute('aria-label','从战利品库选择');const add=el('button','＋ 选入战利品');add.type='button';const chosen=el('div');host.append(picker,add,chosen);
- function refresh(sync=false){if(sync&&loaded){const latest=s.selectedTrophies.map(previous=>items.find(i=>i.id===previous.id)||items.find(i=>i.name===previous.name)).filter(Boolean);if(JSON.stringify(latest)!==JSON.stringify(s.selectedTrophies)){s.selectedTrophies=structuredClone(latest);draw();onChange();}}const current=picker.value;picker.replaceChildren();const placeholder=el('option',loaded?'请选择库中战利品':'正在读取战利品库');placeholder.value='';picker.append(placeholder);for(const item of orderItems(items)){const o=el('option',item.name);o.value=item.id;picker.append(o);}picker.value=items.some(i=>i.id===current)?current:'';}
- function draw(){chosen.replaceChildren();s.selectedTrophies.forEach((item,index)=>{const row=el('div');row.className='trophy-selected';const caption=el('span',item.name+(item.firstStrike?'（先发制人）':''));caption.title=Object.entries(item.attributes).map(([k,v])=>labelFor(k).replace(/ %$/,'')+' '+v+(SpecialConfiguration.five.includes(k)||labelFor(k).includes('%')?'%':'')).join('，');row.append(caption);const del=el('button','移除');del.type='button';del.onclick=()=>{s.selectedTrophies.splice(index,1);draw();onChange();};row.append(del);chosen.append(row);});}
- add.onclick=()=>{const item=items.find(i=>i.id===picker.value);if(!item){window.showToast('请选择战利品');return;}if(s.selectedTrophies.length>=100){window.showToast('最多选择100件战利品');return;}s.selectedTrophies.push(structuredClone(item));draw();onChange();};subscribers.add(()=>refresh(true));refresh();draw();
- }
- if(window.PlayerLibraries){const bar=document.createElement('div');heading.after(bar);window.PlayerLibraries.mount(bar,'trophies','默认战利品库',async()=>{await request();selected='';draft={name:'',attributes:{}};drawList();drawForm();});}
- window.TrophyLibrary={attach};document.querySelector('#open-trophy-library').onclick=async()=>{try{await request();drawList();drawForm();dialog.showModal();}catch(e){window.showToast(e.message);}};
- request().catch(e=>{loaded=true;for(const fn of subscribers)fn();window.showToast('战利品库读取失败：'+e.message);});
+(() => {
+  const el = (tag, text) => {
+    const n = document.createElement(tag);
+    if (text !== undefined) n.textContent = text;
+    return n;
+  };
+  let items = [],
+    loaded = false;
+  const subscribers = new Set();
+  const removedAttributes = new Set([
+    "dodge",
+    "ignoreArmor",
+    "ignoreResistance",
+    "abnormalBonus",
+    "finalPhysicalDamage",
+    "finalMagicDamage",
+    "finalDotDamage",
+    "finalHealingBonus",
+    "unload",
+    "load",
+    "physicalBlock",
+    "magicBlock",
+  ]);
+  const allLabels = () =>
+    [
+      ...fields,
+      ...SpecialConfiguration.extras,
+      ["adventureGoldBonus", "冒险金币收益 %", 0],
+      ["adventureSoulBonus", "冒险魂收益 %", 0],
+    ].map(([k, l, v]) => [
+      k,
+      k === "hitRate" ? "命中率 %" : k === "criticalMultiplier" ? "暴击伤害系数 %" : l,
+      v,
+    ]);
+  const labels = () => allLabels().filter(([k]) => !removedAttributes.has(k));
+  const labelFor = (k) => allLabels().find((x) => x[0] === k)?.[1] || k;
+  async function request(path = "", method = "GET", body) {
+    if (window.AppRequests) await window.AppRequests.ready;
+    const library = window.PlayerLibraries?.current.trophies || "";
+    const r = await (window.AppRequests?.fetch || fetch)(
+      "/api/trophies" +
+        path +
+        (window.PlayerLibraries?.current.trophies
+          ? "?library=" + encodeURIComponent(window.PlayerLibraries.current.trophies)
+          : ""),
+      {
+        method,
+        headers: body ? { "Content-Type": "application/json" } : {},
+        body: body ? JSON.stringify(body) : undefined,
+        cache: "no-store",
+      },
+    );
+    const v = await r.json();
+    if (!r.ok) throw Error(v.error || "战利品接口失败");
+    if (library !== (window.PlayerLibraries?.current.trophies || "")) return v;
+    items = v.trophies;
+    loaded = true;
+    for (const fn of subscribers) fn();
+    return v;
+  }
+  const dialog = el("dialog");
+  dialog.className = "configuration-dialog";
+  dialog.id = "trophy-library";
+  const heading = el("div");
+  heading.className = "configuration-heading";
+  heading.append(el("h2", "战利品库"));
+  const close = el("button", "×");
+  close.type = "button";
+  close.onclick = () => dialog.close();
+  heading.append(close);
+  dialog.append(heading);
+  const layout = el("div");
+  layout.className = "trophy-layout";
+  dialog.append(layout);
+  const list = el("div"),
+    form = el("form");
+  layout.append(list, form);
+  document.body.append(dialog);
+  let selected = "",
+    draft = { name: "", attributes: {} };
+  const search = el("input");
+  search.placeholder = "搜索战利品名称";
+  search.setAttribute("aria-label", "搜索战利品名称");
+  const filter = el("select");
+  filter.setAttribute("aria-label", "按属性筛选战利品");
+  filter.value = "";
+  const results = el("div");
+  results.className = "trophy-list-results";
+  let filterReady = false;
+  let composing = false;
+  search.addEventListener("compositionstart", () => {
+    composing = true;
+  });
+  search.addEventListener("compositionend", () => {
+    composing = false;
+    drawList();
+  });
+  search.oninput = () => {
+    if (!composing) drawList();
+  };
+  filter.onchange = drawList;
+  const sort = el("select");
+  sort.setAttribute("aria-label", "按战利品属性排序");
+  sort.value = "";
+  const direction = el("select");
+  direction.setAttribute("aria-label", "战利品排序方向");
+  for (const [value, label] of [
+    ["desc", "从高到低"],
+    ["asc", "从低到高"],
+  ]) {
+    const o = el("option", label);
+    o.value = value;
+    direction.append(o);
+  }
+  direction.value = "desc";
+  function orderItems(rows) {
+    const result = [...rows];
+    if (sort.value) {
+      const key = sort.value;
+      result.sort((a, b) => {
+        const av = a.attributes[key],
+          bv = b.attributes[key];
+        if (av === undefined && bv !== undefined) return 1;
+        if (bv === undefined && av !== undefined) return -1;
+        return ((av ?? 0) - (bv ?? 0)) * (direction.value === "asc" ? 1 : -1);
+      });
+    }
+    return result;
+  }
+  function sortingChanged() {
+    drawList();
+    for (const refresh of subscribers) refresh();
+  }
+  sort.onchange = sortingChanged;
+  direction.onchange = sortingChanged;
+  let sortReady = false;
+  function drawList() {
+    if (!sortReady) {
+      const original = el("option", "默认顺序");
+      original.value = "";
+      sort.append(original);
+      for (const [k, l] of labels()) {
+        const o = el("option", l.replace(/ %$/, ""));
+        o.value = k;
+        sort.append(o);
+      }
+      sortReady = true;
+    }
+    if (!filterReady) {
+      const all = el("option", "全部属性");
+      all.value = "";
+      filter.append(all);
+      for (const [k, l] of [...labels(), ["firstStrike", "先发制人"]]) {
+        const o = el("option", l.replace(/ %$/, ""));
+        o.value = k;
+        filter.append(o);
+      }
+      filterReady = true;
+    }
+    if (!list.children.length) {
+      const add = el("button", "＋ 新增战利品");
+      add.type = "button";
+      add.onclick = () => {
+        selected = "";
+        draft = { name: "", attributes: {} };
+        drawForm();
+      };
+      list.append(add, search, filter, sort, direction, results);
+    }
+    results.replaceChildren();
+    const matching = items.filter(
+      (item) =>
+        item.name.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase()) &&
+        (!filter.value ||
+          (filter.value === "firstStrike"
+            ? item.firstStrike === true
+            : Object.hasOwn(item.attributes, filter.value))),
+    );
+    for (const item of orderItems(matching)) {
+      const b = el("button", item.name);
+      b.type = "button";
+      b.onclick = () => {
+        selected = item.id;
+        draft = structuredClone(item);
+        drawForm();
+      };
+      results.append(b);
+    }
+    if (!matching.length) results.append(el("p", "没有匹配的战利品"));
+  }
+  function drawForm() {
+    form.replaceChildren();
+    form.append(el("h3", selected ? "编辑战利品" : "新增战利品"));
+    const name = el("input");
+    name.placeholder = "战利品名称";
+    name.setAttribute("aria-label", "战利品名称");
+    name.required = true;
+    name.maxLength = 120;
+    name.value = draft.name;
+    name.oninput = () => (draft.name = name.value);
+    form.append(name, el("p", "五维属性填写百分比，其余属性按对应单位填写。"));
+    const special = el("label"),
+      toggle = el("input");
+    special.className = "trophy-first-strike";
+    toggle.type = "checkbox";
+    toggle.checked = !!draft.firstStrike;
+    toggle.onchange = () => (draft.firstStrike = toggle.checked);
+    special.append(toggle, el("span", "先发制人"));
+    form.append(special);
+    const picker = el("select");
+    picker.setAttribute("aria-label", "战利品属性");
+    for (const [k, l] of labels()) {
+      const o = el("option", l.replace(/ %$/, ""));
+      o.value = k;
+      picker.append(o);
+    }
+    const add = el("button", "＋ 添加属性");
+    add.type = "button";
+    add.onclick = () => {
+      draft.attributes[picker.value] ??= 0;
+      drawForm();
+    };
+    const tools = el("div");
+    tools.className = "trophy-property-tools";
+    tools.append(picker, add);
+    form.append(tools);
+    const grid = el("div");
+    grid.className = "special-source-grid";
+    form.append(grid);
+    for (const [k, v] of Object.entries(draft.attributes)) {
+      const row = el("div");
+      row.className = "trophy-attribute";
+      const field = el("label");
+      field.className = "field";
+      const l = labelFor(k),
+        caption = el("span", l.replace(/ %$/, "")),
+        input = el("input");
+      input.type = "number";
+      input.min = 0;
+      input.step = "any";
+      input.required = true;
+      input.value = v;
+      input.setAttribute("aria-label", l);
+      input.oninput = () => (draft.attributes[k] = Number(input.value));
+      field.append(caption, input);
+      if (SpecialConfiguration.five.includes(k) || l.includes("%")) {
+        const unit = el("span", "%");
+        unit.className = "field-unit";
+        field.append(unit);
+      }
+      const remove = el("button", "删除属性");
+      remove.type = "button";
+      remove.onclick = () => {
+        delete draft.attributes[k];
+        drawForm();
+      };
+      row.append(field, remove);
+      grid.append(row);
+    }
+    const actions = el("div");
+    actions.className = "configuration-actions";
+    const save = el("button", "保存战利品");
+    save.type = "submit";
+    save.className = "primary";
+    actions.append(save);
+    if (selected) {
+      const copy = el("button", "另存为副本");
+      copy.type = "button";
+      copy.onclick = () => {
+        draft = structuredClone(draft);
+        selected = "";
+        delete draft.id;
+        const base = draft.name + "（副本）";
+        let name = base,
+          index = 2;
+        while (items.some((item) => item.name === name)) name = base + " " + index++;
+        draft.name = name.slice(0, 120);
+        drawForm();
+        window.showToast("已复制，请修改后点击保存战利品");
+      };
+      actions.append(copy);
+      const del = el("button", "删除战利品");
+      del.type = "button";
+      del.onclick = async () => {
+        if (!confirm("确认删除战利品“" + draft.name + "”？主界面已选入的该战利品也会移除。"))
+          return;
+        try {
+          await request("/" + encodeURIComponent(selected), "DELETE");
+          selected = "";
+          draft = { name: "", attributes: {} };
+          drawList();
+          drawForm();
+          window.showToast("战利品已删除");
+        } catch (e) {
+          window.showToast(e.message);
+        }
+      };
+      actions.append(del);
+    }
+    form.append(actions);
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      save.disabled = true;
+      try {
+        const result = await request(
+          selected ? "/" + encodeURIComponent(selected) : "",
+          selected ? "PUT" : "POST",
+          draft,
+        );
+        selected = result.item.id;
+        draft = structuredClone(result.item);
+        drawList();
+        drawForm();
+        window.showToast("战利品已保存");
+      } catch (error) {
+        window.showToast(error.message);
+        save.disabled = false;
+      }
+    };
+  }
+  function attach(host, s, onChange) {
+    s.selectedTrophies ??= [];
+    const picker = el("select");
+    picker.setAttribute("aria-label", "从战利品库选择");
+    const add = el("button", "＋ 选入战利品");
+    add.type = "button";
+    const chosen = el("div");
+    host.append(picker, add, chosen);
+    function refresh(sync = false) {
+      if (sync && loaded) {
+        const latest = s.selectedTrophies
+          .map(
+            (previous) =>
+              items.find((i) => i.id === previous.id) ||
+              items.find((i) => i.name === previous.name),
+          )
+          .filter(Boolean);
+        if (JSON.stringify(latest) !== JSON.stringify(s.selectedTrophies)) {
+          s.selectedTrophies = structuredClone(latest);
+          draw();
+          onChange();
+        }
+      }
+      const current = picker.value;
+      picker.replaceChildren();
+      const placeholder = el("option", loaded ? "请选择库中战利品" : "正在读取战利品库");
+      placeholder.value = "";
+      picker.append(placeholder);
+      for (const item of orderItems(items)) {
+        const o = el("option", item.name);
+        o.value = item.id;
+        picker.append(o);
+      }
+      picker.value = items.some((i) => i.id === current) ? current : "";
+    }
+    function draw() {
+      chosen.replaceChildren();
+      s.selectedTrophies.forEach((item, index) => {
+        const row = el("div");
+        row.className = "trophy-selected";
+        const caption = el("span", item.name + (item.firstStrike ? "（先发制人）" : ""));
+        caption.title = Object.entries(item.attributes)
+          .map(
+            ([k, v]) =>
+              labelFor(k).replace(/ %$/, "") +
+              " " +
+              v +
+              (SpecialConfiguration.five.includes(k) || labelFor(k).includes("%") ? "%" : ""),
+          )
+          .join("，");
+        row.append(caption);
+        const del = el("button", "移除");
+        del.type = "button";
+        del.onclick = () => {
+          s.selectedTrophies.splice(index, 1);
+          draw();
+          onChange();
+        };
+        row.append(del);
+        chosen.append(row);
+      });
+    }
+    add.onclick = () => {
+      const item = items.find((i) => i.id === picker.value);
+      if (!item) {
+        window.showToast("请选择战利品");
+        return;
+      }
+      if (s.selectedTrophies.length >= 100) {
+        window.showToast("最多选择100件战利品");
+        return;
+      }
+      s.selectedTrophies.push(structuredClone(item));
+      draw();
+      onChange();
+    };
+    subscribers.add(() => refresh(true));
+    refresh();
+    draw();
+  }
+  if (window.PlayerLibraries) {
+    const bar = document.createElement("div");
+    heading.after(bar);
+    window.PlayerLibraries.mount(bar, "trophies", "默认战利品库", async () => {
+      await request();
+      selected = "";
+      draft = { name: "", attributes: {} };
+      drawList();
+      drawForm();
+    });
+  }
+  window.TrophyLibrary = { attach };
+  document.querySelector("#open-trophy-library").onclick = async () => {
+    try {
+      await request();
+      drawList();
+      drawForm();
+      dialog.showModal();
+    } catch (e) {
+      window.showToast(e.message);
+    }
+  };
+  request().catch((e) => {
+    loaded = true;
+    for (const fn of subscribers) fn();
+    window.showToast("战利品库读取失败：" + e.message);
+  });
 })();

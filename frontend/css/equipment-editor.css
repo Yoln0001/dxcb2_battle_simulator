@@ -1,65 +1,302 @@
-:is(#equipment-list,#wiki-equipment-list){max-height:52vh;overflow:auto;padding-bottom:10px}:is(#equipment-message,#wiki-equipment-message){font-size:12px;color:#318577;line-height:1.8;min-height:20px}:is(#equipment-form,#wiki-equipment-form) pre{max-height:300px}:is(#equipment-form,#wiki-equipment-form) .field span{min-width:115px}:is(#equipment-form,#wiki-equipment-form) .conversion-values .field span{min-width:32px}@media(max-width:600px){:is(#equipment-list,#wiki-equipment-list){max-height:180px}}
+:is(#equipment-list, #wiki-equipment-list) {
+  max-height: 52vh;
+  overflow: auto;
+  padding-bottom: 10px;
+}
+:is(#equipment-message, #wiki-equipment-message) {
+  font-size: 12px;
+  color: #318577;
+  line-height: 1.8;
+  min-height: 20px;
+}
+:is(#equipment-form, #wiki-equipment-form) pre {
+  max-height: 300px;
+}
+:is(#equipment-form, #wiki-equipment-form) .field span {
+  min-width: 115px;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field span {
+  min-width: 32px;
+}
+@media (max-width: 600px) {
+  :is(#equipment-list, #wiki-equipment-list) {
+    max-height: 180px;
+  }
+}
 
-:is(#equipment-form,#wiki-equipment-form) .conversion-values{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .field{height:40px}
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .field span{font-size:14px;min-width:42px;padding:0 6px}
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .field input{font-size:15px;padding:6px}
-:is(#equipment-form,#wiki-equipment-form) .conversion-toggle{font-size:14px}
-@media(max-width:850px){:is(#equipment-form,#wiki-equipment-form) .conversion-values{grid-template-columns:repeat(2,minmax(0,1fr))}}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field {
+  height: 40px;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field span {
+  font-size: 14px;
+  min-width: 42px;
+  padding: 0 6px;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field input {
+  font-size: 15px;
+  padding: 6px;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-toggle {
+  font-size: 14px;
+}
+@media (max-width: 850px) {
+  :is(#equipment-form, #wiki-equipment-form) .conversion-values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .field span{flex-shrink:0}
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .lost-health-field{grid-column:span 2}
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .lost-health-field span{min-width:100px}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field span {
+  flex-shrink: 0;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .lost-health-field {
+  grid-column: span 2;
+}
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .lost-health-field span {
+  min-width: 100px;
+}
 
 /* Keep equipment form text uniform and smaller than section headings. */
-:is(#equipment-form,#wiki-equipment-form) .field span,
-:is(#equipment-form,#wiki-equipment-form) .field input,
-:is(#equipment-form,#wiki-equipment-form) .field select,
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .field span,
-:is(#equipment-form,#wiki-equipment-form) .conversion-values .field input,
-:is(#equipment-form,#wiki-equipment-form) .conversion-toggle:not(.section-label){font-size:12px}
-:is(#equipment-form,#wiki-equipment-form) .section-label{font-size:14px}
-:is(#equipment-form,#wiki-equipment-form) h3{font-size:16px}
+:is(#equipment-form, #wiki-equipment-form) .field span,
+:is(#equipment-form, #wiki-equipment-form) .field input,
+:is(#equipment-form, #wiki-equipment-form) .field select,
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field span,
+:is(#equipment-form, #wiki-equipment-form) .conversion-values .field input,
+:is(#equipment-form, #wiki-equipment-form) .conversion-toggle:not(.section-label) {
+  font-size: 12px;
+}
+:is(#equipment-form, #wiki-equipment-form) .section-label {
+  font-size: 14px;
+}
+:is(#equipment-form, #wiki-equipment-form) h3 {
+  font-size: 16px;
+}
 
-.equipment-trigger-bar{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.equipment-trigger-bar[hidden]{display:none}.equipment-trigger-bar button{font-size:12px}.equipment-trigger-bar button.selected{border-color:var(--teal);background:#effaf7;color:var(--teal)}
+.equipment-trigger-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.equipment-trigger-bar[hidden] {
+  display: none;
+}
+.equipment-trigger-bar button {
+  font-size: 12px;
+}
+.equipment-trigger-bar button.selected {
+  border-color: var(--teal);
+  background: #effaf7;
+  color: var(--teal);
+}
 
-:is(#equipment-category-filter,#wiki-equipment-category-filter,#wiki-equipment-editor-dialog .skill-sidebar>select,#equipment-library-dialog .skill-sidebar>select){width:100%;min-width:0;margin:0 0 10px;padding:9px;border:1px solid var(--line);border-radius:4px;background:white;color:#284553;font:inherit}
+:is(
+  #equipment-category-filter,
+  #wiki-equipment-category-filter,
+  #wiki-equipment-editor-dialog .skill-sidebar > select,
+  #equipment-library-dialog .skill-sidebar > select
+) {
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 10px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: white;
+  color: #284553;
+  font: inherit;
+}
 
-:is(#equipment-form,#wiki-equipment-form) .skill-basic-grid[hidden],:is(#equipment-form,#wiki-equipment-form) .conversion-row[hidden]{display:none}
+:is(#equipment-form, #wiki-equipment-form) .skill-basic-grid[hidden],
+:is(#equipment-form, #wiki-equipment-form) .conversion-row[hidden] {
+  display: none;
+}
 
 /* Each ranged attribute uses two rows of inputs so values and captions stay readable. */
-.wiki-attribute-row:not(.wiki-fixed-attribute){grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
-.wiki-attribute-row:not(.wiki-fixed-attribute)>strong,
-.wiki-attribute-row:not(.wiki-fixed-attribute)>small{grid-column:1/-1}
-.wiki-attribute-row:not(.wiki-fixed-attribute)>label{display:flex;flex-direction:column;align-items:stretch;gap:5px}
-.wiki-attribute-row:not(.wiki-fixed-attribute)>label>span{font-size:12px;max-width:none;white-space:nowrap;line-height:1.4}
-.wiki-attribute-row:not(.wiki-fixed-attribute) input{box-sizing:border-box;width:100%;min-width:0;height:34px;padding:6px 8px}
-.wiki-attribute-row:not(.wiki-fixed-attribute)>.wiki-owned-percentage{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px}
-.wiki-attribute-row:not(.wiki-fixed-attribute)>.wiki-owned-percentage>span:first-child{grid-column:1/-1}
-.wiki-attribute-row:not(.wiki-fixed-attribute)>.wiki-owned-percentage>span:last-child{align-self:center}
-.wiki-attribute-row.wiki-fixed-attribute{grid-template-columns:minmax(90px,1fr) minmax(0,2fr)}
-.wiki-attribute-row.wiki-fixed-attribute label>span{flex-shrink:0;white-space:nowrap}
+.wiki-attribute-row:not(.wiki-fixed-attribute) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) > strong,
+.wiki-attribute-row:not(.wiki-fixed-attribute) > small {
+  grid-column: 1/-1;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) > label {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 5px;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) > label > span {
+  font-size: 12px;
+  max-width: none;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  padding: 6px 8px;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) > .wiki-owned-percentage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) > .wiki-owned-percentage > span:first-child {
+  grid-column: 1/-1;
+}
+.wiki-attribute-row:not(.wiki-fixed-attribute) > .wiki-owned-percentage > span:last-child {
+  align-self: center;
+}
+.wiki-attribute-row.wiki-fixed-attribute {
+  grid-template-columns: minmax(90px, 1fr) minmax(0, 2fr);
+}
+.wiki-attribute-row.wiki-fixed-attribute label > span {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 
-:is(#equipment-form,#wiki-equipment-form){display:flex;flex-direction:column;height:73vh;min-height:0;overflow:hidden;padding-right:0}.equipment-editor-content{flex:1;min-height:0;overflow:auto;padding-right:7px;scroll-padding-bottom:16px}.equipment-editor-footer{flex-shrink:0;background:#fff;border-top:1px solid var(--line);padding:10px 7px 0 0}.equipment-editor-footer .skill-form-actions{flex-wrap:wrap;margin:0;padding-top:0}.equipment-editor-footer p{margin:8px 0 0}@media(max-width:600px){:is(#equipment-form,#wiki-equipment-form){height:65vh}.equipment-editor-footer .skill-form-actions{gap:5px}.equipment-editor-footer button{padding:7px;font-size:11px}}
+:is(#equipment-form, #wiki-equipment-form) {
+  display: flex;
+  flex-direction: column;
+  height: 73vh;
+  min-height: 0;
+  overflow: hidden;
+  padding-right: 0;
+}
+.equipment-editor-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 7px;
+  scroll-padding-bottom: 16px;
+}
+.equipment-editor-footer {
+  flex-shrink: 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  padding: 10px 7px 0 0;
+}
+.equipment-editor-footer .skill-form-actions {
+  flex-wrap: wrap;
+  margin: 0;
+  padding-top: 0;
+}
+.equipment-editor-footer p {
+  margin: 8px 0 0;
+}
+@media (max-width: 600px) {
+  :is(#equipment-form, #wiki-equipment-form) {
+    height: 65vh;
+  }
+  .equipment-editor-footer .skill-form-actions {
+    gap: 5px;
+  }
+  .equipment-editor-footer button {
+    padding: 7px;
+    font-size: 11px;
+  }
+}
 
-:is(#equipment-form,#wiki-equipment-form) .equipment-opening-effects > .section-label{font-size:12px;font-weight:600;}
-.equipment-opening-effects .skill-help{grid-column:1 / -1;}
+:is(#equipment-form, #wiki-equipment-form) .equipment-opening-effects > .section-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+.equipment-opening-effects .skill-help {
+  grid-column: 1 / -1;
+}
 
-:is(#equipment-form,#wiki-equipment-form) .field{min-width:0;overflow:hidden;}
-:is(#equipment-form,#wiki-equipment-form) .field > .equipment-field-label{flex-shrink:0;white-space:normal;line-height:1.3;}
-:is(#equipment-form,#wiki-equipment-form) .field input{flex:1;min-width:0;width:0;}
-:is(#equipment-form,#wiki-equipment-form) .field > .field-unit{flex:0 0 28px;min-width:0;padding:0 8px;border-left:0;background:white;display:flex;align-items:center;justify-content:center;}
-:is(#equipment-form,#wiki-equipment-form) .equipment-opening-effects .field > .equipment-field-label{flex:0 0 140px;min-width:0;padding:0 8px;box-sizing:border-box;}
-@media(max-width:600px){:is(#equipment-form,#wiki-equipment-form) .equipment-opening-effects .field > .equipment-field-label{flex-basis:125px;}}
+:is(#equipment-form, #wiki-equipment-form) .field {
+  min-width: 0;
+  overflow: hidden;
+}
+:is(#equipment-form, #wiki-equipment-form) .field > .equipment-field-label {
+  flex-shrink: 0;
+  white-space: normal;
+  line-height: 1.3;
+}
+:is(#equipment-form, #wiki-equipment-form) .field input {
+  flex: 1;
+  min-width: 0;
+  width: 0;
+}
+:is(#equipment-form, #wiki-equipment-form) .field > .field-unit {
+  flex: 0 0 28px;
+  min-width: 0;
+  padding: 0 8px;
+  border-left: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:is(#equipment-form, #wiki-equipment-form)
+  .equipment-opening-effects
+  .field
+  > .equipment-field-label {
+  flex: 0 0 140px;
+  min-width: 0;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  :is(#equipment-form, #wiki-equipment-form)
+    .equipment-opening-effects
+    .field
+    > .equipment-field-label {
+    flex-basis: 125px;
+  }
+}
 
-:is(#equipment-form,#wiki-equipment-form) .equipment-opening-effects .field[hidden]{display:none;}
+:is(#equipment-form, #wiki-equipment-form) .equipment-opening-effects .field[hidden] {
+  display: none;
+}
 
-.equipment-opening-values{grid-column:1/-1}.equipment-opening-values>.skill-help{grid-column:1/-1}
+.equipment-opening-values {
+  grid-column: 1/-1;
+}
+.equipment-opening-values > .skill-help {
+  grid-column: 1/-1;
+}
 
-.wiki-attribute-row .wiki-owned-percentage input:disabled{background:#f1f4f6;color:#94a3ab}
+.wiki-attribute-row .wiki-owned-percentage input:disabled {
+  background: #f1f4f6;
+  color: #94a3ab;
+}
 
-
-.wiki-main-attribute{margin:12px 0;max-width:360px}
-.wiki-main-attribute select{flex:1;min-width:0;width:100%;padding:8px;border:0;background:white;color:inherit;font:inherit}
-.equipment-main-attribute-badge{display:inline-block;width:fit-content;margin-left:8px;padding:2px 7px;border-radius:4px;background:#e5f6f2;color:#008f83;font-size:11px;font-weight:500;white-space:nowrap;line-height:1.5}
-.created-skill-item>.equipment-main-attribute-badge{margin:6px 0 0}
+.wiki-main-attribute {
+  margin: 12px 0;
+  max-width: 360px;
+}
+.wiki-main-attribute select {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  background: white;
+  color: inherit;
+  font: inherit;
+}
+.equipment-main-attribute-badge {
+  display: inline-block;
+  width: fit-content;
+  margin-left: 8px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #e5f6f2;
+  color: #008f83;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.created-skill-item > .equipment-main-attribute-badge {
+  margin: 6px 0 0;
+}

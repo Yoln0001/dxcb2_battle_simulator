@@ -1,9 +1,11 @@
 """直接运行本文件，打印与原脚本相同的全部统计项目。"""
+
 import argparse
 import time
 import numpy as np
 from .models import CharacterConfig, Berserker, Holy_lancer_1, Holy_lancer_2, Nightmare
 from .battle import Battle
+
 
 def find_percentile(data, value):
     data_sorted = np.sort(data)
@@ -31,7 +33,8 @@ if __name__ == "__main__":
         lootMagicDamage=0,
         lootPhysicalDamage=0,
         lootHitRate=0.1 + 0.012,
-        lootCriticalStrikeDamageCoefficient=0)
+        lootCriticalStrikeDamageCoefficient=0,
+    )
     # 圣枪1
     holy_lancer_1_config = CharacterConfig(
         strength=3740,
@@ -44,7 +47,8 @@ if __name__ == "__main__":
         lootMagicDamage=0,
         lootPhysicalDamage=0,
         lootHitRate=0,
-        lootCriticalStrikeDamageCoefficient=0)
+        lootCriticalStrikeDamageCoefficient=0,
+    )
     # 圣枪2
     holy_lancer_2_config = CharacterConfig(
         strength=6796,
@@ -57,7 +61,8 @@ if __name__ == "__main__":
         lootMagicDamage=0,
         lootPhysicalDamage=0,
         lootHitRate=0.033,
-        lootCriticalStrikeDamageCoefficient=0.177)
+        lootCriticalStrikeDamageCoefficient=0.177,
+    )
     # 夜魇
     nightmare_config = CharacterConfig(
         strength=3093,
@@ -70,7 +75,8 @@ if __name__ == "__main__":
         lootMagicDamage=0,
         lootPhysicalDamage=0,
         lootHitRate=0.015 + 0.015,
-        lootCriticalStrikeDamageCoefficient=0.06 + 0.075)
+        lootCriticalStrikeDamageCoefficient=0.06 + 0.075,
+    )
 
     # 实际伤害
     real_damage = 168888399
@@ -85,8 +91,9 @@ if __name__ == "__main__":
     # battle = Battle([holy_lancer_1])
 
     parser = argparse.ArgumentParser(description="人形魂碑战力测试")
-    parser.add_argument("--simulations", type=int, default=100_0000,
-                        help="模拟次数，默认与原脚本一致：1000000")
+    parser.add_argument(
+        "--simulations", type=int, default=100_0000, help="模拟次数，默认与原脚本一致：1000000"
+    )
     args = parser.parse_args()
     if args.simulations < 1:
         parser.error("模拟次数必须大于0")
@@ -172,5 +179,3 @@ if __name__ == "__main__":
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f"程序运行时间: {elapsed_time} 秒")
-
-

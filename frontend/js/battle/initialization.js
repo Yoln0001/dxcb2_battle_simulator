@@ -1,13 +1,120 @@
- 'use strict';
-(()=>{
- const E=(tag,text)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;return node;};
- const labels={strength:'力量',magic:'魔力',technique:'技巧',speed:'速度'},slots={weapon:'武器',armor:'防具',accessory1:'饰品1',accessory2:'饰品2'};
- const dialog=E('dialog');dialog.className='battle-start-dialog';const head=E('div');head.className='dialog-head';const close=E('button','×');close.type='button';close.addEventListener('click',()=>dialog.close());head.append(E('h2','开战检查'),close);const body=E('div');dialog.append(head,body);document.body.append(dialog);
- const format=n=>Number(n).toLocaleString('zh-CN',{maximumFractionDigits:6});
- function render(state){body.replaceChildren();body.append(E('p','按角色1→4，每人武器→防具→饰品1→饰品2依次结算。以下仅为开战状态。'));
-  if(state.contract)body.append(E('p','契约：'+state.contract.name+' · 角色'+state.contract.owner_index+' · 技能倍率'+format(state.contract.skill_multiplier)+' · 首次'+format(state.contract.next_tick_at)+'秒触发，间隔'+format(state.contract.interval)+'秒'));
-  for(const c of state.characters){const section=E('section');section.append(E('h3',c.name+' · '+(c.job||'未选职业')+(c.enabled?'':'（未参战）')));for(const attr of Object.keys(labels))section.append(E('p',labels[attr]+'：'+format(c.base_stats[attr])+' → '+format(c.stats[attr])));section.append(E('p','生命值：'+format(c.current_hp)+' / '+format(c.maximum_hp)));for(const debuff of c.debuffs)section.append(E('p','负面：'+debuff.name+'（每'+format(debuff.interval)+'秒扣最大生命值'+format(debuff.maximum_hp_ratio*100)+'%，首次于'+format(debuff.next_tick_at)+'秒）'));if(c.enabled)section.append(E('p','首次行动时间：'+format(c.next_action_at)+'秒'));if(!c.buffs.length)section.append(E('p','无开战增幅'));for(const buff of c.buffs)section.append(E('p',buff.name+'：'+labels[buff.attribute]+' +'+format(buff.amount)+'（角色'+buff.source_character+' · '+slots[buff.source_slot]+' · '+buff.source_equipment_name+'）'));body.append(section);}
-  const log=E('details');log.append(E('summary','查看完整结算记录'));const pre=E('pre',JSON.stringify(state,null,2));log.append(pre);body.append(log);dialog.showModal();
- }
- const button=document.querySelector('#initialize-battle');button.addEventListener('click',async()=>{const config=window.getTeamConfiguration();if(!config)return;if(!['http:','https:'].includes(location.protocol)){window.showToast('请通过server.py的服务地址执行开战检查');return;}button.disabled=true;try{const response=await (window.AppRequests?.fetch||fetch)('/api/battle/initialize',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(config)});const data=await response.json();if(!response.ok)throw Error(data.error||'开战检查失败');render(data);}catch(error){window.showToast(error.message);}finally{button.disabled=false;}});
+"use strict";
+(() => {
+  const E = (tag, text) => {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  const labels = { strength: "力量", magic: "魔力", technique: "技巧", speed: "速度" },
+    slots = { weapon: "武器", armor: "防具", accessory1: "饰品1", accessory2: "饰品2" };
+  const dialog = E("dialog");
+  dialog.className = "battle-start-dialog";
+  const head = E("div");
+  head.className = "dialog-head";
+  const close = E("button", "×");
+  close.type = "button";
+  close.addEventListener("click", () => dialog.close());
+  head.append(E("h2", "开战检查"), close);
+  const body = E("div");
+  dialog.append(head, body);
+  document.body.append(dialog);
+  const format = (n) => Number(n).toLocaleString("zh-CN", { maximumFractionDigits: 6 });
+  function render(state) {
+    body.replaceChildren();
+    body.append(E("p", "按角色1→4，每人武器→防具→饰品1→饰品2依次结算。以下仅为开战状态。"));
+    if (state.contract)
+      body.append(
+        E(
+          "p",
+          "契约：" +
+            state.contract.name +
+            " · 角色" +
+            state.contract.owner_index +
+            " · 技能倍率" +
+            format(state.contract.skill_multiplier) +
+            " · 首次" +
+            format(state.contract.next_tick_at) +
+            "秒触发，间隔" +
+            format(state.contract.interval) +
+            "秒",
+        ),
+      );
+    for (const c of state.characters) {
+      const section = E("section");
+      section.append(
+        E("h3", c.name + " · " + (c.job || "未选职业") + (c.enabled ? "" : "（未参战）")),
+      );
+      for (const attr of Object.keys(labels))
+        section.append(
+          E("p", labels[attr] + "：" + format(c.base_stats[attr]) + " → " + format(c.stats[attr])),
+        );
+      section.append(E("p", "生命值：" + format(c.current_hp) + " / " + format(c.maximum_hp)));
+      for (const debuff of c.debuffs)
+        section.append(
+          E(
+            "p",
+            "负面：" +
+              debuff.name +
+              "（每" +
+              format(debuff.interval) +
+              "秒扣最大生命值" +
+              format(debuff.maximum_hp_ratio * 100) +
+              "%，首次于" +
+              format(debuff.next_tick_at) +
+              "秒）",
+          ),
+        );
+      if (c.enabled) section.append(E("p", "首次行动时间：" + format(c.next_action_at) + "秒"));
+      if (!c.buffs.length) section.append(E("p", "无开战增幅"));
+      for (const buff of c.buffs)
+        section.append(
+          E(
+            "p",
+            buff.name +
+              "：" +
+              labels[buff.attribute] +
+              " +" +
+              format(buff.amount) +
+              "（角色" +
+              buff.source_character +
+              " · " +
+              slots[buff.source_slot] +
+              " · " +
+              buff.source_equipment_name +
+              "）",
+          ),
+        );
+      body.append(section);
+    }
+    const log = E("details");
+    log.append(E("summary", "查看完整结算记录"));
+    const pre = E("pre", JSON.stringify(state, null, 2));
+    log.append(pre);
+    body.append(log);
+    dialog.showModal();
+  }
+  const button = document.querySelector("#initialize-battle");
+  button.addEventListener("click", async () => {
+    const config = window.getTeamConfiguration();
+    if (!config) return;
+    if (!["http:", "https:"].includes(location.protocol)) {
+      window.showToast("请通过server.py的服务地址执行开战检查");
+      return;
+    }
+    button.disabled = true;
+    try {
+      const response = await (window.AppRequests?.fetch || fetch)("/api/battle/initialize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(config),
+      });
+      const data = await response.json();
+      if (!response.ok) throw Error(data.error || "开战检查失败");
+      render(data);
+    } catch (error) {
+      window.showToast(error.message);
+    } finally {
+      button.disabled = false;
+    }
+  });
 })();

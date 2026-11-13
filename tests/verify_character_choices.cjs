@@ -1,19 +1,147 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
-class N{
- constructor(tag,cls=''){this.tag=tag;this.className=cls;this.children=[];this.dataset={};this.attrs={};this.listeners={};this.classList={add:()=>{}};}
- append(...nodes){for(const n of nodes){if(n.parent)n.parent.children=n.parent.children.filter(x=>x!==n);n.parent=this;this.children.push(n);}}
- prepend(...nodes){for(const n of nodes){if(n.parent)n.parent.children=n.parent.children.filter(x=>x!==n);n.parent=this;this.children.unshift(n);}}
- replaceChildren(...nodes){for(const n of this.children)n.parent=null;this.children=[];this.append(...nodes);}
- setAttribute(k,v){this.attrs[k]=v;}addEventListener(k,fn){this.listeners[k]=fn;}
- closest(sel){return this.className===sel.slice(1)?this:this.parent?.closest(sel);}
- querySelector(sel){return this.children.flatMap(n=>[n,...n.all()]).find(n=>sel.startsWith('.')?n.className===sel.slice(1):sel==='p'?n.tag==='p':sel==='select'?n.tag==='select':sel==='[name]'?!!n.name:sel.startsWith('[name=')?n.name===sel.match(/"([^"]+)"/)[1]:sel.startsWith('[aria-label=')?n.attrs['aria-label']===sel.match(/"([^"]+)"/)[1]:false);}
- all(){return this.children.flatMap(n=>[n,...n.all()]);}
+const fs = require("fs"),
+  vm = require("vm"),
+  assert = require("assert");
+class N {
+  constructor(tag, cls = "") {
+    this.tag = tag;
+    this.className = cls;
+    this.children = [];
+    this.dataset = {};
+    this.attrs = {};
+    this.listeners = {};
+    this.classList = { add: () => {} };
+  }
+  append(...nodes) {
+    for (const n of nodes) {
+      if (n.parent) n.parent.children = n.parent.children.filter((x) => x !== n);
+      n.parent = this;
+      this.children.push(n);
+    }
+  }
+  prepend(...nodes) {
+    for (const n of nodes) {
+      if (n.parent) n.parent.children = n.parent.children.filter((x) => x !== n);
+      n.parent = this;
+      this.children.unshift(n);
+    }
+  }
+  replaceChildren(...nodes) {
+    for (const n of this.children) n.parent = null;
+    this.children = [];
+    this.append(...nodes);
+  }
+  setAttribute(k, v) {
+    this.attrs[k] = v;
+  }
+  addEventListener(k, fn) {
+    this.listeners[k] = fn;
+  }
+  closest(sel) {
+    return this.className === sel.slice(1) ? this : this.parent?.closest(sel);
+  }
+  querySelector(sel) {
+    return this.children
+      .flatMap((n) => [n, ...n.all()])
+      .find((n) =>
+        sel.startsWith(".")
+          ? n.className === sel.slice(1)
+          : sel === "p"
+            ? n.tag === "p"
+            : sel === "select"
+              ? n.tag === "select"
+              : sel === "[name]"
+                ? !!n.name
+                : sel.startsWith("[name=")
+                  ? n.name === sel.match(/"([^"]+)"/)[1]
+                  : sel.startsWith("[aria-label=")
+                    ? n.attrs["aria-label"] === sel.match(/"([^"]+)"/)[1]
+                    : false,
+      );
+  }
+  all() {
+    return this.children.flatMap((n) => [n, ...n.all()]);
+  }
 }
-const card=new N('article'),body=new N('div','card-body'),identity=new N('div','identity'),stats=new N('div','stats'),sources=new N('details','special-sources'),equipment=new N('div','equipment'),contract=new N('div','contract'),person=new N('div','special-person-picker');card.dataset.index=0;card.append(body);body.append(identity,stats,equipment,contract,sources);identity.append(person);person.append(new N('p'));
-function field(name,aria){const row=new N('label','field'),input=new N('select');input.name=name;if(aria)input.attrs['aria-label']=aria;row.append(input);return row;}
-for(const key of ['weaponPower','strength','magic','technique','speed','constitution','armor','resistance'])stats.append(field(key));identity.append(field('skillGroup'),field('job'));contract.append(field('', '选择域之环'),field('', '选择佩戴契约'),field('contract'),field('negativeEffect'),field('skillMultiplier'));card.choiceHosts={stone:new N('div'),trophies:new N('div')};body.append(card.choiceHosts.stone,card.choiceHosts.trophies);
-const source=fs.readFileSync('frontend/js/app.js','utf8'),start=source.indexOf('function arrangeCharacterChoices('),end=source.indexOf('function render(characters)',start);const context={document:{createElement:t=>new N(t)},section:()=>new N('h4')};vm.createContext(context);vm.runInContext(source.slice(start,end),context);context.arrangeCharacterChoices(card);
-assert.equal(body.children[0],person);assert.deepEqual(body.children.filter(n=>n.dataset.choice).map(n=>n.dataset.choice),['skills','equipment','contract','stone','ring','trophies']);
-const details=body.children.at(-1),button=body.children.at(-2);assert(details.hidden);assert.equal(card.querySelector('.stats'),stats);assert.equal(card.querySelector('[name="skillGroup"]').closest('.field').parent.dataset.choice,'skills');const state=card.querySelector('.character-calculation-state');assert(state.hidden);assert.equal(card.querySelector('[name="negativeEffect"]').closest('.field').parent,state);assert.equal(details.children.length,2);assert.equal(details.children[1],stats);assert.deepEqual(stats.children.slice(0,8).map(row=>row.children[0].name),['strength','constitution','magic','armor','technique','resistance','speed','weaponPower']);assert(!details.querySelector('.identity'));assert(!details.querySelector('.special-sources'));
-button.listeners.click();assert(!details.hidden);assert.equal(button.textContent,'收起详情');assert.equal(button.attrs['aria-expanded'],'true');button.listeners.click();assert(details.hidden);assert.equal(button.textContent,'展示详情');
-console.log('PASS: character choice order, preserved inputs, hidden panel and accessible detail toggle');
+const card = new N("article"),
+  body = new N("div", "card-body"),
+  identity = new N("div", "identity"),
+  stats = new N("div", "stats"),
+  sources = new N("details", "special-sources"),
+  equipment = new N("div", "equipment"),
+  contract = new N("div", "contract"),
+  person = new N("div", "special-person-picker");
+card.dataset.index = 0;
+card.append(body);
+body.append(identity, stats, equipment, contract, sources);
+identity.append(person);
+person.append(new N("p"));
+function field(name, aria) {
+  const row = new N("label", "field"),
+    input = new N("select");
+  input.name = name;
+  if (aria) input.attrs["aria-label"] = aria;
+  row.append(input);
+  return row;
+}
+for (const key of [
+  "weaponPower",
+  "strength",
+  "magic",
+  "technique",
+  "speed",
+  "constitution",
+  "armor",
+  "resistance",
+])
+  stats.append(field(key));
+identity.append(field("skillGroup"), field("job"));
+contract.append(
+  field("", "选择域之环"),
+  field("", "选择佩戴契约"),
+  field("contract"),
+  field("negativeEffect"),
+  field("skillMultiplier"),
+);
+card.choiceHosts = { stone: new N("div"), trophies: new N("div") };
+body.append(card.choiceHosts.stone, card.choiceHosts.trophies);
+const source = fs.readFileSync("frontend/js/app.js", "utf8"),
+  start = source.indexOf("function arrangeCharacterChoices("),
+  end = source.indexOf("function render(characters)", start);
+const context = { document: { createElement: (t) => new N(t) }, section: () => new N("h4") };
+vm.createContext(context);
+vm.runInContext(source.slice(start, end), context);
+context.arrangeCharacterChoices(card);
+assert.equal(body.children[0], person);
+assert.deepEqual(
+  body.children.filter((n) => n.dataset.choice).map((n) => n.dataset.choice),
+  ["skills", "equipment", "contract", "stone", "ring", "trophies"],
+);
+const details = body.children.at(-1),
+  button = body.children.at(-2);
+assert(details.hidden);
+assert.equal(card.querySelector(".stats"), stats);
+assert.equal(
+  card.querySelector('[name="skillGroup"]').closest(".field").parent.dataset.choice,
+  "skills",
+);
+const state = card.querySelector(".character-calculation-state");
+assert(state.hidden);
+assert.equal(card.querySelector('[name="negativeEffect"]').closest(".field").parent, state);
+assert.equal(details.children.length, 2);
+assert.equal(details.children[1], stats);
+assert.deepEqual(
+  stats.children.slice(0, 8).map((row) => row.children[0].name),
+  ["strength", "constitution", "magic", "armor", "technique", "resistance", "speed", "weaponPower"],
+);
+assert(!details.querySelector(".identity"));
+assert(!details.querySelector(".special-sources"));
+button.listeners.click();
+assert(!details.hidden);
+assert.equal(button.textContent, "收起详情");
+assert.equal(button.attrs["aria-expanded"], "true");
+button.listeners.click();
+assert(details.hidden);
+assert.equal(button.textContent, "展示详情");
+console.log(
+  "PASS: character choice order, preserved inputs, hidden panel and accessible detail toggle",
+);

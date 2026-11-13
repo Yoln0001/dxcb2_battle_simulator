@@ -1,42 +1,56 @@
 """原有整场攻击循环和多次模拟；本次拆分不改变时间及结算规则。"""
+
 import math
 import numpy as np
 from numba import njit
 from .formulas import (
-    simulate_damage_berserker, simulate_damage_holy_lancer_1,
-    simulate_damage_holy_lancer_2, simulate_damage_nightmare,
+    simulate_damage_berserker,
+    simulate_damage_holy_lancer_1,
+    simulate_damage_holy_lancer_2,
+    simulate_damage_nightmare,
 )
 from .effects import (
-    berserker_start_strength, holy_lancer_team_technique, berserker_attack_effect,
+    berserker_start_strength,
+    holy_lancer_team_technique,
+    berserker_attack_effect,
 )
+
 
 @njit
 def simulate_attack_berserker(
-        strength,
-        magic,
-        technique,
-        speed,
-        hitPoint,
-        weaponPower,
-        loopDamage,
-        lootMagicDamage,
-        lootPhysicalDamage,
-        lootHitRate,
-        lootCriticalStrikeDamageCoefficient,
-        holy_lancer_1_tech_value: float):
+    strength,
+    magic,
+    technique,
+    speed,
+    hitPoint,
+    weaponPower,
+    loopDamage,
+    lootMagicDamage,
+    lootPhysicalDamage,
+    lootHitRate,
+    lootCriticalStrikeDamageCoefficient,
+    holy_lancer_1_tech_value: float,
+):
     strength = berserker_start_strength(strength)
     technique = holy_lancer_team_technique(technique, holy_lancer_1_tech_value)
     total_damage = 0.0
     battle_time = 4.5
     while battle_time <= 200:
-
         attack_strength, attack_technique, cool_down = berserker_attack_effect(
-            strength, technique, hitPoint)
+            strength, technique, hitPoint
+        )
         battle_time += cool_down
-        hit_rate = (30 + 0 + 5 + 10 + 20 + 15 + lootHitRate * 100 + 2 + attack_technique / 4375 * 3) / 100.0
+        hit_rate = (
+            30 + 0 + 5 + 10 + 20 + 15 + lootHitRate * 100 + 2 + attack_technique / 4375 * 3
+        ) / 100.0
         if np.random.random() < hit_rate:
-            damage = simulate_damage_berserker(attack_strength, weaponPower, loopDamage, lootPhysicalDamage,
-                                               lootCriticalStrikeDamageCoefficient)
+            damage = simulate_damage_berserker(
+                attack_strength,
+                weaponPower,
+                loopDamage,
+                lootPhysicalDamage,
+                lootCriticalStrikeDamageCoefficient,
+            )
         else:
             damage = 0
         total_damage += damage
@@ -46,18 +60,19 @@ def simulate_attack_berserker(
 
 @njit
 def simulate_attack_holy_lancer_1(
-        strength,
-        magic,
-        technique,
-        speed,
-        hitPoint,
-        weaponPower,
-        loopDamage,
-        lootMagicDamage,
-        lootPhysicalDamage,
-        lootHitRate,
-        lootCriticalStrikeDamageCoefficient,
-        holy_lancer_1_tech_value: float):
+    strength,
+    magic,
+    technique,
+    speed,
+    hitPoint,
+    weaponPower,
+    loopDamage,
+    lootMagicDamage,
+    lootPhysicalDamage,
+    lootHitRate,
+    lootCriticalStrikeDamageCoefficient,
+    holy_lancer_1_tech_value: float,
+):
     technique = holy_lancer_team_technique(technique, holy_lancer_1_tech_value)
     technique *= 1.35
     total_damage = 0.0
@@ -80,8 +95,14 @@ def simulate_attack_holy_lancer_1(
             attack_technique = buffed_technique * 2.5
             buff_time_left -= cool_down
 
-        damage = simulate_damage_holy_lancer_1(attack_strength, attack_technique, weaponPower, loopDamage,
-                                               lootPhysicalDamage, lootCriticalStrikeDamageCoefficient)
+        damage = simulate_damage_holy_lancer_1(
+            attack_strength,
+            attack_technique,
+            weaponPower,
+            loopDamage,
+            lootPhysicalDamage,
+            lootCriticalStrikeDamageCoefficient,
+        )
 
         battle_time += cool_down
         total_damage += damage
@@ -91,18 +112,19 @@ def simulate_attack_holy_lancer_1(
 
 @njit
 def simulate_attack_holy_lancer_2(
-        strength,
-        magic,
-        technique,
-        speed,
-        hitPoint,
-        weaponPower,
-        loopDamage,
-        lootMagicDamage,
-        lootPhysicalDamage,
-        lootHitRate,
-        lootCriticalStrikeDamageCoefficient,
-        holy_lancer_1_tech_value: float):
+    strength,
+    magic,
+    technique,
+    speed,
+    hitPoint,
+    weaponPower,
+    loopDamage,
+    lootMagicDamage,
+    lootPhysicalDamage,
+    lootHitRate,
+    lootCriticalStrikeDamageCoefficient,
+    holy_lancer_1_tech_value: float,
+):
     technique = holy_lancer_team_technique(technique, holy_lancer_1_tech_value)
     total_damage = 0.0
     battle_time = 1.5
@@ -118,8 +140,14 @@ def simulate_attack_holy_lancer_2(
             attack_strength = strength + technique * 0.65
             attack_technique = technique
 
-        damage = simulate_damage_holy_lancer_2(attack_strength, attack_technique, weaponPower, loopDamage,
-                                               lootPhysicalDamage, lootCriticalStrikeDamageCoefficient)
+        damage = simulate_damage_holy_lancer_2(
+            attack_strength,
+            attack_technique,
+            weaponPower,
+            loopDamage,
+            lootPhysicalDamage,
+            lootCriticalStrikeDamageCoefficient,
+        )
 
         battle_time += cool_down
         total_damage += damage
@@ -128,8 +156,14 @@ def simulate_attack_holy_lancer_2(
 
 
 @njit
-def simulate_attack_nightmare(speed, strength, weapon_power,
-                              loot_critical_strike_damage_coefficient, loop_damage, loot_physical_damage):
+def simulate_attack_nightmare(
+    speed,
+    strength,
+    weapon_power,
+    loot_critical_strike_damage_coefficient,
+    loop_damage,
+    loot_physical_damage,
+):
     # 神兽之怒加力量
     strength = strength * 1.65
     total_damage = 0.0
@@ -154,8 +188,14 @@ def simulate_attack_nightmare(speed, strength, weapon_power,
                 buff_time_left -= cool_down
             if buff_time_left < 0:
                 buff_level = 0
-        damage = simulate_damage_nightmare(attack_strength, attack_speed, weapon_power,
-                                           loot_critical_strike_damage_coefficient, loop_damage, loot_physical_damage)
+        damage = simulate_damage_nightmare(
+            attack_strength,
+            attack_speed,
+            weapon_power,
+            loot_critical_strike_damage_coefficient,
+            loop_damage,
+            loot_physical_damage,
+        )
         total_damage += damage
         # print(f"伤害: {damage:.0f}    黑暗之舞层数: {buff_level}    "
         #       f"黑暗之舞剩余次数: {buff_time_left}  力速比: {strength_speed_ratio}  战斗时间: {battle_time}")
@@ -167,8 +207,8 @@ class Battle:
         self.characters = characters
 
     def simulate(self, simulations: int) -> list:
-        damage_results = [sum(character.simulate_attack() for character in self.characters) for _ in
-                          range(simulations)]
+        damage_results = [
+            sum(character.simulate_attack() for character in self.characters)
+            for _ in range(simulations)
+        ]
         return damage_results
-
-

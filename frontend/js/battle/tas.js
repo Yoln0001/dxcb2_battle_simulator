@@ -1,45 +1,452 @@
-'use strict';
-(()=>{
- const E=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
- const number=n=>Number(n||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
- const dialog=E('dialog',undefined,'tas-dialog'),head=E('div',undefined,'dialog-head'),close=E('button','×');close.type='button';close.setAttribute('aria-label','关闭 TAS 战斗');head.append(E('h2','TAS 战斗播放器'),close);
- const status=E('p',undefined,'tas-status');status.setAttribute('role','status');
- const controls=E('div',undefined,'tas-controls'),play=E('button','▶ 播放','primary'),step=E('button','前进 0.1 秒'),back=E('button','后退 0.1 秒'),speed=E('select');
- for(const v of [0.5,1,2,5]){const o=E('option',v+'×');o.value=v;speed.append(o);}speed.value='1';speed.setAttribute('aria-label','播放速度');controls.append(play,step,back,E('span','播放速度'),speed);
- const clock=E('strong',undefined,'tas-clock'),scrub=E('input');scrub.type='range';scrub.min='0';scrub.step='1';scrub.value='0';scrub.setAttribute('aria-label','回溯已探索的战斗时间轴');
- const track=E('div',undefined,'tas-track');track.append(clock,scrub);
- const hint=E('p','每步为 0.1 秒。手动角色轮到行动时暂停；选择技能后点击播放继续。同一时刻按实际结算顺序逐个选择。回溯后继续操作，会替换该位置之后的时间线。','muted');
- const boss=E('section',undefined,'tas-boss'),cards=E('div',undefined,'tas-characters'),bottom=E('div',undefined,'tas-bottom'),events=E('section'),decisions=E('section');bottom.append(events,decisions);
- const errors=E('p',undefined,'tas-error');errors.setAttribute('role','alert');dialog.append(head,status,controls,track,hint,boss,cards,errors,bottom);document.body.append(dialog);
- let state=null,playing=false,busy=false,timer=null,creating=false,targetMaximum=0;
- const label={strength:'力量',constitution:'体质',magic:'魔力',armor:'护甲',technique:'技巧',resistance:'抗性',speed:'速度',weaponPower:'武威',hitRate:'命中率',criticalRate:'暴击率',healingBonus:'回复效果',physicalDamage:'物理伤害',magicDamage:'魔法伤害'};
- const kinds={tas_hold:'等待 0.1 秒',skill_released:'释放技能',boss_skill_released:'Boss施法',skill_damage:'技能伤害',boss_skill_damage:'Boss伤害',boss_dot_damage:'持续伤害',healing:'治疗',regeneration:'回春',equipment_triggered:'装备触发',character_died:'死亡',buff_applied:'获得增幅',boss_debuff_applied:'获得负面',dot_damage:'持续伤害',contract_damage:'契约伤害',lifesteal:'吸血',skill_missed:'未命中',wait_started:'等待'};
- function stop(){playing=false;clearTimeout(timer);timer=null;play.textContent='▶ 播放';}
- async function request(path,method,payload){if(window.AppRequests)await window.AppRequests.ready;const response=await (window.AppRequests?.fetch||fetch)(path,{method,headers:{'Content-Type':'application/json'},...(payload?{body:JSON.stringify(payload)}:{})});const data=await response.json();if(!response.ok)throw Error(data.error||'TAS 请求失败');return data;}
- async function operate(op){if(busy||!state)return false;busy=true;errors.textContent='';updateControls();try{state=await request('/api/battle/tas/'+state.id,'POST',{...op,revision:state.revision});if(state.pending_character||state.finished)stop();render();return true;}catch(error){stop();errors.textContent=error.message;return false;}finally{busy=false;updateControls();}}
- function updateControls(){play.disabled=busy||!state||state.finished||!!state.pending_character;step.disabled=play.disabled;back.disabled=busy||!state||state.time<=0;scrub.disabled=busy||!state;close.disabled=busy;}
- function schedule(){if(!playing)return;timer=setTimeout(async()=>{if(await operate({kind:'step'})){if(playing)schedule();}},100/Number(speed.value));}
- play.addEventListener('click',()=>{if(playing){stop();return;}if(!state||state.pending_character||state.finished)return;playing=true;play.textContent='Ⅱ 暂停';schedule();});
- step.addEventListener('click',()=>{stop();operate({kind:'step'});});
- back.addEventListener('click',()=>{stop();operate({kind:'seek',tick:Math.max(0,Math.round(state.time*10)-1)});});
- scrub.addEventListener('input',()=>{stop();clock.textContent=(Number(scrub.value)/10).toFixed(1)+' 秒 · 松开以回溯';});
- scrub.addEventListener('change',()=>{stop();operate({kind:'seek',tick:Number(scrub.value)});});
- async function dispose(){if(busy)return;stop();dialog.close();const old=state;state=null;if(old)try{await request('/api/battle/tas/'+old.id,'DELETE');}catch(error){window.showToast?.(error.message);}}
- close.addEventListener('click',dispose);dialog.addEventListener('cancel',event=>{event.preventDefault();if(!busy)dispose();});
- function health(container,hp,max){const bar=E('progress');bar.max=Math.max(1,max);bar.value=Math.max(0,hp);bar.setAttribute('aria-label','生命值');container.append(bar,E('p',number(hp)+' / '+number(max),'tas-health'));}
- function render(){if(!state)return;const snap=state.snapshot;
- status.textContent=(state.finished?({target_defeated:'Boss 已击败',party_defeated:'全队已阵亡',duration:'达到设置时长'}[state.end_reason]||'战斗结束'):state.pending_character?'等待角色 '+state.pending_character+' 选择技能':playing?'正在播放':'已暂停')+' · 累计伤害 '+number(state.total_damage)+' · 种子 '+state.seed;
- clock.textContent=state.time.toFixed(1)+' / '+state.duration.toFixed(1)+' 秒';scrub.max=Math.round(state.horizon*10);scrub.value=Math.round(state.time*10);
- boss.replaceChildren(E('strong',state.boss_attacks?'Boss · 自动行动':'Boss · 未设置攻击技能组'));health(boss,snap.target_current_hp,state.target_maximum_hp||targetMaximum);const bossDetails=E('details'),bossStats=E('dl',undefined,'tas-stats');bossDetails.append(E('summary','Boss 当前属性 / 负面状态'));for(const [key,name] of Object.entries(label)){bossStats.append(E('dt',name),E('dd',number((snap.boss_combat_stats||snap.target_attributes||{})[key])));}bossDetails.append(bossStats);for(const effect of snap.target_debuffs||[])bossDetails.append(E('p',effect.name||effect.type||'负面效果','muted'));boss.append(bossDetails);for(const warning of state.warnings)boss.append(E('p',warning,'muted'));
- cards.replaceChildren();for(const c of snap.characters){if(!c.enabled)continue;const info=state.characters.find(x=>x.index===c.index),pending=state.pending_character===c.index,card=E('section',undefined,'tas-character'+(pending?' tas-pending':''));
- card.append(E('h3','角色 '+c.index+' · '+(c.name||c.job)),E('p',!c.alive?'已阵亡':pending?'轮到行动 · 请选择技能':'下次行动预计 '+info.next_action_at.toFixed(1)+' 秒','tas-readiness'));health(card,c.current_hp,c.maximum_hp);
- const mode=E('select');mode.setAttribute('aria-label','角色'+c.index+'控制模式');for(const [v,t] of [['manual','手动选择技能'],['auto','自动执行技能组']]){const o=E('option',t);o.value=v;mode.append(o);}mode.children[1].disabled=!info.automatic_available;mode.value=info.mode;mode.disabled=busy||state.finished;mode.addEventListener('change',()=>{stop();operate({kind:'mode',character:c.index,mode:mode.value});});card.append(mode);
- const statusNames={burn:'灼烧',bleeding:'流血',plague:'瘟疫',slow:'减速',stun:'眩晕',weakness:'虚弱',fear:'恐惧',lifeLoss:'生命流失',strengthDecay:'力量衰减',magicDecay:'魔力衰减',techniqueDecay:'技巧衰减',speedDecay:'速度衰减',armorDecay:'护甲衰减',resistanceDecay:'抗性衰减'};for(const effect of info.statuses||[])card.append(E('p',(statusNames[effect.type]||effect.type)+' · '+(effect.stacks||1)+' 层 · 剩余 '+Math.max(0,effect.expires_at-state.time).toFixed(1)+' 秒','tas-error'));
- const buffs=[...(c.buffs||[]),...(c.regeneration_buffs||[]),...(c.debuffs||[])];const names=[...new Set(buffs.map(b=>b.name).filter(Boolean))];card.append(E('p',names.length?names.join(' · '):'无增幅 / 回春','tas-buffs'));
- const details=E('details'),grid=E('dl',undefined,'tas-stats');details.append(E('summary','面板属性'));for(const [key,name] of Object.entries(label)){grid.append(E('dt',name),E('dd',number(c.stats[key])));}details.append(grid);card.append(details);
- if(info.mode==='manual'&&c.alive){const select=E('select');select.setAttribute('aria-label','角色'+c.index+'释放技能');for(const skill of info.skills){const o=E('option',skill.name+' · CD '+skill.cooldown+' 秒');o.value=skill.id;select.append(o);}const target=E('select');target.setAttribute('aria-label','单体回复对象');const automatic=E('option','单体回复：当前血量最低者');automatic.value='';target.append(automatic);for(const ally of snap.characters.filter(a=>a.enabled&&a.alive)){const o=E('option','单体回复：角色 '+ally.index);o.value=ally.index;target.append(o);}const cast=E('button','释放所选技能',pending?'primary':'');cast.type='button';cast.disabled=!pending||!info.skills.length;select.disabled=target.disabled=!pending;select.value=info.skills[0]?.id||'';const scope=E('p',undefined,'muted');const selectedSkill=()=>info.skills.find(skill=>skill.id===select.value);const singleHealing=()=>selectedSkill()?.damage_type==='none'&&selectedSkill()?.healing_recipient!=='allAllies';function updateTarget(){const skill=selectedSkill();target.hidden=!singleHealing();target.disabled=!pending||!singleHealing();if(!singleHealing())target.value='';scope.hidden=singleHealing();scope.textContent=skill?.damage_type==='none'?'群体回复：全体存活队友':'攻击对象：Boss';}select.addEventListener('change',updateTarget);updateTarget();cast.addEventListener('click',()=>{stop();operate({kind:'cast',character:c.index,skill_id:select.value,...(singleHealing()&&target.value?{target_character:Number(target.value)}:{})});});const hold=E('button','本次等待 0.1 秒');hold.type='button';hold.disabled=!pending;hold.addEventListener('click',()=>{stop();operate({kind:'hold',character:c.index});});card.append(select,target,scope,cast,hold);if(pending&&!info.skills.length)card.append(E('p','技能库中没有该转职的可用技能。','tas-error'));}
- cards.append(card);}
- events.replaceChildren(E('h3','当前时刻 · 结算记录'));const list=E('ol');for(const event of state.events){const actor=event.character?'角色'+event.character:event.target_character?'角色'+event.target_character:'';const amount=event.damage??event.effective_amount??event.amount;list.append(E('li',[actor,event.type==='boss_periodic_kill'?'定时击杀 '+(event.target_characters||[]).map(i=>'角色'+i).join('、'):kinds[event.type]||event.type,event.skill_name||event.name||event.equipment_name,amount!==undefined?number(amount):''].filter(Boolean).join(' · ')));}if(!state.events.length)list.append(E('li','此刻没有事件'));events.append(list);
- decisions.replaceChildren(E('h3','手动指令 · 点击回溯'));const commands=E('div',undefined,'tas-command-list');for(const command of state.decisions){const b=E('button',command.time.toFixed(1)+' 秒 · 角色 '+command.character+' · '+(state.characters.find(c=>c.index===command.character)?.skills.find(s=>s.id===command.skill_id)?.name||(command.skill_id==='__hold__'?'等待 0.1 秒':command.skill_id)));b.type='button';b.addEventListener('click',()=>{stop();operate({kind:'seek',tick:Math.max(0,Math.round(command.time*10)-1)});});commands.append(b);}decisions.append(commands);updateControls();}
- const entry=document.querySelector('#open-tas');entry?.addEventListener('click',async()=>{if(creating)return;const config=window.getTeamConfiguration();if(!config)return;creating=true;entry.disabled=true;try{if(state)await dispose();targetMaximum=Number(config.target.hitPoint)||1;state=await request('/api/battle/tas','POST',config);render();dialog.showModal();}catch(error){window.showToast?.(error.message);}finally{creating=false;entry.disabled=false;}});
+"use strict";
+(() => {
+  const E = (tag, text, cls) => {
+    const n = document.createElement(tag);
+    if (text !== undefined) n.textContent = text;
+    if (cls) n.className = cls;
+    return n;
+  };
+  const number = (n) => Number(n || 0).toLocaleString("zh-CN", { maximumFractionDigits: 2 });
+  const dialog = E("dialog", undefined, "tas-dialog"),
+    head = E("div", undefined, "dialog-head"),
+    close = E("button", "×");
+  close.type = "button";
+  close.setAttribute("aria-label", "关闭 TAS 战斗");
+  head.append(E("h2", "TAS 战斗播放器"), close);
+  const status = E("p", undefined, "tas-status");
+  status.setAttribute("role", "status");
+  const controls = E("div", undefined, "tas-controls"),
+    play = E("button", "▶ 播放", "primary"),
+    step = E("button", "前进 0.1 秒"),
+    back = E("button", "后退 0.1 秒"),
+    speed = E("select");
+  for (const v of [0.5, 1, 2, 5]) {
+    const o = E("option", v + "×");
+    o.value = v;
+    speed.append(o);
+  }
+  speed.value = "1";
+  speed.setAttribute("aria-label", "播放速度");
+  controls.append(play, step, back, E("span", "播放速度"), speed);
+  const clock = E("strong", undefined, "tas-clock"),
+    scrub = E("input");
+  scrub.type = "range";
+  scrub.min = "0";
+  scrub.step = "1";
+  scrub.value = "0";
+  scrub.setAttribute("aria-label", "回溯已探索的战斗时间轴");
+  const track = E("div", undefined, "tas-track");
+  track.append(clock, scrub);
+  const hint = E(
+    "p",
+    "每步为 0.1 秒。手动角色轮到行动时暂停；选择技能后点击播放继续。同一时刻按实际结算顺序逐个选择。回溯后继续操作，会替换该位置之后的时间线。",
+    "muted",
+  );
+  const boss = E("section", undefined, "tas-boss"),
+    cards = E("div", undefined, "tas-characters"),
+    bottom = E("div", undefined, "tas-bottom"),
+    events = E("section"),
+    decisions = E("section");
+  bottom.append(events, decisions);
+  const errors = E("p", undefined, "tas-error");
+  errors.setAttribute("role", "alert");
+  dialog.append(head, status, controls, track, hint, boss, cards, errors, bottom);
+  document.body.append(dialog);
+  let state = null,
+    playing = false,
+    busy = false,
+    timer = null,
+    creating = false,
+    targetMaximum = 0;
+  const label = {
+    strength: "力量",
+    constitution: "体质",
+    magic: "魔力",
+    armor: "护甲",
+    technique: "技巧",
+    resistance: "抗性",
+    speed: "速度",
+    weaponPower: "武威",
+    hitRate: "命中率",
+    criticalRate: "暴击率",
+    healingBonus: "回复效果",
+    physicalDamage: "物理伤害",
+    magicDamage: "魔法伤害",
+  };
+  const kinds = {
+    tas_hold: "等待 0.1 秒",
+    skill_released: "释放技能",
+    boss_skill_released: "Boss施法",
+    skill_damage: "技能伤害",
+    boss_skill_damage: "Boss伤害",
+    boss_dot_damage: "持续伤害",
+    healing: "治疗",
+    regeneration: "回春",
+    equipment_triggered: "装备触发",
+    character_died: "死亡",
+    buff_applied: "获得增幅",
+    boss_debuff_applied: "获得负面",
+    dot_damage: "持续伤害",
+    contract_damage: "契约伤害",
+    lifesteal: "吸血",
+    skill_missed: "未命中",
+    wait_started: "等待",
+  };
+  function stop() {
+    playing = false;
+    clearTimeout(timer);
+    timer = null;
+    play.textContent = "▶ 播放";
+  }
+  async function request(path, method, payload) {
+    if (window.AppRequests) await window.AppRequests.ready;
+    const response = await (window.AppRequests?.fetch || fetch)(path, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      ...(payload ? { body: JSON.stringify(payload) } : {}),
+    });
+    const data = await response.json();
+    if (!response.ok) throw Error(data.error || "TAS 请求失败");
+    return data;
+  }
+  async function operate(op) {
+    if (busy || !state) return false;
+    busy = true;
+    errors.textContent = "";
+    updateControls();
+    try {
+      state = await request("/api/battle/tas/" + state.id, "POST", {
+        ...op,
+        revision: state.revision,
+      });
+      if (state.pending_character || state.finished) stop();
+      render();
+      return true;
+    } catch (error) {
+      stop();
+      errors.textContent = error.message;
+      return false;
+    } finally {
+      busy = false;
+      updateControls();
+    }
+  }
+  function updateControls() {
+    play.disabled = busy || !state || state.finished || !!state.pending_character;
+    step.disabled = play.disabled;
+    back.disabled = busy || !state || state.time <= 0;
+    scrub.disabled = busy || !state;
+    close.disabled = busy;
+  }
+  function schedule() {
+    if (!playing) return;
+    timer = setTimeout(
+      async () => {
+        if (await operate({ kind: "step" })) {
+          if (playing) schedule();
+        }
+      },
+      100 / Number(speed.value),
+    );
+  }
+  play.addEventListener("click", () => {
+    if (playing) {
+      stop();
+      return;
+    }
+    if (!state || state.pending_character || state.finished) return;
+    playing = true;
+    play.textContent = "Ⅱ 暂停";
+    schedule();
+  });
+  step.addEventListener("click", () => {
+    stop();
+    operate({ kind: "step" });
+  });
+  back.addEventListener("click", () => {
+    stop();
+    operate({ kind: "seek", tick: Math.max(0, Math.round(state.time * 10) - 1) });
+  });
+  scrub.addEventListener("input", () => {
+    stop();
+    clock.textContent = (Number(scrub.value) / 10).toFixed(1) + " 秒 · 松开以回溯";
+  });
+  scrub.addEventListener("change", () => {
+    stop();
+    operate({ kind: "seek", tick: Number(scrub.value) });
+  });
+  async function dispose() {
+    if (busy) return;
+    stop();
+    dialog.close();
+    const old = state;
+    state = null;
+    if (old)
+      try {
+        await request("/api/battle/tas/" + old.id, "DELETE");
+      } catch (error) {
+        window.showToast?.(error.message);
+      }
+  }
+  close.addEventListener("click", dispose);
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    if (!busy) dispose();
+  });
+  function health(container, hp, max) {
+    const bar = E("progress");
+    bar.max = Math.max(1, max);
+    bar.value = Math.max(0, hp);
+    bar.setAttribute("aria-label", "生命值");
+    container.append(bar, E("p", number(hp) + " / " + number(max), "tas-health"));
+  }
+  function render() {
+    if (!state) return;
+    const snap = state.snapshot;
+    status.textContent =
+      (state.finished
+        ? {
+            target_defeated: "Boss 已击败",
+            party_defeated: "全队已阵亡",
+            duration: "达到设置时长",
+          }[state.end_reason] || "战斗结束"
+        : state.pending_character
+          ? "等待角色 " + state.pending_character + " 选择技能"
+          : playing
+            ? "正在播放"
+            : "已暂停") +
+      " · 累计伤害 " +
+      number(state.total_damage) +
+      " · 种子 " +
+      state.seed;
+    clock.textContent = state.time.toFixed(1) + " / " + state.duration.toFixed(1) + " 秒";
+    scrub.max = Math.round(state.horizon * 10);
+    scrub.value = Math.round(state.time * 10);
+    boss.replaceChildren(
+      E("strong", state.boss_attacks ? "Boss · 自动行动" : "Boss · 未设置攻击技能组"),
+    );
+    health(boss, snap.target_current_hp, state.target_maximum_hp || targetMaximum);
+    const bossDetails = E("details"),
+      bossStats = E("dl", undefined, "tas-stats");
+    bossDetails.append(E("summary", "Boss 当前属性 / 负面状态"));
+    for (const [key, name] of Object.entries(label)) {
+      bossStats.append(
+        E("dt", name),
+        E("dd", number((snap.boss_combat_stats || snap.target_attributes || {})[key])),
+      );
+    }
+    bossDetails.append(bossStats);
+    for (const effect of snap.target_debuffs || [])
+      bossDetails.append(E("p", effect.name || effect.type || "负面效果", "muted"));
+    boss.append(bossDetails);
+    for (const warning of state.warnings) boss.append(E("p", warning, "muted"));
+    cards.replaceChildren();
+    for (const c of snap.characters) {
+      if (!c.enabled) continue;
+      const info = state.characters.find((x) => x.index === c.index),
+        pending = state.pending_character === c.index,
+        card = E("section", undefined, "tas-character" + (pending ? " tas-pending" : ""));
+      card.append(
+        E("h3", "角色 " + c.index + " · " + (c.name || c.job)),
+        E(
+          "p",
+          !c.alive
+            ? "已阵亡"
+            : pending
+              ? "轮到行动 · 请选择技能"
+              : "下次行动预计 " + info.next_action_at.toFixed(1) + " 秒",
+          "tas-readiness",
+        ),
+      );
+      health(card, c.current_hp, c.maximum_hp);
+      const mode = E("select");
+      mode.setAttribute("aria-label", "角色" + c.index + "控制模式");
+      for (const [v, t] of [
+        ["manual", "手动选择技能"],
+        ["auto", "自动执行技能组"],
+      ]) {
+        const o = E("option", t);
+        o.value = v;
+        mode.append(o);
+      }
+      mode.children[1].disabled = !info.automatic_available;
+      mode.value = info.mode;
+      mode.disabled = busy || state.finished;
+      mode.addEventListener("change", () => {
+        stop();
+        operate({ kind: "mode", character: c.index, mode: mode.value });
+      });
+      card.append(mode);
+      const statusNames = {
+        burn: "灼烧",
+        bleeding: "流血",
+        plague: "瘟疫",
+        slow: "减速",
+        stun: "眩晕",
+        weakness: "虚弱",
+        fear: "恐惧",
+        lifeLoss: "生命流失",
+        strengthDecay: "力量衰减",
+        magicDecay: "魔力衰减",
+        techniqueDecay: "技巧衰减",
+        speedDecay: "速度衰减",
+        armorDecay: "护甲衰减",
+        resistanceDecay: "抗性衰减",
+      };
+      for (const effect of info.statuses || [])
+        card.append(
+          E(
+            "p",
+            (statusNames[effect.type] || effect.type) +
+              " · " +
+              (effect.stacks || 1) +
+              " 层 · 剩余 " +
+              Math.max(0, effect.expires_at - state.time).toFixed(1) +
+              " 秒",
+            "tas-error",
+          ),
+        );
+      const buffs = [...(c.buffs || []), ...(c.regeneration_buffs || []), ...(c.debuffs || [])];
+      const names = [...new Set(buffs.map((b) => b.name).filter(Boolean))];
+      card.append(E("p", names.length ? names.join(" · ") : "无增幅 / 回春", "tas-buffs"));
+      const details = E("details"),
+        grid = E("dl", undefined, "tas-stats");
+      details.append(E("summary", "面板属性"));
+      for (const [key, name] of Object.entries(label)) {
+        grid.append(E("dt", name), E("dd", number(c.stats[key])));
+      }
+      details.append(grid);
+      card.append(details);
+      if (info.mode === "manual" && c.alive) {
+        const select = E("select");
+        select.setAttribute("aria-label", "角色" + c.index + "释放技能");
+        for (const skill of info.skills) {
+          const o = E("option", skill.name + " · CD " + skill.cooldown + " 秒");
+          o.value = skill.id;
+          select.append(o);
+        }
+        const target = E("select");
+        target.setAttribute("aria-label", "单体回复对象");
+        const automatic = E("option", "单体回复：当前血量最低者");
+        automatic.value = "";
+        target.append(automatic);
+        for (const ally of snap.characters.filter((a) => a.enabled && a.alive)) {
+          const o = E("option", "单体回复：角色 " + ally.index);
+          o.value = ally.index;
+          target.append(o);
+        }
+        const cast = E("button", "释放所选技能", pending ? "primary" : "");
+        cast.type = "button";
+        cast.disabled = !pending || !info.skills.length;
+        select.disabled = target.disabled = !pending;
+        select.value = info.skills[0]?.id || "";
+        const scope = E("p", undefined, "muted");
+        const selectedSkill = () => info.skills.find((skill) => skill.id === select.value);
+        const singleHealing = () =>
+          selectedSkill()?.damage_type === "none" &&
+          selectedSkill()?.healing_recipient !== "allAllies";
+        function updateTarget() {
+          const skill = selectedSkill();
+          target.hidden = !singleHealing();
+          target.disabled = !pending || !singleHealing();
+          if (!singleHealing()) target.value = "";
+          scope.hidden = singleHealing();
+          scope.textContent =
+            skill?.damage_type === "none" ? "群体回复：全体存活队友" : "攻击对象：Boss";
+        }
+        select.addEventListener("change", updateTarget);
+        updateTarget();
+        cast.addEventListener("click", () => {
+          stop();
+          operate({
+            kind: "cast",
+            character: c.index,
+            skill_id: select.value,
+            ...(singleHealing() && target.value ? { target_character: Number(target.value) } : {}),
+          });
+        });
+        const hold = E("button", "本次等待 0.1 秒");
+        hold.type = "button";
+        hold.disabled = !pending;
+        hold.addEventListener("click", () => {
+          stop();
+          operate({ kind: "hold", character: c.index });
+        });
+        card.append(select, target, scope, cast, hold);
+        if (pending && !info.skills.length)
+          card.append(E("p", "技能库中没有该转职的可用技能。", "tas-error"));
+      }
+      cards.append(card);
+    }
+    events.replaceChildren(E("h3", "当前时刻 · 结算记录"));
+    const list = E("ol");
+    for (const event of state.events) {
+      const actor = event.character
+        ? "角色" + event.character
+        : event.target_character
+          ? "角色" + event.target_character
+          : "";
+      const amount = event.damage ?? event.effective_amount ?? event.amount;
+      list.append(
+        E(
+          "li",
+          [
+            actor,
+            event.type === "boss_periodic_kill"
+              ? "定时击杀 " + (event.target_characters || []).map((i) => "角色" + i).join("、")
+              : kinds[event.type] || event.type,
+            event.skill_name || event.name || event.equipment_name,
+            amount !== undefined ? number(amount) : "",
+          ]
+            .filter(Boolean)
+            .join(" · "),
+        ),
+      );
+    }
+    if (!state.events.length) list.append(E("li", "此刻没有事件"));
+    events.append(list);
+    decisions.replaceChildren(E("h3", "手动指令 · 点击回溯"));
+    const commands = E("div", undefined, "tas-command-list");
+    for (const command of state.decisions) {
+      const b = E(
+        "button",
+        command.time.toFixed(1) +
+          " 秒 · 角色 " +
+          command.character +
+          " · " +
+          (state.characters
+            .find((c) => c.index === command.character)
+            ?.skills.find((s) => s.id === command.skill_id)?.name ||
+            (command.skill_id === "__hold__" ? "等待 0.1 秒" : command.skill_id)),
+      );
+      b.type = "button";
+      b.addEventListener("click", () => {
+        stop();
+        operate({ kind: "seek", tick: Math.max(0, Math.round(command.time * 10) - 1) });
+      });
+      commands.append(b);
+    }
+    decisions.append(commands);
+    updateControls();
+  }
+  const entry = document.querySelector("#open-tas");
+  entry?.addEventListener("click", async () => {
+    if (creating) return;
+    const config = window.getTeamConfiguration();
+    if (!config) return;
+    creating = true;
+    entry.disabled = true;
+    try {
+      if (state) await dispose();
+      targetMaximum = Number(config.target.hitPoint) || 1;
+      state = await request("/api/battle/tas", "POST", config);
+      render();
+      dialog.showModal();
+    } catch (error) {
+      window.showToast?.(error.message);
+    } finally {
+      creating = false;
+      entry.disabled = false;
+    }
+  });
 })();

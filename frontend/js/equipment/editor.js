@@ -1,98 +1,1351 @@
-'use strict';
-window.createEquipmentLibraryEditor=(options={})=>{
- const M=window.EquipmentModel,api=options.api||'/api/equipment',storageKey=options.storageKey||'dungeon2-equipment-library-v1',useAPI=['http:','https:'].includes(location.protocol);
- const labels={strength:'力量',magic:'魔力',technique:'技巧',speed:'速度',constitution:'体质',hitPoint:'血量',weaponPower:'武威',armor:'护甲',resistance:'抗性',lostHitPoint:'已损失血量'};
- const categories={weapon:'武器',armor:'防具',accessory:'饰品',stone:'魔石'};
- const effectKinds={none:'无特效',amplify:'增幅',physicalTrueDamage:'物理真伤',magicTrueDamage:'魔法真伤',immediateAction:'立即执行下次行动',debuff:'对怪附加 debuff',buff:'对友方释放 buff',healing:'回复效果',regeneration:'回春'};
- const recipients={self:'自身',allAllies:'全体队友（含自身）',singleAlly:'单个队友'};
- const E=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
- const button=(title,handler,cls)=>{const e=E('button',title,cls);e.type='button';e.addEventListener('click',handler);return e;};
- let triggerDrafts=[],activeTrigger=0,openingDrafts=[],activeOpening=0;
- let metadata={},details=null,items=[],editingId='',dirty=false,saving=false,timer;
- const dialog=E('dialog',undefined,'skill-editor-dialog');dialog.id=options.dialogId||'equipment-editor-dialog';
- const header=E('div',undefined,'dialog-head');const heading=E('div');heading.append(E('h2',options.title||'自定义装备库'),E('p',options.wiki?'来自BWIKI的独立装备库。基础属性保留原始区间；待补充项在独立窗口核对。':'定义装备特效，保存后可编辑，并供后续队伍与战斗引擎引用。'));header.append(heading,button('×',()=>dialog.close()));header.lastChild.setAttribute('aria-label','关闭装备库');dialog.append(header);
- const workspace=E('div',undefined,'skill-workspace'),sidebar=E('aside',undefined,'skill-sidebar'),form=E('form',undefined,'skill-form');form.id=options.wiki?'wiki-equipment-form':'equipment-form';workspace.append(sidebar,form);dialog.append(workspace);document.body.append(dialog);
- const libraryHead=E('div',undefined,'skill-sidebar-head'),count=E('span');libraryHead.append(E('strong','装备列表'),count);sidebar.append(libraryHead);
- sidebar.append(button('＋ 创建装备',()=>{if(discard()){load(M.blank());renderList();}},'primary'));
- const search=E('input');search.type='search';search.placeholder='搜索名称、职业或特效';search.setAttribute('aria-label','搜索装备');sidebar.append(search);
- const categoryFilter=E('select');categoryFilter.id=options.wiki?'wiki-equipment-category-filter':'equipment-category-filter';categoryFilter.setAttribute('aria-label','按装备类型筛选');for(const [value,label] of Object.entries({all:'全部类型',...categories})){const option=E('option',label);option.value=value;categoryFilter.append(option);}categoryFilter.value='all';sidebar.append(categoryFilter);
- const wikiStatus=E('select'),wikiJob=E('select'),wikiProgress=E('p',undefined,'wiki-progress');
- if(options.wiki){for(const [key,label] of Object.entries({all:'全部整理状态',converted:'已自动转录',needsReview:'待补充',reviewed:'人工核对完成'})){const o=E('option',label);o.value=key;wikiStatus.append(o);}wikiStatus.value='all';wikiStatus.setAttribute('aria-label','百科装备整理状态');wikiJob.append(E('option','全部职业'));wikiJob.firstChild.value='';for(const p of window.SkillModel.professions){const o=E('option',p.name);o.value=p.name;wikiJob.append(o);}wikiJob.value='';sidebar.append(wikiJob,wikiStatus,wikiProgress);wikiStatus.addEventListener('change',renderList);wikiJob.addEventListener('change',renderList);}
- function renderProgress(){const done=items.filter(i=>i.classificationStatus!=='needsReview').length;wikiProgress.textContent='已入库 '+items.length+' 件 · 已转录 '+done+' 件（'+(items.length?(done/items.length*100).toFixed(1):'0')+'%） · 待补充 '+(items.length-done)+' 件';}
- const list=E('div');list.id=options.wiki?'wiki-equipment-list':'equipment-list';sidebar.append(list);
- const libraryActions=E('div',undefined,'skill-library-actions');sidebar.append(libraryActions);
- const title=E('h3','创建装备');form.append(title);
- const controls=new Map();
- const coefficientFields=new Set();
- const isCoefficient=name=>/^(?:amplify|buff)-[^-]+-[^-]+$/.test(name)||/^(?:true|heal|debuff|startRegen)-/.test(name)||/^start-(?:strength|magic|technique|speed)$/.test(name);
- const displayedCoefficient=value=>Number((Number(value)*100).toPrecision(15));
- function field(name,label,type='number',initial=0,options=null,max=null){const row=E('label',undefined,'field');const coefficient=type==='number'&&isCoefficient(name);if(coefficient){coefficientFields.add(name);initial=displayedCoefficient(initial);}const percent=type==='number'&&(coefficient||label.trim().endsWith('%'));row.append(E('span',percent?label.replace(/\s*%$/,''):label,'equipment-field-label'));const control=E(type==='select'?'select':'input');control.name=name;control.setAttribute('aria-label',coefficient?label+' %':label);
-  if(type==='select'){for(const [value,text]of Object.entries(options)){const o=E('option',text);o.value=value;control.append(o);}control.value=initial;}
-  else{control.type=type;control.defaultValue=String(initial);control.value=initial;if(type==='number'){control.min=0;control.step='any';control.required=true;if(max!==null)control.max=max;}else control.maxLength=120;}
-  controls.set(name,control);row.append(control);if(percent){const unit=E('span','%','field-unit');unit.setAttribute('aria-hidden','true');row.append(unit);}if(name==='start-healingReduction')row.classList.add('equipment-long-label');if(name.endsWith('-lostHitPoint'))row.classList.add('lost-health-field');return row;
- }
- const C=name=>controls.get(name),V=name=>C(name).value,N=name=>Number(V(name))/(coefficientFields.has(name)?100:1),S=(name,value)=>{C(name).value=coefficientFields.has(name)?displayedCoefficient(value):value;};
- const grid=()=>E('div',undefined,'skill-basic-grid');
- function sectionToggle(name,label){const row=E('label',undefined,'conversion-toggle section-label');const c=E('input');c.type='checkbox';c.name=name;c.className='switch';c.setAttribute('aria-label',label);controls.set(name,c);row.append(E('span',label),c);return row;}
- const basic=grid();basic.append(field('category','类型','select','weapon',categories),field('name','装备名称','text',''),field('weaponJob','武器职业','select','',{'':'不限职业 / 不是武器不用选'}));C('name').required=true;
- for(const profession of window.SkillModel.professions){const option=E('option',profession.name);option.value=profession.name;C('weaponJob').append(option);}form.append(basic);
- form.append(sectionToggle('startEnabled','战斗开始效果'));const openingHost=E('div');form.append(openingHost);openingHost.className='equipment-opening-effects';const openingBar=E('div',undefined,'equipment-trigger-bar');openingHost.append(openingBar,field('startSide','施加阵营','select','ally',{ally:'对己方',enemy:'对敌方'}),sectionToggle('startEntryEnabled','启用当前效果'));C('startEntryEnabled').checked=true;const startGrid=grid();startGrid.append(field('effectName','战斗开始特效名称','text',''),field('startRecipient','开始 buff 对象','select','self',recipients),field('startKind','特效类型','select','amplify',{amplify:'增幅属性',regeneration:'施加回春'}));const startAmplify=grid();startAmplify.classList.add('equipment-opening-values');for(const attr of M.targets)startAmplify.append(field('start-'+attr,labels[attr]+'系数'));startAmplify.append(field('startTarget','转化为','select','none',{none:'不转化',strength:'力量',magic:'魔力',technique:'技巧',speed:'速度',armor:'护甲',resistance:'抗性'}));startGrid.append(startAmplify);const startRegen=grid();startRegen.classList.add('equipment-opening-values');startRegen.append(field('startRegenBonuses','回复加成','select','true',{'true':'受回复效果、辉印回复加成','false':'不受回复效果、辉印回复加成'}),field('startRegenBase','基础数值'));for(const attr of ['strength','magic','technique','speed','constitution'])startRegen.append(field('startRegen-'+attr,labels[attr]+'系数'));startRegen.append(E('p','每秒回复＝（基础数值＋五维属性×对应百分比÷100之和）×（1＋回复效果%）×（1＋辉印回复%）。开战时计算，首次在第1秒回复，重伤后失效。回复效果与辉印回复取施加者的开战属性；肇始之心★的开局回春选择“不受回复效果、辉印回复加成”；此设置随特效保存，装备改名后仍保留。所有装备回春均受敌方回春降低影响。','skill-help'));startGrid.append(startRegen);openingHost.append(startGrid);const startEnemyGrid=grid();const openingTypes={physicalVulnerability:'物理易伤',magicVulnerability:'魔法易伤',dot:'DOT',healingReduction:'罚罪之域',lifeDeprivation:'生命剥夺'};
- startEnemyGrid.append(field('startEnemyName','敌方 debuff 名称','text',''),field('startDebuffType','debuff 类型','select','physicalVulnerability',openingTypes));
- const openingValueRows={physicalVulnerability:field('start-physicalVulnerability','物理易伤 %'),magicVulnerability:field('start-magicVulnerability','魔法易伤 %'),dot:field('startDotDamage','DOT每秒基础伤害'),healingReduction:field('start-healingReduction','回复/吸血效果降低 %','number',0,null,100),lifeDeprivation:field('start-lifeDeprivation','敌方当前生命值 %','number',0,null,100)};
- startEnemyGrid.append(...Object.values(openingValueRows),E('p','每条debuff只能选择一种类型，多种效果请分别添加。同类易伤、同名DOT覆盖。罚罪之域按剩余回复/吸血比例相乘叠加。生命剥夺在开战时造成敌方当前生命值对应百分比的无属性伤害，每条依次计算一次。','skill-help'));openingHost.append(startEnemyGrid);
- function openingEntry(){const type=V('startDebuffType');return {name:V('startEnemyName'),type,dotEnabled:type==='dot',dotDamage:type==='dot'?N('startDotDamage'):0,...Object.fromEntries(['physicalVulnerability','magicVulnerability','healingReduction','lifeDeprivation'].map(k=>[k,type===k?N('start-'+k):0]))};}
- function allyOpening(){return {enabled:true,kind:V('startKind'),recipient:V('startRecipient'),target:V('startTarget'),coefficients:Object.fromEntries(M.targets.map(a=>[a,N('start-'+a)])),regeneration:{receivesHealingBonuses:V('startRegenBonuses')!=='false',baseValue:N('startRegenBase'),coefficients:Object.fromEntries(['strength','magic','technique','speed','constitution'].map(a=>[a,N('startRegen-'+a)]))}};}
- function blankOpening(){return {side:'ally',name:'',enabled:true,buff:{...M.blank().startingBuff,enabled:true},debuff:{type:'physicalVulnerability',name:'',physicalVulnerability:0,magicVulnerability:0,healingReduction:0,dotEnabled:false,dotDamage:0}};}
- function captureOpening(side=V('startSide')){if(!openingDrafts.length)return;const row=openingDrafts[activeOpening];row.side=side;row.enabled=C('startEntryEnabled').checked;row.name=side==='ally'?V('effectName'):V('startEnemyName');if(side==='ally')row.buff=allyOpening();else row.debuff=openingEntry();}
- function loadOpening(){const row=openingDrafts[activeOpening]||blankOpening(),buff=row.buff||blankOpening().buff,debuff=row.debuff||{};S('startSide',row.side);C('startEntryEnabled').checked=row.enabled!==false;S('effectName',row.name||'');S('startEnemyName',row.name||'');S('startRecipient',buff.recipient||'self');S('startKind',buff.kind||'amplify');S('startTarget',buff.target||'none');for(const attr of M.targets)S('start-'+attr,buff.coefficients?.[attr]||0);S('startRegenBonuses',String(buff.regeneration?.receivesHealingBonuses??true));S('startRegenBase',buff.regeneration?.baseValue||0);for(const attr of ['strength','magic','technique','speed','constitution'])S('startRegen-'+attr,buff.regeneration?.coefficients?.[attr]||0);S('startDebuffType',debuff.type||'physicalVulnerability');S('startDotDamage',debuff.dotDamage||0);for(const k of ['physicalVulnerability','magicVulnerability','healingReduction','lifeDeprivation'])S('start-'+k,debuff[k]||0);renderOpeningBar();}
- function renderOpeningBar(){openingBar.replaceChildren();openingDrafts.forEach((row,i)=>{const b=button('开战效果 '+(i+1)+' · '+(row.side==='enemy'?'敌方':'己方')+(row.name?' · '+row.name:''),()=>{if(!form.reportValidity())return;captureOpening();activeOpening=i;loadOpening();effectState();});b.classList.toggle('selected',i===activeOpening);openingBar.append(b);});openingBar.append(button('＋ 添加开战效果',()=>{if(!form.reportValidity())return;captureOpening();if(openingDrafts.length>=100){message.textContent='最多添加100条开战效果';return;}openingDrafts.push(blankOpening());activeOpening=openingDrafts.length-1;loadOpening();effectState();dirty=true;message.textContent='有未保存的修改';}),button('删除当前开战效果',()=>{captureOpening();openingDrafts.splice(activeOpening,1);activeOpening=Math.max(0,Math.min(activeOpening,openingDrafts.length-1));if(!openingDrafts.length){C('startEnabled').checked=false;openingDrafts.push(blankOpening());}loadOpening();effectState();dirty=true;message.textContent='有未保存的修改';}));}
- form.append(sectionToggle('triggerEnabled','触发特效'));
- const triggerBar=E('div',undefined,'equipment-trigger-bar');form.append(triggerBar);
- function triggerEntry(){return {name:V('triggerEffectName'),triggerType:V('attackType'),probability:N('triggerRate'),effect:collectEffect()};}
- function renderTriggerBar(){triggerBar.replaceChildren();triggerDrafts.forEach((t,i)=>{const b=button('特效 '+(i+1)+(t.name?' · '+t.name:''),()=>{if(!form.reportValidity())return;const draft=collect();load(draft,i);dirty=true;});b.classList.toggle('selected',i===activeTrigger);triggerBar.append(b);});triggerBar.append(button('＋ 添加特效',()=>{if(!form.reportValidity())return;const draft=collect();if(draft.triggerEffects.length>=50){message.textContent='最多添加50条特效';return;}draft.triggerEffects.push({name:'',triggerType:'physical',probability:0,effect:null});load(draft,draft.triggerEffects.length-1);dirty=true;}),button('删除当前特效',()=>{const draft=collect();draft.triggerEffects.splice(activeTrigger,1);if(!draft.triggerEffects.length)draft.triggerEnabled=false;load(draft,Math.max(0,activeTrigger-1));dirty=true;}));}
- const triggers=grid();triggers.append(field('triggerEffectName','特效名称','text',''),field('attackType','触发类型','select','physical',{physical:'物理攻击',magic:'魔法攻击',none:'回复技能',receivedPhysical:'受到物理攻击',receivedMagic:'受到魔法攻击'}),field('effectKind','触发特效','select','none',effectKinds),field('triggerRate','概率 %','number',0,null,100));form.append(triggers);
- const panels=new Map();
- function panel(kind,label){const e=E('fieldset');e.append(E('legend',label));e.hidden=true;e.disabled=true;form.append(e);panels.set(kind,e);return e;}
- const matrixAttrs=prefix=>prefix==='amplify'?M.amplificationAttrs:M.attrs;
- function matrix(host,prefix){for(const target of (prefix==='buff'?M.buffTargets:M.amplificationTargets)){const row=E('div',undefined,'conversion-row');row.dataset.matrix=prefix;row.dataset.target=target;const toggle=E('label',undefined,'conversion-toggle');const checkbox=E('input');checkbox.type='checkbox';checkbox.name=prefix+'-enabled-'+target;checkbox.className='switch';checkbox.setAttribute('aria-label','启用转化为'+labels[target]);controls.set(checkbox.name,checkbox);toggle.append(E('span','转化为'+labels[target]),checkbox);row.append(toggle);const cells=E('div',undefined,'conversion-values');for(const attr of matrixAttrs(prefix))cells.append(field(prefix+'-'+target+'-'+attr,labels[attr]));row.append(cells);host.append(row);}}
- const amplification=panel('amplify','增幅');matrix(amplification,'amplify');
- const trueDamage=panel('trueDamage','真伤');const damageGrid=grid();for(const attr of [...M.targets,'weaponPower'])damageGrid.append(field('true-'+attr,labels[attr]+'系数','number',attr==='weaponPower'?1:0));trueDamage.append(damageGrid);
- const debuff=panel('debuff','对怪附加 debuff');const debuffGrid=grid();debuffGrid.append(field('debuffType','debuff 类型','select','bleeding',{bleeding:'流血',plague:'瘟疫',burn:'灼烧',slow:'减速',stun:'眩晕',weakness:'虚弱（降低力量）',fear:'恐惧（降低技巧）',lifeLoss:'生命流失'}),field('debuffBase','基础值'),field('debuffDuration','持续时间（秒）'),field('debuffStacks','最大层数','number',1,null,999));C('debuffStacks').min=1;C('debuffStacks').step=1;for(const attr of M.targets)debuffGrid.append(field('debuff-'+attr,labels[attr]+'系数'));debuff.append(debuffGrid);
- const buff=panel('buff','对友方释放 buff');const buffGrid=grid();buffGrid.append(field('buffType','buff 类型','select','strength',{strength:'力量提升',magic:'魔力提升',technique:'技巧提升',speed:'速度提升',constitution:'体质提升',armor:'护甲提升',resistance:'抗性提升'}),field('buffRecipient','对象','select','self',recipients),field('buffDuration','持续时间（秒）'),field('buffStacks','最大层数','number',1,null,999));C('buffStacks').min=1;C('buffStacks').step=1;buff.append(buffGrid);matrix(buff,'buff');const healingPanel=panel('healing','回复效果');const healingGrid=grid();healingGrid.append(field('healRecipient','回复对象','select','self',recipients));for(const a of [...M.attrs,'weaponPower'])healingGrid.append(field('heal-'+a,labels[a]+'系数'));healingPanel.append(healingGrid);const regenPanel=panel('regeneration','回春');const regenGrid=grid();regenGrid.append(field('regenRecipient','回春对象','select','self',{self:'自身',allAllies:'全体队员'}),field('regenBase','每秒回复基础值'),field('regenDuration','持续时间（秒）'));regenPanel.append(regenGrid,E('p','触发后每秒回复一次；同名回春再次触发时刷新持续时间。持续时间为0表示持续至战斗结束。受回复效果、辉印回复和敌方回春降低影响。','skill-help'));
- const immediate=panel('immediateAction','立即执行下次行动');immediate.append(E('p','记录立即行动特效。具体行动间隔、触发时机及防止连续触发的规则，接入战斗引擎时确定。','skill-help'));
- form.append(E('p','当前记录装备定义，尚未执行装备增幅或战斗计算。属性系数填写百分比，例如15表示15%（原系数0.15），可超过100%。基础数值、持续时间和层数按原单位填写；层数为 1～999 的整数。','skill-help'));
- const actions=E('div',undefined,'skill-form-actions'),message=E('p'),preview=E('pre');message.id=options.wiki?'wiki-equipment-message':'equipment-message';message.setAttribute('role','status');preview.hidden=true;const footer=E('div',undefined,'equipment-editor-footer');footer.append(actions,message);form.append(footer,preview);
- const save=E('button','保存到装备库','primary');save.type='submit';actions.append(button('查看装备数据',()=>{if(!form.reportValidity())return;try{preview.textContent=JSON.stringify(M.validate(collect(),false),null,2);preview.hidden=false;}catch(e){message.textContent=e.message;}}));
- const duplicate=button('另存为副本',()=>{if(!form.reportValidity())return;try{const copy=M.validate(collect());copy.id='';copy.name=(copy.name+'（副本）').slice(0,120);load(copy);dirty=true;renderList();message.textContent='正在创建副本，保存后生成独立装备';}catch(e){message.textContent=e.message;}});const remove=button('删除装备',async()=>{if(saving||!editingId)return;const item=items.find(i=>i.id===editingId);if(!confirm('确认删除“'+item.name+'”？'+(dirty?'未保存的修改也会丢弃。':'')))return;saving=true;remove.disabled=true;try{await ready;if(useAPI)items=M.library(await request(api+'/'+encodeURIComponent(editingId),'DELETE')).equipment;else{items=items.filter(i=>i.id!==editingId);localStorage.setItem(storageKey,JSON.stringify({schemaVersion:1,equipment:items}));}load(M.blank());renderList();notify('装备已删除');}catch(e){notify('删除失败：'+e.message);}finally{saving=false;remove.disabled=!editingId;}});actions.append(duplicate,remove,save);
- const file=E('input');file.type='file';file.accept='.json,application/json';file.hidden=true;document.body.append(file);
- function notify(text){window.showToast(text);}
- function discard(){return !dirty||confirm('装备有未保存的修改，是否放弃？');}
- function effectState(){const startOn=C('startEnabled').checked,triggerOn=C('triggerEnabled').checked;const allyOn=V('startSide')==='ally'&&C('startEntryEnabled').checked,enemyOn=V('startSide')==='enemy'&&C('startEntryEnabled').checked;if(triggerOn&&!triggerDrafts.length){triggerDrafts.push({name:V('triggerEffectName'),triggerType:V('attackType'),probability:N('triggerRate'),effect:null});activeTrigger=0;renderTriggerBar();}openingBar.hidden=!startOn;openingHost.hidden=!startOn;startGrid.hidden=!startOn||!allyOn;startEnemyGrid.hidden=!startOn||!enemyOn;C('startEnemyName').disabled=C('startDebuffType').disabled=!startOn||!enemyOn;for(const [type,row] of Object.entries(openingValueRows)){row.hidden=type!==V('startDebuffType');C(type==='dot'?'startDotDamage':'start-'+type).disabled=!startOn||!enemyOn||row.hidden;}triggerBar.hidden=!triggerOn;triggers.hidden=!triggerOn||!triggerDrafts.length;for(const name of ['effectName','startRecipient','startKind'])C(name).disabled=!startOn||!allyOn;const regeneration=V('startKind')==='regeneration';startAmplify.hidden=regeneration;startRegen.hidden=!regeneration;for(const name of ['startTarget',...M.targets.map(a=>'start-'+a)])C(name).disabled=!startOn||!allyOn||regeneration;for(const name of ['startRegenBonuses','startRegenBase',...['strength','magic','technique','speed','constitution'].map(a=>'startRegen-'+a)])C(name).disabled=!startOn||!allyOn||!regeneration;for(const name of ['triggerEffectName','attackType','effectKind','triggerRate'])C(name).disabled=!triggerOn;for(const a of [...M.attrs,'weaponPower'])C('heal-'+a).disabled=!triggerOn||V('effectKind')!=='healing';C('healRecipient').disabled=!triggerOn||V('effectKind')!=='healing';C('buffDuration').disabled=C('buffStacks').disabled=!triggerOn||V('effectKind')!=='buff';const selectedKind=triggerOn&&triggerDrafts.length?V('effectKind'):'none';const kind=['physicalTrueDamage','magicTrueDamage'].includes(selectedKind)?'trueDamage':selectedKind;C('weaponJob').disabled=V('category')!=='weapon';for(const [key,p]of panels){p.hidden=key!==kind;p.disabled=key!==kind;}
-  for(const row of form.querySelectorAll('[data-matrix]')){const prefix=row.dataset.matrix,target=row.dataset.target,enabled=C(prefix+'-enabled-'+target).checked;row.classList.toggle('inactive',!enabled);for(const attr of matrixAttrs(prefix))C(prefix+'-'+target+'-'+attr).disabled=!enabled||prefix!==kind;}
- }
- function getRows(prefix){return (prefix==='buff'?M.buffTargets:M.amplificationTargets).map(target=>({target,enabled:C(prefix+'-enabled-'+target).checked,coefficients:C(prefix+'-enabled-'+target).checked?Object.fromEntries(matrixAttrs(prefix).map(attr=>[attr,N(prefix+'-'+target+'-'+attr)])):Object.fromEntries(matrixAttrs(prefix).map(a=>[a,0]))}));}
- function setRows(prefix,rows){for(const row of rows){C(prefix+'-enabled-'+row.target).checked=row.enabled;for(const attr of matrixAttrs(prefix))S(prefix+'-'+row.target+'-'+attr,row.coefficients[attr]);}}
- function collect(){details?.capture(metadata);captureOpening();const base={...metadata,schemaVersion:1,id:editingId,name:V('name'),category:V('category'),weaponJob:V('weaponJob'),attackType:V('attackType'),effectName:V('effectName'),triggerEffectName:V('triggerEffectName'),triggerEnabled:C('triggerEnabled').checked,battleStartEffects:{entries:structuredClone(openingDrafts),enabled:C('startEnabled').checked},startingDebuffs:{entries:[],enabled:false},startingBuff:{kind:V('startKind'),regeneration:{receivesHealingBonuses:V('startRegenBonuses')!=='false',baseValue:N('startRegenBase'),coefficients:Object.fromEntries(['strength','magic','technique','speed','constitution'].map(a=>[a,N('startRegen-'+a)]))},enabled:C('startEnabled').checked&&V('startSide')==='ally'&&C('startEntryEnabled').checked,recipient:V('startRecipient'),coefficients:Object.fromEntries(M.targets.map(a=>[a,N('start-'+a)])),target:V('startTarget')},triggerRate:N('triggerRate'),effect:null};base.effect=collectEffect();base.triggerEffects=triggerDrafts.map((t,i)=>i===activeTrigger?triggerEntry():t);return base;}
- function collectEffect(){const base={effect:null};const kind=V('effectKind');
-  if(kind==='amplify')base.effect={kind,conversions:getRows('amplify')};if(['trueDamage','physicalTrueDamage','magicTrueDamage'].includes(kind))base.effect={kind,coefficients:Object.fromEntries([...M.targets,'weaponPower'].map(a=>[a,N('true-'+a)]))};if(kind==='immediateAction')base.effect={kind};if(kind==='debuff')base.effect={kind,type:V('debuffType'),baseValue:N('debuffBase'),duration:N('debuffDuration'),maxStacks:N('debuffStacks'),coefficients:Object.fromEntries(M.targets.map(a=>[a,N('debuff-'+a)]))};if(kind==='healing')base.effect={kind:'healing',recipient:V('healRecipient'),coefficients:Object.fromEntries([...M.attrs,'weaponPower'].map(a=>[a,N('heal-'+a)]))};else if(kind==='buff')base.effect={kind,type:V('buffType'),recipient:V('buffRecipient'),duration:N('buffDuration'),maxStacks:N('buffStacks'),conversions:getRows('buff')};if(kind==='regeneration')base.effect={kind:'buff',type:'regeneration',recipient:V('regenRecipient'),baseValue:N('regenBase'),duration:N('regenDuration'),coefficients:{},conversions:[],maxStacks:1};return base.effect;
- }
- function load(item,index=0){if(item.name)item=M.validate(item,false);metadata=Object.fromEntries(['wikiId','mainAttribute','negativeImmunities','crystal','baseAttributes','extraAttributes','startingEffects','effectDefinitions','passiveEffects','reviewIssues','classificationStatus','source','reviewNotes'].filter(k=>item[k]!==undefined).map(k=>[k,structuredClone(item[k])]));triggerDrafts=structuredClone(item.triggerEffects??[{name:item.triggerEffectName,triggerType:item.attackType,probability:item.triggerRate,effect:item.effect}]);activeTrigger=Math.min(index,Math.max(0,triggerDrafts.length-1));const current=triggerDrafts[activeTrigger]??{name:'',triggerType:'physical',probability:0,effect:null};item={...item,attackType:current.triggerType,triggerEffectName:current.name,triggerRate:current.probability,effect:current.effect};form.reset();details?.load(metadata);openingDrafts=structuredClone(item.battleStartEffects?.entries||[]);if(!openingDrafts.length)openingDrafts.push(blankOpening());activeOpening=0;C('startEnabled').checked=item.battleStartEffects?.enabled??false;C('triggerEnabled').checked=item.triggerEnabled;editingId=item.id;S('name',item.name);S('category',item.category);S('weaponJob',item.weaponJob);if(item.weaponJob&&!C('weaponJob').value){const o=E('option',item.weaponJob+'（原配置）');o.value=item.weaponJob;C('weaponJob').append(o);S('weaponJob',item.weaponJob);}S('attackType',item.attackType);S('effectName',item.effectName);S('triggerEffectName',item.triggerEffectName);S('startRecipient',item.startingBuff.recipient);S('startKind',item.startingBuff.kind||'amplify');S('startRegenBase',item.startingBuff.regeneration?.baseValue||0);for(const a of ['strength','magic','technique','speed','constitution'])S('startRegen-'+a,item.startingBuff.regeneration?.coefficients?.[a]||0);S('startTarget',item.startingBuff.target);for(const attr of M.targets)S('start-'+attr,item.startingBuff.coefficients[attr]);S('triggerRate',item.triggerRate);const e=item.effect;S('effectKind',e?.type==='regeneration'?'regeneration':e?.kind==='trueDamage'?(item.attackType==='magic'?'magicTrueDamage':'physicalTrueDamage'):e?.kind||'none');
-  if(e?.kind==='amplify')setRows('amplify',e.conversions);if(['trueDamage','physicalTrueDamage','magicTrueDamage'].includes(e?.kind))for(const a of [...M.targets,'weaponPower'])S('true-'+a,e.coefficients[a]);if(e?.kind==='debuff'){S('debuffType',e.type);S('debuffBase',e.baseValue);S('debuffDuration',e.duration);S('debuffStacks',e.maxStacks);for(const a of M.targets)S('debuff-'+a,e.coefficients[a]);}if(e?.kind==='healing'){S('healRecipient',e.recipient);for(const a of [...M.attrs,'weaponPower'])S('heal-'+a,e.coefficients[a]);}if(e?.type==='regeneration'){S('regenRecipient',e.recipient);S('regenBase',e.baseValue);S('regenDuration',e.duration);}else if(e?.kind==='buff'){S('buffType',e.type);S('buffRecipient',e.recipient);S('buffDuration',e.duration);S('buffStacks',e.maxStacks);setRows('buff',e.conversions);}loadOpening();renderTriggerBar();effectState();dirty=false;title.textContent=editingId?'编辑装备':'创建装备';save.textContent=editingId?'保存修改':'保存到装备库';duplicate.disabled=remove.disabled=!editingId;message.textContent='';preview.hidden=true;
- }
- function renderList(){if(!window.refreshPlayerEquipment&&!options.wiki)window.onEquipmentLibraryChange?.(items);list.replaceChildren();count.textContent=items.length+' 件装备';if(options.wiki)renderProgress();const query=search.value.trim().toLowerCase();const filtered=items.filter(x=>(!options.wiki||wikiStatus.value==='all'||x.classificationStatus===wikiStatus.value)&&(!options.wiki||!wikiJob.value||x.weaponJob===wikiJob.value)&&(categoryFilter.value==='all'||x.category===categoryFilter.value)&&(x.name+' '+x.weaponJob+' '+x.effectName+' '+(x.triggerEffects??[]).map(t=>t.name).join(' ')+' '+categories[x.category]).toLowerCase().includes(query));if(!filtered.length)list.append(E('p',items.length?'没有匹配的装备。':'装备库为空，从右侧创建第一件装备。','skill-empty'));for(const item of filtered){const b=button('',()=>{if(discard()){load(item);renderList();}},'created-skill-item');b.classList.toggle('selected',item.id===editingId);b.append(E('strong',item.name),E('small',(options.wiki?(item.classificationStatus==='needsReview'?'待补充 · ':'已转录 · '):'')+categories[item.category]+' · '+((item.triggerEffects??[]).map(t=>t.name||effectKinds[t.effect?.kind||'none']).join(' / ')||item.effectName||'无特效')));if(item.mainAttribute)b.append(E('span','主属性 · '+({strength:'力量',magic:'魔力',technique:'技巧',speed:'速度',constitution:'体质'}[item.mainAttribute]),'equipment-main-attribute-badge'));list.append(b);}}
- async function request(path,method='GET',body){if(window.AppRequests)await window.AppRequests.ready;const res=await (window.AppRequests?.fetch||fetch)(path+(!options.wiki&&window.PlayerLibraries?.current.equipment?'?library='+encodeURIComponent(window.PlayerLibraries.current.equipment):''),{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,cache:'no-store'});let result;try{result=await res.json();}catch{throw Error('接口响应无效，请从server.py的服务地址打开页面');}if(!res.ok)throw Error(result.error||'接口失败');return result;}
- async function commit(next,item=null,update=false){await ready;const validated=item&&useAPI?next:M.library({schemaVersion:1,equipment:next}).equipment;if(useAPI){const result=item?await request(update?api+'/'+encodeURIComponent(item.id):api,update?'PUT':'POST',item):await request(api+'/import','POST',{schemaVersion:1,equipment:validated});items=M.library(result).equipment;const refreshed=await Promise.allSettled([window.refreshPlayerEquipment?.(),item?(options.wiki?window.customEquipmentEditor?.refresh():window.wikiEquipmentEditor?.refresh()):undefined]);for(const result of refreshed)if(result.status==='rejected')notify('装备已保存，但页面同步失败：'+result.reason.message);}else{localStorage.setItem(storageKey,JSON.stringify({schemaVersion:1,equipment:validated}));items=validated;await window.refreshPlayerEquipment?.();}}
- form.addEventListener('input',()=>{dirty=true;message.textContent='有未保存的修改';preview.hidden=true;});form.addEventListener('change',()=>{if(openingDrafts[activeOpening]&&V('startSide')!==openingDrafts[activeOpening].side){const side=V('startSide');captureOpening(openingDrafts[activeOpening].side);openingDrafts[activeOpening].side=side;loadOpening();}effectState();dirty=true;message.textContent='有未保存的修改';});
- form.addEventListener('submit',async event=>{event.preventDefault();if(saving||!form.reportValidity())return;saving=true;save.disabled=true;try{await ready;const draft=collect();draft.id=editingId||'equipment_'+crypto.randomUUID();const item=M.validate(draft),next=items.filter(x=>x.id!==item.id);next.push(item);await commit(next,item,Boolean(editingId));load(item);renderList();message.textContent=useAPI?(options.wiki?'已保存到百科装备库 data/wiki_equipment.json':'已保存到项目文件 data/equipment.json'):'已保存到此浏览器';notify('装备已保存');}catch(e){message.textContent='保存失败：'+e.message;notify('保存失败：'+e.message);}finally{saving=false;save.disabled=false;}});
- search.addEventListener('input',renderList);categoryFilter.addEventListener('change',renderList);if(options.openButton!==false)document.querySelector(options.openButton||'#open-equipment-editor').addEventListener('click',()=>{renderList();dialog.showModal();});
- libraryActions.append(button(options.wiki?'导入百科装备库':'导入装备库',()=>file.click()),button(options.wiki?'导出百科装备库':'导出装备库',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({schemaVersion:1,equipment:items},null,2)],{type:'application/json'}));const a=E('a');a.href=url;a.download=options.wiki?'地下城堡2-百科装备库.json':'地下城堡2-装备库.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('已导出保存的装备，未保存的草稿不包含在内');}));
- file.addEventListener('change',async()=>{const f=file.files[0];if(!f)return;try{if(f.size>5*1024*1024)throw Error('文件不能超过5MB');const incoming=M.library(JSON.parse(await f.text())).equipment;await ready;await commit(M.merge(items,incoming));renderList();notify('装备库已合并导入');}catch(e){notify('导入失败：'+e.message);}finally{file.value='';}});
- if(window.WikiEquipmentDetails){details=window.WikiEquipmentDetails.create({form,after:basic,button,E,onChange:()=>{dirty=true;message.textContent='有未保存的修改';},getDraft:collect});}if(options.wiki){libraryActions.append(button('分类进度',()=>details.showProgress(items)),button('整理新增装备',async()=>{try{const result=await request(api+'/classify','POST',{});items=M.library(result).equipment;renderList();notify('已整理新增 '+result.added+' 件装备');}catch(e){notify(e.message);}}));}
- if(options.wiki)actions.append(button('加入自定义装备库（同名替换）',async()=>{try{if(dirty)throw Error('请先保存装备修改，再加入自定义装备库');if(!editingId)throw Error('请选择已保存的百科装备');const selected=items.find(i=>i.id===editingId);if(!confirm('确认将“'+selected.name+'”加入自定义装备库？如果已有同名装备，将替换该装备。'))return;const result=await request(api+'/'+encodeURIComponent(editingId)+'/promote','POST',{});await window.customEquipmentEditor?.refresh();notify(result.replaced?'已替换自定义库中的同名装备':'已加入自定义装备库');}catch(e){notify(e.message);}}));
- const content=E('div',undefined,'equipment-editor-content');const contentNodes=Array.from(form.children).filter(node=>node!==footer);form.replaceChildren(content,footer);content.append(...contentNodes);
- let restoreError='';try{const saved=useAPI?null:localStorage.getItem(storageKey);if(saved)items=M.library(JSON.parse(saved)).equipment;}catch{restoreError='装备库恢复失败，请从备份导入';}
- load(M.blank());renderList();if(restoreError)notify(restoreError);
- let ready=Promise.resolve(),loaded=!useAPI,loading=null;function ensureReady(){if(loaded)return ready;if(loading)return loading;loading=request(api).then(data=>{items=M.library(data).equipment;loaded=true;renderList();if(!dirty)message.textContent='已连接项目装备文件';});ready=loading;loading.then(()=>loading=null,()=>{loading=null;});return ready;}if(useAPI&&!options.lazy)ensureReady().catch(e=>notify('装备接口连接失败：'+e.message));
- return {dialog,canLeave:discard,render:options.lazy?async()=>{await ensureReady();renderList();}:renderList,switchLibrary:async()=>{await ready;items=M.library(await request(api)).equipment;load(M.blank());renderList();},refresh:async()=>{if(options.lazy&&!loaded)return;await ready;if(useAPI)items=M.library(await request(api)).equipment;renderList();}};
+"use strict";
+window.createEquipmentLibraryEditor = (options = {}) => {
+  const M = window.EquipmentModel,
+    api = options.api || "/api/equipment",
+    storageKey = options.storageKey || "dungeon2-equipment-library-v1",
+    useAPI = ["http:", "https:"].includes(location.protocol);
+  const labels = {
+    strength: "力量",
+    magic: "魔力",
+    technique: "技巧",
+    speed: "速度",
+    constitution: "体质",
+    hitPoint: "血量",
+    weaponPower: "武威",
+    armor: "护甲",
+    resistance: "抗性",
+    lostHitPoint: "已损失血量",
+  };
+  const categories = { weapon: "武器", armor: "防具", accessory: "饰品", stone: "魔石" };
+  const effectKinds = {
+    none: "无特效",
+    amplify: "增幅",
+    physicalTrueDamage: "物理真伤",
+    magicTrueDamage: "魔法真伤",
+    immediateAction: "立即执行下次行动",
+    debuff: "对怪附加 debuff",
+    buff: "对友方释放 buff",
+    healing: "回复效果",
+    regeneration: "回春",
+  };
+  const recipients = { self: "自身", allAllies: "全体队友（含自身）", singleAlly: "单个队友" };
+  const E = (tag, text, cls) => {
+    const e = document.createElement(tag);
+    if (text !== undefined) e.textContent = text;
+    if (cls) e.className = cls;
+    return e;
+  };
+  const button = (title, handler, cls) => {
+    const e = E("button", title, cls);
+    e.type = "button";
+    e.addEventListener("click", handler);
+    return e;
+  };
+  let triggerDrafts = [],
+    activeTrigger = 0,
+    openingDrafts = [],
+    activeOpening = 0;
+  let metadata = {},
+    details = null,
+    items = [],
+    editingId = "",
+    dirty = false,
+    saving = false,
+    timer;
+  const dialog = E("dialog", undefined, "skill-editor-dialog");
+  dialog.id = options.dialogId || "equipment-editor-dialog";
+  const header = E("div", undefined, "dialog-head");
+  const heading = E("div");
+  heading.append(
+    E("h2", options.title || "自定义装备库"),
+    E(
+      "p",
+      options.wiki
+        ? "来自BWIKI的独立装备库。基础属性保留原始区间；待补充项在独立窗口核对。"
+        : "定义装备特效，保存后可编辑，并供后续队伍与战斗引擎引用。",
+    ),
+  );
+  header.append(
+    heading,
+    button("×", () => dialog.close()),
+  );
+  header.lastChild.setAttribute("aria-label", "关闭装备库");
+  dialog.append(header);
+  const workspace = E("div", undefined, "skill-workspace"),
+    sidebar = E("aside", undefined, "skill-sidebar"),
+    form = E("form", undefined, "skill-form");
+  form.id = options.wiki ? "wiki-equipment-form" : "equipment-form";
+  workspace.append(sidebar, form);
+  dialog.append(workspace);
+  document.body.append(dialog);
+  const libraryHead = E("div", undefined, "skill-sidebar-head"),
+    count = E("span");
+  libraryHead.append(E("strong", "装备列表"), count);
+  sidebar.append(libraryHead);
+  sidebar.append(
+    button(
+      "＋ 创建装备",
+      () => {
+        if (discard()) {
+          load(M.blank());
+          renderList();
+        }
+      },
+      "primary",
+    ),
+  );
+  const search = E("input");
+  search.type = "search";
+  search.placeholder = "搜索名称、职业或特效";
+  search.setAttribute("aria-label", "搜索装备");
+  sidebar.append(search);
+  const categoryFilter = E("select");
+  categoryFilter.id = options.wiki ? "wiki-equipment-category-filter" : "equipment-category-filter";
+  categoryFilter.setAttribute("aria-label", "按装备类型筛选");
+  for (const [value, label] of Object.entries({ all: "全部类型", ...categories })) {
+    const option = E("option", label);
+    option.value = value;
+    categoryFilter.append(option);
+  }
+  categoryFilter.value = "all";
+  sidebar.append(categoryFilter);
+  const wikiStatus = E("select"),
+    wikiJob = E("select"),
+    wikiProgress = E("p", undefined, "wiki-progress");
+  if (options.wiki) {
+    for (const [key, label] of Object.entries({
+      all: "全部整理状态",
+      converted: "已自动转录",
+      needsReview: "待补充",
+      reviewed: "人工核对完成",
+    })) {
+      const o = E("option", label);
+      o.value = key;
+      wikiStatus.append(o);
+    }
+    wikiStatus.value = "all";
+    wikiStatus.setAttribute("aria-label", "百科装备整理状态");
+    wikiJob.append(E("option", "全部职业"));
+    wikiJob.firstChild.value = "";
+    for (const p of window.SkillModel.professions) {
+      const o = E("option", p.name);
+      o.value = p.name;
+      wikiJob.append(o);
+    }
+    wikiJob.value = "";
+    sidebar.append(wikiJob, wikiStatus, wikiProgress);
+    wikiStatus.addEventListener("change", renderList);
+    wikiJob.addEventListener("change", renderList);
+  }
+  function renderProgress() {
+    const done = items.filter((i) => i.classificationStatus !== "needsReview").length;
+    wikiProgress.textContent =
+      "已入库 " +
+      items.length +
+      " 件 · 已转录 " +
+      done +
+      " 件（" +
+      (items.length ? ((done / items.length) * 100).toFixed(1) : "0") +
+      "%） · 待补充 " +
+      (items.length - done) +
+      " 件";
+  }
+  const list = E("div");
+  list.id = options.wiki ? "wiki-equipment-list" : "equipment-list";
+  sidebar.append(list);
+  const libraryActions = E("div", undefined, "skill-library-actions");
+  sidebar.append(libraryActions);
+  const title = E("h3", "创建装备");
+  form.append(title);
+  const controls = new Map();
+  const coefficientFields = new Set();
+  const isCoefficient = (name) =>
+    /^(?:amplify|buff)-[^-]+-[^-]+$/.test(name) ||
+    /^(?:true|heal|debuff|startRegen)-/.test(name) ||
+    /^start-(?:strength|magic|technique|speed)$/.test(name);
+  const displayedCoefficient = (value) => Number((Number(value) * 100).toPrecision(15));
+  function field(name, label, type = "number", initial = 0, options = null, max = null) {
+    const row = E("label", undefined, "field");
+    const coefficient = type === "number" && isCoefficient(name);
+    if (coefficient) {
+      coefficientFields.add(name);
+      initial = displayedCoefficient(initial);
+    }
+    const percent = type === "number" && (coefficient || label.trim().endsWith("%"));
+    row.append(E("span", percent ? label.replace(/\s*%$/, "") : label, "equipment-field-label"));
+    const control = E(type === "select" ? "select" : "input");
+    control.name = name;
+    control.setAttribute("aria-label", coefficient ? label + " %" : label);
+    if (type === "select") {
+      for (const [value, text] of Object.entries(options)) {
+        const o = E("option", text);
+        o.value = value;
+        control.append(o);
+      }
+      control.value = initial;
+    } else {
+      control.type = type;
+      control.defaultValue = String(initial);
+      control.value = initial;
+      if (type === "number") {
+        control.min = 0;
+        control.step = "any";
+        control.required = true;
+        if (max !== null) control.max = max;
+      } else control.maxLength = 120;
+    }
+    controls.set(name, control);
+    row.append(control);
+    if (percent) {
+      const unit = E("span", "%", "field-unit");
+      unit.setAttribute("aria-hidden", "true");
+      row.append(unit);
+    }
+    if (name === "start-healingReduction") row.classList.add("equipment-long-label");
+    if (name.endsWith("-lostHitPoint")) row.classList.add("lost-health-field");
+    return row;
+  }
+  const C = (name) => controls.get(name),
+    V = (name) => C(name).value,
+    N = (name) => Number(V(name)) / (coefficientFields.has(name) ? 100 : 1),
+    S = (name, value) => {
+      C(name).value = coefficientFields.has(name) ? displayedCoefficient(value) : value;
+    };
+  const grid = () => E("div", undefined, "skill-basic-grid");
+  function sectionToggle(name, label) {
+    const row = E("label", undefined, "conversion-toggle section-label");
+    const c = E("input");
+    c.type = "checkbox";
+    c.name = name;
+    c.className = "switch";
+    c.setAttribute("aria-label", label);
+    controls.set(name, c);
+    row.append(E("span", label), c);
+    return row;
+  }
+  const basic = grid();
+  basic.append(
+    field("category", "类型", "select", "weapon", categories),
+    field("name", "装备名称", "text", ""),
+    field("weaponJob", "武器职业", "select", "", { "": "不限职业 / 不是武器不用选" }),
+  );
+  C("name").required = true;
+  for (const profession of window.SkillModel.professions) {
+    const option = E("option", profession.name);
+    option.value = profession.name;
+    C("weaponJob").append(option);
+  }
+  form.append(basic);
+  form.append(sectionToggle("startEnabled", "战斗开始效果"));
+  const openingHost = E("div");
+  form.append(openingHost);
+  openingHost.className = "equipment-opening-effects";
+  const openingBar = E("div", undefined, "equipment-trigger-bar");
+  openingHost.append(
+    openingBar,
+    field("startSide", "施加阵营", "select", "ally", { ally: "对己方", enemy: "对敌方" }),
+    sectionToggle("startEntryEnabled", "启用当前效果"),
+  );
+  C("startEntryEnabled").checked = true;
+  const startGrid = grid();
+  startGrid.append(
+    field("effectName", "战斗开始特效名称", "text", ""),
+    field("startRecipient", "开始 buff 对象", "select", "self", recipients),
+    field("startKind", "特效类型", "select", "amplify", {
+      amplify: "增幅属性",
+      regeneration: "施加回春",
+    }),
+  );
+  const startAmplify = grid();
+  startAmplify.classList.add("equipment-opening-values");
+  for (const attr of M.targets) startAmplify.append(field("start-" + attr, labels[attr] + "系数"));
+  startAmplify.append(
+    field("startTarget", "转化为", "select", "none", {
+      none: "不转化",
+      strength: "力量",
+      magic: "魔力",
+      technique: "技巧",
+      speed: "速度",
+      armor: "护甲",
+      resistance: "抗性",
+    }),
+  );
+  startGrid.append(startAmplify);
+  const startRegen = grid();
+  startRegen.classList.add("equipment-opening-values");
+  startRegen.append(
+    field("startRegenBonuses", "回复加成", "select", "true", {
+      true: "受回复效果、辉印回复加成",
+      false: "不受回复效果、辉印回复加成",
+    }),
+    field("startRegenBase", "基础数值"),
+  );
+  for (const attr of ["strength", "magic", "technique", "speed", "constitution"])
+    startRegen.append(field("startRegen-" + attr, labels[attr] + "系数"));
+  startRegen.append(
+    E(
+      "p",
+      "每秒回复＝（基础数值＋五维属性×对应百分比÷100之和）×（1＋回复效果%）×（1＋辉印回复%）。开战时计算，首次在第1秒回复，重伤后失效。回复效果与辉印回复取施加者的开战属性；肇始之心★的开局回春选择“不受回复效果、辉印回复加成”；此设置随特效保存，装备改名后仍保留。所有装备回春均受敌方回春降低影响。",
+      "skill-help",
+    ),
+  );
+  startGrid.append(startRegen);
+  openingHost.append(startGrid);
+  const startEnemyGrid = grid();
+  const openingTypes = {
+    physicalVulnerability: "物理易伤",
+    magicVulnerability: "魔法易伤",
+    dot: "DOT",
+    healingReduction: "罚罪之域",
+    lifeDeprivation: "生命剥夺",
+  };
+  startEnemyGrid.append(
+    field("startEnemyName", "敌方 debuff 名称", "text", ""),
+    field("startDebuffType", "debuff 类型", "select", "physicalVulnerability", openingTypes),
+  );
+  const openingValueRows = {
+    physicalVulnerability: field("start-physicalVulnerability", "物理易伤 %"),
+    magicVulnerability: field("start-magicVulnerability", "魔法易伤 %"),
+    dot: field("startDotDamage", "DOT每秒基础伤害"),
+    healingReduction: field(
+      "start-healingReduction",
+      "回复/吸血效果降低 %",
+      "number",
+      0,
+      null,
+      100,
+    ),
+    lifeDeprivation: field("start-lifeDeprivation", "敌方当前生命值 %", "number", 0, null, 100),
+  };
+  startEnemyGrid.append(
+    ...Object.values(openingValueRows),
+    E(
+      "p",
+      "每条debuff只能选择一种类型，多种效果请分别添加。同类易伤、同名DOT覆盖。罚罪之域按剩余回复/吸血比例相乘叠加。生命剥夺在开战时造成敌方当前生命值对应百分比的无属性伤害，每条依次计算一次。",
+      "skill-help",
+    ),
+  );
+  openingHost.append(startEnemyGrid);
+  function openingEntry() {
+    const type = V("startDebuffType");
+    return {
+      name: V("startEnemyName"),
+      type,
+      dotEnabled: type === "dot",
+      dotDamage: type === "dot" ? N("startDotDamage") : 0,
+      ...Object.fromEntries(
+        ["physicalVulnerability", "magicVulnerability", "healingReduction", "lifeDeprivation"].map(
+          (k) => [k, type === k ? N("start-" + k) : 0],
+        ),
+      ),
+    };
+  }
+  function allyOpening() {
+    return {
+      enabled: true,
+      kind: V("startKind"),
+      recipient: V("startRecipient"),
+      target: V("startTarget"),
+      coefficients: Object.fromEntries(M.targets.map((a) => [a, N("start-" + a)])),
+      regeneration: {
+        receivesHealingBonuses: V("startRegenBonuses") !== "false",
+        baseValue: N("startRegenBase"),
+        coefficients: Object.fromEntries(
+          ["strength", "magic", "technique", "speed", "constitution"].map((a) => [
+            a,
+            N("startRegen-" + a),
+          ]),
+        ),
+      },
+    };
+  }
+  function blankOpening() {
+    return {
+      side: "ally",
+      name: "",
+      enabled: true,
+      buff: { ...M.blank().startingBuff, enabled: true },
+      debuff: {
+        type: "physicalVulnerability",
+        name: "",
+        physicalVulnerability: 0,
+        magicVulnerability: 0,
+        healingReduction: 0,
+        dotEnabled: false,
+        dotDamage: 0,
+      },
+    };
+  }
+  function captureOpening(side = V("startSide")) {
+    if (!openingDrafts.length) return;
+    const row = openingDrafts[activeOpening];
+    row.side = side;
+    row.enabled = C("startEntryEnabled").checked;
+    row.name = side === "ally" ? V("effectName") : V("startEnemyName");
+    if (side === "ally") row.buff = allyOpening();
+    else row.debuff = openingEntry();
+  }
+  function loadOpening() {
+    const row = openingDrafts[activeOpening] || blankOpening(),
+      buff = row.buff || blankOpening().buff,
+      debuff = row.debuff || {};
+    S("startSide", row.side);
+    C("startEntryEnabled").checked = row.enabled !== false;
+    S("effectName", row.name || "");
+    S("startEnemyName", row.name || "");
+    S("startRecipient", buff.recipient || "self");
+    S("startKind", buff.kind || "amplify");
+    S("startTarget", buff.target || "none");
+    for (const attr of M.targets) S("start-" + attr, buff.coefficients?.[attr] || 0);
+    S("startRegenBonuses", String(buff.regeneration?.receivesHealingBonuses ?? true));
+    S("startRegenBase", buff.regeneration?.baseValue || 0);
+    for (const attr of ["strength", "magic", "technique", "speed", "constitution"])
+      S("startRegen-" + attr, buff.regeneration?.coefficients?.[attr] || 0);
+    S("startDebuffType", debuff.type || "physicalVulnerability");
+    S("startDotDamage", debuff.dotDamage || 0);
+    for (const k of [
+      "physicalVulnerability",
+      "magicVulnerability",
+      "healingReduction",
+      "lifeDeprivation",
+    ])
+      S("start-" + k, debuff[k] || 0);
+    renderOpeningBar();
+  }
+  function renderOpeningBar() {
+    openingBar.replaceChildren();
+    openingDrafts.forEach((row, i) => {
+      const b = button(
+        "开战效果 " +
+          (i + 1) +
+          " · " +
+          (row.side === "enemy" ? "敌方" : "己方") +
+          (row.name ? " · " + row.name : ""),
+        () => {
+          if (!form.reportValidity()) return;
+          captureOpening();
+          activeOpening = i;
+          loadOpening();
+          effectState();
+        },
+      );
+      b.classList.toggle("selected", i === activeOpening);
+      openingBar.append(b);
+    });
+    openingBar.append(
+      button("＋ 添加开战效果", () => {
+        if (!form.reportValidity()) return;
+        captureOpening();
+        if (openingDrafts.length >= 100) {
+          message.textContent = "最多添加100条开战效果";
+          return;
+        }
+        openingDrafts.push(blankOpening());
+        activeOpening = openingDrafts.length - 1;
+        loadOpening();
+        effectState();
+        dirty = true;
+        message.textContent = "有未保存的修改";
+      }),
+      button("删除当前开战效果", () => {
+        captureOpening();
+        openingDrafts.splice(activeOpening, 1);
+        activeOpening = Math.max(0, Math.min(activeOpening, openingDrafts.length - 1));
+        if (!openingDrafts.length) {
+          C("startEnabled").checked = false;
+          openingDrafts.push(blankOpening());
+        }
+        loadOpening();
+        effectState();
+        dirty = true;
+        message.textContent = "有未保存的修改";
+      }),
+    );
+  }
+  form.append(sectionToggle("triggerEnabled", "触发特效"));
+  const triggerBar = E("div", undefined, "equipment-trigger-bar");
+  form.append(triggerBar);
+  function triggerEntry() {
+    return {
+      name: V("triggerEffectName"),
+      triggerType: V("attackType"),
+      probability: N("triggerRate"),
+      effect: collectEffect(),
+    };
+  }
+  function renderTriggerBar() {
+    triggerBar.replaceChildren();
+    triggerDrafts.forEach((t, i) => {
+      const b = button("特效 " + (i + 1) + (t.name ? " · " + t.name : ""), () => {
+        if (!form.reportValidity()) return;
+        const draft = collect();
+        load(draft, i);
+        dirty = true;
+      });
+      b.classList.toggle("selected", i === activeTrigger);
+      triggerBar.append(b);
+    });
+    triggerBar.append(
+      button("＋ 添加特效", () => {
+        if (!form.reportValidity()) return;
+        const draft = collect();
+        if (draft.triggerEffects.length >= 50) {
+          message.textContent = "最多添加50条特效";
+          return;
+        }
+        draft.triggerEffects.push({
+          name: "",
+          triggerType: "physical",
+          probability: 0,
+          effect: null,
+        });
+        load(draft, draft.triggerEffects.length - 1);
+        dirty = true;
+      }),
+      button("删除当前特效", () => {
+        const draft = collect();
+        draft.triggerEffects.splice(activeTrigger, 1);
+        if (!draft.triggerEffects.length) draft.triggerEnabled = false;
+        load(draft, Math.max(0, activeTrigger - 1));
+        dirty = true;
+      }),
+    );
+  }
+  const triggers = grid();
+  triggers.append(
+    field("triggerEffectName", "特效名称", "text", ""),
+    field("attackType", "触发类型", "select", "physical", {
+      physical: "物理攻击",
+      magic: "魔法攻击",
+      none: "回复技能",
+      receivedPhysical: "受到物理攻击",
+      receivedMagic: "受到魔法攻击",
+    }),
+    field("effectKind", "触发特效", "select", "none", effectKinds),
+    field("triggerRate", "概率 %", "number", 0, null, 100),
+  );
+  form.append(triggers);
+  const panels = new Map();
+  function panel(kind, label) {
+    const e = E("fieldset");
+    e.append(E("legend", label));
+    e.hidden = true;
+    e.disabled = true;
+    form.append(e);
+    panels.set(kind, e);
+    return e;
+  }
+  const matrixAttrs = (prefix) => (prefix === "amplify" ? M.amplificationAttrs : M.attrs);
+  function matrix(host, prefix) {
+    for (const target of prefix === "buff" ? M.buffTargets : M.amplificationTargets) {
+      const row = E("div", undefined, "conversion-row");
+      row.dataset.matrix = prefix;
+      row.dataset.target = target;
+      const toggle = E("label", undefined, "conversion-toggle");
+      const checkbox = E("input");
+      checkbox.type = "checkbox";
+      checkbox.name = prefix + "-enabled-" + target;
+      checkbox.className = "switch";
+      checkbox.setAttribute("aria-label", "启用转化为" + labels[target]);
+      controls.set(checkbox.name, checkbox);
+      toggle.append(E("span", "转化为" + labels[target]), checkbox);
+      row.append(toggle);
+      const cells = E("div", undefined, "conversion-values");
+      for (const attr of matrixAttrs(prefix))
+        cells.append(field(prefix + "-" + target + "-" + attr, labels[attr]));
+      row.append(cells);
+      host.append(row);
+    }
+  }
+  const amplification = panel("amplify", "增幅");
+  matrix(amplification, "amplify");
+  const trueDamage = panel("trueDamage", "真伤");
+  const damageGrid = grid();
+  for (const attr of [...M.targets, "weaponPower"])
+    damageGrid.append(
+      field("true-" + attr, labels[attr] + "系数", "number", attr === "weaponPower" ? 1 : 0),
+    );
+  trueDamage.append(damageGrid);
+  const debuff = panel("debuff", "对怪附加 debuff");
+  const debuffGrid = grid();
+  debuffGrid.append(
+    field("debuffType", "debuff 类型", "select", "bleeding", {
+      bleeding: "流血",
+      plague: "瘟疫",
+      burn: "灼烧",
+      slow: "减速",
+      stun: "眩晕",
+      weakness: "虚弱（降低力量）",
+      fear: "恐惧（降低技巧）",
+      lifeLoss: "生命流失",
+    }),
+    field("debuffBase", "基础值"),
+    field("debuffDuration", "持续时间（秒）"),
+    field("debuffStacks", "最大层数", "number", 1, null, 999),
+  );
+  C("debuffStacks").min = 1;
+  C("debuffStacks").step = 1;
+  for (const attr of M.targets) debuffGrid.append(field("debuff-" + attr, labels[attr] + "系数"));
+  debuff.append(debuffGrid);
+  const buff = panel("buff", "对友方释放 buff");
+  const buffGrid = grid();
+  buffGrid.append(
+    field("buffType", "buff 类型", "select", "strength", {
+      strength: "力量提升",
+      magic: "魔力提升",
+      technique: "技巧提升",
+      speed: "速度提升",
+      constitution: "体质提升",
+      armor: "护甲提升",
+      resistance: "抗性提升",
+    }),
+    field("buffRecipient", "对象", "select", "self", recipients),
+    field("buffDuration", "持续时间（秒）"),
+    field("buffStacks", "最大层数", "number", 1, null, 999),
+  );
+  C("buffStacks").min = 1;
+  C("buffStacks").step = 1;
+  buff.append(buffGrid);
+  matrix(buff, "buff");
+  const healingPanel = panel("healing", "回复效果");
+  const healingGrid = grid();
+  healingGrid.append(field("healRecipient", "回复对象", "select", "self", recipients));
+  for (const a of [...M.attrs, "weaponPower"])
+    healingGrid.append(field("heal-" + a, labels[a] + "系数"));
+  healingPanel.append(healingGrid);
+  const regenPanel = panel("regeneration", "回春");
+  const regenGrid = grid();
+  regenGrid.append(
+    field("regenRecipient", "回春对象", "select", "self", { self: "自身", allAllies: "全体队员" }),
+    field("regenBase", "每秒回复基础值"),
+    field("regenDuration", "持续时间（秒）"),
+  );
+  regenPanel.append(
+    regenGrid,
+    E(
+      "p",
+      "触发后每秒回复一次；同名回春再次触发时刷新持续时间。持续时间为0表示持续至战斗结束。受回复效果、辉印回复和敌方回春降低影响。",
+      "skill-help",
+    ),
+  );
+  const immediate = panel("immediateAction", "立即执行下次行动");
+  immediate.append(
+    E(
+      "p",
+      "记录立即行动特效。具体行动间隔、触发时机及防止连续触发的规则，接入战斗引擎时确定。",
+      "skill-help",
+    ),
+  );
+  form.append(
+    E(
+      "p",
+      "当前记录装备定义，尚未执行装备增幅或战斗计算。属性系数填写百分比，例如15表示15%（原系数0.15），可超过100%。基础数值、持续时间和层数按原单位填写；层数为 1～999 的整数。",
+      "skill-help",
+    ),
+  );
+  const actions = E("div", undefined, "skill-form-actions"),
+    message = E("p"),
+    preview = E("pre");
+  message.id = options.wiki ? "wiki-equipment-message" : "equipment-message";
+  message.setAttribute("role", "status");
+  preview.hidden = true;
+  const footer = E("div", undefined, "equipment-editor-footer");
+  footer.append(actions, message);
+  form.append(footer, preview);
+  const save = E("button", "保存到装备库", "primary");
+  save.type = "submit";
+  actions.append(
+    button("查看装备数据", () => {
+      if (!form.reportValidity()) return;
+      try {
+        preview.textContent = JSON.stringify(M.validate(collect(), false), null, 2);
+        preview.hidden = false;
+      } catch (e) {
+        message.textContent = e.message;
+      }
+    }),
+  );
+  const duplicate = button("另存为副本", () => {
+    if (!form.reportValidity()) return;
+    try {
+      const copy = M.validate(collect());
+      copy.id = "";
+      copy.name = (copy.name + "（副本）").slice(0, 120);
+      load(copy);
+      dirty = true;
+      renderList();
+      message.textContent = "正在创建副本，保存后生成独立装备";
+    } catch (e) {
+      message.textContent = e.message;
+    }
+  });
+  const remove = button("删除装备", async () => {
+    if (saving || !editingId) return;
+    const item = items.find((i) => i.id === editingId);
+    if (!confirm("确认删除“" + item.name + "”？" + (dirty ? "未保存的修改也会丢弃。" : ""))) return;
+    saving = true;
+    remove.disabled = true;
+    try {
+      await ready;
+      if (useAPI)
+        items = M.library(
+          await request(api + "/" + encodeURIComponent(editingId), "DELETE"),
+        ).equipment;
+      else {
+        items = items.filter((i) => i.id !== editingId);
+        localStorage.setItem(storageKey, JSON.stringify({ schemaVersion: 1, equipment: items }));
+      }
+      load(M.blank());
+      renderList();
+      notify("装备已删除");
+    } catch (e) {
+      notify("删除失败：" + e.message);
+    } finally {
+      saving = false;
+      remove.disabled = !editingId;
+    }
+  });
+  actions.append(duplicate, remove, save);
+  const file = E("input");
+  file.type = "file";
+  file.accept = ".json,application/json";
+  file.hidden = true;
+  document.body.append(file);
+  function notify(text) {
+    window.showToast(text);
+  }
+  function discard() {
+    return !dirty || confirm("装备有未保存的修改，是否放弃？");
+  }
+  function effectState() {
+    const startOn = C("startEnabled").checked,
+      triggerOn = C("triggerEnabled").checked;
+    const allyOn = V("startSide") === "ally" && C("startEntryEnabled").checked,
+      enemyOn = V("startSide") === "enemy" && C("startEntryEnabled").checked;
+    if (triggerOn && !triggerDrafts.length) {
+      triggerDrafts.push({
+        name: V("triggerEffectName"),
+        triggerType: V("attackType"),
+        probability: N("triggerRate"),
+        effect: null,
+      });
+      activeTrigger = 0;
+      renderTriggerBar();
+    }
+    openingBar.hidden = !startOn;
+    openingHost.hidden = !startOn;
+    startGrid.hidden = !startOn || !allyOn;
+    startEnemyGrid.hidden = !startOn || !enemyOn;
+    C("startEnemyName").disabled = C("startDebuffType").disabled = !startOn || !enemyOn;
+    for (const [type, row] of Object.entries(openingValueRows)) {
+      row.hidden = type !== V("startDebuffType");
+      C(type === "dot" ? "startDotDamage" : "start-" + type).disabled =
+        !startOn || !enemyOn || row.hidden;
+    }
+    triggerBar.hidden = !triggerOn;
+    triggers.hidden = !triggerOn || !triggerDrafts.length;
+    for (const name of ["effectName", "startRecipient", "startKind"])
+      C(name).disabled = !startOn || !allyOn;
+    const regeneration = V("startKind") === "regeneration";
+    startAmplify.hidden = regeneration;
+    startRegen.hidden = !regeneration;
+    for (const name of ["startTarget", ...M.targets.map((a) => "start-" + a)])
+      C(name).disabled = !startOn || !allyOn || regeneration;
+    for (const name of [
+      "startRegenBonuses",
+      "startRegenBase",
+      ...["strength", "magic", "technique", "speed", "constitution"].map((a) => "startRegen-" + a),
+    ])
+      C(name).disabled = !startOn || !allyOn || !regeneration;
+    for (const name of ["triggerEffectName", "attackType", "effectKind", "triggerRate"])
+      C(name).disabled = !triggerOn;
+    for (const a of [...M.attrs, "weaponPower"])
+      C("heal-" + a).disabled = !triggerOn || V("effectKind") !== "healing";
+    C("healRecipient").disabled = !triggerOn || V("effectKind") !== "healing";
+    C("buffDuration").disabled = C("buffStacks").disabled =
+      !triggerOn || V("effectKind") !== "buff";
+    const selectedKind = triggerOn && triggerDrafts.length ? V("effectKind") : "none";
+    const kind = ["physicalTrueDamage", "magicTrueDamage"].includes(selectedKind)
+      ? "trueDamage"
+      : selectedKind;
+    C("weaponJob").disabled = V("category") !== "weapon";
+    for (const [key, p] of panels) {
+      p.hidden = key !== kind;
+      p.disabled = key !== kind;
+    }
+    for (const row of form.querySelectorAll("[data-matrix]")) {
+      const prefix = row.dataset.matrix,
+        target = row.dataset.target,
+        enabled = C(prefix + "-enabled-" + target).checked;
+      row.classList.toggle("inactive", !enabled);
+      for (const attr of matrixAttrs(prefix))
+        C(prefix + "-" + target + "-" + attr).disabled = !enabled || prefix !== kind;
+    }
+  }
+  function getRows(prefix) {
+    return (prefix === "buff" ? M.buffTargets : M.amplificationTargets).map((target) => ({
+      target,
+      enabled: C(prefix + "-enabled-" + target).checked,
+      coefficients: C(prefix + "-enabled-" + target).checked
+        ? Object.fromEntries(
+            matrixAttrs(prefix).map((attr) => [attr, N(prefix + "-" + target + "-" + attr)]),
+          )
+        : Object.fromEntries(matrixAttrs(prefix).map((a) => [a, 0])),
+    }));
+  }
+  function setRows(prefix, rows) {
+    for (const row of rows) {
+      C(prefix + "-enabled-" + row.target).checked = row.enabled;
+      for (const attr of matrixAttrs(prefix))
+        S(prefix + "-" + row.target + "-" + attr, row.coefficients[attr]);
+    }
+  }
+  function collect() {
+    details?.capture(metadata);
+    captureOpening();
+    const base = {
+      ...metadata,
+      schemaVersion: 1,
+      id: editingId,
+      name: V("name"),
+      category: V("category"),
+      weaponJob: V("weaponJob"),
+      attackType: V("attackType"),
+      effectName: V("effectName"),
+      triggerEffectName: V("triggerEffectName"),
+      triggerEnabled: C("triggerEnabled").checked,
+      battleStartEffects: {
+        entries: structuredClone(openingDrafts),
+        enabled: C("startEnabled").checked,
+      },
+      startingDebuffs: { entries: [], enabled: false },
+      startingBuff: {
+        kind: V("startKind"),
+        regeneration: {
+          receivesHealingBonuses: V("startRegenBonuses") !== "false",
+          baseValue: N("startRegenBase"),
+          coefficients: Object.fromEntries(
+            ["strength", "magic", "technique", "speed", "constitution"].map((a) => [
+              a,
+              N("startRegen-" + a),
+            ]),
+          ),
+        },
+        enabled:
+          C("startEnabled").checked && V("startSide") === "ally" && C("startEntryEnabled").checked,
+        recipient: V("startRecipient"),
+        coefficients: Object.fromEntries(M.targets.map((a) => [a, N("start-" + a)])),
+        target: V("startTarget"),
+      },
+      triggerRate: N("triggerRate"),
+      effect: null,
+    };
+    base.effect = collectEffect();
+    base.triggerEffects = triggerDrafts.map((t, i) => (i === activeTrigger ? triggerEntry() : t));
+    return base;
+  }
+  function collectEffect() {
+    const base = { effect: null };
+    const kind = V("effectKind");
+    if (kind === "amplify") base.effect = { kind, conversions: getRows("amplify") };
+    if (["trueDamage", "physicalTrueDamage", "magicTrueDamage"].includes(kind))
+      base.effect = {
+        kind,
+        coefficients: Object.fromEntries(
+          [...M.targets, "weaponPower"].map((a) => [a, N("true-" + a)]),
+        ),
+      };
+    if (kind === "immediateAction") base.effect = { kind };
+    if (kind === "debuff")
+      base.effect = {
+        kind,
+        type: V("debuffType"),
+        baseValue: N("debuffBase"),
+        duration: N("debuffDuration"),
+        maxStacks: N("debuffStacks"),
+        coefficients: Object.fromEntries(M.targets.map((a) => [a, N("debuff-" + a)])),
+      };
+    if (kind === "healing")
+      base.effect = {
+        kind: "healing",
+        recipient: V("healRecipient"),
+        coefficients: Object.fromEntries(
+          [...M.attrs, "weaponPower"].map((a) => [a, N("heal-" + a)]),
+        ),
+      };
+    else if (kind === "buff")
+      base.effect = {
+        kind,
+        type: V("buffType"),
+        recipient: V("buffRecipient"),
+        duration: N("buffDuration"),
+        maxStacks: N("buffStacks"),
+        conversions: getRows("buff"),
+      };
+    if (kind === "regeneration")
+      base.effect = {
+        kind: "buff",
+        type: "regeneration",
+        recipient: V("regenRecipient"),
+        baseValue: N("regenBase"),
+        duration: N("regenDuration"),
+        coefficients: {},
+        conversions: [],
+        maxStacks: 1,
+      };
+    return base.effect;
+  }
+  function load(item, index = 0) {
+    if (item.name) item = M.validate(item, false);
+    metadata = Object.fromEntries(
+      [
+        "wikiId",
+        "mainAttribute",
+        "negativeImmunities",
+        "crystal",
+        "baseAttributes",
+        "extraAttributes",
+        "startingEffects",
+        "effectDefinitions",
+        "passiveEffects",
+        "reviewIssues",
+        "classificationStatus",
+        "source",
+        "reviewNotes",
+      ]
+        .filter((k) => item[k] !== undefined)
+        .map((k) => [k, structuredClone(item[k])]),
+    );
+    triggerDrafts = structuredClone(
+      item.triggerEffects ?? [
+        {
+          name: item.triggerEffectName,
+          triggerType: item.attackType,
+          probability: item.triggerRate,
+          effect: item.effect,
+        },
+      ],
+    );
+    activeTrigger = Math.min(index, Math.max(0, triggerDrafts.length - 1));
+    const current = triggerDrafts[activeTrigger] ?? {
+      name: "",
+      triggerType: "physical",
+      probability: 0,
+      effect: null,
+    };
+    item = {
+      ...item,
+      attackType: current.triggerType,
+      triggerEffectName: current.name,
+      triggerRate: current.probability,
+      effect: current.effect,
+    };
+    form.reset();
+    details?.load(metadata);
+    openingDrafts = structuredClone(item.battleStartEffects?.entries || []);
+    if (!openingDrafts.length) openingDrafts.push(blankOpening());
+    activeOpening = 0;
+    C("startEnabled").checked = item.battleStartEffects?.enabled ?? false;
+    C("triggerEnabled").checked = item.triggerEnabled;
+    editingId = item.id;
+    S("name", item.name);
+    S("category", item.category);
+    S("weaponJob", item.weaponJob);
+    if (item.weaponJob && !C("weaponJob").value) {
+      const o = E("option", item.weaponJob + "（原配置）");
+      o.value = item.weaponJob;
+      C("weaponJob").append(o);
+      S("weaponJob", item.weaponJob);
+    }
+    S("attackType", item.attackType);
+    S("effectName", item.effectName);
+    S("triggerEffectName", item.triggerEffectName);
+    S("startRecipient", item.startingBuff.recipient);
+    S("startKind", item.startingBuff.kind || "amplify");
+    S("startRegenBase", item.startingBuff.regeneration?.baseValue || 0);
+    for (const a of ["strength", "magic", "technique", "speed", "constitution"])
+      S("startRegen-" + a, item.startingBuff.regeneration?.coefficients?.[a] || 0);
+    S("startTarget", item.startingBuff.target);
+    for (const attr of M.targets) S("start-" + attr, item.startingBuff.coefficients[attr]);
+    S("triggerRate", item.triggerRate);
+    const e = item.effect;
+    S(
+      "effectKind",
+      e?.type === "regeneration"
+        ? "regeneration"
+        : e?.kind === "trueDamage"
+          ? item.attackType === "magic"
+            ? "magicTrueDamage"
+            : "physicalTrueDamage"
+          : e?.kind || "none",
+    );
+    if (e?.kind === "amplify") setRows("amplify", e.conversions);
+    if (["trueDamage", "physicalTrueDamage", "magicTrueDamage"].includes(e?.kind))
+      for (const a of [...M.targets, "weaponPower"]) S("true-" + a, e.coefficients[a]);
+    if (e?.kind === "debuff") {
+      S("debuffType", e.type);
+      S("debuffBase", e.baseValue);
+      S("debuffDuration", e.duration);
+      S("debuffStacks", e.maxStacks);
+      for (const a of M.targets) S("debuff-" + a, e.coefficients[a]);
+    }
+    if (e?.kind === "healing") {
+      S("healRecipient", e.recipient);
+      for (const a of [...M.attrs, "weaponPower"]) S("heal-" + a, e.coefficients[a]);
+    }
+    if (e?.type === "regeneration") {
+      S("regenRecipient", e.recipient);
+      S("regenBase", e.baseValue);
+      S("regenDuration", e.duration);
+    } else if (e?.kind === "buff") {
+      S("buffType", e.type);
+      S("buffRecipient", e.recipient);
+      S("buffDuration", e.duration);
+      S("buffStacks", e.maxStacks);
+      setRows("buff", e.conversions);
+    }
+    loadOpening();
+    renderTriggerBar();
+    effectState();
+    dirty = false;
+    title.textContent = editingId ? "编辑装备" : "创建装备";
+    save.textContent = editingId ? "保存修改" : "保存到装备库";
+    duplicate.disabled = remove.disabled = !editingId;
+    message.textContent = "";
+    preview.hidden = true;
+  }
+  function renderList() {
+    if (!window.refreshPlayerEquipment && !options.wiki) window.onEquipmentLibraryChange?.(items);
+    list.replaceChildren();
+    count.textContent = items.length + " 件装备";
+    if (options.wiki) renderProgress();
+    const query = search.value.trim().toLowerCase();
+    const filtered = items.filter(
+      (x) =>
+        (!options.wiki ||
+          wikiStatus.value === "all" ||
+          x.classificationStatus === wikiStatus.value) &&
+        (!options.wiki || !wikiJob.value || x.weaponJob === wikiJob.value) &&
+        (categoryFilter.value === "all" || x.category === categoryFilter.value) &&
+        (
+          x.name +
+          " " +
+          x.weaponJob +
+          " " +
+          x.effectName +
+          " " +
+          (x.triggerEffects ?? []).map((t) => t.name).join(" ") +
+          " " +
+          categories[x.category]
+        )
+          .toLowerCase()
+          .includes(query),
+    );
+    if (!filtered.length)
+      list.append(
+        E(
+          "p",
+          items.length ? "没有匹配的装备。" : "装备库为空，从右侧创建第一件装备。",
+          "skill-empty",
+        ),
+      );
+    for (const item of filtered) {
+      const b = button(
+        "",
+        () => {
+          if (discard()) {
+            load(item);
+            renderList();
+          }
+        },
+        "created-skill-item",
+      );
+      b.classList.toggle("selected", item.id === editingId);
+      b.append(
+        E("strong", item.name),
+        E(
+          "small",
+          (options.wiki
+            ? item.classificationStatus === "needsReview"
+              ? "待补充 · "
+              : "已转录 · "
+            : "") +
+            categories[item.category] +
+            " · " +
+            ((item.triggerEffects ?? [])
+              .map((t) => t.name || effectKinds[t.effect?.kind || "none"])
+              .join(" / ") ||
+              item.effectName ||
+              "无特效"),
+        ),
+      );
+      if (item.mainAttribute)
+        b.append(
+          E(
+            "span",
+            "主属性 · " +
+              {
+                strength: "力量",
+                magic: "魔力",
+                technique: "技巧",
+                speed: "速度",
+                constitution: "体质",
+              }[item.mainAttribute],
+            "equipment-main-attribute-badge",
+          ),
+        );
+      list.append(b);
+    }
+  }
+  async function request(path, method = "GET", body) {
+    if (window.AppRequests) await window.AppRequests.ready;
+    const res = await (window.AppRequests?.fetch || fetch)(
+      path +
+        (!options.wiki && window.PlayerLibraries?.current.equipment
+          ? "?library=" + encodeURIComponent(window.PlayerLibraries.current.equipment)
+          : ""),
+      {
+        method,
+        headers: body ? { "Content-Type": "application/json" } : {},
+        body: body ? JSON.stringify(body) : undefined,
+        cache: "no-store",
+      },
+    );
+    let result;
+    try {
+      result = await res.json();
+    } catch {
+      throw Error("接口响应无效，请从server.py的服务地址打开页面");
+    }
+    if (!res.ok) throw Error(result.error || "接口失败");
+    return result;
+  }
+  async function commit(next, item = null, update = false) {
+    await ready;
+    const validated =
+      item && useAPI ? next : M.library({ schemaVersion: 1, equipment: next }).equipment;
+    if (useAPI) {
+      const result = item
+        ? await request(
+            update ? api + "/" + encodeURIComponent(item.id) : api,
+            update ? "PUT" : "POST",
+            item,
+          )
+        : await request(api + "/import", "POST", { schemaVersion: 1, equipment: validated });
+      items = M.library(result).equipment;
+      const refreshed = await Promise.allSettled([
+        window.refreshPlayerEquipment?.(),
+        item
+          ? options.wiki
+            ? window.customEquipmentEditor?.refresh()
+            : window.wikiEquipmentEditor?.refresh()
+          : undefined,
+      ]);
+      for (const result of refreshed)
+        if (result.status === "rejected")
+          notify("装备已保存，但页面同步失败：" + result.reason.message);
+    } else {
+      localStorage.setItem(storageKey, JSON.stringify({ schemaVersion: 1, equipment: validated }));
+      items = validated;
+      await window.refreshPlayerEquipment?.();
+    }
+  }
+  form.addEventListener("input", () => {
+    dirty = true;
+    message.textContent = "有未保存的修改";
+    preview.hidden = true;
+  });
+  form.addEventListener("change", () => {
+    if (openingDrafts[activeOpening] && V("startSide") !== openingDrafts[activeOpening].side) {
+      const side = V("startSide");
+      captureOpening(openingDrafts[activeOpening].side);
+      openingDrafts[activeOpening].side = side;
+      loadOpening();
+    }
+    effectState();
+    dirty = true;
+    message.textContent = "有未保存的修改";
+  });
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (saving || !form.reportValidity()) return;
+    saving = true;
+    save.disabled = true;
+    try {
+      await ready;
+      const draft = collect();
+      draft.id = editingId || "equipment_" + crypto.randomUUID();
+      const item = M.validate(draft),
+        next = items.filter((x) => x.id !== item.id);
+      next.push(item);
+      await commit(next, item, Boolean(editingId));
+      load(item);
+      renderList();
+      message.textContent = useAPI
+        ? options.wiki
+          ? "已保存到百科装备库 data/wiki_equipment.json"
+          : "已保存到项目文件 data/equipment.json"
+        : "已保存到此浏览器";
+      notify("装备已保存");
+    } catch (e) {
+      message.textContent = "保存失败：" + e.message;
+      notify("保存失败：" + e.message);
+    } finally {
+      saving = false;
+      save.disabled = false;
+    }
+  });
+  search.addEventListener("input", renderList);
+  categoryFilter.addEventListener("change", renderList);
+  if (options.openButton !== false)
+    document
+      .querySelector(options.openButton || "#open-equipment-editor")
+      .addEventListener("click", () => {
+        renderList();
+        dialog.showModal();
+      });
+  libraryActions.append(
+    button(options.wiki ? "导入百科装备库" : "导入装备库", () => file.click()),
+    button(options.wiki ? "导出百科装备库" : "导出装备库", () => {
+      const url = URL.createObjectURL(
+        new Blob([JSON.stringify({ schemaVersion: 1, equipment: items }, null, 2)], {
+          type: "application/json",
+        }),
+      );
+      const a = E("a");
+      a.href = url;
+      a.download = options.wiki ? "地下城堡2-百科装备库.json" : "地下城堡2-装备库.json";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      notify("已导出保存的装备，未保存的草稿不包含在内");
+    }),
+  );
+  file.addEventListener("change", async () => {
+    const f = file.files[0];
+    if (!f) return;
+    try {
+      if (f.size > 5 * 1024 * 1024) throw Error("文件不能超过5MB");
+      const incoming = M.library(JSON.parse(await f.text())).equipment;
+      await ready;
+      await commit(M.merge(items, incoming));
+      renderList();
+      notify("装备库已合并导入");
+    } catch (e) {
+      notify("导入失败：" + e.message);
+    } finally {
+      file.value = "";
+    }
+  });
+  if (window.WikiEquipmentDetails) {
+    details = window.WikiEquipmentDetails.create({
+      form,
+      after: basic,
+      button,
+      E,
+      onChange: () => {
+        dirty = true;
+        message.textContent = "有未保存的修改";
+      },
+      getDraft: collect,
+    });
+  }
+  if (options.wiki) {
+    libraryActions.append(
+      button("分类进度", () => details.showProgress(items)),
+      button("整理新增装备", async () => {
+        try {
+          const result = await request(api + "/classify", "POST", {});
+          items = M.library(result).equipment;
+          renderList();
+          notify("已整理新增 " + result.added + " 件装备");
+        } catch (e) {
+          notify(e.message);
+        }
+      }),
+    );
+  }
+  if (options.wiki)
+    actions.append(
+      button("加入自定义装备库（同名替换）", async () => {
+        try {
+          if (dirty) throw Error("请先保存装备修改，再加入自定义装备库");
+          if (!editingId) throw Error("请选择已保存的百科装备");
+          const selected = items.find((i) => i.id === editingId);
+          if (
+            !confirm(
+              "确认将“" + selected.name + "”加入自定义装备库？如果已有同名装备，将替换该装备。",
+            )
+          )
+            return;
+          const result = await request(
+            api + "/" + encodeURIComponent(editingId) + "/promote",
+            "POST",
+            {},
+          );
+          await window.customEquipmentEditor?.refresh();
+          notify(result.replaced ? "已替换自定义库中的同名装备" : "已加入自定义装备库");
+        } catch (e) {
+          notify(e.message);
+        }
+      }),
+    );
+  const content = E("div", undefined, "equipment-editor-content");
+  const contentNodes = Array.from(form.children).filter((node) => node !== footer);
+  form.replaceChildren(content, footer);
+  content.append(...contentNodes);
+  let restoreError = "";
+  try {
+    const saved = useAPI ? null : localStorage.getItem(storageKey);
+    if (saved) items = M.library(JSON.parse(saved)).equipment;
+  } catch {
+    restoreError = "装备库恢复失败，请从备份导入";
+  }
+  load(M.blank());
+  renderList();
+  if (restoreError) notify(restoreError);
+  let ready = Promise.resolve(),
+    loaded = !useAPI,
+    loading = null;
+  function ensureReady() {
+    if (loaded) return ready;
+    if (loading) return loading;
+    loading = request(api).then((data) => {
+      items = M.library(data).equipment;
+      loaded = true;
+      renderList();
+      if (!dirty) message.textContent = "已连接项目装备文件";
+    });
+    ready = loading;
+    loading.then(
+      () => (loading = null),
+      () => {
+        loading = null;
+      },
+    );
+    return ready;
+  }
+  if (useAPI && !options.lazy) ensureReady().catch((e) => notify("装备接口连接失败：" + e.message));
+  return {
+    dialog,
+    canLeave: discard,
+    render: options.lazy
+      ? async () => {
+          await ensureReady();
+          renderList();
+        }
+      : renderList,
+    switchLibrary: async () => {
+      await ready;
+      items = M.library(await request(api)).equipment;
+      load(M.blank());
+      renderList();
+    },
+    refresh: async () => {
+      if (options.lazy && !loaded) return;
+      await ready;
+      if (useAPI) items = M.library(await request(api)).equipment;
+      renderList();
+    },
+  };
 };
-window.customEquipmentEditor=window.createEquipmentLibraryEditor({openButton:false});
+window.customEquipmentEditor = window.createEquipmentLibraryEditor({ openButton: false });

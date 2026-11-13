@@ -1,8 +1,136 @@
-const assert=require('assert'),fs=require('fs'),vm=require('vm');
-class N{constructor(tag,text){this.tag=tag;this.children=[];this.value='';this.textContent=text;this.attrs={};}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}setAttribute(k,v){this.attrs[k]=v;}addEventListener(){}showModal(){this.open=true;}close(){this.open=false;}}
-const body=new N('body'),open=new N('button'),items=[],messages=[];
-const context={document:{body,createElement:t=>new N(t),querySelector:()=>open},fields:[['magic','魔力',0],['hitRate','命中 %',0]],SpecialConfiguration:{extras:[],five:['magic']},structuredClone,confirm:()=>true,window:{showToast:m=>messages.push(m)},fetch:async(path,opt)=>{if(opt.method==='POST'){items.push({id:'t1',...JSON.parse(opt.body)});return{ok:true,json:async()=>({trophies:structuredClone(items),item:structuredClone(items[0])})};}return{ok:true,json:async()=>({trophies:structuredClone(items)})};}};
-vm.runInNewContext(fs.readFileSync('frontend/js/trophies/library.js','utf8'),context);
-const walk=n=>[n,...n.children.flatMap(walk)];
-(async()=>{await open.onclick();const dialog=body.children[0],form=walk(dialog).find(n=>n.tag==='form');let name=walk(form).find(n=>n.attrs['aria-label']==='战利品名称');name.value='魔力战利品';name.oninput();const picker=walk(form).find(n=>n.attrs['aria-label']==='战利品属性');picker.value='magic';walk(form).find(n=>n.textContent==='＋ 添加属性').onclick();const input=walk(form).find(n=>n.attrs['aria-label']==='魔力');input.value='5';input.oninput();await form.onsubmit({preventDefault(){}});assert.equal(items[0].attributes.magic,5);assert.ok(messages.includes('战利品已保存'));
-walk(form).find(n=>n.textContent==='另存为副本').onclick();const copyName=walk(form).find(n=>n.attrs['aria-label']==='战利品名称');assert.equal(copyName.value,'魔力战利品（副本）');const copyMagic=walk(form).find(n=>n.attrs['aria-label']==='魔力');copyMagic.value='8';copyMagic.oninput();await form.onsubmit({preventDefault(){}});assert.equal(items[0].attributes.magic,5);assert.equal(items[1].attributes.magic,8);const search=walk(dialog).find(n=>n.attrs['aria-label']==='搜索战利品名称'),filter=walk(dialog).find(n=>n.attrs['aria-label']==='按属性筛选战利品');search.value='不存在';search.oninput();assert.ok(walk(dialog).some(n=>n.textContent==='没有匹配的战利品'));search.value='魔力';filter.value='hitRate';filter.onchange();assert.ok(walk(dialog).some(n=>n.textContent==='没有匹配的战利品'));filter.value='magic';filter.onchange();const sorting=walk(dialog).find(n=>n.attrs['aria-label']==='按战利品属性排序'),order=walk(dialog).find(n=>n.attrs['aria-label']==='战利品排序方向');sorting.value='magic';sorting.onchange();let resultList=walk(dialog).find(n=>n.className==='trophy-list-results');assert.equal(resultList.children[0].textContent,'魔力战利品（副本）');order.value='asc';order.onchange();assert.equal(resultList.children[0].textContent,'魔力战利品');assert.ok(walk(dialog).some(n=>n.tag==='button'&&n.textContent==='魔力战利品'));const host=new N('div'),sources={},changes=[];context.window.TrophyLibrary.attach(host,sources,()=>changes.push(1));const select=walk(host).find(n=>n.attrs['aria-label']==='从战利品库选择');order.value='desc';order.onchange();assert.equal(select.children[1].textContent,'魔力战利品（副本）');order.value='asc';order.onchange();assert.equal(select.children[1].textContent,'魔力战利品');select.value='t1';walk(host).find(n=>n.textContent==='＋ 选入战利品').onclick();assert.equal(sources.selectedTrophies[0].attributes.magic,5);items[0].attributes.magic=9;assert.equal(sources.selectedTrophies[0].attributes.magic,5);await open.onclick();assert.equal(sources.selectedTrophies[0].attributes.magic,9);assert.equal(changes.length,2);walk(host).find(n=>n.textContent==='移除').onclick();assert.equal(sources.selectedTrophies.length,0);assert.equal(changes.length,3);console.log('PASS: trophy editor save, library selection, independent snapshot and removal');})().catch(e=>{console.error(e);process.exitCode=1;});
+const assert = require("assert"),
+  fs = require("fs"),
+  vm = require("vm");
+class N {
+  constructor(tag, text) {
+    this.tag = tag;
+    this.children = [];
+    this.value = "";
+    this.textContent = text;
+    this.attrs = {};
+  }
+  append(...n) {
+    this.children.push(...n);
+  }
+  replaceChildren(...n) {
+    this.children = n;
+  }
+  setAttribute(k, v) {
+    this.attrs[k] = v;
+  }
+  addEventListener() {}
+  showModal() {
+    this.open = true;
+  }
+  close() {
+    this.open = false;
+  }
+}
+const body = new N("body"),
+  open = new N("button"),
+  items = [],
+  messages = [];
+const context = {
+  document: { body, createElement: (t) => new N(t), querySelector: () => open },
+  fields: [
+    ["magic", "魔力", 0],
+    ["hitRate", "命中 %", 0],
+  ],
+  SpecialConfiguration: { extras: [], five: ["magic"] },
+  structuredClone,
+  confirm: () => true,
+  window: { showToast: (m) => messages.push(m) },
+  fetch: async (path, opt) => {
+    if (opt.method === "POST") {
+      items.push({ id: "t1", ...JSON.parse(opt.body) });
+      return {
+        ok: true,
+        json: async () => ({ trophies: structuredClone(items), item: structuredClone(items[0]) }),
+      };
+    }
+    return { ok: true, json: async () => ({ trophies: structuredClone(items) }) };
+  },
+};
+vm.runInNewContext(fs.readFileSync("frontend/js/trophies/library.js", "utf8"), context);
+const walk = (n) => [n, ...n.children.flatMap(walk)];
+(async () => {
+  await open.onclick();
+  const dialog = body.children[0],
+    form = walk(dialog).find((n) => n.tag === "form");
+  let name = walk(form).find((n) => n.attrs["aria-label"] === "战利品名称");
+  name.value = "魔力战利品";
+  name.oninput();
+  const picker = walk(form).find((n) => n.attrs["aria-label"] === "战利品属性");
+  picker.value = "magic";
+  walk(form)
+    .find((n) => n.textContent === "＋ 添加属性")
+    .onclick();
+  const input = walk(form).find((n) => n.attrs["aria-label"] === "魔力");
+  input.value = "5";
+  input.oninput();
+  await form.onsubmit({ preventDefault() {} });
+  assert.equal(items[0].attributes.magic, 5);
+  assert.ok(messages.includes("战利品已保存"));
+  walk(form)
+    .find((n) => n.textContent === "另存为副本")
+    .onclick();
+  const copyName = walk(form).find((n) => n.attrs["aria-label"] === "战利品名称");
+  assert.equal(copyName.value, "魔力战利品（副本）");
+  const copyMagic = walk(form).find((n) => n.attrs["aria-label"] === "魔力");
+  copyMagic.value = "8";
+  copyMagic.oninput();
+  await form.onsubmit({ preventDefault() {} });
+  assert.equal(items[0].attributes.magic, 5);
+  assert.equal(items[1].attributes.magic, 8);
+  const search = walk(dialog).find((n) => n.attrs["aria-label"] === "搜索战利品名称"),
+    filter = walk(dialog).find((n) => n.attrs["aria-label"] === "按属性筛选战利品");
+  search.value = "不存在";
+  search.oninput();
+  assert.ok(walk(dialog).some((n) => n.textContent === "没有匹配的战利品"));
+  search.value = "魔力";
+  filter.value = "hitRate";
+  filter.onchange();
+  assert.ok(walk(dialog).some((n) => n.textContent === "没有匹配的战利品"));
+  filter.value = "magic";
+  filter.onchange();
+  const sorting = walk(dialog).find((n) => n.attrs["aria-label"] === "按战利品属性排序"),
+    order = walk(dialog).find((n) => n.attrs["aria-label"] === "战利品排序方向");
+  sorting.value = "magic";
+  sorting.onchange();
+  let resultList = walk(dialog).find((n) => n.className === "trophy-list-results");
+  assert.equal(resultList.children[0].textContent, "魔力战利品（副本）");
+  order.value = "asc";
+  order.onchange();
+  assert.equal(resultList.children[0].textContent, "魔力战利品");
+  assert.ok(walk(dialog).some((n) => n.tag === "button" && n.textContent === "魔力战利品"));
+  const host = new N("div"),
+    sources = {},
+    changes = [];
+  context.window.TrophyLibrary.attach(host, sources, () => changes.push(1));
+  const select = walk(host).find((n) => n.attrs["aria-label"] === "从战利品库选择");
+  order.value = "desc";
+  order.onchange();
+  assert.equal(select.children[1].textContent, "魔力战利品（副本）");
+  order.value = "asc";
+  order.onchange();
+  assert.equal(select.children[1].textContent, "魔力战利品");
+  select.value = "t1";
+  walk(host)
+    .find((n) => n.textContent === "＋ 选入战利品")
+    .onclick();
+  assert.equal(sources.selectedTrophies[0].attributes.magic, 5);
+  items[0].attributes.magic = 9;
+  assert.equal(sources.selectedTrophies[0].attributes.magic, 5);
+  await open.onclick();
+  assert.equal(sources.selectedTrophies[0].attributes.magic, 9);
+  assert.equal(changes.length, 2);
+  walk(host)
+    .find((n) => n.textContent === "移除")
+    .onclick();
+  assert.equal(sources.selectedTrophies.length, 0);
+  assert.equal(changes.length, 3);
+  console.log("PASS: trophy editor save, library selection, independent snapshot and removal");
+})().catch((e) => {
+  console.error(e);
+  process.exitCode = 1;
+});

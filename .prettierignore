@@ -1,0 +1,6 @@
+data/
+docs/
+.venv/
+frontend/index.html
+*.md
+*.json

@@ -1,1 +1,85 @@
-.raw-equipment-dialog{width:min(1500px,96vw);max-height:94vh;border:1px solid #dce6ec;border-radius:8px;padding:24px;color:#315466}.raw-equipment-dialog::backdrop{background:#0005}.raw-equipment-header{display:flex;justify-content:space-between;align-items:center}.raw-equipment-header h2{font-size:20px;margin:0}.raw-equipment-dialog p{font-size:13px;color:#8197a5;line-height:1.6}.raw-equipment-bar{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.raw-equipment-bar input,.raw-equipment-bar select{border:1px solid #dce6ec;border-radius:4px;padding:9px;font-size:14px;color:inherit}.raw-equipment-bar input{flex:1;min-width:180px}.raw-equipment-table{overflow:auto;max-height:65vh}.raw-equipment-table table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}.raw-equipment-table th,.raw-equipment-table td{padding:12px;border:1px solid #dce6ec;vertical-align:top;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}.raw-equipment-table th{position:sticky;top:0;background:#edf6f5}.raw-equipment-table th:nth-child(1){width:12%}.raw-equipment-table th:nth-child(2){width:17%}.raw-equipment-table th:nth-child(3){width:28%}.raw-equipment-table a{color:#009b8d}@media(max-width:700px){.raw-equipment-table table{min-width:850px}}
+.raw-equipment-dialog {
+  width: min(1500px, 96vw);
+  max-height: 94vh;
+  border: 1px solid #dce6ec;
+  border-radius: 8px;
+  padding: 24px;
+  color: #315466;
+}
+.raw-equipment-dialog::backdrop {
+  background: #0005;
+}
+.raw-equipment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.raw-equipment-header h2 {
+  font-size: 20px;
+  margin: 0;
+}
+.raw-equipment-dialog p {
+  font-size: 13px;
+  color: #8197a5;
+  line-height: 1.6;
+}
+.raw-equipment-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.raw-equipment-bar input,
+.raw-equipment-bar select {
+  border: 1px solid #dce6ec;
+  border-radius: 4px;
+  padding: 9px;
+  font-size: 14px;
+  color: inherit;
+}
+.raw-equipment-bar input {
+  flex: 1;
+  min-width: 180px;
+}
+.raw-equipment-table {
+  overflow: auto;
+  max-height: 65vh;
+}
+.raw-equipment-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+.raw-equipment-table th,
+.raw-equipment-table td {
+  padding: 12px;
+  border: 1px solid #dce6ec;
+  vertical-align: top;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+.raw-equipment-table th {
+  position: sticky;
+  top: 0;
+  background: #edf6f5;
+}
+.raw-equipment-table th:nth-child(1) {
+  width: 12%;
+}
+.raw-equipment-table th:nth-child(2) {
+  width: 17%;
+}
+.raw-equipment-table th:nth-child(3) {
+  width: 28%;
+}
+.raw-equipment-table a {
+  color: #009b8d;
+}
+@media (max-width: 700px) {
+  .raw-equipment-table table {
+    min-width: 850px;
+  }
+}

@@ -1,7 +1,112 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const nodes=[];class Node{constructor(tag){this.tag=tag;this.children=[];this.events={};nodes.push(this);}append(...items){this.children.push(...items);}replaceChildren(...items){this.children=items;}setAttribute(k,v){this[k]=v;}addEventListener(k,f){this.events[k]=f;}showModal(){this.open=true;}close(){this.open=false;this.events.close?.();}remove(){this.removed=true;}focus(){this.focused=true;}select(){this.selected=true;}}
-const saved={},calls=[];let reject=false;
-const context={document:{body:new Node('body'),createElement:t=>new Node(t),querySelector:()=>null},window:{showToast(){}},fetch:async(url,opt)=>{calls.push([url,opt]);const kind=url.split('/')[3];if(opt.method==='PUT'){if(reject)return {ok:false,json:async()=>({error:'库名称已存在'})};saved[kind]=JSON.parse(opt.body).name;}return {ok:true,json:async()=>({libraries:[],displayNames:saved[kind]?{__default__:saved[kind]}:{}})};}};
-vm.createContext(context);vm.runInContext(fs.readFileSync('frontend/js/ui/library-sets.js','utf8'),context);
-const flush=()=>new Promise(r=>setImmediate(r));
-(async()=>{for(const kind of ['stones','people','contracts','trophies','bosses']){const bar=context.window.PlayerLibraries.mount(new Node('div'),kind,'默认库',async()=>{});await flush();const rename=bar.children[3];assert.equal(rename.disabled,false);rename.events.click();const dialog=nodes.filter(n=>n.tag==='dialog').at(-1),form=dialog.children[0],input=form.children[2].children[0],error=form.children[3];assert(input.focused&&input.selected);input.value=' ';await form.events.submit({preventDefault(){}});assert(error.textContent.includes('请输入'));assert(dialog.open);reject=true;input.value='重名';await form.events.submit({preventDefault(){}});assert.equal(error.textContent,'库名称已存在');assert(dialog.open&&!input.disabled);reject=false;input.value=kind+'新名称';await form.events.submit({preventDefault(){}});assert(dialog.removed);assert.equal(bar.children[0].children[0].textContent,kind+'新名称');rename.events.click();const next=nodes.filter(n=>n.tag==='dialog').at(-1);assert.equal(next.children[0].children[2].children[0].value,kind+'新名称');const count=calls.length;next.children[0].children[4].children[0].events.click();assert(next.removed);assert.equal(calls.length,count);}console.log('PASS: five rename buttons (equipment uses the attribute dialog, see verify_equipment_copy_dialog.cjs), selected current name, form submit, inline empty/duplicate errors, successful label update and cancel without writes');})();
+const fs = require("fs"),
+  vm = require("vm"),
+  assert = require("assert");
+const nodes = [];
+class Node {
+  constructor(tag) {
+    this.tag = tag;
+    this.children = [];
+    this.events = {};
+    nodes.push(this);
+  }
+  append(...items) {
+    this.children.push(...items);
+  }
+  replaceChildren(...items) {
+    this.children = items;
+  }
+  setAttribute(k, v) {
+    this[k] = v;
+  }
+  addEventListener(k, f) {
+    this.events[k] = f;
+  }
+  showModal() {
+    this.open = true;
+  }
+  close() {
+    this.open = false;
+    this.events.close?.();
+  }
+  remove() {
+    this.removed = true;
+  }
+  focus() {
+    this.focused = true;
+  }
+  select() {
+    this.selected = true;
+  }
+}
+const saved = {},
+  calls = [];
+let reject = false;
+const context = {
+  document: {
+    body: new Node("body"),
+    createElement: (t) => new Node(t),
+    querySelector: () => null,
+  },
+  window: { showToast() {} },
+  fetch: async (url, opt) => {
+    calls.push([url, opt]);
+    const kind = url.split("/")[3];
+    if (opt.method === "PUT") {
+      if (reject) return { ok: false, json: async () => ({ error: "库名称已存在" }) };
+      saved[kind] = JSON.parse(opt.body).name;
+    }
+    return {
+      ok: true,
+      json: async () => ({
+        libraries: [],
+        displayNames: saved[kind] ? { __default__: saved[kind] } : {},
+      }),
+    };
+  },
+};
+vm.createContext(context);
+vm.runInContext(fs.readFileSync("frontend/js/ui/library-sets.js", "utf8"), context);
+const flush = () => new Promise((r) => setImmediate(r));
+(async () => {
+  for (const kind of ["stones", "people", "contracts", "trophies", "bosses"]) {
+    const bar = context.window.PlayerLibraries.mount(
+      new Node("div"),
+      kind,
+      "默认库",
+      async () => {},
+    );
+    await flush();
+    const rename = bar.children[3];
+    assert.equal(rename.disabled, false);
+    rename.events.click();
+    const dialog = nodes.filter((n) => n.tag === "dialog").at(-1),
+      form = dialog.children[0],
+      input = form.children[2].children[0],
+      error = form.children[3];
+    assert(input.focused && input.selected);
+    input.value = " ";
+    await form.events.submit({ preventDefault() {} });
+    assert(error.textContent.includes("请输入"));
+    assert(dialog.open);
+    reject = true;
+    input.value = "重名";
+    await form.events.submit({ preventDefault() {} });
+    assert.equal(error.textContent, "库名称已存在");
+    assert(dialog.open && !input.disabled);
+    reject = false;
+    input.value = kind + "新名称";
+    await form.events.submit({ preventDefault() {} });
+    assert(dialog.removed);
+    assert.equal(bar.children[0].children[0].textContent, kind + "新名称");
+    rename.events.click();
+    const next = nodes.filter((n) => n.tag === "dialog").at(-1);
+    assert.equal(next.children[0].children[2].children[0].value, kind + "新名称");
+    const count = calls.length;
+    next.children[0].children[4].children[0].events.click();
+    assert(next.removed);
+    assert.equal(calls.length, count);
+  }
+  console.log(
+    "PASS: five rename buttons (equipment uses the attribute dialog, see verify_equipment_copy_dialog.cjs), selected current name, form submit, inline empty/duplicate errors, successful label update and cancel without writes",
+  );
+})();

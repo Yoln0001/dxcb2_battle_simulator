@@ -1,14 +1,30 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const source=fs.readFileSync('frontend/js/app.js','utf8');
-const start=source.indexOf('function getForSave()'),end=source.indexOf('function getValid()',start);
-let saved={characters:[{specialSources:{selectedPerson:null}}]},failure=false;
-const ctx={configurationLoading:false,collect:()=>saved,normalize:data=>{if(failure)throw Error('数值无效');return data;},toast:message=>ctx.message=message};
-vm.createContext(ctx);vm.runInContext(source.slice(start,end),ctx);
-assert.strictEqual(ctx.getForSave(),saved);
-failure=true;assert.equal(ctx.getForSave(),null);assert.equal(ctx.message,'数值无效');
-assert(source.includes('const data=getForSave();if(data)window.ConfigurationLibrary?.save(data);'));
-assert(source.includes('window.getTeamConfiguration=()=>'));
-assert(source.includes('data.characters.filter(c=>c.enabled)'));
-assert(source.includes('window.getTeamConfigurationForSave=getForSave;'));
-assert(fs.readFileSync('frontend/index.html','utf8').includes('formnovalidate>保存配置'));
-console.log('PASS: draft save bypasses battle completeness checks and retains numeric validation');
+const fs = require("fs"),
+  vm = require("vm"),
+  assert = require("assert");
+const source = fs.readFileSync("frontend/js/app.js", "utf8");
+const start = source.indexOf("function getForSave()"),
+  end = source.indexOf("function getValid()", start);
+let saved = { characters: [{ specialSources: { selectedPerson: null } }] },
+  failure = false;
+const ctx = {
+  configurationLoading: false,
+  collect: () => saved,
+  normalize: (data) => {
+    if (failure) throw Error("数值无效");
+    return data;
+  },
+  toast: (message) => (ctx.message = message),
+};
+vm.createContext(ctx);
+vm.runInContext(source.slice(start, end), ctx);
+assert.strictEqual(ctx.getForSave(), saved);
+failure = true;
+assert.equal(ctx.getForSave(), null);
+assert.equal(ctx.message, "数值无效");
+assert(source.includes("const data = getForSave();"));
+assert(source.includes("if (data) window.ConfigurationLibrary?.save(data);"));
+assert(source.includes("window.getTeamConfiguration = () =>"));
+assert(source.includes("data.characters.filter((c) => c.enabled)"));
+assert(source.includes("window.getTeamConfigurationForSave = getForSave;"));
+assert(fs.readFileSync("frontend/index.html", "utf8").includes("formnovalidate>保存配置"));
+console.log("PASS: draft save bypasses battle completeness checks and retains numeric validation");

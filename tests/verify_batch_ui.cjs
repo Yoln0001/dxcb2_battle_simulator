@@ -1,6 +1,185 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
-const nodes=[];class Node{constructor(tag){this.tag=tag;this.children=[];this.handlers={};nodes.push(this);}append(...v){this.children.push(...v);}replaceChildren(...v){this.children=v;}setAttribute(){}cloneNode(){const n=new Node(this.tag);n.children=this.children.map(c=>c.cloneNode());return n;}querySelector(tag){return this.children.find(c=>c.tag===tag);}addEventListener(k,fn){this.handlers[k]=fn;}checkValidity(){return true;}showModal(){this.open=true;}close(){this.open=false;}}
-const bossButton=new Node('button'),button=new Node('button'),body=new Node('body');const text=n=>[n.textContent||'',...n.children.map(text)].join(' ');
-const data={all_alive_battles:3,all_alive_rate:30,total_battles:10,passed_battles:5,pass_rate:50,elapsed_seconds:2.5,expected_damage:50,max_damage:100,min_damage:0,percentiles:{'1':99,'5':95,'10':90},custom_percentile:50,custom_percentile_damage:50,sorted_damage:[0,100],qualification:'击败目标',quantile_method:'从高到低线性插值',characters:[1,2,3,4].map(index=>({index,survived_battles:7,survival_rate:70,job:'法师',enabled:true,expected_damage:12.5,effects:[{slot:'weapon',equipment_name:'武器',name:'特效',mean_count:2}]})),warnings:[]};let urls=[],exported;const config={characters:[{stats:{speed:1318}}]};
-const context={document:{body,createElement:t=>new Node(t),createElementNS:(_,t)=>new Node(t),querySelector:selector=>selector==='#simulate-batch'?button:selector==='#simulate-batch-boss'?bossButton:null},window:{getTeamConfiguration:()=>config,BatchResultExport:{download:async(result,snapshot)=>{exported={result,snapshot};}},BatchResultXlsx:{download:async(result,snapshot)=>{exported={result,snapshot,xlsx:true};}},showToast:()=>{}},fetch:async url=>{urls.push(url);return {ok:true,json:async()=>url.includes('simulate-batch')?{job_id:'test'}:{status:'complete',completed:10,total:10,elapsed_seconds:2.5,result:data}};},console};vm.createContext(context);vm.runInContext(fs.readFileSync(path.resolve(__dirname,'../frontend/js/battle/batch.js'),'utf8'),context);
-(async()=>{await button.handlers.click();const output=text(body);assert(output.indexOf('总战斗次数')<output.indexOf('达标次数'));for(const label of ['通过率','模拟用时','期望伤害','最高伤害','最低伤害','1% 分位','5% 分位','10% 分位','自定义分位','角色4','次/场'])assert(output.includes(label),label);const input=nodes.find(n=>n.tag==='input');input.value='5';input.handlers.input();const custom=nodes.find(n=>n.className==='batch-custom');assert.equal(custom.children.at(-1).textContent,'95');assert.equal(button.disabled,false);assert.equal(urls.length,2);assert(output.includes('全员存活场次 3'));assert(output.includes('角色存活率'));assert(output.includes('存活 7 / 10 场'));data.boss_attacks=true;data.all_alive_battles=3;data.all_alive_rate=30;for(const c of data.characters){c.survival_rate=70;c.survived_battles=7;}data.characters[3].enabled=false;await bossButton.handlers.click();assert(text(body).includes('全员存活场次 3'));assert(text(body).includes('全员存活比例 30%'));assert(text(body).includes('角色存活率'));assert(text(body).includes('70%'));assert(text(body).includes('存活 7 / 10 场'));assert(text(body).includes('未参战'));assert(urls.includes('/api/battle/simulate-batch-with-boss'));assert.equal(bossButton.disabled,false);config.characters[0].stats.speed=9999;const exportButton=nodes.find(n=>n.className==='batch-export-button');assert.equal(exportButton.hidden,false);assert.equal(exportButton.textContent,undefined);assert.equal(exportButton.children[0].tag,'svg');assert.equal(exportButton.title,'导出战斗结果 PNG');await exportButton.handlers.click();assert.equal(exported.snapshot.characters[0].stats.speed,1318);assert.equal(exported.result.all_alive_rate,30);assert.equal(exportButton.disabled,false);const xlsxButton=nodes.find(n=>n.title==='导出战斗结果 XLSX');assert.equal(xlsxButton.hidden,false);await xlsxButton.handlers.click();assert(exported.xlsx);assert.equal(exported.snapshot.characters[0].stats.speed,1318);assert.equal(xlsxButton.disabled,false);console.log('PASS: independent Boss endpoint; requested statistics layout, elapsed, four roles, effect means and live custom percentile');})().catch(e=>{console.error(e);process.exitCode=1;});
+const fs = require("fs"),
+  vm = require("vm"),
+  assert = require("assert"),
+  path = require("path");
+const nodes = [];
+class Node {
+  constructor(tag) {
+    this.tag = tag;
+    this.children = [];
+    this.handlers = {};
+    nodes.push(this);
+  }
+  append(...v) {
+    this.children.push(...v);
+  }
+  replaceChildren(...v) {
+    this.children = v;
+  }
+  setAttribute() {}
+  cloneNode() {
+    const n = new Node(this.tag);
+    n.children = this.children.map((c) => c.cloneNode());
+    return n;
+  }
+  querySelector(tag) {
+    return this.children.find((c) => c.tag === tag);
+  }
+  addEventListener(k, fn) {
+    this.handlers[k] = fn;
+  }
+  checkValidity() {
+    return true;
+  }
+  showModal() {
+    this.open = true;
+  }
+  close() {
+    this.open = false;
+  }
+}
+const bossButton = new Node("button"),
+  button = new Node("button"),
+  body = new Node("body");
+const text = (n) => [n.textContent || "", ...n.children.map(text)].join(" ");
+const data = {
+  all_alive_battles: 3,
+  all_alive_rate: 30,
+  total_battles: 10,
+  passed_battles: 5,
+  pass_rate: 50,
+  elapsed_seconds: 2.5,
+  expected_damage: 50,
+  max_damage: 100,
+  min_damage: 0,
+  percentiles: { 1: 99, 5: 95, 10: 90 },
+  custom_percentile: 50,
+  custom_percentile_damage: 50,
+  sorted_damage: [0, 100],
+  qualification: "击败目标",
+  quantile_method: "从高到低线性插值",
+  characters: [1, 2, 3, 4].map((index) => ({
+    index,
+    survived_battles: 7,
+    survival_rate: 70,
+    job: "法师",
+    enabled: true,
+    expected_damage: 12.5,
+    effects: [{ slot: "weapon", equipment_name: "武器", name: "特效", mean_count: 2 }],
+  })),
+  warnings: [],
+};
+let urls = [],
+  exported;
+const config = { characters: [{ stats: { speed: 1318 } }] };
+const context = {
+  document: {
+    body,
+    createElement: (t) => new Node(t),
+    createElementNS: (_, t) => new Node(t),
+    querySelector: (selector) =>
+      selector === "#simulate-batch"
+        ? button
+        : selector === "#simulate-batch-boss"
+          ? bossButton
+          : null,
+  },
+  window: {
+    getTeamConfiguration: () => config,
+    BatchResultExport: {
+      download: async (result, snapshot) => {
+        exported = { result, snapshot };
+      },
+    },
+    BatchResultXlsx: {
+      download: async (result, snapshot) => {
+        exported = { result, snapshot, xlsx: true };
+      },
+    },
+    showToast: () => {},
+  },
+  fetch: async (url) => {
+    urls.push(url);
+    return {
+      ok: true,
+      json: async () =>
+        url.includes("simulate-batch")
+          ? { job_id: "test" }
+          : { status: "complete", completed: 10, total: 10, elapsed_seconds: 2.5, result: data },
+    };
+  },
+  console,
+};
+vm.createContext(context);
+vm.runInContext(
+  fs.readFileSync(path.resolve(__dirname, "../frontend/js/battle/batch.js"), "utf8"),
+  context,
+);
+(async () => {
+  await button.handlers.click();
+  const output = text(body);
+  assert(output.indexOf("总战斗次数") < output.indexOf("达标次数"));
+  for (const label of [
+    "通过率",
+    "模拟用时",
+    "期望伤害",
+    "最高伤害",
+    "最低伤害",
+    "1% 分位",
+    "5% 分位",
+    "10% 分位",
+    "自定义分位",
+    "角色4",
+    "次/场",
+  ])
+    assert(output.includes(label), label);
+  const input = nodes.find((n) => n.tag === "input");
+  input.value = "5";
+  input.handlers.input();
+  const custom = nodes.find((n) => n.className === "batch-custom");
+  assert.equal(custom.children.at(-1).textContent, "95");
+  assert.equal(button.disabled, false);
+  assert.equal(urls.length, 2);
+  assert(output.includes("全员存活场次 3"));
+  assert(output.includes("角色存活率"));
+  assert(output.includes("存活 7 / 10 场"));
+  data.boss_attacks = true;
+  data.all_alive_battles = 3;
+  data.all_alive_rate = 30;
+  for (const c of data.characters) {
+    c.survival_rate = 70;
+    c.survived_battles = 7;
+  }
+  data.characters[3].enabled = false;
+  await bossButton.handlers.click();
+  assert(text(body).includes("全员存活场次 3"));
+  assert(text(body).includes("全员存活比例 30%"));
+  assert(text(body).includes("角色存活率"));
+  assert(text(body).includes("70%"));
+  assert(text(body).includes("存活 7 / 10 场"));
+  assert(text(body).includes("未参战"));
+  assert(urls.includes("/api/battle/simulate-batch-with-boss"));
+  assert.equal(bossButton.disabled, false);
+  config.characters[0].stats.speed = 9999;
+  const exportButton = nodes.find((n) => n.className === "batch-export-button");
+  assert.equal(exportButton.hidden, false);
+  assert.equal(exportButton.textContent, undefined);
+  assert.equal(exportButton.children[0].tag, "svg");
+  assert.equal(exportButton.title, "导出战斗结果 PNG");
+  await exportButton.handlers.click();
+  assert.equal(exported.snapshot.characters[0].stats.speed, 1318);
+  assert.equal(exported.result.all_alive_rate, 30);
+  assert.equal(exportButton.disabled, false);
+  const xlsxButton = nodes.find((n) => n.title === "导出战斗结果 XLSX");
+  assert.equal(xlsxButton.hidden, false);
+  await xlsxButton.handlers.click();
+  assert(exported.xlsx);
+  assert.equal(exported.snapshot.characters[0].stats.speed, 1318);
+  assert.equal(xlsxButton.disabled, false);
+  console.log(
+    "PASS: independent Boss endpoint; requested statistics layout, elapsed, four roles, effect means and live custom percentile",
+  );
+})().catch((e) => {
+  console.error(e);
+  process.exitCode = 1;
+});

@@ -1,73 +1,585 @@
- 'use strict';
-(()=>{
- const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
- const dialog=el('dialog');dialog.className='configuration-dialog';dialog.id='configuration-library';document.body.append(dialog);
- const heading=el('div');heading.className='configuration-heading';heading.append(el('h2','配置库'));const close=el('button','×');close.type='button';close.addEventListener('click',()=>dialog.close());heading.append(close);dialog.append(heading);
- const category=el('select');category.setAttribute('aria-label','配置库分类');for(const [value,label] of [['regular','常规配置库'],['special','特殊配置库']]){const option=el('option',label);option.value=value;category.append(option);}category.value='regular';dialog.append(category);
- const libraryBar=el('div');libraryBar.className='player-library-bar';const librarySelect=el('select');librarySelect.setAttribute('aria-label','选择配置库');libraryBar.append(librarySelect);dialog.append(libraryBar);
- const layout=el('div');layout.className='trophy-layout';const sidebar=el('div'),editor=el('div');layout.append(sidebar,editor);dialog.append(layout);const search=el('input');search.type='search';search.placeholder='搜索配置名称';search.setAttribute('aria-label','搜索配置名称');const list=el('div');list.className='trophy-list-results';sidebar.append(search,list);editor.append(el('h3','配置设置'));
- const controls=el('div');controls.className='configuration-controls';controls.setAttribute('style','grid-template-columns:1fr');const select=el('select');select.setAttribute('aria-label','配置列表');const name=el('input');name.placeholder='填写配置名称';name.maxLength=120;name.setAttribute('aria-label','配置名称');select.hidden=true;controls.append(select,name);editor.append(controls);
- const actions=el('div');actions.className='configuration-actions';editor.append(actions);const info=el('p','配置保存在服务端配置库。选择配置后可加载、复制或导出；新增配置使用空白队伍。');editor.append(info);
- const file=el('input');file.type='file';file.accept='.json,application/json';file.hidden=true;dialog.append(file);
- let items=[],active='',selected='',busy=false,pending=null;const activeByType={};let libraries=[],libraryId='default_regular';const defaultLibraries=()=>[['regular','默认常规配置库'],['special','默认特殊配置库']].map(([configurationType,name])=>({id:'default_'+configurationType,name,configurationType,default:true}));const itemLibrary=item=>item.libraryId||'default_'+(item.configuration.configurationType||'regular');
- const feedback=el('p');feedback.className='configuration-feedback';feedback.setAttribute('role','status');editor.append(feedback);
- const toast=m=>{feedback.textContent=m;window.showToast(m);};
- async function request(path='',method='GET',body){if(window.AppRequests)await window.AppRequests.ready;const response=await (window.AppRequests?.fetch||fetch)('/api/configurations'+path,{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,cache:'no-store'});const value=await response.json();if(!response.ok)throw Error(value.error||'配置接口失败');return value;}
- function unique(base){let value=base,i=2;while(items.some(x=>itemLibrary(x)===libraryId&&x.name===value))value=base+' '+i++;return value;}
- function absorb(result){items=result.configurations;libraries=result.libraries||defaultLibraries();}
- function render(){
-  const available=libraries.filter(l=>l.configurationType===category.value);if(!available.some(l=>l.id===libraryId))libraryId='default_'+category.value;
-  librarySelect.replaceChildren();for(const lib of available){const option=el('option',lib.name);option.value=lib.id;librarySelect.append(option);}librarySelect.value=libraryId;
-  const visible=items.filter(item=>itemLibrary(item)===libraryId);if(!visible.some(item=>item.id===selected))selected='';
-  select.replaceChildren();const placeholder=el('option','请选择配置');placeholder.value='';select.append(placeholder);list.replaceChildren();
-  for(const item of visible){const option=el('option',item.name);option.value=item.id;select.append(option);if(search.value&&!item.name.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase()))continue;const row=el('button',item.name);row.type='button';row.className=item.id===selected?'selected':'';row.addEventListener('click',()=>{selected=item.id;pending=null;render();});list.append(row);}
-  if(!list.children.length)list.append(el('p','此库暂无匹配的配置'));
-  select.value=selected;name.value=items.find(x=>x.id===selected)?.name||'';saveCurrent.textContent='保存当前配置';removeLibrary.disabled=libraryId==='default_'+category.value;
-  const item=items.find(x=>x.id===selected);copyRegular.hidden=item?.configuration.configurationType!=='special';info.textContent=item?'配置类型：'+(category.value==='special'?'特殊配置':'常规配置')+' · '+(item.configuration.characters?.filter(c=>c.enabled!==false).length||0)+' 名参战角色。点击加载配置后可在主界面调整。':'选择或新增配置；调整主界面队伍后点击保存当前配置。';
- }
- async function refresh(){const result=await request();absorb(result);render();return result;}
- async function setCurrent(item){category.value=item.configuration.configurationType||'regular';libraryId=itemLibrary(item);active=selected=item.id;activeByType[category.value]=item.id;pending=null;await window.applyTeamConfiguration(item.configuration);render();document.querySelector('#save-state').textContent='已加载配置：'+item.name;}
- function canReplace(){return document.querySelector('#save-state').textContent!=='有未保存的修改'||confirm('当前配置有未保存的修改，是否放弃？');}
- async function persist(configuration,id='',label=name.value,activate=true){configuration=window.normalizeTeamConfiguration(configuration);const kind=configuration.configurationType||'regular';const owner=id?itemLibrary(items.find(x=>x.id===id)):category.value===kind?libraryId:'default_'+kind;const result=await request(id?'/'+encodeURIComponent(id):'',id?'PUT':'POST',{name:label.trim(),configuration,activate,libraryId:owner});absorb(result);libraryId=itemLibrary(result.item);category.value=result.item.configuration.configurationType||'regular';selected=result.item.id;if(activate){active=result.item.id;activeByType[category.value]=active;pending=null;}render();if(activate)document.querySelector('#save-state').textContent='已保存到配置库：'+result.item.name;toast('配置已保存');return result.item;}
- async function run(fn){if(busy)return;busy=true;try{await ready;await fn();}catch(error){toast(error.message);}finally{busy=false;}}
- function button(label,fn){const b=el('button',label);b.type='button';b.addEventListener('click',()=>run(fn));actions.append(b);return b;}
- const libraryButton=(label,handler)=>{const button=el('button',label);button.type='button';button.addEventListener('click',handler);libraryBar.append(button);return button;};
- function editLibrary(copy=false){window.PlayerLibraries.nameDialog(copy?'复制当前库':'新建库','','在'+(category.value==='special'?'特殊配置':'常规配置')+'分类中创建独立配置库。',async name=>{const result=await request('/libraries','POST',{name,configurationType:category.value,copy,copyFrom:libraryId});absorb(result);libraryId=result.library.id;selected='';pending=null;render();toast(copy?'配置库已复制':'配置库已创建');});}
- libraryButton('＋ 新建库',()=>editLibrary());libraryButton('复制当前库',()=>editLibrary(true));
- libraryButton('重命名库',()=>{const lib=libraries.find(l=>l.id===libraryId);if(!lib)return;window.PlayerLibraries.nameDialog('重命名库',lib.name,'修改库名称，保留库内所有配置。',async name=>{absorb(await request('/libraries/'+encodeURIComponent(lib.id),'PUT',{name}));render();toast('配置库已重命名');});});
- const removeLibrary=libraryButton('删除库',()=>run(async()=>{const lib=libraries.find(l=>l.id===libraryId);if(!lib||lib.default)return;if(!confirm('删除“'+lib.name+'”及其中全部配置？'))return;absorb(await request('/libraries/'+encodeURIComponent(lib.id),'DELETE'));if(!items.some(i=>i.id===active)){active='';document.querySelector('#save-state').textContent='有未保存的修改';}libraryId='default_'+category.value;selected='';pending=null;render();toast('配置库已删除');}));
- librarySelect.addEventListener('change',()=>{libraryId=librarySelect.value;selected='';pending=null;render();});search.addEventListener('input',()=>{const typed=name.value;render();if(!selected)name.value=typed;});
- category.addEventListener('change',()=>{selected='';pending=null;libraryId='default_'+category.value;render();info.textContent=category.value==='special'?'特殊配置从Boss库选择敌方，从人物库选择四个角色，再配置技能组、装备和属性来源。':'常规配置可直接填写角色面板，原有配置均保留在此。';});
- select.addEventListener('change',()=>{selected=select.value;name.value=items.find(x=>x.id===selected)?.name||'';pending=null;});
- button('加载配置',async()=>{const item=items.find(x=>x.id===selected);if(!item)throw Error('请选择配置');if(!canReplace())return;await request('/'+encodeURIComponent(item.id)+'/activate','POST',{});await setCurrent(item);dialog.close();toast('配置已加载');});
- const newConfiguration=button('新增配置',async()=>{if(!canReplace())return;const item=await persist(window.newTeamConfiguration(category.value),'',unique(category.value==='special'?'新特殊配置':'新配置'));await setCurrent(item);toast('已新增配置');});
- button('复制配置',async()=>{const original=items.find(x=>x.id===selected);if(!original)throw Error('请选择要复制的配置');if(!canReplace())return;const item=await persist(structuredClone(original.configuration),'',unique(original.name+' 副本'));await setCurrent(item);toast('配置已复制');});
- const copyRegular=button('复制为常规配置',async()=>{
-  const original=items.find(x=>x.id===selected);if(original?.configuration.configurationType!=='special')throw Error('请选择特殊配置');
-  const popup=el('dialog');popup.className='library-name-dialog';const form=el('form'),destination=el('select'),label=el('input'),error=el('p'),cancel=el('button','取消'),submit=el('button','复制');
-  destination.setAttribute('aria-label','目标常规配置库');for(const lib of libraries.filter(l=>l.configurationType==='regular')){const option=el('option',lib.name);option.value=lib.id;destination.append(option);}destination.value='default_regular';
-  label.setAttribute('aria-label','常规配置名称');label.required=true;label.maxLength=120;label.value=original.name+'（常规）';submit.type='submit';submit.className='primary';cancel.type='button';cancel.onclick=()=>popup.close();
-  const actions=el('div');actions.className='library-name-actions';actions.append(cancel,submit);form.append(el('h2','复制为常规配置'),el('p','将特殊配置计算出的面板数值固定为可手动编辑的常规面板；保留技能组、装备和契约战斗状态。域之环选择框隐藏，但其动态增益、献祭及其他限制仍完整参与战斗。'),destination,label,error,actions);popup.append(form);dialog.append(popup);popup.addEventListener('close',()=>popup.remove());
-  form.onsubmit=async event=>{event.preventDefault();if(!form.reportValidity())return;submit.disabled=true;try{const result=await request('/'+encodeURIComponent(original.id)+'/copy-regular','POST',{name:label.value.trim(),libraryId:destination.value});absorb(result);category.value='regular';libraryId=result.item.libraryId;selected=result.item.id;pending=null;render();popup.close();toast('已复制到常规配置库，点击加载配置即可使用');}catch(e){error.textContent=e.message;}finally{submit.disabled=false;}};popup.showModal();
- });
- button('删除配置',async()=>{const item=items.find(x=>x.id===selected);if(!item)throw Error('请选择要删除的配置');if(!confirm('确定删除配置“'+item.name+'”？删除后无法恢复。'))return;const result=await request('/'+encodeURIComponent(item.id),'DELETE');items=result.configurations;if(active===item.id){active='';pending=null;document.querySelector('#save-state').textContent='有未保存的修改';}selected='';render();toast('配置已删除');});
- const saveCurrent=button('保存当前配置',async()=>{
-  const label=name.value.trim();if(!label)throw Error('请填写配置名称');
-  const original=items.find(item=>item.id===selected);
-  if(original&&label!==original.name){
-   const result=await request('/'+encodeURIComponent(original.id)+'/name','PUT',{name:label});absorb(result);render();
-   if(active===original.id&&document.querySelector('#save-state').textContent!=='有未保存的修改')document.querySelector('#save-state').textContent='已保存到配置库：'+result.item.name;
-   toast('配置名称已保存；队伍内容保持原样');return;
+"use strict";
+(() => {
+  const el = (tag, text) => {
+    const n = document.createElement(tag);
+    if (text !== undefined) n.textContent = text;
+    return n;
+  };
+  const dialog = el("dialog");
+  dialog.className = "configuration-dialog";
+  dialog.id = "configuration-library";
+  document.body.append(dialog);
+  const heading = el("div");
+  heading.className = "configuration-heading";
+  heading.append(el("h2", "配置库"));
+  const close = el("button", "×");
+  close.type = "button";
+  close.addEventListener("click", () => dialog.close());
+  heading.append(close);
+  dialog.append(heading);
+  const category = el("select");
+  category.setAttribute("aria-label", "配置库分类");
+  for (const [value, label] of [
+    ["regular", "常规配置库"],
+    ["special", "特殊配置库"],
+  ]) {
+    const option = el("option", label);
+    option.value = value;
+    category.append(option);
   }
-  const configuration=pending||window.getTeamConfigurationForSave();if(!configuration)throw Error('配置格式或数值无效，请检查后再保存');
-  await persist(configuration,active&&selected===active?active:'',label);
- });
- name.addEventListener('input',()=>{const original=items.find(item=>item.id===selected);saveCurrent.textContent=original&&name.value.trim()!==original.name?'保存配置名称':'保存当前配置';feedback.textContent='';});
- button('导出配置',async()=>{const item=items.find(x=>x.id===selected);if(!item)throw Error('请选择要导出的配置');const url=URL.createObjectURL(new Blob([JSON.stringify({name:item.name,configuration:item.configuration},null,2)],{type:'application/json'}));const a=el('a');a.href=url;a.download=item.name.replace(/[<>:"/\\|?*]/g,'_')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('配置已导出');});
- button('导入配置',async()=>file.click());
- file.addEventListener('change',()=>run(async()=>{const f=file.files[0];if(!f)return;try{if(f.size>1024*1024)throw Error('配置文件不能超过1MB');const value=JSON.parse(await f.text());const item=await persist(value.configuration||value,'',unique(value.name||f.name.replace(/\.json$/i,'')),false);selected=item.id;render();toast('配置已导入，点击加载配置即可使用');}finally{file.value='';}}));
- sidebar.replaceChildren(newConfiguration,search,list);
- const open=document.querySelector('#open-configuration-library');open.addEventListener('click',()=>run(async()=>{await refresh();selected=active;category.value=items.find(x=>x.id===active)?.configuration.configurationType||category.value;libraryId=items.find(x=>x.id===active)?itemLibrary(items.find(x=>x.id===active)):libraryId;pending=null;render();dialog.showModal();}));
- window.ConfigurationLibrary={selectType(type){category.value=type;active=items.some(i=>i.id===activeByType[type])?activeByType[type]:'';selected=active;libraryId=items.find(i=>i.id===active)?itemLibrary(items.find(i=>i.id===active)):'default_'+type;pending=null;render();},save:configuration=>run(async()=>{if(active&&((items.find(x=>x.id===active)?.configuration.configurationType||'regular')===(configuration.configurationType||'regular'))){const label=items.find(x=>x.id===active)?.name;if(!label)throw Error('当前配置不存在');await persist(configuration,active,label);}else{pending=configuration;category.value=configuration.configurationType||'regular';if(!libraries.some(l=>l.id===libraryId&&l.configurationType===category.value))libraryId='default_'+category.value;selected='';render();name.value=unique(category.value==='special'?'新特殊配置':'新常规配置');dialog.showModal();toast('填写配置名称后，点击保存当前配置');}})};
- const ready=(async()=>{try{const result=await refresh();const legacy=localStorage.getItem('dungeon2-team-v1');if(!items.length&&legacy&&result.initialized!==true){const item=await persist(JSON.parse(legacy),'','原浏览器配置');await setCurrent(item);toast('原配置已迁移到服务端配置库');}else{const item=items.find(x=>x.id===result.activeId);if(item&&document.querySelector('#save-state').textContent!=='有未保存的修改')await setCurrent(item);}}catch(error){toast('配置库读取失败：'+error.message);}finally{window.AppRequests?.finish();}})();
+  category.value = "regular";
+  dialog.append(category);
+  const libraryBar = el("div");
+  libraryBar.className = "player-library-bar";
+  const librarySelect = el("select");
+  librarySelect.setAttribute("aria-label", "选择配置库");
+  libraryBar.append(librarySelect);
+  dialog.append(libraryBar);
+  const layout = el("div");
+  layout.className = "trophy-layout";
+  const sidebar = el("div"),
+    editor = el("div");
+  layout.append(sidebar, editor);
+  dialog.append(layout);
+  const search = el("input");
+  search.type = "search";
+  search.placeholder = "搜索配置名称";
+  search.setAttribute("aria-label", "搜索配置名称");
+  const list = el("div");
+  list.className = "trophy-list-results";
+  sidebar.append(search, list);
+  editor.append(el("h3", "配置设置"));
+  const controls = el("div");
+  controls.className = "configuration-controls";
+  controls.setAttribute("style", "grid-template-columns:1fr");
+  const select = el("select");
+  select.setAttribute("aria-label", "配置列表");
+  const name = el("input");
+  name.placeholder = "填写配置名称";
+  name.maxLength = 120;
+  name.setAttribute("aria-label", "配置名称");
+  select.hidden = true;
+  controls.append(select, name);
+  editor.append(controls);
+  const actions = el("div");
+  actions.className = "configuration-actions";
+  editor.append(actions);
+  const info = el(
+    "p",
+    "配置保存在服务端配置库。选择配置后可加载、复制或导出；新增配置使用空白队伍。",
+  );
+  editor.append(info);
+  const file = el("input");
+  file.type = "file";
+  file.accept = ".json,application/json";
+  file.hidden = true;
+  dialog.append(file);
+  let items = [],
+    active = "",
+    selected = "",
+    busy = false,
+    pending = null;
+  const activeByType = {};
+  let libraries = [],
+    libraryId = "default_regular";
+  const defaultLibraries = () =>
+    [
+      ["regular", "默认常规配置库"],
+      ["special", "默认特殊配置库"],
+    ].map(([configurationType, name]) => ({
+      id: "default_" + configurationType,
+      name,
+      configurationType,
+      default: true,
+    }));
+  const itemLibrary = (item) =>
+    item.libraryId || "default_" + (item.configuration.configurationType || "regular");
+  const feedback = el("p");
+  feedback.className = "configuration-feedback";
+  feedback.setAttribute("role", "status");
+  editor.append(feedback);
+  const toast = (m) => {
+    feedback.textContent = m;
+    window.showToast(m);
+  };
+  async function request(path = "", method = "GET", body) {
+    if (window.AppRequests) await window.AppRequests.ready;
+    const response = await (window.AppRequests?.fetch || fetch)("/api/configurations" + path, {
+      method,
+      headers: body ? { "Content-Type": "application/json" } : {},
+      body: body ? JSON.stringify(body) : undefined,
+      cache: "no-store",
+    });
+    const value = await response.json();
+    if (!response.ok) throw Error(value.error || "配置接口失败");
+    return value;
+  }
+  function unique(base) {
+    let value = base,
+      i = 2;
+    while (items.some((x) => itemLibrary(x) === libraryId && x.name === value))
+      value = base + " " + i++;
+    return value;
+  }
+  function absorb(result) {
+    items = result.configurations;
+    libraries = result.libraries || defaultLibraries();
+  }
+  function render() {
+    const available = libraries.filter((l) => l.configurationType === category.value);
+    if (!available.some((l) => l.id === libraryId)) libraryId = "default_" + category.value;
+    librarySelect.replaceChildren();
+    for (const lib of available) {
+      const option = el("option", lib.name);
+      option.value = lib.id;
+      librarySelect.append(option);
+    }
+    librarySelect.value = libraryId;
+    const visible = items.filter((item) => itemLibrary(item) === libraryId);
+    if (!visible.some((item) => item.id === selected)) selected = "";
+    select.replaceChildren();
+    const placeholder = el("option", "请选择配置");
+    placeholder.value = "";
+    select.append(placeholder);
+    list.replaceChildren();
+    for (const item of visible) {
+      const option = el("option", item.name);
+      option.value = item.id;
+      select.append(option);
+      if (
+        search.value &&
+        !item.name.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase())
+      )
+        continue;
+      const row = el("button", item.name);
+      row.type = "button";
+      row.className = item.id === selected ? "selected" : "";
+      row.addEventListener("click", () => {
+        selected = item.id;
+        pending = null;
+        render();
+      });
+      list.append(row);
+    }
+    if (!list.children.length) list.append(el("p", "此库暂无匹配的配置"));
+    select.value = selected;
+    name.value = items.find((x) => x.id === selected)?.name || "";
+    saveCurrent.textContent = "保存当前配置";
+    removeLibrary.disabled = libraryId === "default_" + category.value;
+    const item = items.find((x) => x.id === selected);
+    copyRegular.hidden = item?.configuration.configurationType !== "special";
+    info.textContent = item
+      ? "配置类型：" +
+        (category.value === "special" ? "特殊配置" : "常规配置") +
+        " · " +
+        (item.configuration.characters?.filter((c) => c.enabled !== false).length || 0) +
+        " 名参战角色。点击加载配置后可在主界面调整。"
+      : "选择或新增配置；调整主界面队伍后点击保存当前配置。";
+  }
+  async function refresh() {
+    const result = await request();
+    absorb(result);
+    render();
+    return result;
+  }
+  async function setCurrent(item) {
+    category.value = item.configuration.configurationType || "regular";
+    libraryId = itemLibrary(item);
+    active = selected = item.id;
+    activeByType[category.value] = item.id;
+    pending = null;
+    await window.applyTeamConfiguration(item.configuration);
+    render();
+    document.querySelector("#save-state").textContent = "已加载配置：" + item.name;
+  }
+  function canReplace() {
+    return (
+      document.querySelector("#save-state").textContent !== "有未保存的修改" ||
+      confirm("当前配置有未保存的修改，是否放弃？")
+    );
+  }
+  async function persist(configuration, id = "", label = name.value, activate = true) {
+    configuration = window.normalizeTeamConfiguration(configuration);
+    const kind = configuration.configurationType || "regular";
+    const owner = id
+      ? itemLibrary(items.find((x) => x.id === id))
+      : category.value === kind
+        ? libraryId
+        : "default_" + kind;
+    const result = await request(id ? "/" + encodeURIComponent(id) : "", id ? "PUT" : "POST", {
+      name: label.trim(),
+      configuration,
+      activate,
+      libraryId: owner,
+    });
+    absorb(result);
+    libraryId = itemLibrary(result.item);
+    category.value = result.item.configuration.configurationType || "regular";
+    selected = result.item.id;
+    if (activate) {
+      active = result.item.id;
+      activeByType[category.value] = active;
+      pending = null;
+    }
+    render();
+    if (activate)
+      document.querySelector("#save-state").textContent = "已保存到配置库：" + result.item.name;
+    toast("配置已保存");
+    return result.item;
+  }
+  async function run(fn) {
+    if (busy) return;
+    busy = true;
+    try {
+      await ready;
+      await fn();
+    } catch (error) {
+      toast(error.message);
+    } finally {
+      busy = false;
+    }
+  }
+  function button(label, fn) {
+    const b = el("button", label);
+    b.type = "button";
+    b.addEventListener("click", () => run(fn));
+    actions.append(b);
+    return b;
+  }
+  const libraryButton = (label, handler) => {
+    const button = el("button", label);
+    button.type = "button";
+    button.addEventListener("click", handler);
+    libraryBar.append(button);
+    return button;
+  };
+  function editLibrary(copy = false) {
+    window.PlayerLibraries.nameDialog(
+      copy ? "复制当前库" : "新建库",
+      "",
+      "在" + (category.value === "special" ? "特殊配置" : "常规配置") + "分类中创建独立配置库。",
+      async (name) => {
+        const result = await request("/libraries", "POST", {
+          name,
+          configurationType: category.value,
+          copy,
+          copyFrom: libraryId,
+        });
+        absorb(result);
+        libraryId = result.library.id;
+        selected = "";
+        pending = null;
+        render();
+        toast(copy ? "配置库已复制" : "配置库已创建");
+      },
+    );
+  }
+  libraryButton("＋ 新建库", () => editLibrary());
+  libraryButton("复制当前库", () => editLibrary(true));
+  libraryButton("重命名库", () => {
+    const lib = libraries.find((l) => l.id === libraryId);
+    if (!lib) return;
+    window.PlayerLibraries.nameDialog(
+      "重命名库",
+      lib.name,
+      "修改库名称，保留库内所有配置。",
+      async (name) => {
+        absorb(await request("/libraries/" + encodeURIComponent(lib.id), "PUT", { name }));
+        render();
+        toast("配置库已重命名");
+      },
+    );
+  });
+  const removeLibrary = libraryButton("删除库", () =>
+    run(async () => {
+      const lib = libraries.find((l) => l.id === libraryId);
+      if (!lib || lib.default) return;
+      if (!confirm("删除“" + lib.name + "”及其中全部配置？")) return;
+      absorb(await request("/libraries/" + encodeURIComponent(lib.id), "DELETE"));
+      if (!items.some((i) => i.id === active)) {
+        active = "";
+        document.querySelector("#save-state").textContent = "有未保存的修改";
+      }
+      libraryId = "default_" + category.value;
+      selected = "";
+      pending = null;
+      render();
+      toast("配置库已删除");
+    }),
+  );
+  librarySelect.addEventListener("change", () => {
+    libraryId = librarySelect.value;
+    selected = "";
+    pending = null;
+    render();
+  });
+  search.addEventListener("input", () => {
+    const typed = name.value;
+    render();
+    if (!selected) name.value = typed;
+  });
+  category.addEventListener("change", () => {
+    selected = "";
+    pending = null;
+    libraryId = "default_" + category.value;
+    render();
+    info.textContent =
+      category.value === "special"
+        ? "特殊配置从Boss库选择敌方，从人物库选择四个角色，再配置技能组、装备和属性来源。"
+        : "常规配置可直接填写角色面板，原有配置均保留在此。";
+  });
+  select.addEventListener("change", () => {
+    selected = select.value;
+    name.value = items.find((x) => x.id === selected)?.name || "";
+    pending = null;
+  });
+  button("加载配置", async () => {
+    const item = items.find((x) => x.id === selected);
+    if (!item) throw Error("请选择配置");
+    if (!canReplace()) return;
+    await request("/" + encodeURIComponent(item.id) + "/activate", "POST", {});
+    await setCurrent(item);
+    dialog.close();
+    toast("配置已加载");
+  });
+  const newConfiguration = button("新增配置", async () => {
+    if (!canReplace()) return;
+    const item = await persist(
+      window.newTeamConfiguration(category.value),
+      "",
+      unique(category.value === "special" ? "新特殊配置" : "新配置"),
+    );
+    await setCurrent(item);
+    toast("已新增配置");
+  });
+  button("复制配置", async () => {
+    const original = items.find((x) => x.id === selected);
+    if (!original) throw Error("请选择要复制的配置");
+    if (!canReplace()) return;
+    const item = await persist(
+      structuredClone(original.configuration),
+      "",
+      unique(original.name + " 副本"),
+    );
+    await setCurrent(item);
+    toast("配置已复制");
+  });
+  const copyRegular = button("复制为常规配置", async () => {
+    const original = items.find((x) => x.id === selected);
+    if (original?.configuration.configurationType !== "special") throw Error("请选择特殊配置");
+    const popup = el("dialog");
+    popup.className = "library-name-dialog";
+    const form = el("form"),
+      destination = el("select"),
+      label = el("input"),
+      error = el("p"),
+      cancel = el("button", "取消"),
+      submit = el("button", "复制");
+    destination.setAttribute("aria-label", "目标常规配置库");
+    for (const lib of libraries.filter((l) => l.configurationType === "regular")) {
+      const option = el("option", lib.name);
+      option.value = lib.id;
+      destination.append(option);
+    }
+    destination.value = "default_regular";
+    label.setAttribute("aria-label", "常规配置名称");
+    label.required = true;
+    label.maxLength = 120;
+    label.value = original.name + "（常规）";
+    submit.type = "submit";
+    submit.className = "primary";
+    cancel.type = "button";
+    cancel.onclick = () => popup.close();
+    const actions = el("div");
+    actions.className = "library-name-actions";
+    actions.append(cancel, submit);
+    form.append(
+      el("h2", "复制为常规配置"),
+      el(
+        "p",
+        "将特殊配置计算出的面板数值固定为可手动编辑的常规面板；保留技能组、装备和契约战斗状态。域之环选择框隐藏，但其动态增益、献祭及其他限制仍完整参与战斗。",
+      ),
+      destination,
+      label,
+      error,
+      actions,
+    );
+    popup.append(form);
+    dialog.append(popup);
+    popup.addEventListener("close", () => popup.remove());
+    form.onsubmit = async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      submit.disabled = true;
+      try {
+        const result = await request(
+          "/" + encodeURIComponent(original.id) + "/copy-regular",
+          "POST",
+          { name: label.value.trim(), libraryId: destination.value },
+        );
+        absorb(result);
+        category.value = "regular";
+        libraryId = result.item.libraryId;
+        selected = result.item.id;
+        pending = null;
+        render();
+        popup.close();
+        toast("已复制到常规配置库，点击加载配置即可使用");
+      } catch (e) {
+        error.textContent = e.message;
+      } finally {
+        submit.disabled = false;
+      }
+    };
+    popup.showModal();
+  });
+  button("删除配置", async () => {
+    const item = items.find((x) => x.id === selected);
+    if (!item) throw Error("请选择要删除的配置");
+    if (!confirm("确定删除配置“" + item.name + "”？删除后无法恢复。")) return;
+    const result = await request("/" + encodeURIComponent(item.id), "DELETE");
+    items = result.configurations;
+    if (active === item.id) {
+      active = "";
+      pending = null;
+      document.querySelector("#save-state").textContent = "有未保存的修改";
+    }
+    selected = "";
+    render();
+    toast("配置已删除");
+  });
+  const saveCurrent = button("保存当前配置", async () => {
+    const label = name.value.trim();
+    if (!label) throw Error("请填写配置名称");
+    const original = items.find((item) => item.id === selected);
+    if (original && label !== original.name) {
+      const result = await request("/" + encodeURIComponent(original.id) + "/name", "PUT", {
+        name: label,
+      });
+      absorb(result);
+      render();
+      if (
+        active === original.id &&
+        document.querySelector("#save-state").textContent !== "有未保存的修改"
+      )
+        document.querySelector("#save-state").textContent = "已保存到配置库：" + result.item.name;
+      toast("配置名称已保存；队伍内容保持原样");
+      return;
+    }
+    const configuration = pending || window.getTeamConfigurationForSave();
+    if (!configuration) throw Error("配置格式或数值无效，请检查后再保存");
+    await persist(configuration, active && selected === active ? active : "", label);
+  });
+  name.addEventListener("input", () => {
+    const original = items.find((item) => item.id === selected);
+    saveCurrent.textContent =
+      original && name.value.trim() !== original.name ? "保存配置名称" : "保存当前配置";
+    feedback.textContent = "";
+  });
+  button("导出配置", async () => {
+    const item = items.find((x) => x.id === selected);
+    if (!item) throw Error("请选择要导出的配置");
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify({ name: item.name, configuration: item.configuration }, null, 2)], {
+        type: "application/json",
+      }),
+    );
+    const a = el("a");
+    a.href = url;
+    a.download = item.name.replace(/[<>:"/\\|?*]/g, "_") + ".json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast("配置已导出");
+  });
+  button("导入配置", async () => file.click());
+  file.addEventListener("change", () =>
+    run(async () => {
+      const f = file.files[0];
+      if (!f) return;
+      try {
+        if (f.size > 1024 * 1024) throw Error("配置文件不能超过1MB");
+        const value = JSON.parse(await f.text());
+        const item = await persist(
+          value.configuration || value,
+          "",
+          unique(value.name || f.name.replace(/\.json$/i, "")),
+          false,
+        );
+        selected = item.id;
+        render();
+        toast("配置已导入，点击加载配置即可使用");
+      } finally {
+        file.value = "";
+      }
+    }),
+  );
+  sidebar.replaceChildren(newConfiguration, search, list);
+  const open = document.querySelector("#open-configuration-library");
+  open.addEventListener("click", () =>
+    run(async () => {
+      await refresh();
+      selected = active;
+      category.value =
+        items.find((x) => x.id === active)?.configuration.configurationType || category.value;
+      libraryId = items.find((x) => x.id === active)
+        ? itemLibrary(items.find((x) => x.id === active))
+        : libraryId;
+      pending = null;
+      render();
+      dialog.showModal();
+    }),
+  );
+  window.ConfigurationLibrary = {
+    selectType(type) {
+      category.value = type;
+      active = items.some((i) => i.id === activeByType[type]) ? activeByType[type] : "";
+      selected = active;
+      libraryId = items.find((i) => i.id === active)
+        ? itemLibrary(items.find((i) => i.id === active))
+        : "default_" + type;
+      pending = null;
+      render();
+    },
+    save: (configuration) =>
+      run(async () => {
+        if (
+          active &&
+          (items.find((x) => x.id === active)?.configuration.configurationType || "regular") ===
+            (configuration.configurationType || "regular")
+        ) {
+          const label = items.find((x) => x.id === active)?.name;
+          if (!label) throw Error("当前配置不存在");
+          await persist(configuration, active, label);
+        } else {
+          pending = configuration;
+          category.value = configuration.configurationType || "regular";
+          if (!libraries.some((l) => l.id === libraryId && l.configurationType === category.value))
+            libraryId = "default_" + category.value;
+          selected = "";
+          render();
+          name.value = unique(category.value === "special" ? "新特殊配置" : "新常规配置");
+          dialog.showModal();
+          toast("填写配置名称后，点击保存当前配置");
+        }
+      }),
+  };
+  const ready = (async () => {
+    try {
+      const result = await refresh();
+      const legacy = localStorage.getItem("dungeon2-team-v1");
+      if (!items.length && legacy && result.initialized !== true) {
+        const item = await persist(JSON.parse(legacy), "", "原浏览器配置");
+        await setCurrent(item);
+        toast("原配置已迁移到服务端配置库");
+      } else {
+        const item = items.find((x) => x.id === result.activeId);
+        if (item && document.querySelector("#save-state").textContent !== "有未保存的修改")
+          await setCurrent(item);
+      }
+    } catch (error) {
+      toast("配置库读取失败：" + error.message);
+    } finally {
+      window.AppRequests?.finish();
+    }
+  })();
 })();

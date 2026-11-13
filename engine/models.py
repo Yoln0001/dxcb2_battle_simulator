@@ -1,10 +1,14 @@
 """角色面板及角色接口；队友技巧通过参数传入，不再依赖全局配置。"""
+
 from dataclasses import dataclass
 from abc import ABC
 from .battle import (
-    simulate_attack_berserker, simulate_attack_holy_lancer_1,
-    simulate_attack_holy_lancer_2, simulate_attack_nightmare,
+    simulate_attack_berserker,
+    simulate_attack_holy_lancer_1,
+    simulate_attack_holy_lancer_2,
+    simulate_attack_nightmare,
 )
+
 
 @dataclass
 class CharacterConfig:
@@ -47,7 +51,8 @@ class Berserker(Character):
             self.config.lootPhysicalDamage,
             self.config.lootHitRate,
             self.config.lootCriticalStrikeDamageCoefficient,
-            self.holy_lancer_1_tech_value)
+            self.holy_lancer_1_tech_value,
+        )
 
 
 class Holy_lancer_1(Character):
@@ -64,7 +69,8 @@ class Holy_lancer_1(Character):
             self.config.lootPhysicalDamage,
             self.config.lootHitRate,
             self.config.lootCriticalStrikeDamageCoefficient,
-            self.holy_lancer_1_tech_value)
+            self.holy_lancer_1_tech_value,
+        )
 
 
 class Holy_lancer_2(Character):
@@ -81,13 +87,17 @@ class Holy_lancer_2(Character):
             self.config.lootPhysicalDamage,
             self.config.lootHitRate,
             self.config.lootCriticalStrikeDamageCoefficient,
-            self.holy_lancer_1_tech_value)
+            self.holy_lancer_1_tech_value,
+        )
 
 
 class Nightmare(Character):
     def simulate_attack(self) -> float:
-        return simulate_attack_nightmare(self.config.speed, self.config.strength, self.config.weaponPower,
-                                         self.config.lootCriticalStrikeDamageCoefficient,
-                                         self.config.loopDamage, self.config.lootPhysicalDamage)
-
-
+        return simulate_attack_nightmare(
+            self.config.speed,
+            self.config.strength,
+            self.config.weaponPower,
+            self.config.lootCriticalStrikeDamageCoefficient,
+            self.config.loopDamage,
+            self.config.lootPhysicalDamage,
+        )
