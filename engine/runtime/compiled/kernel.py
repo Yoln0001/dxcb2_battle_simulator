@@ -4,7 +4,7 @@
 import math
 import numpy as np
 from numba import njit, prange
-from .rng import uniform, shuffle
+from .rng import uniform, shuffle, seeded_state
 from . import boss as boss_combat
 
 
@@ -171,6 +171,93 @@ def refresh_rings(stats, alive, hp, maximum, rings, target_hp):
 
 
 @njit(cache=True)
+def swap_rows(rows, i, j):
+    for k in range(rows.shape[1]):
+        value = rows[i, k]
+        rows[i, k] = rows[j, k]
+        rows[j, k] = value
+
+
+@njit(cache=True)
+def step_at(moment, step):
+    """step之后第一个满足 s / 10 >= moment 的时间步；moment已到则为下一步。"""
+    s = int(math.ceil(moment * 10.0 - 1e-6))
+    if s <= step:
+        return step + 1
+    while s / 10.0 < moment:
+        s += 1
+    while s - 1 > step and (s - 1) / 10.0 >= moment:
+        s -= 1
+    return s
+
+
+@njit(cache=True)
+def next_event_step(
+    step,
+    last_step,
+    settings,
+    boss,
+    kill_next,
+    alive,
+    rings,
+    regen,
+    active,
+    expiry,
+    contract_active,
+    contract_next,
+    current,
+    operating,
+    waiting,
+    forced,
+    last,
+    cooldown,
+    stats,
+):
+    """普通战斗中下一个可能发生事件的时间步，中间的步什么都不会发生，也不消耗随机数。
+
+    只会偏早不会偏晚：任何一项的时刻已到（例如角色到了行动时限但条件未满足）就返回下一步。
+    """
+    nearest = last_step + 1
+    # 每整秒结算的固定持续伤害和群体献祭。
+    if len(settings) > 13 or settings[3] != 0:
+        nearest = min(nearest, (step // 10 + 1) * 10)
+    for k in range(boss.shape[0]):
+        if boss[k, 0]:
+            nearest = min(nearest, step_at(boss[k, 2], step))
+            if (k == 0 or k == 7) and boss[k, 3] <= boss[k, 2]:
+                nearest = min(nearest, step_at(boss[k, 3], step))
+    if kill_next >= 0:
+        nearest = min(nearest, step_at(kill_next, step))
+    if contract_active:
+        nearest = min(nearest, step_at(contract_next, step))
+    for c in range(4):
+        for b in range(active.shape[1]):
+            if active[c, b] and expiry[c, b] != math.inf:
+                nearest = min(nearest, step_at(expiry[c, b], step))
+        if not alive[c]:
+            continue
+        if rings[c, 0] == 6:
+            nearest = min(nearest, step_at(rings[c, 5], step))
+        for b in range(regen.shape[1]):
+            if regen[c, b, 3] and regen[c, b, 1] <= regen[c, b, 2]:
+                nearest = min(nearest, step_at(regen[c, b, 1], step))
+        if current[c] >= 0:
+            if operating[c] >= 0:
+                moment = operating[c]
+            elif waiting[c] >= 0:
+                moment = waiting[c]
+            elif forced[c] >= 0:
+                moment = forced[c]
+            elif last[c] == 0 and settings[4 + c]:
+                moment = 0.1
+            else:
+                wait = max(0.5, add_time(1.5 + cooldown[c] + stats[c, 29], ratio(stats[c])))
+                moment = add_time(last[c], wait)
+            nearest = min(nearest, step_at(moment, step))
+    return nearest
+
+
+@njit(cache=True)
 def battle(
     initial,
     enabled,
@@ -239,7 +326,13 @@ def battle(
         contract_active = False
     events = np.zeros((active.size + len(immune) + 3, 4), np.float64)
     last_step = int(settings[0] * 10 + 1e-9)
-    for step in range(1, last_step + 1):
+    # 逐0.1秒推进，但普通战斗只处理“可能发生事件”的时间步（见next_event_step）。
+    # 含Boss攻击时保持逐步结算，与参考引擎一致。
+    step = 0
+    next_step = 1
+    while next_step <= last_step:
+        step = next_step
+        next_step = step + 1
         if target_hp <= 0:
             break
         time = step / 10.0
@@ -343,29 +436,31 @@ def battle(
             begin = count
             for b in range(active.shape[1]):
                 if active[c, b] and expiry[c, b] <= time:
-                    events[count] = np.array([0, c, b, generation[c, b]], np.float64)
+                    events[count, 0] = 0
+                    events[count, 1] = c
+                    events[count, 2] = b
+                    events[count, 3] = generation[c, b]
                     count += 1
             for i in range(begin + 1, count):
                 j = i
                 while j > begin and order[c, int(events[j, 2])] < order[c, int(events[j - 1, 2])]:
-                    tmp = events[j].copy()
-                    events[j] = events[j - 1]
-                    events[j - 1] = tmp
+                    swap_rows(events, j, j - 1)
                     j -= 1
         begin = count
         for k in range(len(immune)):
             if boss[k, 0]:
                 if boss[k, 2] <= time and not ((k == 0 or k == 7) and boss[k, 3] <= boss[k, 2]):
-                    events[count] = np.array([1, k, boss[k, 4], boss[k, 6]], np.float64)
+                    events[count, 0] = 1
+                    events[count, 1] = k
+                    events[count, 2] = boss[k, 4]
+                    events[count, 3] = boss[k, 6]
                     count += 1
                 if (k == 0 or k == 7) and boss[k, 3] <= time and boss[k, 3] <= boss[k, 2]:
                     pass  # DOT has already resolved at the start of the tick.
         for i in range(begin + 1, count):
             j = i
             while j > begin and events[j, 3] < events[j - 1, 3]:
-                tmp = events[j].copy()
-                events[j] = events[j - 1]
-                events[j - 1] = tmp
+                swap_rows(events, j, j - 1)
                 j -= 1
         if contract_active and contract_next <= time:
             events[count, 0] = 3
@@ -925,6 +1020,30 @@ def battle(
                         forced[c] = add_time(time, 0.5)
         if not np.any(alive) or target_hp <= 0:
             break
+        if boss_data is None and step < last_step:
+            # 下一步开头本来就会刷新域之环；提前刷新使下面的行动时限按最新属性计算。
+            refresh_rings(stats, alive, hp, maximum, rings, target_hp)
+            next_step = next_event_step(
+                step,
+                last_step,
+                settings,
+                boss,
+                kill_next,
+                alive,
+                rings,
+                regen,
+                active,
+                expiry,
+                contract_active,
+                contract_next,
+                current,
+                operating,
+                waiting,
+                forced,
+                last,
+                cooldown,
+                stats,
+            )
     if not survival_captured:
         survival_at_all_kill = alive.copy()
     return total, target_hp <= 0, totals, counts, stats, hp, alive, survival_at_all_kill
@@ -987,6 +1106,75 @@ def chunk(
             initial_regen,
             initial_rings,
             random_states[i].copy(),
+            boss_data,
+        )
+        damage_out[i] = total
+        passed[i] = success
+        characters[i] = values
+        counts[i] = procs
+        all_alive[i] = np.all(survivors)
+        character_alive[i] = survivors
+    return damage_out, passed, characters, counts, all_alive, character_alive
+
+
+@njit(cache=True, parallel=True, nogil=True)
+def chunk_seeded(
+    initial,
+    enabled,
+    health,
+    opening,
+    opening_active,
+    opening_order,
+    target,
+    immune,
+    settings,
+    smeta,
+    scoef,
+    nodes,
+    entries,
+    proc,
+    ranges,
+    emeta,
+    econ,
+    ebase,
+    elinear,
+    initial_regen,
+    initial_rings,
+    seeds,
+    boss_data=None,
+):
+    # seeds为int64数组；每场的随机数状态在各自线程里由种子生成，结果与chunk逐场相同。
+    n = len(seeds)
+    damage_out = np.zeros(n)
+    passed = np.zeros(n, np.int64)
+    all_alive = np.zeros(n, np.int64)
+    character_alive = np.zeros((n, 4), np.int64)
+    characters = np.zeros((n, 4))
+    counts = np.zeros((n, len(proc)), np.int64)
+    for i in prange(n):
+        total, success, values, procs, _, _, _, survivors = battle(
+            initial,
+            enabled,
+            health,
+            opening,
+            opening_active,
+            opening_order,
+            target,
+            immune,
+            settings,
+            smeta,
+            scoef,
+            nodes,
+            entries,
+            proc,
+            ranges,
+            emeta,
+            econ,
+            ebase,
+            elinear,
+            initial_regen,
+            initial_rings,
+            seeded_state(seeds[i]),
             boss_data,
         )
         damage_out[i] = total

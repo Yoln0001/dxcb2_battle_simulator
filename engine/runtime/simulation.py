@@ -268,12 +268,16 @@ class SingleBattle:
         }
         self.warnings = set()
         if any(c.domain_ring and c.domain_ring["kind"] == "earth" for c in self.state.characters):
-            self.warnings.add("地之环格挡属性已计算；敌方受击格挡结算尚未接入。")
+            self.warnings.add(
+                "地之环格挡属性已计算；本次模拟不包含敌方攻击，格挡不生效（为所选Boss设置技能组后才会模拟Boss攻击）。"
+            )
         if any(
             c.domain_ring and c.domain_ring["restriction"] == "fragile"
             for c in self.state.characters
         ):
-            self.warnings.add("炎之环受伤增幅已记录；敌方攻击结算尚未接入。")
+            self.warnings.add(
+                "炎之环受伤增幅已记录；本次模拟不包含敌方攻击，受伤增幅不生效（为所选Boss设置技能组后才会模拟Boss攻击）。"
+            )
         self.sequences = {}
         for c, row in zip(self.state.characters, config["characters"]):
             if not c.enabled:

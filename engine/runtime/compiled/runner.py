@@ -1,10 +1,9 @@
 """Bounded compiled chunks preserve progress, cancellation and result compatibility."""
 
-import random
 import time
 import numpy as np
 import numba
-from .kernel import chunk
+from .kernel import chunk_seeded
 from ..cancellation import check_cancelled
 
 
@@ -13,16 +12,16 @@ def results(arrays, keys, warnings, seeds, workers, metadata, cancel_event=None,
     numba.set_num_threads(threads)
     metadata.update(engine="numba_njit", worker_count=threads, compilation_seconds=0.0)
 
-    def execute(states):
-        return chunk(*arrays, states) if boss_data is None else chunk(*arrays, states, boss_data)
+    def execute(chunk_seeds):
+        if boss_data is None:
+            return chunk_seeded(*arrays, chunk_seeds)
+        return chunk_seeded(*arrays, chunk_seeds, boss_data)
 
     loaded = False
     for begin in range(0, len(seeds), 128):
         check_cancelled(cancel_event)
-        states = np.array(
-            [random.Random(seed).getstate()[1] for seed in seeds[begin : begin + 128]],
-            dtype=np.uint32,
-        )
+        # 只把种子交给内核：每场的随机数状态由内核在各线程里生成，与random.Random(seed)相同。
+        states = np.array(seeds[begin : begin + 128], dtype=np.int64)
         if not loaded:
             started = time.perf_counter()
             execute(states[:1])

@@ -5,9 +5,12 @@ from multiprocessing import get_context
 from engine.runtime.cancellation import SimulationCancelled
 from time import perf_counter
 from uuid import uuid4
-from engine.runtime.batch import simulate_batch, batch_parameters
+from engine.runtime.batch import simulate_batch, batch_parameters, percentile
 from engine.runtime.simulation import SingleBattle
 from engine.runtime.initialization import BattleConfigurationError
+
+# 超过这个场次时，查询任务不再回传完整伤害列表（100万场约19MB）。
+SORTED_DAMAGE_LIMIT = 100000
 
 
 class BatchJobs:
@@ -89,9 +92,25 @@ class BatchJobs:
             job = self.jobs.get(key)
             if not job:
                 raise BattleConfigurationError("批量任务不存在，服务重启会清除任务记录")
-            return {k: v for k, v in job.items() if k not in ("started", "cancel_event")} | {
-                "elapsed_seconds": job.get("elapsed_seconds", perf_counter() - job["started"])
-            }
+            value = {k: v for k, v in job.items() if k not in ("started", "cancel_event")}
+            value["elapsed_seconds"] = job.get("elapsed_seconds", perf_counter() - job["started"])
+            result = value.get("result")
+            if result and len(result["sorted_damage"]) > SORTED_DAMAGE_LIMIT:
+                # 完整伤害列表留在服务端，自定义分位数用percentile()按同一份数据精确计算。
+                value["result"] = {k: v for k, v in result.items() if k != "sorted_damage"}
+                value["result"]["sorted_damage_omitted"] = True
+            return value
+
+    def percentile(self, key, percent):
+        """用任务保存的完整伤害列表计算分位数，与结果中各分位数的算法相同。"""
+        with self.lock:
+            job = self.jobs.get(key)
+            if not job:
+                raise BattleConfigurationError("批量任务不存在，服务重启会清除任务记录")
+            if job["status"] != "complete":
+                raise BattleConfigurationError("批量任务尚未完成")
+            damage = job["result"]["sorted_damage"]
+        return {"percent": percent, "damage": percentile(damage, percent)}
 
     def cancel(self, key):
         with self.lock:

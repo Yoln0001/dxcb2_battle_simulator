@@ -97,9 +97,11 @@ const context = {
     return {
       ok: true,
       json: async () =>
-        url.includes("simulate-batch")
-          ? { job_id: "test" }
-          : { status: "complete", completed: 10, total: 10, elapsed_seconds: 2.5, result: data },
+        url.includes("/percentile")
+          ? { percent: 25, damage: 4321 }
+          : url.includes("simulate-batch")
+            ? { job_id: "test" }
+            : { status: "complete", completed: 10, total: 10, elapsed_seconds: 2.5, result: data },
     };
   },
   console,
@@ -171,6 +173,16 @@ vm.runInContext(
   assert(exported.xlsx);
   assert.equal(exported.snapshot.characters[0].stats.speed, 1318);
   assert.equal(xlsxButton.disabled, false);
+  // 场次很多时结果里不带完整伤害列表：自定义分位数改为向服务端请求精确值。
+  delete data.sorted_damage;
+  data.sorted_damage_omitted = true;
+  await button.handlers.click();
+  const remoteInput = nodes.filter((n) => n.tag === "input").at(-1);
+  remoteInput.value = "25";
+  await remoteInput.handlers.input();
+  assert(urls.includes("/api/battle/batch/test/percentile?percent=25"));
+  const remoteCustom = nodes.filter((n) => n.className === "batch-custom").at(-1);
+  assert.equal(remoteCustom.children.at(-1).textContent, "4,321");
   console.log(
     "PASS: single batch endpoint with backend-decided Boss mode; requested statistics layout, elapsed, four roles, effect means and live custom percentile",
   );

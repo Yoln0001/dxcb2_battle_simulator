@@ -4,8 +4,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from engine.runtime.compiled.prepare import prepare
-from engine.runtime.compiled.kernel import battle, chunk
-from engine.runtime.compiled.rng import uniform, shuffle
+from engine.runtime.compiled.kernel import battle, chunk, chunk_seeded
+from engine.runtime.compiled.rng import uniform, shuffle, seeded_state
 from engine.runtime.simulation import SingleBattle
 
 
@@ -217,8 +217,21 @@ def main():
             flush=True,
         )
     states = np.array([random.Random(i).getstate()[1] for i in range(16)], dtype=np.uint32)
-    chunk(*arrays, states)
+    by_state = chunk(*arrays, states)
     print("PASS: parallel njit chunk compiled", flush=True)
+    # 内核内播种必须与 random.Random(seed) 的状态逐位相同，包括单字和双字种子的边界。
+    edge_seeds = [0, 1, 2**32 - 1, 2**32, 2**32 + 1, 2**53 - 1, 2**62 + 12345]
+    edge_seeds += [random.Random(99).randrange(2**53) for _ in range(200)]
+    for seed in edge_seeds:
+        expected_state = np.array(random.Random(seed).getstate()[1], dtype=np.uint32)
+        assert np.array_equal(seeded_state(seed), expected_state), seed
+    by_seed = chunk_seeded(*arrays, np.arange(16, dtype=np.int64))
+    for left, right in zip(by_state, by_seed):
+        assert np.array_equal(left, right)
+    print(
+        "PASS: in-kernel seeding matches random.Random for 207 seeds and 16 seeded battles",
+        flush=True,
+    )
     from engine.runtime.batch import simulate_batch
 
     cfg = {

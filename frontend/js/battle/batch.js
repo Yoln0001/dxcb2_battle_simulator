@@ -134,7 +134,7 @@
   };
   const row = () => E("div", undefined, "batch-stat-row");
   const dataMode = (data) => (data.boss_attacks ? "包含Boss攻击 · " : "");
-  function render(data, config) {
+  function render(data, config, jobId) {
     exportResult = data;
     exportConfig = config;
     exportButton.hidden = false;
@@ -198,10 +198,29 @@
     custom.append(E("span", "自定义分位"), input, E("span", "%"), value);
     quantiles.append(custom);
     content.append(quantiles);
-    input.addEventListener("input", () => {
+    let percentileRequest = 0;
+    input.addEventListener("input", async () => {
       if (input.value === "" || !input.checkValidity()) return;
       const percent = Number(input.value);
       if (!Number.isFinite(percent) || percent < 0 || percent > 100) return;
+      if (!Array.isArray(data.sorted_damage)) {
+        // 场次很多时完整伤害列表留在服务端，由服务端用同一份数据精确计算。
+        const request = ++percentileRequest;
+        try {
+          const response = await (window.AppRequests?.fetch || fetch)(
+            "/api/battle/batch/" +
+              encodeURIComponent(jobId) +
+              "/percentile?percent=" +
+              encodeURIComponent(percent),
+          );
+          const answer = await response.json();
+          if (!response.ok) throw Error(answer.error || "分位数计算失败");
+          if (request === percentileRequest) value.textContent = format(answer.damage);
+        } catch (error) {
+          if (request === percentileRequest) window.showToast(error.message);
+        }
+        return;
+      }
       const pos = ((data.sorted_damage.length - 1) * (100 - percent)) / 100,
         lo = Math.floor(pos),
         hi = Math.ceil(pos);
@@ -333,7 +352,7 @@
             "查看模拟进度 · " + format(job.completed) + " / " + format(job.total);
           if (job.status === "failed") throw Error(job.error || "批量模拟失败");
           if (job.status === "complete") {
-            render(job.result, config);
+            render(job.result, config, task.job_id);
             progress.textContent = dataMode(job.result) + "模拟完成";
             restore.textContent = "模拟完成 · 查看结果";
             if (!dialog.open && !minimized) dialog.showModal();

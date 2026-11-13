@@ -60,11 +60,7 @@ class BossBattle(SingleBattle):
             np.array(meta, dtype=float).reshape((-1, 1)),
             np.array(con, dtype=float).reshape((-1, len(ATTRS), len(ATTRS))),
         )
-        self.warnings = {
-            w
-            for w in self.warnings
-            if "敌方攻击结算尚未接入" not in w and "敌方受击格挡结算尚未接入" not in w
-        }
+        self.warnings = {w for w in self.warnings if "本次模拟不包含敌方攻击" not in w}
         if any(
             s.get("effect") and s["effect"].get("type") in ("bleeding", "plague")
             for s in self.boss_group["skills"]

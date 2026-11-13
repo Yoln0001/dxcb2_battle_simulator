@@ -121,6 +121,14 @@ def batch_status(job_id: str, request: Request):
         return request.app.state.batch_jobs.get(job_id)
 
 
+@router.get("/batch/{job_id}/percentile", summary="按任务保存的完整伤害列表计算自定义分位数")
+def batch_percentile(job_id: str, percent: float, request: Request):
+    if not 0 <= percent <= 100:
+        raise SkillError("分位数应为0到100%")
+    with configuration_errors(404):
+        return request.app.state.batch_jobs.percentile(job_id, percent)
+
+
 @router.post("/batch/{job_id}/cancel", summary="取消批量模拟")
 def cancel_batch(job_id: str, request: Request):
     with configuration_errors(404):
